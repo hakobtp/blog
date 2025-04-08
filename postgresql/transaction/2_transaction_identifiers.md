@@ -74,15 +74,13 @@ changes, it does not use a real **xid** number.
 
 **Example Workflow:**
 
-Start a transaction and check the **xid** (no real **xid** yet):
-
-```sql
-BEGIN;
-SELECT txid_current_if_assigned();
-```
-The result is **NULL** because the transaction is still virtual.
-
-2) Do a read operation:
+- Start a transaction and check the **xid** (no real **xid** yet):
+    ```sql
+        BEGIN;
+        SELECT txid_current_if_assigned();
+    ```
+    The result is **NULL** because the transaction is still virtual.
+- Do a read operation:
     
     ```sql
         SELECT count(*) FROM tags;
@@ -90,7 +88,7 @@ The result is **NULL** because the transaction is still virtual.
     ```
     
     The result is still **NULL** since no data has changed.
-3) Make a data change:
+- Make a data change:
     
     ```sql
         UPDATE tags SET tag = UPPER(tag);
