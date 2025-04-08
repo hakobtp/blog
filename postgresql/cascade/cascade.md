@@ -109,6 +109,8 @@ removing any dependent objects. This can be very useful—but also dangerous if 
     ```sql 
     DROP FUNCTION my_function CASCADE;
     ```
+
+    
 ## Summary of Cascade Options in PostgreSQL
 
 |Usage	                    |Description                                                                                    |
