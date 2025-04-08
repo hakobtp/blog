@@ -106,7 +106,7 @@ removing any dependent objects. This can be very useful—but also dangerous if 
     DROP VIEW my_view CASCADE;
     ```
 - **DROP FUNCTION ... CASCADE:** Drops a function and any database objects (views, triggers, etc.) that depend on it.
-    ``` 
+    ```sql 
     DROP FUNCTION my_function CASCADE;
     ```
 ## Summary of Cascade Options in PostgreSQL
