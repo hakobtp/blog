@@ -75,22 +75,28 @@ changes, it does not use a real **xid** number.
 **Example Workflow:**
 
 1) Start a transaction and check the **xid** (no real **xid** yet):
+
     ```sql
         BEGIN;
         SELECT txid_current_if_assigned();
     ```
+
     The result is **NULL** because the transaction is still virtual.
 2) Do a read operation:
+    
     ```sql
         SELECT count(*) FROM tags;
         SELECT txid_current_if_assigned();
     ```
+    
     The result is still **NULL** since no data has changed.
 3) Make a data change:
+    
     ```sql
         UPDATE tags SET tag = UPPER(tag);
         SELECT txid_current_if_assigned();
     ```   
+    
     Now the function returns a number (for example, 1900). After a change, 
     both `txid_current_if_assigned()` and `txid_current()` give the same real **xid**.  
 
