@@ -18,8 +18,8 @@ This number helps PostgreSQL keep track of transactions.
 ## How xid Works
 
 - **xid as a Counter:** The **xid** is a counter that increases by one for each new transaction. It is 
-    calculated with a modulo $2^{31}$. This means that from any current **xid**, there are $2^{31}$ possible future 
-    transactions and $2^{31}$ past transactions. The **xid** counter is cyclic—it will eventually start over from low numbers.
+    calculated with a modulo 2³¹. This means that from any current **xid**, there are 2³¹ possible future 
+    transactions and 2³¹ past transactions. The **xid** counter is cyclic—it will eventually start over from low numbers.
 
 - **Unique xid:** PostgreSQL makes sure that no two active transactions have the same **xid**. However, because the **xid** 
     counter is automatic and limited, it will eventually `wrap around`. This is called the **xid** wraparound problem.
