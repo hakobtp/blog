@@ -2,8 +2,6 @@
 
 ```info
 Author      Ter-Petrosyan Hakob
-Created     2022-04-10
-Updated     2022-04-14
 ````
 
 - [Immutable class](#immutable-class)

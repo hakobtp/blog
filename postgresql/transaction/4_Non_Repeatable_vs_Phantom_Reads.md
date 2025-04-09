@@ -2,8 +2,6 @@
 
 ```info
 Author      Ter-Petrosyan Hakob
-Created     2025-04-09
-Updated     2025-04-09
 ```
 
 ---
