@@ -14,7 +14,7 @@ locks to block and protect data from conflicting changes. However, locks can mak
 To reduce this problem, PostgreSQL uses something called Multi-Version Concurrency Control (**MVCC**). With **MVCC**, 
 the system does not change a record directly. Instead, it makes a copy of the record, applies the changes to the copy, and marks the original record as outdated. This idea is similar to the "copy-on-write" method used in filesystems like ZFS.
 
-For example, imagine a table called "categories" that has three records. If you update the description of one record, PostgreSQL creates a new record with the changes and invalidates the old one.
+For example, imagine a table called `categories` that has three records. If you update the description of one record, PostgreSQL creates a new record with the changes and invalidates the old one.
 
 Why does PostgreSQL do extra work with **MVCC** instead of updating data directly? This extra work helps the database keep multiple versions of the same data at the same time. Each version of the data is correct during a specific time period. Because of this, PostgreSQL does not need many locks, and different transactions can see different versions of the data without waiting.
 
@@ -35,7 +35,7 @@ testdb=*# SELECT txid_current(), txid_current_snapshot();
 
  txid_current | txid_current_snapshot 
 --------------+-----------------------
-          858 | 858:858:
+          871 | 871:871:
 (1 row)
 
 testdb=*# UPDATE categories SET name = lower(name);
@@ -44,7 +44,7 @@ UPDATE 2
 
 ```
 
-In the example above, the transaction number is 858, and its snapshot includes only itself (858:858:). This means the transaction sees only data already saved and visible in the database before transaction 858 started.
+In the example above, the transaction number is 871, and its snapshot includes only itself (871:871:). This means the transaction sees only data already saved and visible in the database before transaction 871 started.
 
 Now, let's pause this session for a moment. Open another session connected to the same database. In this new session, 
 perform a single **INSERT** statement. This statement runs inside its own implicit transaction. Then, retrieve the transaction’s **xid** to see its identifier.
@@ -56,14 +56,14 @@ testdb=# INSERT INTO categories( name ) VALUES( 'Rust' ) RETURNING txid_current(
 
  txid_current 
 --------------
-          859
+          872
 (1 row)
 
 INSERT 0 1
 
 ```
 
-The single-action transaction got the **xid** number 859. This number is the next available **xid** after the previous transaction (858). 
+The single-action transaction got the **xid** number 872. This number is the next available **xid** after the previous transaction (871). 
 We didn't run any other transactions at the same time, which makes it easier to follow the numbers clearly.
 
 Now, let's return to the first session and check the snapshot information again:
@@ -75,15 +75,15 @@ testdb=*#  SELECT txid_current(), txid_current_snapshot();
 
  txid_current | txid_current_snapshot 
 --------------+-----------------------
-          858 | 858:860:
+          871 | 871:873:
 (1 row)
 
 ```
 
-This time, the snapshot of our first transaction has grown. Its range now includes transaction 860, which hasn't started yet 
-(the function `txid_current_snapshot()` shows the upper limit as non-inclusive).
+This time, the snapshot of our first transaction has grown. Its range now includes transaction 873, which hasn't started yet 
+(the function **txid_current_snapshot()** shows the upper limit as non-inclusive).
 
-In other words, the first transaction can now see data that was added by transaction 859, even though 859 started later. This becomes even clearer if we query the table within the first transaction:
+In other words, the first transaction can now see data that was added by transaction 872, even though 872 started later. This becomes even clearer if we query the table within the first transaction:
 
 
 ```sql
@@ -93,14 +93,14 @@ testdb=*# SELECT xmin, name FROM categories;
 
  xmin | name 
 ------+------
-  858 | java
-  858 | c#
-  859 | Rust
+  871 | java
+  871 | c#
+  872 | Rust
 (3 rows)
 
 ```
 
-As you can see, all the records except the last one were created by the current transaction. The last record was created by transaction 859.
+As you can see, all the records except the last one were created by the current transaction. The last record was created by transaction 872.
 
 But the previous example shows only part of the story. While the first transaction is still open (not completed), let's check the same table again from another parallel session:
 
@@ -109,12 +109,13 @@ But the previous example shows only part of the story. While the first transacti
 
 testdb=# SELECT xmin, name FROM categories;
 
- xmin | name 
+  xmin | name 
 ------+------
-  856 | Java
-  856 | C#
-  859 | Rust
+  869 | Java
+  870 | C#
+  872 | Rust
 (3 rows)
+
 
 ```
 
