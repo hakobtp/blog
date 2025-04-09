@@ -82,7 +82,7 @@ changes, it does not use a real **xid** number.
 - Do a read operation:
     
     ```sql
-        SELECT count(*) FROM tags;
+        SELECT count(*) FROM categories;
         SELECT txid_current_if_assigned();
     ```
     
@@ -90,7 +90,7 @@ changes, it does not use a real **xid** number.
 - Make a data change:
     
     ```sql
-        UPDATE tags SET tag = UPPER(tag);
+        UPDATE categories SET name = UPPER(name);
         SELECT txid_current_if_assigned();
     ```   
     

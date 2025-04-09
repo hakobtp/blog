@@ -4,8 +4,9 @@
 ```info
 Author      Ter-Petrosyan Hakob
 ```
-🧩 [Implicit vs Explicit Transactions: What's the Difference?](#-implicit-vs-explicit-transactions-whats-the-difference)\
-⏱️ [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)
+- [Implicit vs Explicit Transactions: What's the Difference?](#-implicit-vs-explicit-transactions-whats-the-difference)
+    - [When Should You Use an Explicit Transaction?](#-when-should-you-use-an-explicit-transaction)
+- [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)
 
 ---
 
@@ -148,7 +149,204 @@ is wrapped in a single-statement implicit transaction.
 > However, on a real or busy system with multiple connections and active transactions, you can’t predict what the next **xid** will be. 
 > Other transactions may use up transaction IDs between your statements.
 
+What if we wanted to insert all the previous categories at once, making sure that either all of them are saved, or none at all if something goes wrong?
+To do this, we can use an explicit transaction.
+
+An explicit transaction is a group of statements where you define the start and end of the transaction.
+
+- You start the transaction with **BEGIN**.
+- You end it with either **COMMIT** or **ROLLBACK**.
+    - ✅ If you use **COMMIT**, all changes are saved permanently.
+    - ❌ If you use **ROLLBACK**, the transaction is canceled, and all changes are undone.
+
+Let’s see how this works by inserting a group of categories within a single explicit transaction:
+
+```sql
+BEGIN;
+
+INSERT INTO categories( name ) VALUES( 'AWS' );
+INSERT INTO categories( name ) VALUES( 'Kafka' );
+
+COMMIT;
+
+SELECT xmin, * FROM categories;
+
+ xmin | id |    name    
+------+----+------------
+  871 |  1 | java
+  871 |  2 | c#
+  872 |  3 | Rust
+  886 |  4 | linux
+  887 |  5 | Perl
+  888 |  6 | javaScript
+  889 |  7 | AWS
+  889 |  8 | Kafka
+(8 rows)
+
+```
+
+Now, let’s see what happens if we end a transaction with **ROLLBACK** instead of **COMMIT**.
+The expected result is that none of the changes should be saved.
+
+As an example, let’s try to update all categories values to uppercase, but cancel the transaction afterward using **ROLLBACK**:
+
+```sql
+BEGIN;
+UPDATE categories SET name = upper( name );
+ROLLBACK;
+
+SELECT name FROM categories;
+
+name    
+------------
+ java
+ c#
+ Rust
+ linux
+ Perl
+ javaScript
+ AWS
+ Kafka
+(8 rows)
+
+```
+We first changed all the categories names to uppercase. But then we changed our mind and ran a **ROLLBACK**. 
+At that moment, PostgreSQL discarded all the changes, and the data returned to its original state, as if nothing happened.
+
+However, having control over a transaction doesn’t mean you can always decide how it ends. 
+For example, if an error occurs during the transaction, PostgreSQL might force a rollback, and you won’t be allowed to **COMMIT** it—even if you want to.
+
+The most basic example? A syntax error:
+
+```sql
+BEGIN;
+
+UPDATE categories SET name = upperr( name );
+
+ERROR:  function upperr(character varying) does not exist
+LINE 1: UPDATE categories SET name = upperr( name );
+                                     ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+
+COMMIT;
+ROLLBACK
+```
+
+When PostgreSQL encounters an error, it automatically aborts the current transaction.
+
+This means the transaction is still open, but it's marked as invalid. From that point on:
+- PostgreSQL will ignore all your following commands.
+- It will not allow you to **COMMIT** the transaction.
+- As soon as you try to end the transaction, PostgreSQL will automatically perform a **ROLLBACK**.
+
+In simple terms: after an error, the transaction is no longer usable. Even if you try to run more statements, PostgreSQL will refuse to accept them.
+
+```sql
+BEGIN;
+INSERT INTO categories( name ) VALUES( 'AI' );
+
+INSERT INTO categories( name ) VALUES( SomeText );
+ERROR:  column "sometext" does not exist
+LINE 1: INSERT INTO categories( name ) VALUES( SomeText );
+
+INSERT INTO categories( name ) VALUES( 'design pattern' );
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+
+COMMIT;
+ROLLBACK
+```
+
+Of course, syntax errors or misspelled table/column names aren't the only issues you might face when working with transactions. 
+These are usually easy to fix.
+
+However, sometimes your transaction might fail because of data-related issues, like a constraint violation. In such cases, the database prevents the transaction from continuing.
+
+For example, imagine we add a rule that categories names must be at least 2 characters long. If we try to insert a categories that doesn’t meet this requirement, the transaction will fail.
+
+Let’s see what happens when a constraint like this is triggered:
+
+```sql
+ALTER TABLE categories 
+    ADD CONSTRAINT constraint_name_length CHECK ( length( name ) >= 2 );
+
+BEGIN;
+
+INSERT INTO categories( name ) VALUES( 'C' );
+
+ERROR:  new row for relation "categories" violates check constraint "constraint_name_length"
+DETAIL:  Failing row contains (10, C).
+
+INSERT INTO categories( name ) VALUES( 'C++' );
+
+ERROR:  current transaction is aborted, commands ignored until end of transaction block
+
+COMMIT;
+ROLLBACK
+
+```
+
+As you've seen, when a DML statement (like **INSERT**, **UPDATE**, or **DELETE**) fails, 
+PostgreSQL immediately aborts the transaction. From that point on, the database refuses to process any more statements within that transaction.
+
+The only way to fix the situation is to end the transaction, and it doesn’t matter whether you use **COMMIT** or **ROLLBACK**—PostgreSQL will roll back the changes anyway. This means everything done in the transaction will be discarded.
+
+The same logic applies to implicit transactions:
+If a single statement fails, PostgreSQL rolls back the transaction that wrapped that statement. As a result, none of the changes are saved.
+
+In our earlier examples, we usually ended transactions with **COMMIT**, just to show how PostgreSQL refuses 
+to commit bad or incomplete work. But in real-world scenarios, when you're not sure about the data, or an error occurs, 
+you should use **ROLLBACK**. This cancels the transaction and keeps the database in a safe state.
+
+Use an explicit transaction any time you have a group of operations that must all succeed or all fail together. 
+This is especially important when partial success could lead to data inconsistency.
+
 ## ⏱️ Time Behavior Inside Transactions Explained
+
+Transactions are time-discrete, which means that the time stays fixed during the entire transaction.
+Even if you wait a few seconds and run **SELECT current_time**; again, you'll still get the same time—the one from when the transaction started.
+
+If you need the actual, real-time clock while a transaction is running, you can use the function **clock_timestamp()**.
+This will return the current system time, even inside a transaction.
+
+Let’s see the difference in action with a quick example:
+
+```sql
+BEGIN;
+SELECT CURRENT_TIME;
+
+    current_time    
+--------------------
+ 10:10:36.841265+00
+(1 row)
+
+SELECT pg_sleep_for( '5 seconds' );
+
+SELECT CURRENT_TIME;
+
+    current_time    
+--------------------
+ 10:10:36.841265+00
+(1 row)
+
+
+SELECT CURRENT_TIME, clock_timestamp()::time;
+
+    current_time    | clock_timestamp 
+--------------------+-----------------
+ 10:10:36.841265+00 | 10:11:34.400918
+(1 row)
+
+
+SELECT pg_sleep_for( '5 seconds' );
+SELECT CURRENT_TIME, clock_timestamp()::time;
+
+    current_time    | clock_timestamp 
+--------------------+-----------------
+ 10:10:36.841265+00 | 10:12:00.912546
+(1 row)
+
+```
 
 ---
 
