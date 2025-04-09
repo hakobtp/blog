@@ -261,4 +261,4 @@ When does **VACUUM** delete an old record version? It deletes it when no active 
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔢 [Transaction Identifiers](./2_transaction_identifiers.md)
-- 🔁 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
+- 🆚 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)

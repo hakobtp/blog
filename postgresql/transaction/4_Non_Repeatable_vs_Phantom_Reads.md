@@ -1,4 +1,4 @@
-# Non-Repeatable vs Phantom Reads: What's the Real Difference?
+# 🆚 Non-Repeatable vs Phantom Reads: What's the Real Difference?
 
 ```info
 Author      Ter-Petrosyan Hakob

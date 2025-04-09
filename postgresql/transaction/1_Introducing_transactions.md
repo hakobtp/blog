@@ -1,9 +1,11 @@
-# Introducing transactions
+# 🔁 Introducing Transactions
+
 
 ```info
 Author      Ter-Petrosyan Hakob
 ```
-
+🧩 [Implicit vs Explicit Transactions: What's the Difference?](#-implicit-vs-explicit-transactions-whats-the-difference)
+⏱️ [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)
 ---
 
 **Transactions** let a database group several operations together and treat them as one single unit, called an **atomic operation**. 
@@ -26,6 +28,90 @@ Transactions are a core feature of any modern database system. They help databas
 
 Together, these properties make sure that data stays correct, safe, and reliable, even when multiple users or 
 systems interact with the database at the same time.
+
+You can think of a transaction as a group of related statements that will either all succeed together or all fail. Transactions are used everywhere in a database—even if you don’t notice them.
+
+In fact, even simple actions like calling a function or running a single SQL statement are automatically wrapped in a tiny transaction. This means that every operation you run against the database is executed inside a transaction, even if you didn’t start one manually.
+
+Thanks to this automatic behavior, the database can always keep your data safe and consistent, and prevent corruption. 
+
+Sometimes, you may not want the database to automatically manage your statements. Instead, you might want to control when a transaction starts and ends. PostgreSQL allows this, and that’s where the concepts of **implicit** and **explicit** transactions come in.
+
+- An **implicit** transaction is one the database starts for you automatically—like when you run a single SQL statement.
+- An **explicit** transaction is one that you start manually using **BEGIN** and end with **COMMIT** or **ROLLBACK**.
+
+Before we look at how these two types of transactions work and compare them, let’s review two important concepts:
+
+- 🔢 **Transaction ID (xid)**
+    - Every transaction—whether implicit or explicit—is given a unique number called a transaction ID, or **xid**. 
+        PostgreSQL automatically assigns an **xid** to each new transaction and guarantees that no two transactions 
+        will share the same **xid** at the same time.
+- 📦 **Tuples and xids**
+    - PostgreSQL also stores the **xid** of the transaction that created or modified a row (called a tuple) inside the tuple itself.        
+
+
+You’ll see later why this is important when we talk about how PostgreSQL manages many transactions at the same time (concurrency). For now, just remember this: every row in every table is labeled with the xid of the transaction that created it.
+
+You’ll understand why this is important when we later explore how PostgreSQL handles multiple transactions at the 
+same time—a concept called concurrency. For now, just remember: every row in every table is tagged with the xid (transaction ID) of the transaction that created or changed it.
+
+PostgreSQL provides a special function **called txid_current()** that lets you check the transaction ID of the current transaction.
+
+For example, try running a few simple queries like this:
+
+```sql
+SELECT current_time, txid_current();
+
+   current_time    | txid_current 
+-------------------+--------------
+ 11:24:22.18456+00 |         1888 
+
+
+SELECT current_time, txid_current();
+
+    current_time    | txid_current 
+--------------------+--------------
+ 11:24:51.887052+00 |         1889
+```
+
+As you can see from the example above, the system assigned two different transaction IDs—1888 and 1889—to each **SELECT** statement. 
+This confirms that each statement was executed in a separate implicit transaction.
+
+🔸 **You may see different numbers on your own system, as transaction IDs increase over time.**
+
+PostgreSQL stores the transaction ID that created each row in a special hidden column called **xmin**. 
+You can query this column to find out which transaction inserted each row:
+
+```sql
+SELECT xmin, * FROM categories;
+```
+
+Example output:
+
+```sql
+ xmin | id | name 
+------+----+------
+  871 |  1 | java
+  871 |  2 | c#
+  872 |  3 | Rust
+(3 rows)
+```
+
+In this example:
+- Rows with id = 1 and id = 2 were created by transaction 871.
+- The row with id = 3 was created by transaction 872.
+
+PostgreSQL manages several of these hidden system columns that are not shown unless you explicitly request them. The most common ones include:
+
+- **xmin** – the transaction ID that created the row
+- **xmax** – the transaction ID that deleted the row (if applicable)
+- **cmin** – the command ID of the inserting statement
+- **cmax** – the command ID of the deleting or updating statement
+
+## 🧩 Implicit vs Explicit Transactions: What's the Difference?
+
+
+## ⏱️ Time Behavior Inside Transactions Explained
 
 ---
 
