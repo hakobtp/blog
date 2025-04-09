@@ -1,4 +1,4 @@
-## PostgreSQL Tutorials
+## 🐘 PostgreSQL Tutorials
 
 - [CASCADE](./cascade/cascade.md)
 
