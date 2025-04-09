@@ -1,4 +1,4 @@
-# Multi-Version Concurrency Control
+# 🔄 Multi-Version Concurrency Control
 
 ```info
 Author      Ter-Petrosyan Hakob

@@ -5,7 +5,8 @@
 Author      Ter-Petrosyan Hakob
 ```
 🧩 [Implicit vs Explicit Transactions: What's the Difference?](#-implicit-vs-explicit-transactions-whats-the-difference)\
-⏱️ [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)\
+⏱️ [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)
+
 ---
 
 **Transactions** let a database group several operations together and treat them as one single unit, called an **atomic operation**. 
