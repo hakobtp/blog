@@ -228,4 +228,34 @@ To solve this issue, PostgreSQL has special tools called **VACUUM** and **autova
 
 When does **VACUUM** delete an old record version? It deletes it when no active transactions can see it anymore—that is, when no transactions still refer to its **xmin** (its creation transaction ID). In other words, a record version can be removed once it’s no longer visible to any ongoing transactions.
 
+## Summarize
+
+**MVCC** stands for **Multi-Version Concurrency Control**. It's an important feature in PostgreSQL and many other modern databases. 
+**MVCC** allows multiple transactions to read and write data at the same time, ensuring the data remains consistent and correct.
+
+### How does MVCC work?
+
+1) **Versions of Data**
+  - When you insert or update data, PostgreSQL doesn't immediately overwrite the existing data.
+  - Instead, it creates a new version of the data (called a tuple) with a new transaction ID (**xid**).
+  - The old data version is kept but marked as outdated.
+
+2) **Visibility (Snapshots)**
+  - Every transaction sees data based on its snapshot, created at the transaction’s start.
+  - A transaction sees only data versions committed (saved permanently) before it began.
+  - This gives each transaction a consistent view of data, even if other transactions are changing data at the same time.
+
+3) **Better Concurrency**
+  - **MVCC** allows multiple transactions to read the same data simultaneously without waiting or blocking each other.
+  - Transactions that write (change data) still need row-level locks to prevent conflicts.
+
+4) **Transaction Isolation Levels**
+  - **MVCC** helps PostgreSQL support different isolation levels (Read Committed, Repeatable Read, Serializable).
+  - Each isolation level decides exactly which data a transaction can see, based on **MVCC** snapshots.
+
+5) **Cleaning Up Old Data (Vacuuming)**
+  - PostgreSQL regularly runs a process called vacuuming.
+  - Vacuuming removes old versions of data that are no longer visible or needed.
+  - This prevents the database from growing unnecessarily large over time.
+
 [Home](./../../README.md) | [PostgreSql Tutorials](./../tutorials.md) | [Transaction Identifiers](./2_transaction_identifiers.md)
