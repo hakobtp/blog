@@ -228,7 +228,7 @@ To solve this issue, PostgreSQL has special tools called **VACUUM** and **autova
 
 When does **VACUUM** delete an old record version? It deletes it when no active transactions can see it anymore—that is, when no transactions still refer to its **xmin** (its creation transaction ID). In other words, a record version can be removed once it’s no longer visible to any ongoing transactions.
 
-## Summarize
+## 🧾 Summary
 
 **MVCC** stands for **Multi-Version Concurrency Control**. It's an important feature in PostgreSQL and many other modern databases. 
 **MVCC** allows multiple transactions to read and write data at the same time, ensuring the data remains consistent and correct.
@@ -258,4 +258,9 @@ When does **VACUUM** delete an old record version? It deletes it when no active 
   - Vacuuming removes old versions of data that are no longer visible or needed.
   - This prevents the database from growing unnecessarily large over time.
 
-[Home](./../../README.md) | [PostgreSql Tutorials](./../tutorials.md) | [Transaction Identifiers](./2_transaction_identifiers.md)
+## 📌 Explore More
+
+- 🏠 [Home](./../../README.md)
+- 📚 [PostgreSql Tutorials](./../tutorials.md)
+- 🔢 [Transaction Identifiers](./2_transaction_identifiers.md)
+- 🔁 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)

@@ -103,4 +103,8 @@ By separating virtual and real **xids**, PostgreSQL saves **xid** numbers and us
 
 ---
 
-[Home](./../../README.md) | [PostgreSql Tutorials](./../tutorials.md) | [Multi-Version Concurrency Control](./3_Multi_Version_Concurrency_Control.md)
+## 📌 Explore More
+
+- 🏠 [Home](./../../README.md)
+- 📚 [PostgreSql Tutorials](./../tutorials.md)
+- 🔄 [Multi-Version Concurrency Control](./3_Multi_Version_Concurrency_Control.md)
