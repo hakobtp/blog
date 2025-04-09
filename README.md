@@ -1,5 +1,5 @@
 
-📚 Tutorials by Topic</br>
+📚 Tutorials by Topic
 
 ☕ [Java](./java/tutorials.md)    🌱 [Spring](./spring/tutorials.md)    🐘 [PostgreSql](./postgresql/tutorials.md)
 
