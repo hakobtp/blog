@@ -1,7 +1,7 @@
 
 ## 📚 Tutorials by Topic
 
-- - ☕ [Java](./java/tutorials.md) 
+- ☕ [Java](./java/tutorials.md) 
 - 🌱 [Spring](./spring/tutorials.md)
 - 🐘 [PostgreSQL](./postgresql/tutorials.md)
 
