@@ -3,7 +3,7 @@
 ### Transaction
  
 <!-- https://github.com/hakobtp/POSTGRESQL/blob/master/p9/1_Introducing_transactions.md -->
-[Transaction Identifiers](./transaction/2_transaction_identifiers.md)\
-[Multi-Version Concurrency Control](./transaction/3_Multi_Version_Concurrency_Control.md)\
+- [Transaction Identifiers](./transaction/2_transaction_identifiers.md)
+- [Multi-Version Concurrency Control](./transaction/3_Multi_Version_Concurrency_Control.md)
 
 [Home](./../README.md)
