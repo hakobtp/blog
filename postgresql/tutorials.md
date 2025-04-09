@@ -7,4 +7,7 @@
 - [Multi-Version Concurrency Control](./transaction/3_Multi_Version_Concurrency_Control.md)
 - [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./transaction/4_Non_Repeatable_vs_Phantom_Reads.md)
 
-[Home](./../README.md)
+
+---
+
+🏠 [Home](./../README.md)
