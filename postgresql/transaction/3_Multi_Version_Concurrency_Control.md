@@ -116,7 +116,116 @@ testdb=# SELECT xmin, name FROM categories;
   872 | Rust
 (3 rows)
 
+```
+
+All records except the last one have different descriptions and, importantly, different **xmin** values compared to what transaction 871 sees. 
+What does this mean?
+
+It means that even though most of the table was updated (all records except the last one), other transactions running at the same time can still see the data without waiting for locks.
+
+This is the main idea of MVCC: each transaction sees its own version of the data. The exact data a transaction sees depends on the snapshot (the specific time range) associated with that transaction.
+
+Sooner or later, the changes made to the data must be finalized. When transaction 871 completes (by running **COMMIT**), 
+its changes become permanent. After that, every new transaction will see this updated data as the current and true state of the database.
+
+```sql
+-- SESSION 1
+
+testdb=*# COMMIT;
+COMMIT
+
+-- The transaction is now finished.
+-- Everyone sees the final updated data.
+
+testdb=# SELECT xmin, name FROM categories;
+
+ xmin | name 
+------+------
+  871 | java
+  871 | c#
+  872 | Rust
+(3 rows)
+```
+
+
+```sql
+-- SESSION 2
+
+testdb=# SELECT xmin, name FROM categories;
+ xmin | name 
+------+------
+  871 | java
+  871 | c#
+  872 | Rust
+(3 rows)
 
 ```
+
+MVCC does not always avoid the use of locks. If two or more transactions try to change the same data at the same time, PostgreSQL must put these transactions in order. To do this, the database must use locks, allowing only one transaction to continue while the others wait.
+
+We can easily demonstrate this behavior using two parallel sessions, just like in the previous example:
+
+```sql
+-- SESSION 1
+
+testdb=# BEGIN;
+
+testdb=*# SELECT txid_current(), txid_current_snapshot();
+
+ txid_current | txid_current_snapshot 
+--------------+-----------------------
+          873 | 873:873:
+(1 row)
+
+
+testdb=*# UPDATE categories SET name = upper( name );
+UPDATE 3
+```
+
+Meanwhile, run the following commands in another session:
+
+```sql
+-- SESSION 2
+testdb=# BEGIN;
+
+testdb=*# SELECT txid_current(), txid_current_snapshot();
+
+ txid_current | txid_current_snapshot 
+--------------+-----------------------
+          874 | 873:873:
+(1 row)
+
+
+testdb=*# UPDATE categories SET name = lower( name );
+
+-- LOCKED!!!!
+```
+
+Transaction 874 is locked because PostgreSQL doesn't know which update should be applied first. 
+Transaction 873 is changing all names to uppercase, and at the same time, transaction 874 is changing the same names to lowercase.
+
+Since these two transactions conflict, PostgreSQL must decide the order clearly. The final result depends on which transaction finishes last. 
+Because transaction 873 started changing the data first, transaction 874 is blocked. It must wait for transaction 873 to finish (**COMMIT** or **ROLLBACK**).
+
+When you finish the first transaction (873), the second transaction (874) will immediately continue, and you will see the result of the previously blocked **UPDATE** statement.
+
+```sql
+-- session 1
+testdb=*# COMMIT;
+COMMIT
+
+-- session 2
+UPDATE 3
+-- The transaction is unblocked and can continue.
+testdb=*#
+```
+
+As we've seen, MVCC doesn't completely prevent locking. However, it significantly reduces locking and improves the overall performance by allowing multiple transactions to run concurrently (at the same time).
+
+MVCC does have one disadvantage: the database must store several versions of each record because different transactions may see different versions of the data. This means the database can grow larger than just the consolidated (final) data.
+
+To solve this issue, PostgreSQL has special tools called **VACUUM** and **autovacuum**. These tools scan tables and indexes to find old versions of records that are no longer needed and remove them to free up storage space.
+
+When does **VACUUM** delete an old record version? It deletes it when no active transactions can see it anymore—that is, when no transactions still refer to its **xmin** (its creation transaction ID). In other words, a record version can be removed once it’s no longer visible to any ongoing transactions.
 
 [Home](./../../README.md) | [PostgreSql Tutorials](./../tutorials.md) | [Transaction Identifiers](./2_transaction_identifiers.md)
