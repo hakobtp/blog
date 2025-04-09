@@ -11,6 +11,7 @@ Updated     2025-04-08
     - [Special Values and the Freezing Mechanism](#special-values-and-the-freezing-mechanism)
 - [Virtual and Real Transaction Identifiers](#virtual-and-real-transaction-identifiers)
 
+---
 
 Every transaction in PostgreSQL gets a special number called an **xid**. **xid** means `transaction identifier`. 
 This number helps PostgreSQL keep track of transactions.
@@ -102,4 +103,4 @@ By separating virtual and real **xids**, PostgreSQL saves **xid** numbers and us
 
 ---
 
-[Home](./../../README.md) | [<< PostgreSql Tutorials](./../tutorials.md)
+[Home](./../../README.md) | [PostgreSql Tutorials](./../tutorials.md) | [Multi-Version Concurrency Control](./3_Multi_Version_Concurrency_Control.md)
