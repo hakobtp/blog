@@ -111,6 +111,42 @@ PostgreSQL manages several of these hidden system columns that are not shown unl
 
 ## 🧩 Implicit vs Explicit Transactions: What's the Difference?
 
+**Implicit** transactions are transactions that you don’t manually start—PostgreSQL creates them for you automatically. In other words, PostgreSQL controls the transaction boundaries, deciding when a transaction begins and ends.
+
+The rule is simple: each individual SQL statement runs in its own separate transaction.
+
+To better understand this, let’s try inserting a few records into a table:
+
+```sql
+INSERT INTO categories( name ) VALUES( 'linux' );
+INSERT INTO categories( name ) VALUES( 'Perl' );
+INSERT INTO categories( name ) VALUES( 'javaScript' );
+
+SELECT xmin, * FROM categories;
+
+ xmin | id |    name    
+------+----+------------
+  871 |  1 | java
+  871 |  2 | c#
+  872 |  3 | Rust
+  886 |  4 | linux
+  887 |  5 | Perl
+  888 |  6 | javaScript
+(6 rows)
+```
+
+As you can see, the **xmin** field has a different (incrementing) value for each row that was inserted. 
+This means that each **INSERT** statement was given a new transaction ID (**xid**).
+
+In other words, every statement runs in its own transaction, even if you didn’t explicitly start one. Each **INSERT** 
+is wrapped in a single-statement implicit transaction.
+
+> 📌 **NOTE:**  The reason you see the **xid** values increasing by just one each time is because, 
+> in these examples, no other database activity is happening. In other words, there’s no concurrency—no other users 
+> or processes are running queries at the same time.
+> 
+> However, on a real or busy system with multiple connections and active transactions, you can’t predict what the next **xid** will be. 
+> Other transactions may use up transaction IDs between your statements.
 
 ## ⏱️ Time Behavior Inside Transactions Explained
 
