@@ -51,9 +51,6 @@ Before we look at how these two types of transactions work and compare them, let
 - 📦 **Tuples and xids**
     - PostgreSQL also stores the **xid** of the transaction that created or modified a row (called a tuple) inside the tuple itself.        
 
-
-You’ll see later why this is important when we talk about how PostgreSQL manages many transactions at the same time (concurrency). For now, just remember this: every row in every table is labeled with the xid of the transaction that created it.
-
 You’ll understand why this is important when we later explore how PostgreSQL handles multiple transactions at the 
 same time—a concept called concurrency. For now, just remember: every row in every table is tagged with the xid (transaction ID) of the transaction that created or changed it.
 
