@@ -1,26 +1,30 @@
-# Java Record
+# 📘 Java Record
 
-```info
-Author      Ter-Petrosyan Hakob
-````
+```
+Author: Ter-Petrosyan Hakob
+```
 
-- [Immutable class](#immutable-class)
-- [Record example](#record-example)
+- [Immutable Classes](#immutable-classes)
+- [Record Example](#record-example)
 
 ---
 
-## Immutable class
+## Immutable Classes
 
-Let's write an immutable class, for that we should  maintain the next rules
+When writing an immutable class, it is important to follow these guidelines:
 
-- private, final field for each piece of data
-- getter for each field
-- public constructor with a corresponding argument for each field
-- equals method that returns true for objects of the same class when all fields match
-- hashCode method that returns the same value when all fields match
-- toString method that includes the name of the class and the name of each field and its corresponding value
+- Use private, final fields for each piece of data.
+- Provide a getter for each field.
+- Supply a public constructor with a corresponding parameter for each field.
+- Override the equals method to return true when all corresponding fields in two objects match.
+- Override the hashCode method so that identical objects produce the same hash code.
+- Override the toString method to include the class name, the field names, and their corresponding values.
+
+Consider the following example of an immutable Employee class:
 
 ```java
+import java.util.Objects;
+
 public final class Employee {
 
     private final String firstName;
@@ -30,9 +34,9 @@ public final class Employee {
 
     public Employee(String firstName, String lastName, String email, double salary) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.salary = salary;
+        this.lastName  = lastName;
+        this.email     = email;
+        this.salary    = salary;
     }
 
     public String getFirstName() {
@@ -55,11 +59,11 @@ public final class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employe = (Employee) o;
-        return Double.compare(employe.salary, salary) == 0
-                && Objects.equals(firstName, employe.firstName)
-                && Objects.equals(lastName, employe.lastName)
-                && Objects.equals(email, employe.email);
+        Employee employee = (Employee) o;
+        return Double.compare(employee.salary, salary) == 0 &&
+               Objects.equals(firstName, employee.firstName) &&
+               Objects.equals(lastName, employee.lastName) &&
+               Objects.equals(email, employee.email);
     }
 
     @Override
@@ -70,38 +74,37 @@ public final class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", salary=" + salary +
-                '}';
+               "firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", email='" + email + '\'' +
+               ", salary=" + salary +
+               '}';
     }
 }
 ```
 
-Although modern IDEA helps us generate boilerplate code our class doesn't look pretty. Starting with Java 17 we can use 
-Record.
-## Record example
+Although modern IDEs like IntelliJ IDEA help generate boilerplate code, the resulting class can appear cluttered. Starting with Java 17, you can use records to simplify the process.
 
-Java records were introduced with the intention to be used as a fast way to create data carrier classes, i.e. the 
-classes whose objective is to simply contain data and carry it between modules, also known as POJOs 
-(Plain Old Java Objects) and DTOs (Data Transfer Objects)
+## Record Example
 
-Let's rewrite our class via Record
+Java records were introduced as a concise way to create data carrier classes—that is, classes whose main purpose is to contain and transfer data (often referred to as POJOs or DTOs).
+
+Let's rewrite our Employee class as a record:
 
 ```java
 public record Employee(String firstName, String lastName, String email, double salary) {
 }
 ```
 
-Records automatically generate
-
+Using records, the following are automatically generated:
 - Immutable fields
 - A canonical constructor
-- An accessor method for each element
-- The equals() method
-- The hashCode() method
-- The toString() method
+- An accessor method for each component (without the get prefix)
+- The **equals(Object o)** method
+- The **hashCode()** method
+- The **toString()** method
+
+For example, consider this usage within a simple application:
 
 ```java
 public class App {
@@ -110,7 +113,6 @@ public class App {
         var e1 = new Employee("Gamer", "Simson", "gamer@mail.com", 1400);
         var e2 = new Employee("Gamer", "Simson", "gamer@mail.com", 1400);
         var e3 = new Employee("Bart", "Simson", "bart@mail.com", 0);
-
 
         System.out.println(e1);
         System.out.println(e2);
@@ -122,12 +124,13 @@ public class App {
         System.out.println("e1 hash code = " + e1.hashCode());
         System.out.println("e2 hash code = " + e2.hashCode());
         System.out.println("e3 hash code = " + e3.hashCode());
-
     }
 }
 ```
 
-```log
+The expected log output might be:
+
+```
 Employee[firstName=Gamer, lastName=Simson, email=gamer@mail.com, salary=1400.0]
 Employee[firstName=Gamer, lastName=Simson, email=gamer@mail.com, salary=1400.0]
 Employee[firstName=Bart, lastName=Simson, email=bart@mail.com, salary=0.0]
@@ -137,223 +140,162 @@ e1 hash code = -1706248431
 e2 hash code = -1706248431
 e3 hash code = 685814257
 ```
-> **NOTE**
-> The Record provides access method without 'get' prefix  `e1.firstName()`
 
-You cannot add fields to a record except by defining them in the header. However, static methods, fields, and initializers are allowed.
+> **NOTE:** Records provide accessor methods without the get prefix. For example, call `e1.firstName()` instead of `e1.getFirstName()`.
 
-A record can define methods, but the methods can only read fields, which are automatically final:
+Records are subject to a few important rules:
 
-```java
-public record Employee(String firstName, String lastName, String email, double salary) {
+- **Field Limitation:** You cannot add additional instance fields to a record beyond those declared in its header. 
+    However, static methods, fields, and static initializers are permitted.
+- **Immutability:** The fields of a record are **implicitly final**. Attempts to modify them (for example, via a setter method) result in a compilation error:
 
-    public void setFirstName(String firstName){
-        // error: cannot assign a value to final variable firstName this.firstName = firstName;
-        this.firstName = firstName; 
+    ```java
+    public record Employee(String firstName, String lastName, String email, double salary) {
+
+        public void setFirstName(String firstName) {
+            // Compilation error: cannot assign a value to final variable firstName
+            this.firstName = firstName;
+        }
+
+        public void tryToChangeFirstName() {
+            // Compilation error: cannot assign a value to final variable firstName
+            this.firstName = firstName.toLowerCase();
+        }
+    }
+    ```
+
+- **Inheritance:** Records are implicitly final and cannot be subclassed. They also cannot extend any other class, but they can implement interfaces. For instance:
+
+    ```java
+    interface IEmployee {
+        String firstName();
+        String fullName();
     }
 
-    public void tryToChangeFirstName() {
-        //error: cannot assign a value to final variable firstName this.firstName = firstName.toLowerCase();
-        this.firstName = firstName.toLowerCase(); 
+    public record Employee(String firstName, String lastName, String email, double salary) implements IEmployee {
+
+        @Override
+        public String fullName() {
+            return firstName + " " + lastName;
+        }
     }
-}
-```
+    ```
+    In this example, the compiler enforces the implementation of `fullName()`, whereas the automatically generated `firstName()` accessor already satisfies the IEmployee contract for that component.
 
-You cannot inherit from a record because it is implicitly final (and cannot be abstract). In addition, a record cannot 
-be inherited from another class. However, a record can implement an interface.
+- **Nested and Local Declarations:** Records can be nested within a class or defined locally within a method. In both cases, they are implicitly static.
 
-```java
-interface IEmployee {
-
-    String firstName();
-
-    String fullName();
-}
-
-public record Employee(String firstName, String lastName, String email, double salary) implements IEmployee{
-
-    @Override
-    public String fullName() {
-        return firstName + " " + lastName;
+    > **Note:** While static fields, initializers, and methods are allowed in records, instance variables and instance initializers are not.
+    ```java
+    public record User(UUID uuid) {
+        // Compilation error: Instance fields in records must be static.
+        List<String> roles = new ArrayList<>();
     }
-}
-```
+    ```
 
-> **NOTE**
-> The compiler forces you to provide a definition for fullName(), but it doesn’t complain about firstName(). 
-> That’s because the record automatically generates an accessor for its brightness argument, and that accessor fulfills the contract 
-> for firstName() in interface IEmployee.
+- **Customizing Components:** You can explicitly override the automatically generated accessor methods, but they must have the same signature and behavior as the default ones.
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-A record can be nested within a class or defined locally within a method. Both nested and local uses of record are implicitly static.
-You can declare static fields, static initializers, and static methods in a record class, and they behave as they would in a normal class.
-You cannot declare instance variables (non-static fields) or instance initializers in a record class.
-
-```java
-public record User(UUID uuid) {
-
-    // Field declarations must be static:
-    // Instance initializers are not allowed in records:
-    List<String> roles = new ArrayList<>();
-}
-```
-
-You can explicitly declare any of the members derived from the header, such as the public accessor methods that correspond 
-to the record class's components, for example:
-
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
+        @Override
         public String firstName(){
             return firstName;
         }
-}
-```
-
-If you implement your own accessor methods, then ensure that they have the same characteristics as implicitly 
-derived accessors (for example, they're declared public and have the same return type as the corresponding record class component). 
-Similarly, if you implement your own versions of the equals, hashCode, and toString methods, then ensure that they have the 
-same characteristics and behavior as those in the java.lang.Record class, which is the common superclass of all record classes.
-
-You can add constructor behavior using a compact constructor, which looks like a constructor but has no parameter list.
-The compact constructor is typically used to validate the arguments.
-
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    public Employee {
-        Objects.requireNonNull(firstName);
-        Objects.requireNonNull(lastName);
-        Objects.requireNonNull(email);
-        Objects.requireNonNull(salary);
     }
-}
-```
+    ```
+- **Compact Constructor:** Records allow you to write a compact constructor that omits the parameter list. This constructor is typically used to validate and preprocess arguments:        
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-Record provide only a shallow immutability - just like the final fields they're using. If the parameter's type is not immutable itself 
-(like List or Date), the record won't prevent modifying its value.
-
-A compact constructor is the right place to ensure the proper immutability, by creating an immutable copy of such object:
-
-```java
-public record User(UUID uuid, List<String> roles) {
-
-    public User {
-        roles = List.copyOf(roles);
+        public Employee {
+            Objects.requireNonNull(firstName);
+            Objects.requireNonNull(lastName);
+            Objects.requireNonNull(email);
+            Objects.requireNonNull(salary);
+        }
     }
-}
-```
+    ```
+    Remember, records provide only shallow immutability. If a component’s type is mutable (for example, a List or Date), the record itself will not prevent modifications. The compact constructor is a good place to enforce immutability by creating defensive copies:
+    ```java
+    public record User(UUID uuid, List<String> roles) {
 
-
-
-The compact constructor's body is being invoked before the actual field values assignment
-
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    public Employee {
-        System.out.println("firstName : " + firstName()
-                + "lastName : " + lastName()
-                + "email : " + email()
-                + "salary : " + salary());
+        public User {
+            roles = List.copyOf(roles);
+        }
     }
-}
-```
+    ```
+- **Constructor Behavior:** The body of the compact constructor is executed before the final assignment of the field values. Consider this example:  
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-```log
-firstName : null lastName : null email : null salary : null
-```
-
-
-
-> **NOTE**
-> Although this seems as if final values are being modified, they are not. Behind the scenes, the compiler is creating an intermediate 
-> placeholder for x and then performing a single assignment of the result to this.x at the end of the constructor.
-
-It’s also possible to use the compact constructor to modify the initialization values for the fields.
-
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    public Employee {
-        //unlike the standard constructors, we can't use this to reference instance fields
-        email = email.toLowerCase();
+        public Employee {
+            System.out.println("firstName: " + firstName()
+                           + ", lastName: " + lastName()
+                           + ", email: " + email()
+                           + ", salary: " + salary());
+        }
     }
-}
-```
+    ```
+    This might print null for all fields because the accessor methods have not yet been initialized with the final values. Although it may seem as if the final values are being modified, the compiler creates an intermediate placeholder and performs a single assignment at the end of the constructor.
 
-You can replace the canonical constructor using normal constructor
+- **Modifying Initialization Values:** You can also adjust the initialization values for components within the compact constructor:
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    public Employee(String firstName, String lastName, String email, BigDecimal salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.salary = salary;
+        public Employee {
+            // Modify email to always be in lowercase
+            email = email.toLowerCase();
+        }
     }
-}
-```
+    ```
+- **Canonical Constructor Replacement:** You can provide your own canonical constructor; however, remember that it must assign all declared components. For example:
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-Of course, the "old" syntax is still supported - records are classes too. They may also have multiple constructors, 
-but they can't avoid calling full canonical constructor (initializing all the fields). That's why the code below causes a compilation failure:
-
-```java
-public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    public Employee(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        public Employee(String firstName, String lastName, String email, BigDecimal salary) {
+            this.firstName = firstName;
+            this.lastName  = lastName;
+            this.email     = email;
+            this.salary    = salary;
+        }
     }
-}
-```
+    ```
+    Attempting to define a constructor that doesn’t initialize all fields leads to a compilation error:
+    ```java
+    public record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-```log
-error: constructor is not canonical, so its first statement must invoke another constructor of class Employee
-    public Employee(String firstName, String lastName) {
-```
-
-
-Additionally, an explicit canonical constructor is not allowed to have a more restrictive access level than the record itself.
-
-```java
-
-// package level access
-record Employee(String firstName, String lastName, String email, BigDecimal salary) {
-
-    private Employee(String firstName, String lastName, String email, BigDecimal salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.salary = salary;
+        public Employee(String firstName, String lastName) {
+            // Compilation error: the canonical constructor must initialize all components.
+            this.firstName = firstName;
+            this.lastName  = lastName;
+        }
     }
-}
-```
+    ```
+- **Access Modifiers:** An explicit canonical constructor cannot have a more restrictive access level than the record itself:    
+    ```java
+    // Package-private record
+    record Employee(String firstName, String lastName, String email, BigDecimal salary) {
 
-```log
-error: invalid canonical constructor in record Employee
-    private Employee(String firstName, String lastName, String email, BigDecimal salary) {
-            ^
-  (attempting to assign stronger access privileges; was package)
-```
-
-To copy a record, you must explicitly pass all fields to the constructor.
-
-```java
-public class App {
-
-    public static void main(String[] args) {
-        var gamer = new Employee("Gamer", "Simson", "gamer@mail.com", BigDecimal.valueOf(23));
-        var gamerCopy = new Employee(gamer.firstName(), gamer.lastName(), gamer.email(), gamer.salary());
+        private Employee(String firstName, String lastName, String email, BigDecimal salary) {
+            // Compilation error: Cannot assign stronger access privileges.
+            this.firstName = firstName;
+            this.lastName  = lastName;
+            this.email     = email;
+            this.salary    = salary;
+        }
     }
-}
-```
+    ```  
+- **Copying a Record:** To create a copy of a record, you must explicitly pass all the fields to the constructor: 
+    ```java
+    public class App {
+
+        public static void main(String[] args) {
+            var gamer = new Employee("Gamer", "Simson", "gamer@mail.com", BigDecimal.valueOf(23));
+            var gamerCopy = new Employee(gamer.firstName(), gamer.lastName(), gamer.email(), gamer.salary());
+        }
+    }
+    ```         
 
 ---
 
-[Home](./../../README.md) 
-| [<< Java Tutorials](./../tutorials.md)
-
-
-
-
+- 🏠 [Home](./../../README.md)
+- ☕ [Java Tutorials](./../tutorials.md)
