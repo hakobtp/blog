@@ -6,6 +6,7 @@ Author: Ter-Petrosyan Hakob
 
 - [Immutable Classes](#immutable-classes)
 - [Record Example](#record-example)
+- [Custom Record Copy Utility](#custom-record-copy-utility)
 
 ---
 
@@ -294,6 +295,167 @@ Records are subject to a few important rules:
         }
     }
     ```         
+## Custom Record Copy Utility
+
+Copying records isn’t trivial with the current Java API. Although [JEP 468: Derived Record Creation (Preview)](https://openjdk.org/jeps/468) promises an ergonomic way to copy records with modified components, it remains a preview feature. Until it’s published as a standard API, you can create your own record copying utility like this:
+
+```java
+import java.lang.reflect.RecordComponent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A utility class for copying records with overridden field values.
+ *
+ * @param <R> the type of the record
+ */
+public class RecordCopy<R extends Record> {
+
+    // Private constructor to prevent instantiation.
+    private RecordCopy() {
+        throw new RuntimeException("Utility class");
+    }
+
+    /**
+     * A record to hold field override information: the field name and the new value.
+     */
+    public record RecordFieldInfo(String fieldName, Object value) {
+    }
+
+    /**
+     * Entry point of the fluent API.
+     *
+     * @param record the original record to copy
+     * @param <R>    the record type
+     * @return a new instance of RecordCopyBuilder for the given record
+     */
+    public static <R extends Record> RecordCopyBuilder<R> source(R record) {
+        return new RecordCopyBuilder<>(record);
+    }
+
+    /**
+     * Builder class that accumulates field overrides and builds a new record instance.
+     *
+     * @param <R> the record type
+     */
+    public static class RecordCopyBuilder<R extends Record> {
+        private final R original;
+        private final List<RecordFieldInfo> overrides = new ArrayList<>();
+
+        RecordCopyBuilder(R original) {
+            this.original = original;
+        }
+
+        /**
+         * Adds a field override.
+         *
+         * @param fieldName the name of the record component to override
+         * @param value     the new value to set for that component
+         * @return the same builder instance for chaining
+         */
+        public RecordCopyBuilder<R> copy(String fieldName, Object value) {
+            overrides.add(new RecordFieldInfo(fieldName, value));
+            return this;
+        }
+
+        /**
+         * Builds a new record instance using the canonical constructor.
+         * The builder applies the collected overrides or, if not provided, uses the original values.
+         *
+         * @return a new instance of the record with updated values
+         */
+        public R build() {
+            try {
+                // Collect component types and their respective values.
+                var recordComponentTypes = new ArrayList<Class<?>>();
+                var values = new ArrayList<>();
+                for (var rc : original.getClass().getRecordComponents()) {
+                    recordComponentTypes.add(rc.getType());
+                    values.add(findOverrideValue(rc));
+                }
+                // Retrieve the canonical constructor and create a new instance.
+                var canonical = original.getClass().getDeclaredConstructor(recordComponentTypes.toArray(Class[]::new));
+                @SuppressWarnings("unchecked")
+                var result = (R) canonical.newInstance(values.toArray(Object[]::new));
+                return result;
+            } catch (Exception e) {
+                throw new AssertionError("Reflection failed: " + e, e);
+            }
+        }
+
+        /**
+         * Retrieves the override value for the given record component if present.
+         * If no override is found, the original record's value is used.
+         *
+         * @param rc the record component
+         * @return the value for this component to be used in the new record instance
+         */
+        private Object findOverrideValue(RecordComponent rc) {
+            var name = rc.getName();
+            return findOverrideValue(name)
+                    .orElseGet(() -> {
+                        try {
+                            return rc.getAccessor().invoke(original);
+                        } catch (Exception e) {
+                            throw new RuntimeException("Failed to invoke accessor for " + rc.getName(), e);
+                        }
+                    });
+        }
+
+        /**
+         * Searches through the list of overrides for the specified field name.
+         *
+         * @param fieldName the name of the record component to find
+         * @return an Optional containing the override value if found, or an empty Optional otherwise
+         */
+        private Optional<Object> findOverrideValue(String fieldName) {
+            return overrides.stream()
+                    .filter(it -> it.fieldName().equals(fieldName))
+                    .map(RecordFieldInfo::value)
+                    .findAny();
+        }
+    }
+}
+```
+
+And here’s an example of how to use the utility with a sample Employee record:
+
+```java
+public class Main {
+    public record Employee(String firstName, String lastName, String email, double salary) {
+    }
+
+    public static void main(String[] args) {
+        var employee = new Employee("Gamer", "Simson", "gamer@mail.com", 1400);
+        var employeeCopy = RecordCopy.source(employee)
+                .copy("firstName", "Bart")
+                .copy("email", "bart@mail.com")
+                .build();
+
+        System.out.println(employeeCopy);
+        System.out.println("Is copy equal to original? " + employeeCopy.equals(employee));
+    }
+}
+```
+
+```
+Employee[firstName=Bart, lastName=Simson, email=bart@mail.com, salary=1400.0]
+Is copy equal to original? false
+```
+
+***Explanation***
+
+- **Why a Custom Copy Utility?**</br>
+Until the derived record creation is finalized in Java (see [JEP 468](https://openjdk.org/jeps/468)), copying a record and modifying specific fields requires working around the limitations of the record API. This utility leverages reflection to achieve that effect with a fluent API.
+
+- **How It Works:**</br>
+The `RecordCopyBuilder` collects override values. When the `build()` method is called, it iterates over the original record’s components. For each component, it checks if an override is provided; if not, it uses the original record’s value. A new record instance is then created via the canonical constructor.
+
+- **Fluent API:**</br>
+The utility allows you to chain multiple `copy()` calls, making the code both concise and expressive.
+
+By using this custom utility, you can experiment with record copying until [JEP 468](https://openjdk.org/jeps/468) becomes part of the standard Java API.
 
 ---
 
