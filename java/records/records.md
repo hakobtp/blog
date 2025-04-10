@@ -295,6 +295,8 @@ Records are subject to a few important rules:
         }
     }
     ```         
+ 
+    
 ## Custom Record Copy Utility
 
 Copying records isn’t trivial with the current Java API. Although [JEP 468: Derived Record Creation (Preview)](https://openjdk.org/jeps/468) promises an ergonomic way to copy records with modified components, it remains a preview feature. Until it’s published as a standard API, you can create your own record copying utility like this:
