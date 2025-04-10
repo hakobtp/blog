@@ -459,6 +459,8 @@ Is copy equal to original? false
 
 By using this custom utility, you can experiment with record copying until [JEP 468](https://openjdk.org/jeps/468) becomes part of the standard Java API.
 
+<span><a href="https://openjdk.org/jeps/468"  target="_blank">JEP 468</span>
+
 ---
 
 - 🏠 [Home](./../../README.md)
