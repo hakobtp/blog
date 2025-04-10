@@ -295,8 +295,8 @@ Records are subject to a few important rules:
         }
     }
     ```         
- 
-    
+
+
 ## Custom Record Copy Utility
 
 Copying records isn’t trivial with the current Java API. Although [JEP 468: Derived Record Creation (Preview)](https://openjdk.org/jeps/468) promises an ergonomic way to copy records with modified components, it remains a preview feature. Until it’s published as a standard API, you can create your own record copying utility like this:
@@ -448,14 +448,14 @@ Is copy equal to original? false
 
 ***Explanation***
 
-- **Why a Custom Copy Utility?**</br>
-Until the derived record creation is finalized in Java (see [JEP 468](https://openjdk.org/jeps/468)), copying a record and modifying specific fields requires working around the limitations of the record API. This utility leverages reflection to achieve that effect with a fluent API.
+- **Why a Custom Copy Utility?** 
+    - Until the derived record creation is finalized in Java (see [JEP 468](https://openjdk.org/jeps/468)), copying a record and modifying specific fields requires working around the limitations of the record API. This utility leverages reflection to achieve that effect with a fluent API.
 
-- **How It Works:**</br>
-The `RecordCopyBuilder` collects override values. When the `build()` method is called, it iterates over the original record’s components. For each component, it checks if an override is provided; if not, it uses the original record’s value. A new record instance is then created via the canonical constructor.
+- **How It Works:**
+    - The `RecordCopyBuilder` collects override values. When the `build()` method is called, it iterates over the original record’s components. For each component, it checks if an override is provided; if not, it uses the original record’s value. A new record instance is then created via the canonical constructor.
 
-- **Fluent API:**</br>
-The utility allows you to chain multiple `copy()` calls, making the code both concise and expressive.
+- **Fluent API:**
+    - The utility allows you to chain multiple `copy()` calls, making the code both concise and expressive.
 
 By using this custom utility, you can experiment with record copying until [JEP 468](https://openjdk.org/jeps/468) becomes part of the standard Java API.
 
