@@ -15,7 +15,7 @@ This means that either **all the changes happen**, or **none at all**—ensuring
 
 PostgreSQL has a powerful and standards-compliant transaction system. It allows users to define specific **transaction properties**, including support for **nested transactions** using savepoints.
 
-PostgreSQL relies on transactions to keep data **consistent and safe**, even when many users or processes are working at the same time. It uses a system called **Write-Ahead Logging (WAL)** to protect data and make recovery possible if something goes wrong.
+PostgreSQL relies on transactions to keep data **consistent and safe**, even when many users or processes are working at the same time. It uses a system called [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md) to protect data and make recovery possible if something goes wrong.
 
 To support high performance with many simultaneous transactions, PostgreSQL also uses [Multi-Version Concurrency Control (MVCC)](./3_Multi_Version_Concurrency_Control.md). This allows multiple transactions to run at the same time without blocking each other.
 

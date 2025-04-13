@@ -154,3 +154,4 @@ So, unless you have a specific reason, don’t set this value too low. It’s of
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🛡️ [Isolation levels](./6_Isolation_levels.md)
+- 📜 [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md)
