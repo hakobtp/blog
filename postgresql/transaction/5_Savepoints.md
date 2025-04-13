@@ -142,6 +142,6 @@ Here, even though the transaction was committed, everything after the `perl` sav
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🆚 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
-
+- 🛡️ [Isolation levels](./6_Isolation_levels.md)
 
 
