@@ -11,6 +11,8 @@
 - [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./transaction/4_Non_Repeatable_vs_Phantom_Reads.md)
 - [Savepoints](./transaction/5_Savepoints.md)
 - [Isolation levels](./transaction/6_Isolation_levels.md)
+- [Deadlocks](./transaction/7_Deadlocks.md) 
+
 
 ---
 

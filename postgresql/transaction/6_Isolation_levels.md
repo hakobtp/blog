@@ -186,3 +186,4 @@ By choosing the appropriate isolation level, you can balance the need for consis
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 💾 [Savepoints](./5_Savepoints.md)
+- ♻️ [Deadlocks](./7_Deadlocks.md)
