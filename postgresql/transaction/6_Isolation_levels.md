@@ -165,6 +165,19 @@ Although discussed above, phantom reads deserve special attention:
     1) `Transaction A` queries the Employees table for records with `Gender = 'Male'` and retrieves 2 rows.
     2) Concurrently, `Transaction B` inserts a new row for a `male` employee.
     3) When `Transaction A` re-executes the query, it now returns 3 rows, showing the `“phantom”` row.
+- **Mitigation:** Using **SERIALIZABLE** (or, in some systems, snapshot isolation) prevents phantom reads by ensuring the transaction works from a consistent snapshot of the data.
+
+## Unrepeatable Reads vs. Phantom Reads
+
+Both anomalies relate to changes observed during a transaction:
+
+- **Unrepeatable Reads:** Occur when the same row is read twice within a transaction and the data has changed due to another committed transaction.
+- **Phantom Reads:** Involve a change in the overall result set—the same query executed twice returns a different number of rows because of concurrent insertions or deletions.
+
+By choosing the appropriate isolation level, you can balance the need for consistency with performance:
+
+- **READ COMMITTED** is ideal for high concurrency when non-repeatable or phantom reads are acceptable.
+- **REPEATABLE READ** and **SERIALIZABLE** offer stronger guarantees for applications that require strict data consistency.
 
 ---
 
