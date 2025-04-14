@@ -21,14 +21,17 @@ $$
 2^4 =16 \Leftrightarrow \log_{2}(16)=4
 $$
 
+Both equations describe the same relationship between the numbers 2, 4 and 16, where 2 is the **base** and 4 is the **exponent**. 
+The difference is that while the exponential form isolates the power, 16, the logarithmic form isolates the exponent, 4.
+
+Here are more examples of equivalent logarithmic and exponential equations.
+|Logarithmic form|Exponential form|
+|:---------------|:---------------|
+|$$\log_{2}(8)=3$$||
+|$$\log_{3}(81)=4$$||
+|$$\log_{5}(25)=2$$||
+
 ---
-
-Inline: \( f(x) = x^2 \)
-
-Block:
-$$
-2^4 =16 \Leftrightarrow \log_{2}(16)=4
-$$
 
 
 - 🏠 [Home](./../../README.md)
