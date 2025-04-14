@@ -83,7 +83,9 @@ $$ \log_4(64)$$ just by asking, **4 to what power is 64?**
 |:----------:|:-------|
 |$$\textcolor{red}{b} > 0$$ |In an exponential function, the base $$\textcolor{red}{b}$$ is always defined to be positive.|
 |$$\textcolor{orange}{a} > 0$$ |$$\log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c}$$ means that $$\textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}$$. Because a positive number raised to any power is positive, meaning $$\textcolor{red}{b}^{\textcolor{blue}{c}} > 0$$, it follows that $$\textcolor{orange}{a} > 0$$.|
-|$$\textcolor{red}{b} \neq 1$$||
+|$$\textcolor{red}{b} \neq 1$$|Suppose, for a moment, that  $$\textcolor{red}{b}$$ could be 1. Now consider the equation  
+$$\log_1(3)=x$$. The equivalent exponential form would be $$1^x=3$$. But this can never be true since 1 
+to any power is always 1. So, it follows that $$\textcolor{red}{b} \neq 1$|
 
 ---
 
