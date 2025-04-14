@@ -17,7 +17,9 @@ expressed by the **exponential** equation $$2^4=16$$.
 Now, suppose someone asked us, `"raised to which power equals 16?"` The answer would be $$4$$. 
 This is expressed by the **logarithmic** equation $$\log_{2}(16)=4$$, read as `"log base two of sixteen is four"`.
 
-    $$2^4 =16 \Leftrightarrow \log_{2}(16)=4$$
+$$
+2^4 =16 \Leftrightarrow \log_{2}(16)=4
+$$
 
 ---
 
@@ -25,7 +27,7 @@ Inline: \( f(x) = x^2 \)
 
 Block:
 $$
-\int_0^2 x^2 \, dx
+2^4 =16 \Leftrightarrow \log_{2}(16)=4
 $$
 
 
