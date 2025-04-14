@@ -79,6 +79,12 @@ $$ \log_4(64)$$ just by asking, **4 to what power is 64?**
  is positive—and not equal to 1—and the argument $$\textcolor{orange}{a}$$ is positive. 
  These restrictions are a result of the connection between logarithms and exponents.
 
+|Restriction|Reasoning|
+|:----------:|:-------|
+|$$\textcolor{red}{b} > 0$$ |In an exponential function, the base $$\textcolor{red}{b}$$ is always defined to be positive.|
+|||
+|||
+
 ---
 
 
