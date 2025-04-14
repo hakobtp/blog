@@ -72,6 +72,13 @@ $$
 As you become more practiced, you may find yourself condensing a few of these steps and evaluating 
 $$ \log_4(64)$$ just by asking, **4 to what power is 64?**
 
+
+## Restrictions on the variables
+
+ $$\log_{\textcolor{red}{b}}(\textcolor{orange}{a})$$ is defined when the base $$\textcolor{red}{b}$$ 
+ is positive—and not equal to 1—and the argument $$\textcolor{orange}{a}$$ is positive. 
+ These restrictions are a result of the connection between logarithms and exponents.
+
 ---
 
 
