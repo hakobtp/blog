@@ -27,9 +27,9 @@ The difference is that while the exponential form isolates the power, 16, the lo
 Here are more examples of equivalent logarithmic and exponential equations.
 |Logarithmic form|Exponential form|
 |:---------------|:---------------|
-|$$\log_{2}(8)=3$$||
-|$$\log_{3}(81)=4$$||
-|$$\log_{5}(25)=2$$||
+|$$\log_{2}(8)=3$$|s|
+|$$\log_{3}(81)=4$$|s|
+|$$\log_{5}(25)=2$$|s|
 
 ---
 
