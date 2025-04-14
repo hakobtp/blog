@@ -60,7 +60,18 @@ Let's start by setting that expression equal to $$x$$.
 $$
 \log_4(64) = x
 $$
-        
+
+Writing this as an exponential equation gives us the following
+
+$$
+4^x=64
+$$        
+
+4 to what power is 64, Well, $$4^3=64$$ and so $$ \log_4(64) = 3$$
+
+As you become more practiced, you may find yourself condensing a few of these steps and evaluating 
+$$ \log_4(64)$$ just by asking, **4 to what power is 64?**
+
 ---
 
 
