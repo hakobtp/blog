@@ -22,7 +22,7 @@ title: "What is an Integral?"
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-## 🔢 What is an Integral?
+## 🔢 What is an Integralaaaaaaaaaaaaaaaaaaaaa?
 
 Imagine a graph of a function, like this:
 
