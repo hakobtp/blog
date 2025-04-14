@@ -98,15 +98,23 @@ When writing these logarithms mathematically, we omit the base. It is understood
 $$
 \log_{10}(x) = \log(x)
 $$
----
 
- ### The natural logarithm
+### The natural logarithm
 
 The natural logarithm is a logarithm whose base is the number $$e$$.
 $$e$$ is a mathematical constant. It is an irrational number that is approximately equal to $$2.718$$.
 It appears in many contexts that involve limits, which you will likely learn about as you study calculus. 
 For now, just treat $$e$$ as you would any other number.
 
+Instead of writing the base as $$e$$ , we indicate the logarithm with $$\ln$$.
+
+$$
+\log_{e}(x) = \ln(x)
+$$
+
+This table summarizes what we need to know about these two special logarithms:
+
+---
 
 
 - 🏠 [Home](./../../README.md)
