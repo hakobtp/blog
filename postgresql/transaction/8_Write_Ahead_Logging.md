@@ -221,6 +221,53 @@ By default, PostgreSQL creates a checkpoint every 5 minutes or after 1 GB of **W
 > 🔍 **Important:**
 > A checkpoint only happens if something has changed since the last one. If no new data has been written to the database, PostgreSQL skips the checkpoint, even > if the timeout has passed—because there's nothing to save.
 
+#### Checkpoint Throttling
+
+PostgreSQL doesn’t need to finish a checkpoint immediately. If a crash happens before the checkpoint is done, the system can still recover using **WAL** segments, starting from the last completed checkpoint.
+
+Because of this, PostgreSQL allows you to control how fast a checkpoint should be completed using a setting called `checkpoint_completion_target`.
+
+This setting helps spread out the work of a checkpoint to avoid a sudden spike in disk activity. You can choose a value between `0` and `1`. It tells PostgreSQL how much of the checkpoint timeout period can be used to slowly write the dirty data from memory to disk.
+
+**Example:**
+
+If:
+- `checkpoint_timeout = 300` seconds (5 minutes)
+- `checkpoint_completion_target = 0.2`
+
+Then PostgreSQL will try to complete the checkpoint within `60` seconds (`300 × 0.2`).
+The system adjusts how much disk bandwidth to use so that it finishes writing all dirty buffers within that time.
+
+**Choosing the right value:**
+
+- If you set `checkpoint_completion_target` closer to `0`, PostgreSQL will write everything quickly, causing high disk usage (I/O spike).
+- If you set it closer to `1`, PostgreSQL will write data slowly and steadily, reducing spikes and using less disk bandwidth at once.
+
+The diagram below shows the difference between low and high values of `checkpoint_completion_target`.
+
+<p align="center">
+    <img src="./assets/img4.png" alt="img4" width="500" />
+</p>
+
+By default, `checkpoint_completion_target` is set to `0.9`. This means PostgreSQL will try to spread the checkpoint work slowly over time. The goal is to reduce I/O spikes and avoid using too many system resources all at once.
+
+```sql
+show checkpoint_completion_target;
+
+ checkpoint_completion_target 
+------------------------------
+ 0.9
+(1 row)
+```
+
+#### Manually Issuing a Checkpoint
+
+A PostgreSQL administrator can manually start a checkpoint at any time by using the `CHECKPOINT` command. This starts the same process that would normally happen because of `checkpoint_timeout` or `max_wal_size`.
+
+But why would someone want to run a checkpoint manually, since it uses system resources?
+
+One common reason is to make sure all changes in memory are saved to disk—for example, before starting streaming replication or doing a file-level backup. In these cases, having fully up-to-date data on disk is important.
+
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
