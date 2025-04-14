@@ -119,6 +119,18 @@ This table summarizes what we need to know about these two special logarithms:
 |Common logarithm   |10     |$$\log_{10}(x)$$   |$$\log(x)$$        |
 |Natural logarithm  |$$e$$  |$$\log_{e}(x)$$    |$$\ln(x)$$         |
 
+While the notation is different, the idea behind evaluating the logarithm is exactly the same!
+
+## Why are we studying logarithms?
+
+As you just learned, logarithms reverse exponents. For this reason, they are very helpful for solving exponential equations.
+
+For example the result for $$2^x=5$$ can be given as a logarithm, $$x=\log_{2}(5)$$. 
+You will learn how to evaluate this logarithmic expression over the following lessons.
+
+Logarithmic expressions and functions also turn out to be very interesting by themselves, 
+and are actually very common in the world around us. For example, many physical phenomena are measured with logarithmic scales.
+
 ---
 
 - 🏠 [Home](./../../README.md)
