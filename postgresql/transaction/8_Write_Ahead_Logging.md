@@ -40,6 +40,20 @@ This improves performance and keeps the system efficient, even under high worklo
 
 ---
 
+When a transaction changes some data in PostgreSQL, it doesn’t write the changes directly to disk. Instead, it updates a copy of the data stored in memory, called the **shared buffers**.
+
+At this point, the data in memory is different from what’s on disk. PostgreSQL must ensure this process is safe and reliable without slowing down performance.
+
+The modified data in memory is marked as **dirty**, which means it has been changed but not yet saved to disk. When the transaction is committed, PostgreSQL flushes the changes to the **Write-Ahead Log (WAL)**. The dirty buffer remains in memory so other transactions can access the most recent version quickly.
+
+Later, a background process called the [checkpointer](https://www.postgresql.org/docs/current/sql-checkpoint.html){:target="_blank" rel="noopener"} writes the dirty buffers to disk, replacing the old version. The exact time this happens doesn't matter to the transaction—what matters is that the data is safely stored in the WAL.
+
+The diagram below shows how this works. The red buffer has been changed by a transaction and no longer matches the version on disk. When the transaction commits, the changes are flushed to the **WAL**.
+
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="500" />
+</p>
+
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
