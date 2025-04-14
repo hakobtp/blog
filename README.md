@@ -12,7 +12,7 @@
 
 
  Logarithms are another way of thinking about exponents.
-    For example, we know that 2 raised to the $4^{th}$ power equals 16.
+    For example, we know that 2 raised to the $$4^{th}$$ power equals 16.aaaaa
     expressed by the \textbf{exponential} equation $2^4=16$.
 
 <!-- {:target="_blank" rel="noopener"} -->
