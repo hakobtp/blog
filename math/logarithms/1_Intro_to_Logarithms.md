@@ -21,5 +21,13 @@ This is expressed by the **logarithmic** equation $$\log_{2}(16)=4$$, read as `"
 
 ---
 
+Inline: \( f(x) = x^2 \)
+
+Block:
+$$
+\int_0^2 x^2 \, dx
+$$
+
+
 - 🏠 [Home](./../../README.md)
 - 📐 [Math Tutorials](./../tutorials.md)
