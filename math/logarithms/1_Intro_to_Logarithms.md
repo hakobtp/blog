@@ -82,10 +82,12 @@ $$ \log_4(64)$$ just by asking, **4 to what power is 64?**
 |Restriction|Reasoning|
 |:----------:|:-------|
 |$$\textcolor{red}{b} > 0$$ |In an exponential function, the base $$\textcolor{red}{b}$$ is always defined to be positive.|
-|||
+|$$\textcolor{orange}{a} > 0$$ |\(\log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c}\) means that \(\textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}\). Because a positive number raised to \\ & any power is positive, meaning \(\textcolor{red}{b}^{\textcolor{blue}{c}} > 0\), it follows that \(\textcolor{orange}{a} > 0\).  |
 |||
 
 ---
+
+$$\log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c}$$ means that $$\textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}$$. Because a positive number raised to any power is positive, meaning $$(\textcolor{red}{b}^{\textcolor{blue}{c}} > 0$$, it follows that $$\textcolor{orange}{a} > 0$$.  
 
 
 - 🏠 [Home](./../../README.md)
