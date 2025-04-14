@@ -32,6 +32,16 @@ Here are more examples of equivalent logarithmic and exponential equations.
 |$$\log_{3}(81)=4$$|$$3^4=81$$|
 |$$\log_{5}(25)=2$$|$$5^2=25$$|
 
+## Definition of a logarithm
+
+Generalizing the examples above leads us to the formal definition of a logarithm.
+
+$$
+ \log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c} \Leftrightarrow \textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}
+$$
+
+Both equations describe the same relationship between $\textcolor{orange}{a}$, $\textcolor{red}{b}$, and $\textcolor{blue}{c}$:
+
 ---
 
 
