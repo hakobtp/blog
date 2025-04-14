@@ -14,6 +14,13 @@ Logarithms are another way of thinking about exponents.
 For example, we know that $$2$$ raised to the $$4^{th}$$ power equals $$16$$. 
 expressed by the **exponential** equation $$2^4=16$$.
 
+Now, suppose someone asked us, `"raised to which power equals 16?"` The answer would be $$4$$. 
+This is expressed by the **logarithmic** equation $$\log_{2}(16)=4$$, read as `"log base two of sixteen is four"`.
+
+    $$
+        2^4 =16 \Leftrightarrow \log_{2}(16)=4
+    $$
+
 ---
 
 - 🏠 [Home](./../../README.md)
