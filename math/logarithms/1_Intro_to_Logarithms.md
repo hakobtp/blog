@@ -40,7 +40,11 @@ $$
  \log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c} \Leftrightarrow \textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}
 $$
 
-Both equations describe the same relationship between $\textcolor{orange}{a}$, $\textcolor{red}{b}$, and $\textcolor{blue}{c}$:
+Both equations describe the same relationship between $$\textcolor{orange}{a}$$, $$\textcolor{red}{b}$$, and $$\textcolor{blue}{c}$$:
+
+- $$\textcolor{red}{b} $$ is the base.
+- $$\textcolor{blue}{c}$$ is the exponent.
+- $$\textcolor{orange}{a}$$ is called the argument
 
 ---
 
