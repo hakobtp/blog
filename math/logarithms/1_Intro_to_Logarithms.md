@@ -42,10 +42,25 @@ $$
 
 Both equations describe the same relationship between $$\textcolor{orange}{a}$$, $$\textcolor{red}{b}$$, and $$\textcolor{blue}{c}$$:
 
-- $$\textcolor{red}{b} $$ is the base.
+- $$\textcolor{red}{b}$$ is the base.
 - $$\textcolor{blue}{c}$$ is the exponent.
 - $$\textcolor{orange}{a}$$ is called the argument
 
+> 📝 **NOTE:** When rewriting an exponential equation in log form or a log equation in exponential form,
+> it is helpful to remember that the base of the logarithm is the same as the base of the exponent.
+
+## Evaluating logarithms
+
+Great! Now that we understand the relationship between exponents and logarithms, let's see if we can evaluate logarithms. 
+
+For example, let's evaluate $$\log_4(64)$$
+
+Let's start by setting that expression equal to $$x$$.
+
+$$
+\log_4(64) = x
+$$
+        
 ---
 
 

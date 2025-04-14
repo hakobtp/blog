@@ -13,3 +13,11 @@
 
 
 <!-- {:target="_blank" rel="noopener"} -->
+
+
+<!-- Inline: \( f(x) = x^2 \)
+
+Block:
+$$
+\int_0^2 x^2 \, dx
+$$ -->
