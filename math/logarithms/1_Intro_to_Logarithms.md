@@ -25,6 +25,7 @@ Both equations describe the same relationship between the numbers 2, 4 and 16, w
 The difference is that while the exponential form isolates the power, 16, the logarithmic form isolates the exponent, 4.
 
 Here are more examples of equivalent logarithmic and exponential equations.
+
 |Logarithmic form|Exponential form|
 |:---------------|:---------------|
 |$$\log_{2}(8)=3$$|s|
