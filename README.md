@@ -12,20 +12,3 @@
 
 
 <!-- {:target="_blank" rel="noopener"} -->
-
-
-## 🔢 What is an Integralaaaaaaaaaaaaaaaaaaaaa?
-
-Imagine a graph of a function, like this:
-
-$$
-f(x) = x^2
-$$
-
-If we want to find the area under the curve from \( x = 0 \) to \( x = 2 \), we write:
-
-$$
-\int_0^2 x^2 \, dx
-$$
-
-This means: **“Find the area under the curve \( f(x) = x^2 \), from 0 to 2.”**
