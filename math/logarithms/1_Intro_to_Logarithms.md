@@ -28,9 +28,9 @@ Here are more examples of equivalent logarithmic and exponential equations.
 
 |Logarithmic form|Exponential form|
 |:---------------|:---------------|
-|$$\log_{2}(8)=3$$|s|
-|$$\log_{3}(81)=4$$|s|
-|$$\log_{5}(25)=2$$|s|
+|$$\log_{2}(8)=3$$|$$2^3=8$$|
+|$$\log_{3}(81)=4$$|$$3^4=81$$|
+|$$\log_{5}(25)=2$$|$$5^2=25$$|
 
 ---
 
