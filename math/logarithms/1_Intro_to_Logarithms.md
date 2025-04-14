@@ -85,6 +85,19 @@ $$ \log_4(64)$$ just by asking, **4 to what power is 64?**
 |$$\textcolor{orange}{a} > 0$$ |$$\log_{\textcolor{red}{b}}(\textcolor{orange}{a}) = \textcolor{blue}{c}$$ means that $$\textcolor{red}{b}^{\textcolor{blue}{c}} = \textcolor{orange}{a}$$. Because a positive number raised to any power is positive, meaning $$\textcolor{red}{b}^{\textcolor{blue}{c}} > 0$$, it follows that $$\textcolor{orange}{a} > 0$$.|
 |$$\textcolor{red}{b} \neq 1$$|Suppose, for a moment, that  $$\textcolor{red}{b}$$ could be 1. Now consider the equation $$\log_1(3)=x$$. The equivalent exponential form would be $$1^x=3$$. But this can never be true since 1 to any power is always 1. So, it follows that $$\textcolor{red}{b} \neq 1$$|
 
+## Special logarithms
+
+While the base of a logarithm can have many different values, there are two bases that are used more often than others. 
+Specifically, most calculators have buttons for only these two types of logarithms. Let's check them out.
+
+### The common logarithm
+
+The common logarithm is a logarithm whose base is 10 (`"base-10 logarithm"`). 
+When writing these logarithms mathematically, we omit the base. It is understood to be 10.
+
+$$
+\log_{10}(x) = \log(x)
+$$
 ---
 
 
