@@ -114,8 +114,12 @@ $$
 
 This table summarizes what we need to know about these two special logarithms:
 
----
+|Name               |Base   |Regular notation   |Special notation   |
+|:------------------|:-----:|:-----------------:|:-----------------:|
+|Common logarithm   |10     |$$\log_{10}(x)$$   |$$\log(x)$$        |
+|Natural logarithm  |$$e$$  |$$\log_{e}(x)$$    |$$\ln(x)$$         |
 
+---
 
 - 🏠 [Home](./../../README.md)
 - 📐 [Math Tutorials](./../tutorials.md)
