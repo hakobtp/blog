@@ -100,6 +100,12 @@ $$
 $$
 ---
 
+ ### The natural logarithm
+
+The natural logarithm is a logarithm whose base is the number $$e$$.
+$$e$$ is a mathematical constant. It is an irrational number that is approximately equal to $$2.718$$.
+It appears in many contexts that involve limits, which you will likely learn about as you study calculus. 
+For now, just treat $$e$$ as you would any other number.
 
 
 
