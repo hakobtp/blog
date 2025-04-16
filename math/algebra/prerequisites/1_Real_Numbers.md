@@ -61,5 +61,5 @@ Some common examples of irrational numbers are:
 
 ## 📌 Explore More
 
-- 🏠 [Home](./../../README.md)
+- 🏠 [Home](./../../../README.md)
 - [Algebra](./../tutorials.md)
