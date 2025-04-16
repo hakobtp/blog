@@ -16,7 +16,27 @@ That’s why you don’t need to run it manually all the time. PostgreSQL includ
 
 The next sections will explain how to use both manual and automatic **VACUUM**.
 
+## Manual VACUUM
 
+You can run **VACUUM** manually on a single table, a set of table columns, or even an entire database. Here's the basic format:
+
+```sql
+VACUUM [ FULL ] [ FREEZE ] [ VERBOSE ] [ ANALYZE ] [ table_and_columns [, ...] ];
+```
+
+There are three main types of manual **VACUUM** operations, each one more aggressive than the last:
+
+1) **Plain VACUUM**</br>
+    This is the default. It removes dead tuples (old data no longer needed) but doesn't shrink the table file on disk. 
+    So, while it helps keep things clean, it doesn’t actually free up storage space.
+
+2) **VACUUM FULL**</br>
+This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space but is slower and more resource-intensive.
+
+3) **VACUUM FREEZE**</br>
+This version freezes old rows that will never change again. This prevents a serious issue known as XID wraparound, which can corrupt your database over time if not managed.
+
+> ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
 
 ---
 
