@@ -42,7 +42,115 @@ There are three main types of manual **VACUUM** operations, each one more aggres
 
 > ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
 
+You can also add:
+
+- **VERBOSE** to show detailed output during the process
+- **ANALYZE** to update table statistics, which helps PostgreSQL make better decisions when running queries
+
+### Trying Manual VACUUM
+
+To test **VACUUM**, first make sure **autovacuum** is turned off, so it doesn’t interfere.
+
+Run:
+
+```sql
+SHOW autovacuum;
+```
+
+If it returns:
+
+```sql
+autovacuum  
+------------  
+off  
+(1 row)
+```
+
+You’re ready to proceed. If not, edit your **postgresql.conf** file (found in your **$PGDATA** directory), 
+set **autovacuum = off**, then restart your PostgreSQL server.
+
+Let’s take a closer look at the categories table in our PostgreSQL database.
+
+- **Step 1:** Check the data
+
+    ```sql
+    SELECT * FROM categories;
+
+    id |       name       
+    ----+------------------
+    1 | java
+    2 | aws
+    3 | javaScript
+    6 | Eclipse IDE
+    9 | IntelliJIdea IDE
+    11 | Emacs Editor
+    12 | Vi Editor
+    13 | Atom Editor
+
+    ```
+
+- **Step 2:** Run `VACUUM ANALYZE`
+
+    ```sql
+    VACUUM ANALYZE categories;
+    ```
+
+    This command:
+
+    - Cleans up the table (removes dead rows)
+    - Updates statistics so PostgreSQL knows how many rows and pages the table uses
+
+- **Step 3:** Check table size and metadata
+
+    ```sql
+    SELECT 
+        relname, 
+        reltuples, 
+        relpages, 
+        pg_size_pretty(pg_relation_size('categories'))
+    FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+
+    relname    | reltuples | relpages | pg_size_pretty 
+    -----------+-----------+----------+----------------
+    categories |        8  |        1 | 8192 bytes
+    ```
+
+    This data was selected from **pg_class**, a system catalog in PostgreSQL. It keeps track of tables, 
+    indexes, sequences, and many other database objects.
+
+    The condition `WHERE relkind = 'r'` means, only include regular tables (i.e., user-defined or system tables). 
+    It excludes other object types like:
+    - 'i' → indexes
+    - 'S' → sequences
+    - 'v' → views
+    - 'm' → materialized views
+    - 'c' → composite types
+    - 'f' → foreign tables
+
+    So yes—`relkind = 'r'` filters the query to only return real physical tables.
+
+
+    📊 **What Do These Columns Mean?**
+
+    | Column               | Description                                                                |
+    |----------------------|----------------------------------------------------------------------------|
+    | `relname`            | The name of the table (`categories`)                                       |
+    | `reltuples`          | An estimated row count — here, it's 8, which matches the actual data       |
+    | `relpages`           | The number of disk pages (blocks) used — here, 1 page = 8 KB               |
+    | `pg_size_pretty(...)`| The formatted size of the table — 8192 bytes = 8 KB                        |
+
+
+    🧠 **This kind of query helps you:**
+
+    - 📏 Check table size before and after running VACUUM
+    - 📦 Monitor storage usage
+    - 🔍 Understand how PostgreSQL stores your data internally
+    - 💡 Tip: You can run similar queries for other tables to keep track of space and performance in your database.
+
+
+
 ---
+
 
 ## 📌 Explore More
 
