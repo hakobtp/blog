@@ -30,7 +30,10 @@ $${\dots,-3,-2,-1,0,1,2,3,\dots}$$
 
 The set of **rational numbers** is written as $$\left\{ \frac{m}{n} \,\middle|\, m \text{ and } n \text{ are integers and } n \ne 0 \right\}$$ Rational numbers are fractions made of two integers—one on top (the numerator) and one on the bottom (the denominator). But the denominator can never be 0.
 
-Every natural number, whole number, and integer is also a rational number, because you can write it as a fraction with 1 in the denominator. For example, 5 can be written as \(\frac{5}{1}$$.\)
+Every natural number, whole number, and integer is also a rational number, because you can write it as a fraction with 1 in the denominator. For example, 5 can be written as \(\frac{5}{1}.\)
+
+
+Since rational numbers are fractions, we can also write them as decimals. Every rational number can be written as either:
 
 ---
 
