@@ -273,3 +273,4 @@ One common reason is to make sure all changes in memory are saved to disk—for 
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - ♻️ [Deadlocks](./7_Deadlocks.md)
+- 🧹 [VACUUM](./9_VACUUM.md)

@@ -13,6 +13,7 @@
 - [Isolation levels](./transaction/6_Isolation_levels.md)
 - [Deadlocks](./transaction/7_Deadlocks.md) 
 - [Write-Ahead Logging (WAL)](./transaction/8_Write_Ahead_Logging.md) 
+- [VACUUM](./transaction/9_VACUUM.md)
 
 ---
 
