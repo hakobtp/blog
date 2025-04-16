@@ -32,7 +32,7 @@ There are three main types of manual **VACUUM** operations, each one more aggres
 2) **VACUUM FULL:** This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space 
     but is slower and more resource-intensive.
 
-3) **VACUUM FREEZE: ** This version freezes old rows that will never change again. This prevents a serious issue known as 
+3) **VACUUM FREEZE:** This version freezes old rows that will never change again. This prevents a serious issue known as 
     XID wraparound, which can corrupt your database over time if not managed.
 
 > ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
@@ -71,16 +71,16 @@ Let’s take a closer look at the categories table in our PostgreSQL database.
     ```sql
     SELECT * FROM categories;
 
-    id |       name       
+    id  |       name       
     ----+------------------
-    1 | java
-    2 | aws
-    3 | javaScript
-    6 | Eclipse IDE
-    9 | IntelliJIdea IDE
-    11 | Emacs Editor
-    12 | Vi Editor
-    13 | Atom Editor
+    1   | java
+    2   | aws
+    3   | javaScript
+    6   | Eclipse IDE
+    9   | IntelliJIdea IDE
+    11  | Emacs Editor
+    12  | Vi Editor
+    13  | Atom Editor
 
     ```
 
@@ -148,6 +148,142 @@ Now, let’s populate the table with around 1 million random tuples to observe h
 ```sql
 INSERT INTO categories( name ) SELECT 'GENERATED-#' || x FROM generate_series( 1, 1000000 ) x;
 ```
+
+Since we have disabled **autovacuum**, PostgreSQL doesn’t automatically know the updated size of the table.
+
+To fix this, we need to run a manual **ANALYZE** command. This updates PostgreSQL’s statistics and informs the system about the new data added to the table.
+
+```sql
+ANALYZE categories;
+
+SELECT 
+    relname, 
+    reltuples, 
+    relpages, 
+    pg_size_pretty(pg_relation_size( 'categories' ))
+FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+
+  relname   |  reltuples   | relpages | pg_size_pretty 
+------------+--------------+----------+----------------
+ categories | 1.000008e+06 |     7344 | 57 MB
+(1 row)
+
+```
+
+It is now time to invalidate all the tuples we have inserted, for example, by overwriting them with an **UPDATE** 
+(which, due to [MVCC](./3_Multi_Version_Concurrency_Control.md){:target="_blank" rel="noopener"}, will duplicate the tuples)
+
+
+```sql
+UPDATE categories SET name = lower( name ) WHERE name LIKE 'GENERATED%';
+```
+
+The table now still has around 1 million valid tuples, but the size has almost doubled because every tuple now exists in two versions, one of which is dead:
+
+```sql
+
+ANALYZE categories;
+
+SELECT 
+    relname, 
+    reltuples, 
+    relpages, 
+    pg_size_pretty(pg_relation_size( 'categories' ))
+FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+
+  relname   |  reltuples   | relpages | pg_size_pretty 
+------------+--------------+----------+----------------
+ categories | 1.000008e+06 |    14687 | 115 MB
+(1 row)
+
+```
+
+We’ve now created a setup that works like a test lab for **VACUUM**. If we run a plain **VACUUM**, PostgreSQL will 
+remove all the dead tuples from each data page. However, the pages themselves will not be reorganized, so the total number of pages stays the same, and the table size on disk doesn’t change.
+
+```sql
+VACUUM VERBOSE categories;
+
+
+INFO:  finished vacuuming "testdb.public.categories": index scans: 1
+pages: 0 removed, 14687 remain, 14687 scanned (100.00% of total)
+tuples: 0 removed, 1000008 remain, 0 are dead but not yet removable
+removable cutoff: 923, which was 0 XIDs old when operation ended
+frozen: 0 pages from table (0.00% of total) had 0 tuples frozen
+index scan needed: 7344 pages from table (50.00% of total) had 1000000 dead item identifiers removed
+index "categories_pkey": pages: 5486 in total, 0 newly deleted, 0 currently deleted, 0 reusable
+avg read rate: 57.588 MB/s, avg write rate: 171.774 MB/s
+buffer usage: 38157 hits, 4071 misses, 12143 dirtied
+WAL usage: 27497 records, 12810 full page images, 22105717 bytes
+system usage: CPU: user: 0.47 s, system: 0.03 s, elapsed: 0.55 s
+```
+
+This tells us that:
+- ✅ PostgreSQL found and cleaned up 1 million dead index entries (these pointed to outdated tuples).
+- ✅ There are 1,000,008 active row versions in the table — no dead tuples remain.
+- ❌ The table still uses 14,687 pages and is 115 MB in size — this did not shrink, because plain VACUUM doesn’t rewrite the table or remove empty pages.
+
+So, while space inside the pages is now free for reuse, no actual disk space has been returned to the system.
+
+ 🧠 **What’s the Purpose of Plain VACUUM?**
+
+ Even though it doesn’t reduce the file size on disk, plain VACUUM is still very useful. It frees up 
+ space inside each data page, allowing PostgreSQL to reuse that space for new inserts or updates.
+ 
+ As a result, the table can now handle another 1 million rows without growing in size. PostgreSQL will simply 
+ reuse the cleaned-up space instead of allocating new pages.
+
+
+```sql
+
+ANALYZE categories;
+
+SELECT 
+    relname, 
+    reltuples, 
+    relpages, 
+    pg_size_pretty(pg_relation_size( 'categories' ))
+FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+
+  relname   |  reltuples   | relpages | pg_size_pretty 
+------------+--------------+----------+----------------
+ categories | 1.000008e+06 |    14687 | 115 MB
+(1 row)
+
+
+UPDATE categories SET name = upper( name ) WHERE name LIKE 'generated%';
+
+ANALYZE categories;
+
+SELECT 
+    relname, 
+    reltuples, 
+    relpages, 
+    pg_size_pretty(pg_relation_size( 'categories' ))
+FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+
+  relname   |  reltuples   | relpages | pg_size_pretty 
+------------+--------------+----------+----------------
+ categories | 1.000008e+06 |    14687 | 115 MB
+(1 row)
+
+```
+
+As you can see, the number of tuples, pages, and table size did not change. Let’s break down what really happened:
+
+1) We inserted 1 million rows into the table.
+
+2) Then, we updated all of them, which—thanks to [MVCC](./3_Multi_Version_Concurrency_Control.md){:target="_blank" rel="noopener"}, will duplicate the tuples)
+—created 1 million more tuples (2 million total versions).
+
+3) We ran **VACUUM**, which cleaned up the old versions and brought the active count back to 1 million,
+but the table was still taking space for 2 million rows, just with half of it empty and reusable.
+
+4) Next, we updated the rows again, creating 1 million new versions.
+This time, PostgreSQL did not need to grow the table, because it reused the internal free space from the previous cleanup—even though that space was scattered across many pages.↳
+
+> 📌 **In short:** **VACUUM** didn’t shrink the file, but it recycled the storage, so PostgreSQL could keep working without using more disk space.
+
 
 ---
 

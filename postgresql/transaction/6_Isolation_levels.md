@@ -61,7 +61,7 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
 ```sql
 BEGIN;
-SELECT count(*) FROM tags;
+SELECT count(*) FROM categories;
 
 -- a query has been executed, the SET TRANSACTION
 -- is not anymore the very first command
