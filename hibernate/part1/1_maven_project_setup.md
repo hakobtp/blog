@@ -157,6 +157,7 @@ Here's how we can create an entity class for the author:
 @Entity
 @Getter
 @Setter
+@ToString
 @Accessors(chain = true)
 @Table(name = "authors")
 public class AuthorEntity {
@@ -328,6 +329,124 @@ class AuthorPersistenceTest {
 ```
 
 📝 Note: The name `"bookstore"` in the test must match the persistence-unit name in `persistence.xml`.
+
+
+## 🧱 Creating a JPA Repository for Authors
+
+Now that we have our AuthorEntity and Hibernate configuration ready, let’s write a simple repository 
+class to interact with the database using pure JPA (no manual SQL or JDBC).
+
+We’ll create an `AuthorRepository` class with two basic methods:
+
+- `save()` – to persist a new author
+- `findById()` – to search for an author by their ID
+
+`AuthorRepository.java`
+
+```java
+@RequiredArgsConstructor
+public class AuthorRepository {
+
+    private final EntityManager em;
+
+    // Save a new author and return the generated ID
+    public Long save(AuthorEntity authorEntity) {
+        em.getTransaction().begin();      // Start a transaction
+        em.persist(authorEntity);         // Tell JPA to save the entity
+        em.getTransaction().commit();     // Commit the transaction
+        return authorEntity.getId();      // Return the generated ID
+    }
+
+    // Find an author by ID. Returns Optional.empty() if not found
+    public Optional<AuthorEntity> findById(Long id) {
+        AuthorEntity author = em.find(AuthorEntity.class, id); // Fetch by primary key
+        return Optional.ofNullable(author);                    // Wrap in Optional
+    }
+}
+
+```
+✅ This repository uses the **EntityManager** provided by JPA to save and retrieve data, without writing any SQL.
+
+✅ **Testing the Repository**
+
+Let’s now write some unit tests to make sure our repository works correctly. We'll use:
+
+We will test two things:
+- Saving an author and retrieving them by ID
+- Ensuring findById() returns empty when no author is found
+
+`AuthorRepositoryTest.java`
+
+```java
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class AuthorRepositoryTest {
+
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private AuthorRepository authorRepository;
+
+    // Create EntityManagerFactory once before all tests
+    @BeforeAll
+    void setUpFactory() {
+        emf = Persistence.createEntityManagerFactory("bookstore");
+    }
+
+    // Close EntityManagerFactory after all tests
+    @AfterAll
+    void tearDownFactory() {
+        if (emf != null) emf.close();
+    }
+
+    // Create a new EntityManager before each test
+    @BeforeEach
+    void setUp() {
+        em = emf.createEntityManager();
+        authorRepository = new AuthorRepository(em);
+    }
+
+    // Close EntityManager after each test
+    @AfterEach
+    void tearDown() {
+        if (em != null) em.close();
+    }
+
+    @Test
+    @DisplayName("Should save and find author by ID")
+    void shouldSaveAndFindAuthor() {
+        // Given: a new author to be saved
+        var author = new AuthorEntity()
+                .setFirstName("Leo")
+                .setLastName("Tolstoy")
+                .setEmail("leo@books.com")
+                .setAboutMe("Russian novelist");
+
+        // When: saving the author
+        Long savedId = authorRepository.save(author);
+
+        // Then: we should be able to find the author by ID
+        Optional<AuthorEntity> found = authorRepository.findById(savedId);
+
+        assertTrue(found.isPresent(), "Author should be found by ID");
+        assertEquals("Leo", found.get().getFirstName());
+        assertEquals("Tolstoy", found.get().getLastName());
+    }
+
+    @Test
+    @DisplayName("Should return empty if author not found")
+    void shouldReturnEmptyWhenAuthorNotFound() {
+        // When: searching for an ID that doesn't exist
+        Optional<AuthorEntity> result = authorRepository.findById(999L);
+
+        // Then: it should return Optional.empty()
+        assertTrue(result.isEmpty(), "Should return empty Optional if not found");
+    }
+}
+
+```
+
+- `AuthorRepository` is a simple class using **EntityManager** to save and query authors.
+- `AuthorRepositoryTest` verifies that saving and fetching works correctly.
+- Thanks to the in-memory H2 database, tests run quickly and don’t require any setup.
 
 ---
 
