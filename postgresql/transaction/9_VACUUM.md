@@ -221,7 +221,7 @@ system usage: CPU: user: 0.47 s, system: 0.03 s, elapsed: 0.55 s
 This tells us that:
 - ✅ PostgreSQL found and cleaned up 1 million dead index entries (these pointed to outdated tuples).
 - ✅ There are 1,000,008 active row versions in the table — no dead tuples remain.
-- ❌ The table still uses 14,687 pages and is 115 MB in size — this did not shrink, because plain VACUUM doesn’t rewrite the table or remove empty pages.
+- ❌ The table still uses 14,687 pages and is 115 MB in size — this did not shrink, because plain **VACUUM** doesn’t rewrite the table or remove empty pages.
 
 So, while space inside the pages is now free for reuse, no actual disk space has been returned to the system.
 
@@ -280,7 +280,7 @@ As you can see, the number of tuples, pages, and table size did not change. Let�
 but the table was still taking space for 2 million rows, just with half of it empty and reusable.
 
 4) Next, we updated the rows again, creating 1 million new versions.
-This time, PostgreSQL did not need to grow the table, because it reused the internal free space from the previous cleanup—even though that space was scattered across many pages.↳
+This time, PostgreSQL did not need to grow the table, because it reused the internal free space from the previous cleanup—even though that space was scattered across many pages.
 
 > 📌 **In short:** **VACUUM** didn’t shrink the file, but it recycled the storage, so PostgreSQL could keep working without using more disk space.
 
@@ -329,17 +329,17 @@ But the key difference is in the result:
 > and puts pressure on your disk (I/O system). On large, busy tables, this could cause performance issues if not scheduled carefully.
 
 You can visualize the difference in how PostgreSQL reclaims space using simple diagrams.
-Imagine a table using two data pages:↳
+Imagine a table using two data pages:
 
-- The first page has 4 active tuples
-- The second page has 3 active tuples
+- The first page has 3 active tuples
+- The second page has 2 active tuples
 
 <p align="center">
     <img src="./assets/img5.png" alt="img5" width="500" />
 </p>
 
 Dead tuples (shown in red) cause what’s called intra-page fragmentation.
-This happens when old, invisible rows are mixed between the visible (active) ones, leaving behind scattered gaps inside the data pages.↳
+This happens when old, invisible rows are mixed between the visible (active) ones, leaving behind scattered gaps inside the data pages.
 
 As a result, the table still occupies two full pages, even though all the valid tuples could easily fit into just one.
 
@@ -351,7 +351,7 @@ When you run plain VACUUM, PostgreSQL:
 
 So, the table will still use two pages, even though one might now be mostly empty.
 
-> 📌 In short: VACUUM cleans and rearranges data inside the pages—but does not shrink the file on disk.
+> 📌 In short: **VACUUM** cleans and rearranges data inside the pages—but does not shrink the file on disk.
 
 You can see this process in the figure below, where the dead tuples are removed, and the active ones are compacted but stay spread across both pages.
 
@@ -360,7 +360,7 @@ You can see this process in the figure below, where the dead tuples are removed,
 </p>
 
 
-If VACUUM FULL executes, the table’s data pages are fully rewritten to compact all valid tuples together. In this situation, the second page of the table results is empty and, therefore, can be discarded, freeing up storage space. The situation becomes the one depicted in the following diagram:
+If **VACUUM FULL** executes, the table’s data pages are fully rewritten to compact all valid tuples together. In this situation, the second page of the table results is empty and, therefore, can be discarded, freeing up storage space. The situation becomes the one depicted in the following diagram:
 
 <p align="center">
     <img src="./assets/img7.png" alt="img7" width="500" />
@@ -384,7 +384,9 @@ You can control how many workers run at the same time using the **autovacuum_max
 Each autovacuum worker does three main things:
 
 1) **Runs a regular VACUUM** to reduce data fragmentation and free up space.
+
 2) Updates statistics about your data, like the **ANALYZE** command. This helps the database choose the best way to run queries.
+
 3) **Freezes old data (tuples)** to prevent transaction ID (XID) wraparound problems, which can cause serious errors if ignored.
 
 Even if you turn off autovacuum (not recommended), PostgreSQL may still run an emergency vacuum to avoid XID problems. In short, PostgreSQL tries to keep itself running well, even if it’s not set up perfectly.
