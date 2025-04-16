@@ -359,6 +359,14 @@ You can see this process in the figure below, where the dead tuples are removed,
     <img src="./assets/img6.png" alt="img6" width="500" />
 </p>
 
+
+If VACUUM FULL executes, the table’s data pages are fully rewritten to compact all valid tuples together. In this situation, the second page of the table results is empty and, therefore, can be discarded, freeing up storage space. The situation becomes the one depicted in the following diagram:
+
+<p align="center">
+    <img src="./assets/img7.png" alt="img7" width="500" />
+</p>
+
+
 ---
 
 
