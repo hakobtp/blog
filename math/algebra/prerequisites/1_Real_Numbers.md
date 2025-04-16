@@ -1,0 +1,30 @@
+# Real Numbers
+
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
+In this section, we will explore sets of numbers, calculations with different kinds of numbers, and the use of numbers in expressions.
+
+## Classifying a Real Number
+
+The numbers we use for counting things are called natural numbers. These are: `1, 2, 3, 4, 5,` and so on. We write them like this:
+
+$${1,2,3,\dots}$$
+
+The **"…"** means the numbers go on forever. That’s why we say natural numbers continue to infinity. 
+Natural numbers are also called counting numbers. We use them when we count people on a team, coins in a jar, 
+or trees in a forest.
+
+The set of **whole numbers** is the set of natural numbers plus zero: 
+
+$${0, 1,2,3,\dots}$$
+
+---
+
+## 📌 Explore More
+
+- 🏠 [Home](./../../README.md)
+- [Algebra](./../tutorials.md)
