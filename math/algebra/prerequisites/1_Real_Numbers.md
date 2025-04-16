@@ -56,8 +56,9 @@ So, the set of irrational numbers includes all the numbers that cannot be writte
 
 Some common examples of irrational numbers are:
 
-- $ \pi $ the ratio of a circle’s circumference to its diameter
-- $ \sqrt{2} $, the length of the diagonal in a square with sides of 1 unit
+- $$ \pi $$ the ratio of a circle’s circumference to its diameter
+- $$ \sqrt{2} $$, the length of the diagonal in a square with sides of 1 unit
+
 ---
 
 ## 📌 Explore More
