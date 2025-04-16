@@ -7,7 +7,7 @@ Author      Ter-Petrosyan Hakob
 
 PostgreSQL uses [MVCC](./3_Multi_Version_Concurrency_Control.md){:target="_blank" rel="noopener"} to store multiple versions of the same data (called tuples) so different transactions can see the version they need. However, keeping these extra versions takes up more space on disk. Over time, if nothing is done, this unused data can fill your storage. To solve this, PostgreSQL includes a tool called **VACUUM**. Its job is to look at old tuple versions and remove the ones that are no longer needed.
 
-> 🧠 **Reminder:**</br>
+> 🧠 **REMINDER:**
 > A tuple is no longer visible (or perceivable) if no active transaction can still access it. 
 > These outdated versions are called dead tuples, and they are safe to remove.
 
@@ -26,15 +26,19 @@ VACUUM [ FULL ] [ FREEZE ] [ VERBOSE ] [ ANALYZE ] [ table_and_columns [, ...] ]
 
 There are three main types of manual **VACUUM** operations, each one more aggressive than the last:
 
-1) **Plain VACUUM**</br>
+1) **Plain VACUUM**
+
     This is the default. It removes dead tuples (old data no longer needed) but doesn't shrink the table file on disk. 
     So, while it helps keep things clean, it doesn’t actually free up storage space.
 
-2) **VACUUM FULL**</br>
-This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space but is slower and more resource-intensive.
+2) **VACUUM FULL**
 
-3) **VACUUM FREEZE**</br>
-This version freezes old rows that will never change again. This prevents a serious issue known as XID wraparound, which can corrupt your database over time if not managed.
+    This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space but is slower and more resource-intensive.
+
+3) **VACUUM FREEZE**
+
+    This version freezes old rows that will never change again. This prevents a serious issue known as XID wraparound, which can corrupt 
+    your database over time if not managed.
 
 > ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
 
