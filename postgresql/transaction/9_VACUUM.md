@@ -413,7 +413,9 @@ Autovacuum checks each table. If the number of changed rows is greater than:
 autovacuum_vacuum_threshold + (number of table rows × autovacuum_vacuum_scale_factor)
 ```
 
-then **autovacuum** starts. While working, it keeps track of the cost. If the cost goes over **autovacuum_cost_limit**, the process pauses for **autovacuum_cost_delay** milliseconds. Then it continues. This "pause-and-resume" behavior helps reduce the impact on users and applications using the database.
+then **autovacuum** starts. 
+
+While working, it keeps track of the cost. If the cost goes over **autovacuum_cost_limit**, the process pauses for **autovacuum_cost_delay** milliseconds. Then it continues. This "pause-and-resume" behavior helps reduce the impact on users and applications using the database.
 
 ## How PostgreSQL Calculates Cost
 
