@@ -26,19 +26,14 @@ VACUUM [ FULL ] [ FREEZE ] [ VERBOSE ] [ ANALYZE ] [ table_and_columns [, ...] ]
 
 There are three main types of manual **VACUUM** operations, each one more aggressive than the last:
 
-1) **Plain VACUUM**
+1) **Plain VACUUM:** This is the default. It removes dead tuples (old data no longer needed) but doesn't 
+    shrink the table file on disk. So, while it helps keep things clean, it doesn’t actually free up storage space.
 
-    This is the default. It removes dead tuples (old data no longer needed) but doesn't shrink the table file on disk. 
-    So, while it helps keep things clean, it doesn’t actually free up storage space.
+2) **VACUUM FULL:** This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space 
+    but is slower and more resource-intensive.
 
-2) **VACUUM FULL**
-
-    This one rewrites the entire table, getting rid of both dead tuples and empty space. It reclaims real disk space but is slower and more resource-intensive.
-
-3) **VACUUM FREEZE**
-
-    This version freezes old rows that will never change again. This prevents a serious issue known as XID wraparound, which can corrupt 
-    your database over time if not managed.
+3) **VACUUM FREEZE: ** This version freezes old rows that will never change again. This prevents a serious issue known as 
+    XID wraparound, which can corrupt your database over time if not managed.
 
 > ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
 
@@ -147,7 +142,12 @@ Let’s take a closer look at the categories table in our PostgreSQL database.
     - 🔍 Understand how PostgreSQL stores your data internally
     - 💡 Tip: You can run similar queries for other tables to keep track of space and performance in your database.
 
+As you can see, the table currently has only 8 tuples and takes up just one data page on disk—about 8 KB in size. 
+Now, let’s populate the table with around 1 million random tuples to observe how its size and structure change.
 
+```sql
+INSERT INTO categories( name ) SELECT 'GENERATED-#' || x FROM generate_series( 1, 1000000 ) x;
+```
 
 ---
 
