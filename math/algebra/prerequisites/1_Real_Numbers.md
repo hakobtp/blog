@@ -43,7 +43,21 @@ Since rational numbers are fractions, we can also write them as decimals. Every 
 - a repeating decimal: $$\frac{4}{11} = 0.363636\ldots = \overline{0.36}$$.
 
 
+A long time ago, people discovered that **not all numbers are rational**.
 
+For example, an artist drawing a perfect circle might have realized that the distance around the circle doesn’t divide evenly by the width across it. Or a carpenter measuring a triangle might have found that the longest side doesn’t match any simple fraction—it’s a strange number that can’t be written exactly.
+
+These kinds of numbers are called **irrational numbers** because they cannot be written as a fraction of two integers.
+
+There is no simple rule to describe all irrational numbers. The only thing we can say is: A number is irrational if it **is not rational**.
+
+So, the set of irrational numbers includes all the numbers that cannot be written as a fraction like $$\frac{m}{n}$$ where 
+**m** and **n** are integers and $$n \neq 0$$.
+
+Some common examples of irrational numbers are:
+
+- $ \pi $ the ratio of a circle’s circumference to its diameter
+- $ \sqrt{2} $, the length of the diagonal in a square with sides of 1 unit
 ---
 
 ## 📌 Explore More
