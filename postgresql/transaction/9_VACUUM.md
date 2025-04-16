@@ -284,6 +284,80 @@ This time, PostgreSQL did not need to grow the table, because it reused the inte
 
 > 📌 **In short:** **VACUUM** didn’t shrink the file, but it recycled the storage, so PostgreSQL could keep working without using more disk space.
 
+Unlike plain **VACUUM**, **VACUUM FULL** not only cleans up dead tuples, but it also compacts the table, physically reclaiming the freed space on disk.
+
+If we run **VACUUM FULL** now, PostgreSQL will:
+
+- Remove the 1 million dead tuples
+- Rebuild the table, storing only the active rows
+- Shrink the file size to its minimum required space
+
+
+```sql
+VACUUM FULL VERBOSE categories;
+
+INFO:  vacuuming "public.categories"
+INFO:  "public.categories": found 1000000 removable, 1000008 nonremovable row versions in 14687 pages
+DETAIL:  0 dead row versions cannot be removed yet.
+CPU: user: 0.35 s, system: 0.06 s, elapsed: 0.47 s.
+VACUUM
+
+ANALYZE categories;
+
+
+SELECT 
+    relname, 
+    reltuples, 
+    relpages, 
+    pg_size_pretty(pg_relation_size( 'categories' ))
+FROM pg_class WHERE relname = 'categories' AND relkind = 'r';
+  relname   |  reltuples   | relpages | pg_size_pretty 
+------------+--------------+----------+----------------
+ categories | 1.000008e+06 |     7344 | 57 MB
+(1 row)
+```
+
+The output of **VACUUM FULL** looks very similar to that of a plain **VACUUM**—you’ll still see that 1 million tuples can be removed.
+
+But the key difference is in the result:
+- **VACUUM FULL** doesn’t just clean up internal space.
+- It physically rewrites the table, removing the dead space and compacting the file to the smallest size needed to hold only the active tuples
+- This means the table gains back all the disk space that was previously taken by dead rows.
+
+> ⚠️ **Important note:**
+> While this is effective, **VACUUM FULL** is a heavy operation. It locks the table, rewrites it entirely, 
+> and puts pressure on your disk (I/O system). On large, busy tables, this could cause performance issues if not scheduled carefully.
+
+You can visualize the difference in how PostgreSQL reclaims space using simple diagrams.
+Imagine a table using two data pages:↳
+
+- The first page has 4 active tuples
+- The second page has 3 active tuples
+
+<p align="center">
+    <img src="./assets/img5.png" alt="img5" width="500" />
+</p>
+
+Dead tuples (shown in red) cause what’s called intra-page fragmentation.
+This happens when old, invisible rows are mixed between the visible (active) ones, leaving behind scattered gaps inside the data pages.↳
+
+As a result, the table still occupies two full pages, even though all the valid tuples could easily fit into just one.
+
+When you run plain VACUUM, PostgreSQL:
+
+- Removes the dead tuples inside each page
+- Compacts the valid tuples within the page
+- ❌ But it does not reduce the total number of pages
+
+So, the table will still use two pages, even though one might now be mostly empty.
+
+> 📌 In short: VACUUM cleans and rearranges data inside the pages—but does not shrink the file on disk.
+
+You can see this process in the figure below, where the dead tuples are removed, and the active ones are compacted but stay spread across both pages.
+
+<p align="center">
+    <img src="./assets/img6.png" alt="img6" width="500" />
+</p>
 
 ---
 
