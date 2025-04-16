@@ -366,6 +366,80 @@ If VACUUM FULL executes, the table’s data pages are fully rewritten to compact
     <img src="./assets/img7.png" alt="img7" width="500" />
 </p>
 
+## 🤖 Automatic VACUUM (autovacuum)
+
+Since version 8.4, PostgreSQL has included a background feature called **autovacuum**. This feature helps keep your database clean and fast by running 
+**VACUUM** automatically.
+
+Running **VACUUM** can be heavy on disk usage (I/O). To avoid slowing down other activities, **autovacuum** runs small clean-up jobs in the background while your database is still running normally.
+
+In most cases, you don’t need to worry about **autovacuum**. It is turned on by default and works well in many situations. But, like many things in PostgreSQL, you can change its settings if needed. A system with good **autovacuum** settings usually doesn’t need manual **VACUUM** commands.
+
+### How Autovacuum Works
+
+Autovacuum works through special background processes called **autovacuum workers**. Each worker is assigned to one database. After finishing its task, it stops. PostgreSQL regularly starts new workers so that all databases and tables get cleaned up automatically.
+
+You can control how many workers run at the same time using the **autovacuum_max_workers** setting.
+
+Each autovacuum worker does three main things:
+
+1) **Runs a regular VACUUM** to reduce data fragmentation and free up space.
+2) Updates statistics about your data, like the **ANALYZE** command. This helps the database choose the best way to run queries.
+3) **Freezes old data (tuples)** to prevent transaction ID (XID) wraparound problems, which can cause serious errors if ignored.
+
+Even if you turn off autovacuum (not recommended), PostgreSQL may still run an emergency vacuum to avoid XID problems. In short, PostgreSQL tries to keep itself running well, even if it’s not set up perfectly.
+
+### Autovacuum Configuration
+
+You can view and change autovacuum settings in the `postgresql.conf` file or by querying the `pg_settings` system catalog.
+
+Here are some key settings:
+
+
+|Setting|Description|
+|:------|:----------|
+|autovacuum|Turns autovacuum `on` or `off`. It should almost always stay `on`.|
+|autovacuum_vacuum_threshold|The minimum number of updated rows (tuples) before autovacuum runs. Default is 50.|
+|autovacuum_vacuum_scale_factor|Triggers autovacuum after a certain percentage of rows are changed. Default is 0.2 (20%).|
+|autovacuum_cost_limit|Sets a cost limit for how much work autovacuum can do before pausing.|
+|autovacuum_cost_delay|Sets the delay time (in milliseconds) between pauses to reduce impact on other queries.|
+
+
+Autovacuum checks each table. If the number of changed rows is greater than:
+
+```
+autovacuum_vacuum_threshold + (number of table rows × autovacuum_vacuum_scale_factor)
+```
+
+then **autovacuum** starts. While working, it keeps track of the cost. If the cost goes over **autovacuum_cost_limit**, the process pauses for **autovacuum_cost_delay** milliseconds. Then it continues. This "pause-and-resume" behavior helps reduce the impact on users and applications using the database.
+
+## How PostgreSQL Calculates Cost
+
+PostgreSQL uses cost values to measure how expensive an action is (like reading or writing a data page). These values apply to both manual **VACUUM** and **autovacuum**.
+
+You can see them with this SQL query:
+
+```sql
+SELECT name, setting FROM pg_settings WHERE name LIKE 'vacuum_cost%';
+
+          name          | setting
+------------------------+---------
+ vacuum_cost_delay      | 0
+ vacuum_cost_limit      | 200
+ vacuum_cost_page_dirty | 20
+ vacuum_cost_page_hit   | 1
+ vacuum_cost_page_miss  | 2
+
+```
+
+Manual **VACUUM** does not pause itself (because `vacuum_cost_delay` is usually 0). But autovacuum does pause, using its own `autovacuum_vacuum_cost_limit`, which defaults to 200.
+
+There are also similar settings for the ANALYZE part:
+
+- `autovacuum_analyze_threshold`
+- `autovacuum_analyze_scale_factor`
+
+These control when statistics are updated by the autovacuum process.
 
 ---
 
