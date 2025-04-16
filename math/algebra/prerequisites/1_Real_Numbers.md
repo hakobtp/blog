@@ -22,6 +22,12 @@ The set of **whole numbers** is the set of natural numbers plus zero:
 
 $${0, 1,2,3,\dots}$$
 
+The set of integers adds the opposites of the natural numbers to the set of whole numbers:
+
+$${\dots,-3,-2,-1,0,1,2,3,\dots}$$
+
+> NOTE: Positive integers are the same as natural numbers, and natural numbers are a **subset** of the larger group called integers.
+
 ---
 
 ## 📌 Explore More
