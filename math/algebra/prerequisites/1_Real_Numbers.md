@@ -34,10 +34,17 @@ $$\left\{ \frac{m}{n} \,\middle|\, m \text{ and } n \text{ are integers and } n 
 
 Rational numbers are fractions made of two integers—one on top (the numerator) and one on the bottom (the denominator). But the denominator can never be 0.
 
-Every natural number, whole number, and integer is also a rational number, because you can write it as a fraction with 1 in the denominator. For example, 5 can be written as \(\frac{5}{1}\)
+Every natural number, whole number, and integer is also a rational number, because you can write it as a fraction with 1 in the denominator. For example, 5 can be written as $$\frac{5}{1}$$
 
 
 Since rational numbers are fractions, we can also write them as decimals. Every rational number can be written as either:
+
+- a terminating decimal: $$\frac{15}{8}=1.875$$ fvsdfsdds
+- a repeating decimal: 
+
+
+This is expressed by the **logarithmic** equation $$\log_{2}(16)=4$$, fdsfsd
+
 
 ---
 
