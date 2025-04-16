@@ -365,7 +365,7 @@ public class AuthorRepository {
 }
 
 ```
-✅ This repository uses the **EntityManager** provided by JPA to save and retrieve data, without writing any SQL.
+This repository uses the **EntityManager** provided by JPA to save and retrieve data, without writing any SQL.
 
 ✅ **Testing the Repository**
 
