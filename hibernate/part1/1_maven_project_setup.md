@@ -1,4 +1,4 @@
-# Setting Up Hibernate with Maven (Step-by-Step Guide)
+# ⚙️ Setting Up Hibernate with Maven (Step-by-Step Guide)
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -453,3 +453,4 @@ class AuthorRepositoryTest {
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
+- 🔄 [Understanding Transactions in JPA and Hibernate](./2_Understanding_Transactions_in_JPA_and_Hibernate.md)
