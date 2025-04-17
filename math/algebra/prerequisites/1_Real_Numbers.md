@@ -75,6 +75,17 @@ We can picture real numbers on a horizontal number line:
     <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
+## Understanding Number Sets and Their Subsets
+
+We started with the natural numbers and gradually built larger sets of numbers by including more types, like integers, rational numbers, and real numbers.
+
+Each new set includes the previous one, which means they are all subsets of a bigger set.
+This subset relationship becomes easier to understand when shown in a diagram.
+
+Symbol Key for Number Sets
+- **𝑁**: the set of natural numbers → $${1,2,3,\dots}$$.
+- **𝑊**: the set of whole numbers → $${0,1,2,3,\dots}$$.
+
 ---
 
 
