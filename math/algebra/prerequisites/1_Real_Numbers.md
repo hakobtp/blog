@@ -82,6 +82,10 @@ We started with the natural numbers and gradually built larger sets of numbers b
 Each new set includes the previous one, which means they are all subsets of a bigger set.
 This subset relationship becomes easier to understand when shown in a diagram.
 
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="400"/>
+</p>
+
 Symbol Key for Number Sets
 - **N**: the set of natural numbers → $${1,2,3,\dots}$$.
 - **𝑊**: the set of whole numbers → $${0,1,2,3,\dots}$$.
