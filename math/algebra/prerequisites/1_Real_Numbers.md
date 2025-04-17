@@ -57,7 +57,26 @@ Some common examples of irrational numbers are:
 - $$ \pi $$ the ratio of a circle’s circumference to its diameter
 - $$ \sqrt{2} $$, the length of the diagonal in a square with sides of 1 unit
 
+Any number you choose is either a rational number or an irrational number—it can’t be both. Together, these two groups form the complete set of real numbers.
+
+Just like we did with integers, we can divide the set of real numbers into three groups:
+
+- Negative real numbers
+- Zero
+- Positive real numbers
+
+Each group can include fractions, decimals, and irrational numbers, depending on their sign (positive or negative). 
+Zero is special—it's neither positive nor negative.
+
+We can picture real numbers on a horizontal number line: 
+
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
 ---
+
+
 
 ## 📌 Explore More
 
