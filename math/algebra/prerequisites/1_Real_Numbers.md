@@ -85,6 +85,9 @@ This subset relationship becomes easier to understand when shown in a diagram.
 Symbol Key for Number Sets
 - **𝑁**: the set of natural numbers → $${1,2,3,\dots}$$.
 - **𝑊**: the set of whole numbers → $${0,1,2,3,\dots}$$.
+- **𝐼**: the set of integers → $${\dots,-3,-2,-1,0,1,2,3,\dots}$$.
+- **𝑄**: the set of rational numbers → numbers that can be written as a fraction: $$\frac{m}{n}$$, where $$n \neq 0$$.
+- **𝑄′**: the set of irrational numbers → numbers that cannot be written as a fraction (e.g.,$$ \pi $$, $$ \sqrt{2} $$).
 
 ---
 
