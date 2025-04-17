@@ -57,7 +57,8 @@ Some common examples of irrational numbers are:
 - $$ \pi $$ the ratio of a circle’s circumference to its diameter
 - $$ \sqrt{2} $$, the length of the diagonal in a square with sides of 1 unit
 
-Any number you choose is either a rational number or an irrational number—it can’t be both. Together, these two groups form the complete set of real numbers.
+Any number you choose is either a rational number or an irrational number—it can’t be both. Together, these two groups form the 
+complete set of **real numbers**.
 
 Just like we did with integers, we can divide the set of real numbers into three groups:
 
