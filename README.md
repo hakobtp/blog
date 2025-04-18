@@ -39,3 +39,27 @@ $$ -->
     <li>🎨 <a href="/design_patterns/tutorials.html">Design Patterns</a></li>
   </ul>
 </div>
+
+
+<!-- ```mermaid
+classDiagram
+    CaffeineBeverage <|-- Tea
+    CaffeineBeverage <|-- Coffee
+
+    class CaffeineBeverage {
+        +prepareRecipe()
+        -boilWater()
+        #brew()
+        -pourInCup()
+        #addCondiments()
+    }
+    class Tea {
+        +brew()
+        +addCondiments()
+    }
+    class Coffee {
+        +brew()
+        +addCondiments()
+    }
+
+``` -->
