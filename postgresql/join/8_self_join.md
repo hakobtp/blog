@@ -44,24 +44,34 @@ JOIN categories AS parent
 (3 rows)
 ```
 
-## How It Works
+- **How It Works:**
+    - **Aliases:** We refer to two logical copies of categories as child and parent.
+    - **Join Condition:** `child.parent_id = parent.id` links each row in the `“child”` copy to its corresponding row in the `“parent”` copy.
+    - **Result:** Only categories that have a `non‑NULL` `parent_id` appear, because **JOIN** defaults to an `inner join`.
+
+This diagram gives us an idea of how a self join works:
+
+<p align="center">
+    <img src="./assets/img6.png" alt="img6" width="400" />
+</p>
 
 
-<ol>
-  <li><h2>Aliases:</h2> We refer to two logical copies of categories as child and parent.</li>
-  <li>Brew the beverage</li>
-  <li>Pour into cup</li>
-  <li>Add condiments</li>
-</ol> 
+To list only the top‑level categories (those without a parent), you can use a `LEFT JOIN` and filter for `NULL` parents:
 
+```sql
+SELECT
+    c.id   AS category_id,
+    c.name AS category_name
+FROM categories AS c
+         LEFT JOIN categories AS p ON c.parent_id = p.id
+WHERE p.id IS NULL;
 
-
-
-Join Condition
-child.parent_id = parent.id links each row in the “child” copy to its corresponding row in the “parent” copy.↳
-
-Result
-Only categories that have a non‑NULL parent_id appear, because JOIN defaults to an inner join.
+ category_id | category_name 
+-------------+---------------
+           1 | Electronics
+           4 | Home
+(2 rows)
+```
 
 ---
 
