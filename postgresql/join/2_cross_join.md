@@ -60,7 +60,7 @@ from categories c CROSS JOIN goods g;
 ## Disadvantages of a CROSS JOIN
 
 - Huge Result Sets
-    - If table `A` has `m` rows and table `B` has `n` rows, a **CROSS JOIN** returns $$m \times n$$ rows.
+    - If table **A** has `m` rows and table **B** has `n` rows, a **CROSS JOIN** returns $$m \times n$$ rows.
     - Even small tables can produce millions of rows, which is often too many to handle.
 
 -  Slow Performance
