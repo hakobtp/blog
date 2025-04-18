@@ -41,7 +41,7 @@ This query makes a **Cartesian product** of the two tables. In other words, it p
 
 
 <p align="center">
-    <img src="./assets/img1.png" alt="img1" width="300" />
+    <img src="./assets/img1.png" alt="img1" width="400" />
 </p>
 
 
