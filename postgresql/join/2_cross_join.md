@@ -1,4 +1,4 @@
-# Cross Join
+# 🔗 Cross Join
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -90,3 +90,4 @@ such as **INNER JOIN** or **LEFT JOIN**, to keep your result set clear and effic
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔗 [Introduction to Joins](./1_Introduction_to_Joins.md)
+- 🔗 [Inner Join](./3_Inner_Join.md)
