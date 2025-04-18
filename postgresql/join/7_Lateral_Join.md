@@ -47,6 +47,10 @@ FROM categories AS c JOIN LATERAL (
 
 ```
 
+In SQL, every **JOIN** needs an **ON** clause (or a **USING** clause) that tells the engine how to match rows between the two sources. 
+With a **LATERAL JOIN**, you’re already filtering inside the subquery (e.g. `WHERE g.category_id = c.id AND g.price > 699`), so you 
+don’t need any additional join condition. You still must write something after **ON**, so you use a condition that’s always **true**:
+
 ## Why LATERAL?
 
 Unlike **EXISTS**, which only tests for presence, **LATERAL JOIN** lets you pull columns from the subquery directly into your main result set.
