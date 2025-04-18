@@ -32,7 +32,7 @@ category_id | category_name | good_id |    good_name    | good_price
            2 | Computers     |       2 | Gaming Laptop   |    1200.00
            2 | Computers     |       3 | Business Laptop |     800.00
            2 | Computers     |       4 | Desktop PC      |     600.00
-....
+
 (35 rows)
 ```
 
@@ -59,23 +59,23 @@ from categories c CROSS JOIN goods g;
 
 ## Disadvantages of a CROSS JOIN
 
-1) Huge Result Sets
+- Huge Result Sets
     - If table `A` has `m` rows and table `B` has `n` rows, a **CROSS JOIN** returns $$m \times n$$ rows.
     - Even small tables can produce millions of rows, which is often too many to handle.
 
-2) Slow Performance
+-  Slow Performance
     - Generating every combination takes time.
     - Your database must read all rows from both tables and write all combinations, using lots of `CPU` and disk `I/O`.
 
-3) High Memory and Storage Use
+-  High Memory and Storage Use
     - Temporary space may fill up if the result set is very large.
     - Queries can fail or slow down other operations on the server.    
 
-4) Meaningless Data
+-  Meaningless Data
     - Most combinations are not useful, since you usually want only related rows.
     - It can confuse readers of your code, as they might expect a join condition to filter rows.
 
-5) Rarely Needed in Practice
+-  Rarely Needed in Practice
     - **CROSS JOIN** is mostly used for special cases (like generating test data or calendars).
     - For real reports, **INNER** or **OUTER** joins are almost always more appropriate.    
 
