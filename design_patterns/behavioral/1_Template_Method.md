@@ -24,7 +24,7 @@ Consider preparing different caffeine beverages (e.g., tea vs. coffee). The algo
 Because the order cannot change (you must boil water before brewing), we implement a **final** template method that invokes each step in sequence. Subclasses override only the brewing and condiment methods.
 
 ```java
-ublic abstract class CaffeineBeverage {
+public abstract class CaffeineBeverage {
 
     // The template method defines the fixed algorithm
     public final void prepareRecipe() {
@@ -106,7 +106,7 @@ public class BeverageTest {
 ## Class Diagram
 
 <p align="center">
-    <img src="./assets/img1.png" alt="img1" width="400"/>
+    <img src="./assets/img1.svg" alt="img1" width="400"/>
 </p>
 
 
