@@ -8,7 +8,7 @@ Author      Ter-Petrosyan Hakob
 
 We can think of a join as a combination of rows from two or more tables.
 
-For example, the following query returns all the combinations from the rows of the `categories` table and the rows of the goods table:
+For example, the following query returns all the combinations from the rows of the `categories` table and the rows of the `goods` table:
 
 ```sql
 select 
