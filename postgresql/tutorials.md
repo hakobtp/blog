@@ -13,7 +13,7 @@
 - [Right Join](./join/5_Right_Join.md)
 - [Full Oouter Join](./join/6_Full_Oouter_Join.md)
 - [Lateral Join](./join/7_Lateral_Join.md)
-- [Self Join]
+- [Self Join](./join/8_self_join.md)
 
 ### Transaction
  
