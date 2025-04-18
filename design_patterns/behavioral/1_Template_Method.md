@@ -103,6 +103,45 @@ public class BeverageTest {
 
 ---
 
+## Class Diagram
+
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
+
+## Template Method in the JDK
+
+- All non-abstract methods in `java.io.InputStream`, `java.io.OutputStream`, `java.io.Reader`, and `java.io.Writer`.
+- All non-abstract methods in `java.util.AbstractList`, `java.util.AbstractSet`, and `java.util.AbstractMap`.
+
+## Important Details
+
+- Template methods consist of fixed steps; some steps call subclass implementations.
+- Methods in the base class with default behavior are called hooks and can be overridden.
+- To protect specific hooks, declare them final.
+
+## Applicability
+
+Use the Template Method pattern when:
+
+- You want to let clients extend only parts of an algorithm, not its overall structure.
+- Several classes share a common algorithm with minor variations.
+- Pulling up shared code into a superclass eliminates duplication.
+
+## Pros and Cons
+
+Pros:
+- Control over algorithm structure; subclasses tweak only allowed steps.
+- Centralized common code reduces duplication.
+
+Cons:
+- Subclasses are limited by the fixed skeleton.
+- Overriding default steps may violate the Liskov Substitution Principle.
+- Complex templates with many steps can be harder to maintain.
+
+
+
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
