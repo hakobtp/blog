@@ -3,10 +3,11 @@
 ```info
 Author      Ter-Petrosyan Hakob
 ```
+---
 
-When you keep related data in two tables, you often need to bring it together. A **join** tells PostgreSQL how to match rows from one table with rows from another. In this post, we will look at five basic join types:
+When you keep related data in two tables, you often need to bring it together. A **join** tells PostgreSQL how to match rows from one table with rows from another. In this post, In this post series, we will look at seven basic joint types:
 
-| Join Type     | What It Does                                                                                                 |
+| JOIN TYPE     | What It Does                                                                                                 |
 |---------------|--------------------------------------------------------------------------------------------------------------|
 | **INNER JOIN**   | Shows only rows that match in both tables.                                                                 |
 | **LEFT JOIN**    | Shows all rows from the first table, plus matching rows from the second. Unmatched rows show `NULL`.       |
@@ -17,7 +18,6 @@ When you keep related data in two tables, you often need to bring it together. A
 | **LATERAL JOIN** | Runs a subquery for each row of the first table, letting the subquery use that row’s values.              |
 
 
----
 
 ## Setting Up Sample Tables
 
@@ -73,3 +73,9 @@ Now that everything is ready, let’s start learning about each joint type. We'l
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔗 [Cross Join](./2_cross_join.md)
+- 🔗 [Inner Join](./3_Inner_Join.md)
+- 🔗 [Left Join](./4_Left_Join.md)
+- 🔗 [Right Join](./5_Right_Join.md)
+- 🔗 [Full Oouter Join](./6_Full_Oouter_Join.md)
+- 🔗 [Lateral Join](./7_Lateral_Join.md)
+- 🔗 [Self Join](./8_self_join.md)
