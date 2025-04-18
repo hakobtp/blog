@@ -109,4 +109,4 @@ in many database engines, can offer better performance by allowing the optimizer
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔗 [Cross Join](./2_cross_join.md)
-- 🔗 
+- 🔗 [Left Join](./4_Left_Join.md)
