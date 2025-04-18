@@ -32,30 +32,7 @@ category_id | category_name | good_id |    good_name    | good_price
            2 | Computers     |       2 | Gaming Laptop   |    1200.00
            2 | Computers     |       3 | Business Laptop |     800.00
            2 | Computers     |       4 | Desktop PC      |     600.00
-           2 | Computers     |       5 | Refrigerator    |     500.00
-           2 | Computers     |       6 | Blender         |      80.00
-           2 | Computers     |       7 | Microwave       |     150.00
-           3 | Laptops       |       1 | Smartphone      |     699.00
-           3 | Laptops       |       2 | Gaming Laptop   |    1200.00
-           3 | Laptops       |       3 | Business Laptop |     800.00
-           3 | Laptops       |       4 | Desktop PC      |     600.00
-           3 | Laptops       |       5 | Refrigerator    |     500.00
-           3 | Laptops       |       6 | Blender         |      80.00
-           3 | Laptops       |       7 | Microwave       |     150.00
-           4 | Home          |       1 | Smartphone      |     699.00
-           4 | Home          |       2 | Gaming Laptop   |    1200.00
-           4 | Home          |       3 | Business Laptop |     800.00
-           4 | Home          |       4 | Desktop PC      |     600.00
-           4 | Home          |       5 | Refrigerator    |     500.00
-           4 | Home          |       6 | Blender         |      80.00
-           4 | Home          |       7 | Microwave       |     150.00
-           5 | Kitchen       |       1 | Smartphone      |     699.00
-           5 | Kitchen       |       2 | Gaming Laptop   |    1200.00
-           5 | Kitchen       |       3 | Business Laptop |     800.00
-           5 | Kitchen       |       4 | Desktop PC      |     600.00
-           5 | Kitchen       |       5 | Refrigerator    |     500.00
-           5 | Kitchen       |       6 | Blender         |      80.00
-           5 | Kitchen       |       7 | Microwave       |     150.00
+....
 (35 rows)
 ```
 
@@ -101,7 +78,7 @@ from categories c CROSS JOIN goods g;
 5) Rarely Needed in Practice
     - **CROSS JOIN** is mostly used for special cases (like generating test data or calendars).
     - For real reports, **INNER** or **OUTER** joins are almost always more appropriate.    
-    
+
 
 Only use **CROSS JOIN** when you really need every possible match. Otherwise, choose a join that filters rows, 
 such as **INNER JOIN** or **LEFT JOIN**, to keep your result set clear and efficient.
