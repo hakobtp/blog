@@ -38,9 +38,6 @@ LEFT JOIN goods AS g ON c.id = g.category_id;
 This query returns all records of the `categories` table and returns the matched records from the `goods` table. 
 As we can see, if the second table (the `goods` table, in this example) has no matches, the result is **NULL** .
 
-> The left join keyword returns all records from the left table ( table1 ), and all the records from the right table ( table2 ). 
-> The result is **NULL** from the right side if there is no match.
-
 This diagram gives us an idea of how a left join works:
 
 <p align="center">
