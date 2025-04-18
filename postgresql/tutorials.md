@@ -6,7 +6,7 @@
 
 - [Introduction to Joins](./join/1_Introduction_to_Joins.md)
 - [Cross Join](./join/2_cross_join.md)
-- [Inner Join]
+- [Inner Join](./join/3_Inner_Join.md)
 - [Left Join]
 - [Right Join]
 - [Full Oouter Join]

@@ -6,9 +6,9 @@ Author      Ter-Petrosyan Hakob
 
 ---
 
-We can think of a join as a combination of rows from two or more tables.↳
+We can think of a join as a combination of rows from two or more tables.
 
-For example, the following query returns all the combinations from the rows of the category table and the rows of the posts table:
+For example, the following query returns all the combinations from the rows of the `categories` table and the rows of the goods table:
 
 ```sql
 select 
@@ -85,18 +85,23 @@ from categories c CROSS JOIN goods g;
 1) Huge Result Sets
     - If table `A` has `m` rows and table `B` has `n` rows, a **CROSS JOIN** returns $$m \times n$$ rows.
     - Even small tables can produce millions of rows, which is often too many to handle.
+
 2) Slow Performance
     - Generating every combination takes time.
     - Your database must read all rows from both tables and write all combinations, using lots of `CPU` and disk `I/O`.
+
 3) High Memory and Storage Use
     - Temporary space may fill up if the result set is very large.
     - Queries can fail or slow down other operations on the server.    
+
 4) Meaningless Data
     - Most combinations are not useful, since you usually want only related rows.
     - It can confuse readers of your code, as they might expect a join condition to filter rows.
+
 5) Rarely Needed in Practice
     - **CROSS JOIN** is mostly used for special cases (like generating test data or calendars).
     - For real reports, **INNER** or **OUTER** joins are almost always more appropriate.    
+    
 
 Only use **CROSS JOIN** when you really need every possible match. Otherwise, choose a join that filters rows, 
 such as **INNER JOIN** or **LEFT JOIN**, to keep your result set clear and efficient.
