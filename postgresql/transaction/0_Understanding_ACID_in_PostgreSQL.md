@@ -73,6 +73,8 @@ Rules that ensure the correctness of data:
 
 ---
 
+## 📌 Explore More
+
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔢 [Introducing transactions](./1_Introducing_transactions.md)

@@ -347,6 +347,8 @@ SELECT CURRENT_TIME, clock_timestamp()::time;
 
 ---
 
+## 📌 Explore More
+
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🧪 [ACID](./0_Understanding_ACID_in_PostgreSQL.md) 
