@@ -9,8 +9,8 @@
 - [Introduction to Joins](./join/1_Introduction_to_Joins.md)
 - [Cross Join](./join/2_cross_join.md)
 - [Inner Join](./join/3_Inner_Join.md)
-- [Left Join]()
-- [Right Join]
+- [Left Join](./join/4_Left_Join.md)
+- [Right Join](./join/5_Right_Join.md)
 - [Full Oouter Join]
 - [Lateral Join]
 

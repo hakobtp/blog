@@ -93,3 +93,4 @@ WHERE g.category_id IS NULL;
 - 🏠 [Home](./../../README.md)
 - 📚 [PostgreSql Tutorials](./../tutorials.md)
 - 🔗 [Inner Join](./3_Inner_Join.md)
+- 🔗 [Right Join](./5_Right_Join.md)
