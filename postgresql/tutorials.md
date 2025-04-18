@@ -5,7 +5,7 @@
 ### Join
 
 - [Introduction to Joins](./join/1_Introduction_to_Joins.md)
-- [Cross Join](./join/2_cross_join.md)\
+- [Cross Join](./join/2_cross_join.md)
 - [Inner Join]
 - [Left Join]
 - [Right Join]
