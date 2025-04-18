@@ -44,3 +44,22 @@ $$ -->
   </ul>
 </div>
 
+<div>
+  <!-- First list -->
+  <ul style="display:inline-block; vertical-align:top; margin-right:2em;">
+    <li>☕ <a href="/java/tutorials.html">Java</a></li>
+    <li>🌱 <a href="/spring/tutorials.html">Spring</a></li>
+    <li>🐘 <a href="/postgresql/tutorials.html">PostgreSQL</a></li>
+    <li>📐 <a href="/math/tutorials.html">Math</a></li>
+    <li>🏛️ <a href="/hibernate/tutorials.html">Hibernate</a></li>
+  </ul>
+
+  <!-- Second list -->
+  <ul style="display:inline-block; vertical-align:top;">
+    <li>📘 <a href="/algorithms/tutorials.html">Algorithms</a></li>
+    <li>⚙️ <a href="/devops/tutorials.html">DevOps</a></li>
+    <li>🖼️ <a href="/design/tutorials.html">Design</a></li>
+    <li>🔒 <a href="/security/tutorials.html">Security</a></li>
+    <li>🧪 <a href="/testing/tutorials.html">Testing</a></li>
+  </ul>
+</div>
