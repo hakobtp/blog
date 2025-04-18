@@ -110,6 +110,29 @@ public class BeverageTest {
 </p>
 
 
+```mermaid
+classDiagram
+    CaffeineBeverage <|-- Tea
+    CaffeineBeverage <|-- Coffee
+
+    class CaffeineBeverage {
+        +prepareRecipe()
+        -boilWater()
+        #brew()
+        -pourInCup()
+        #addCondiments()
+    }
+    class Tea {
+        +brew()
+        +addCondiments()
+    }
+    class Coffee {
+        +brew()
+        +addCondiments()
+    }
+
+```
+
 ## Template Method in the JDK
 
 - All non-abstract methods in `java.io.InputStream`, `java.io.OutputStream`, `java.io.Reader`, and `java.io.Writer`.
