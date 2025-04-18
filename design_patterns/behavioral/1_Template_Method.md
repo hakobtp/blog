@@ -111,14 +111,6 @@ public class BeverageTest {
 
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-
-```mermaid
 classDiagram
     CaffeineBeverage <|-- Tea
     CaffeineBeverage <|-- Coffee
