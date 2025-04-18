@@ -32,7 +32,7 @@ category_id | category_name | good_id |    good_name    | good_price
            2 | Computers     |       2 | Gaming Laptop   |    1200.00
            2 | Computers     |       3 | Business Laptop |     800.00
            2 | Computers     |       4 | Desktop PC      |     600.00
-
+.....
 (35 rows)
 ```
 
