@@ -6,14 +6,101 @@ Author      Ter-Petrosyan Hakob
 
 ---
 
-Now suppose that starting with all the possible combinations that exist between the rows of the `categories` 
-table and the rows of the `goods` table, we want to filter all the rows that have the same value as the `categories` field 
-( categories.id = goods.category_id ). We want to have a result like the one described in the following diagram:
+Suppose you start with all possible combinations of rows from the `categories` and `goods` tables 
+(a [cross‑join](./2_cross_join.md){:target="_blank" rel="noopener"}). To filter that down to only matching category assignments 
+(i.e. `categories.id = goods.category_id`), use an **INNER JOIN**.
 
 <p align="center">
     <img src="./assets/img2.png" alt="img2" width="400" />
 </p>
 
+
+## Implicit Join (Comma Syntax)
+
+To achieve this, we need to run the following code:
+
+```sql
+select
+    c.id category_id,
+    c.name category_name,
+    g.id good_id,
+    g.name good_name,
+    g.price good_price
+from categories c, goods g where c.id = g.category_id;
+
+ category_id | category_name | good_id |    good_name    | good_price 
+-------------+---------------+---------+-----------------+------------
+           1 | Electronics   |       1 | Smartphone      |     699.00
+           3 | Laptops       |       2 | Gaming Laptop   |    1200.00
+           3 | Laptops       |       3 | Business Laptop |     800.00
+           2 | Computers     |       4 | Desktop PC      |     600.00
+           5 | Kitchen       |       5 | Refrigerator    |     500.00
+           5 | Kitchen       |       6 | Blender         |      80.00
+           5 | Kitchen       |       7 | Microwave       |     150.00
+(7 rows)
+
+```
+
+## Explicit INNER JOIN
+
+We can also write the same query using the explicit **JOIN** operation:
+
+```sql
+
+select
+    c.id    category_id,
+    c.name  category_name,
+    g.id    good_id,
+    g.name  good_name,
+    g.price good_price
+from categories c
+         inner join goods g on c.id = g.category_id;
+
+ category_id | category_name | good_id |    good_name    | good_price 
+-------------+---------------+---------+-----------------+------------
+           1 | Electronics   |       1 | Smartphone      |     699.00
+           3 | Laptops       |       2 | Gaming Laptop   |    1200.00
+           3 | Laptops       |       3 | Business Laptop |     800.00
+           2 | Computers     |       4 | Desktop PC      |     600.00
+           5 | Kitchen       |       5 | Refrigerator    |     500.00
+           5 | Kitchen       |       6 | Blender         |      80.00
+           5 | Kitchen       |       7 | Microwave       |     150.00
+(7 rows)
+
+```
+
+This produces the same result but uses the `ANSI`‑standard **JOIN** syntax, which is generally clearer and preferred in modern `SQL`.
+
+
+## Filtering a Specific Category
+
+
+If we wanted to search for all `goods` that belong to the `Kitchen` category using the **INNER JOIN** condition, 
+we would have to rewrite the query in this way:
+
+```sql
+select
+    c.id    category_id,
+    c.name  category_name,
+    g.id    good_id,
+    g.name  good_name,
+    g.price good_price
+from categories c
+         inner join goods g on c.id = g.category_id
+where c.name = 'Kitchen';
+
+ category_id | category_name | good_id |  good_name   | good_price 
+-------------+---------------+---------+--------------+------------
+           5 | Kitchen       |       5 | Refrigerator |     500.00
+           5 | Kitchen       |       6 | Blender      |      80.00
+           5 | Kitchen       |       7 | Microwave    |     150.00
+(3 rows)
+```
+
+### Why use JOIN over IN/EXISTS?
+
+You can often express the same filtering logic with **IN** or **EXISTS**, but explicit **JOIN** is typically more readable and, 
+in many database engines, can offer better performance by allowing the optimizer to plan more efficient execution paths.
 
 ---
 
