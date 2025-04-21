@@ -103,7 +103,7 @@ Output:
 
 - **Multiple algorithms:** You have two or more ways to do something.
 - **Switch at runtime:** You want to choose the method while the program runs.
-- **Clean code:** You want to avoid many if statements.
+- **Clean code:** You want to avoid many `if` statements.
 
 ### Consequences
 
