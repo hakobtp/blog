@@ -237,15 +237,15 @@ io.github.resilience4j.core.functions.CheckedSupplier
 ```
 
 ```java
-    private static void demonstrateRetryWithCheckedException() {
-        ...
+private static void demonstrateRetryWithCheckedException() {
+    ...
 
-        var query = UserQuery.builder().firstName("Bob").build();
-        CheckedSupplier<List<User>> remoteCallSupplier = () -> userService.searchThrowingException(query);
-        CheckedSupplier<List<User>> retryingFlightSearch = Retry.decorateCheckedSupplier(retry, remoteCallSupplier);
+var query = UserQuery.builder().firstName("Bob").build();
+CheckedSupplier<List<User>> remoteCallSupplier = () -> userService.searchThrowingException(query);
+CheckedSupplier<List<User>> retryingFlightSearch = Retry.decorateCheckedSupplier(retry, remoteCallSupplier);
 
-        ...
-    }
+...
+}
 ```
 
 
