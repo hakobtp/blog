@@ -458,14 +458,89 @@ This approach makes your asynchronous code resilient, automatically retrying fai
 
 
 ### Events
-In all these examples, the decorator has been a black box - we don’t know when an attempt failed and the framework code is attempting a retry. Suppose for a given request, we wanted to log some details like the attempt count or the wait time until the next attempt. We can do that using Retry events that are published at different points of execution. Retry has an EventPublisher that has methods like onRetry(), onSuccess(), etc.↳
 
-We can collect and log details by implementing these listener methods:
+By default, retrying is a `“black box”`—we don’t see when an attempt fails or when a retry happens. 
+To log these details, Resilience4j lets you listen to **Retry events**. You can use the `EventPublisher` to run code on each retry, success, or error.
 
+```java
+// Get the publisher from your Retry instance
 Retry.EventPublisher publisher = retry.getEventPublisher();
-publisher.onRetry(event -> System.out.println(event.toString()));
-publisher.onSuccess(event -> System.out.println(event.toString()));
-Similarly, RetryRegistry also has an EventPublisher which publishes events when Retry objects are added or removed from the registry.
+
+// Log each retry attempt
+publisher.onRetry(event ->
+    System.out.println("Retry #" 
+        + event.getNumberOfRetryAttempts() 
+        + ", wait " 
+        + event.getWaitInterval().toMillis() 
+        + " ms")
+);
+
+// Log when it finally succeeds
+publisher.onSuccess(event ->
+    System.out.println("Succeeded after " 
+        + event.getNumberOfRetryAttempts() 
+        + " attempts")
+);
+
+// Log if all retries fail
+publisher.onError(event ->
+    System.err.println("Failed after " 
+        + event.getNumberOfRetryAttempts() 
+        + ": " 
+        + event.getLastThrowable().getMessage())
+);
+```
+
+You can also watch the `RetryRegistry` to see when `Retry` instances are added or removed:
+
+```java
+RetryRegistry.EventPublisher<Retry> registryPub = retryRegistry.getEventPublisher();
+
+
+registryPub.onEntryAdded(entry ->
+    System.out.println("Added retry: " + entry.getAddedEntry().getName())
+);
+
+registryPub.onEntryRemoved(entry ->
+    System.out.println("Removed retry: " + entry.getRemovedEntry().getName())
+);
+
+```
+
+
+### Metrics
+
+Resilience4j tracks how many calls:
+
+- Succeed on the first try
+- Succeed after one or more retries
+- Fail without any retry
+- Fail even after retries
+
+To collect these metrics, use Micrometer. First, bind your `RetryRegistry` to a `MeterRegistry`:
+
+
+```java
+MeterRegistry meterRegistry = new SimpleMeterRegistry();
+TaggedRetryMetrics.ofRetryRegistry(retryRegistry).bindTo(meterRegistry);
+```
+
+Then you can read and print each metric:
+
+```java
+Consumer<Meter> meterConsumer = meter -> {
+        String desc = meter.getId().getDescription();
+        String metricName = meter.getId().getTag("kind");
+        Double metricValue = StreamSupport.stream(meter.measure().spliterator(), false)
+                .filter(m -> m.getStatistic().name().equals("COUNT"))
+                .findFirst()
+                .map(Measurement::getValue)
+                .orElse(0.0);
+        System.out.println(desc + " - " + metricName + ": " + metricValue);
+};
+meterRegistry.forEachMeter(meterConsumer);
+```
+In production, send these metrics to a monitoring system (Prometheus.) for dashboards and alerts.
 
 ---
 
