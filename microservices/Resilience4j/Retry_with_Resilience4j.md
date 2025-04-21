@@ -248,6 +248,12 @@ CheckedSupplier<List<User>> retryingFlightSearch = Retry.decorateCheckedSupplier
 }
 ```
 
+If you prefer not to use `Supplier`, the Retry module offers other decorator methods, for example: 
+`decorateFunction()`, `decorateCheckedFunction()`, `decorateRunnable()`, `decorateCallable()` and etc.
+
+
+The plain `decorate*` methods only retry on unchecked exceptions (`RuntimeException`).  
+The `decorateChecked*` variants will retry on both checked (`Exception`) and unchecked exceptions.
 
 ---
 
