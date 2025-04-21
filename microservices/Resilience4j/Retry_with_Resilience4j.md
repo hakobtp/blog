@@ -151,6 +151,81 @@ For safe retries, make sure the operation is **idempotent**—the system can han
 
 This way, you keep both reliability and a good user experience.
 
+
+## Resilience4j Retry Module
+
+Resilience4j’s retry feature uses three simple parts:
+
+- **RetryConfig**  
+  Defines retry rules, such as how many attempts to make and how long to wait between them.
+
+- **RetryRegistry**  
+  Holds one or more `RetryConfig` objects and creates named `Retry` instances from them.
+
+- **Retry**  
+  Uses its `RetryConfig` to wrap your code (a lambda, method reference, or functional interface) so that Resilience4j will automatically retry the operation on failure.
+
+With these building blocks, you can easily add retry logic around any remote call.
+
+
+## Simple Retry
+
+In a simple retry, the operation is retried if a `RuntimeException` is thrown during the remote call. We can configure the number of attempts, how long to wait between attempts etc.:
+
+```java
+private static void demonstrateResilience4j() {
+    System.out.println("\n=== Resilience4j Retry Demonstration ===");
+
+    // 1. Define retry rules:
+    //    - maxAttempts(3): try up to 3 times
+    //    - waitDuration(2 seconds): pause 2 seconds between tries
+    //RetryConfig config = RetryConfig.ofDefaults(); // you can use default settings
+    RetryConfig config = RetryConfig.custom()
+            .maxAttempts(3)
+            .waitDuration(Duration.of(2, SECONDS))
+            .build();
+
+    // 2. Create a registry to manage Retry instances
+    RetryRegistry retryRegistry = RetryRegistry.of(config);
+
+    // 3. Create or retrieve a Retry named "userServiceRetry" using our config
+    Retry retry = retryRegistry.retry("userServiceRetry", config);
+
+    // 4. Prepare the remote call as a Supplier (lambda)
+    //    Here we search users with firstName = "Bob"
+    UserQuery query = UserQuery.builder()
+                               .firstName("Bob")
+                               .build();
+    Supplier<List<User>> remoteCallSupplier = () -> userService.search(query);
+
+    // 5. Decorate the Supplier so it will retry on failure
+    Supplier<List<User>> retryingUserSearch = Retry.decorateSupplier(retry, remoteCallSupplier);
+
+    try {
+        // 6. Execute the decorated call
+        List<User> users = retryingUserSearch.get();
+        //    Print each returned user
+        users.forEach(System.out::println);
+    } catch (Exception e) {
+        // 7. Handle the case where all retry attempts failed
+        System.err.println("All retries failed: " + e.getMessage());
+    }
+}
+
+```
+
+We would use `decorateSupplier()` if we wanted to create a decorator and 
+re-use it at a different place in the codebase. If we want to create it and immediately execute it, we 
+can use `executeSupplier()` instance method instead:
+
+- `Retry.decorateSupplier()` gives you a reusable function you can call multiple times.
+- `Retry.executeSupplier()` runs the supplier immediately with retry logic under the hood.
+
+```java
+var query = UserQuery.builder().firstName("Bob").build();
+List<User> users = retry.executeSupplier(()-> userService.search(query));
+```
+
 ---
 
 ## 📌 Explore More
