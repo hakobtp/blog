@@ -147,14 +147,10 @@ This way, you keep both reliability and a good user experience.
 
 Resilience4j’s retry feature uses three simple parts:
 
-- **RetryConfig**  
-  Defines retry rules, such as how many attempts to make and how long to wait between them.
-
-- **RetryRegistry**  
-  Holds one or more `RetryConfig` objects and creates named `Retry` instances from them.
-
-- **Retry**  
-  Uses its `RetryConfig` to wrap your code (a lambda, method reference, or functional interface) so that Resilience4j will automatically retry the operation on failure.
+- **RetryConfig:** Defines retry rules, such as how many attempts to make and how long to wait between them.
+- **RetryRegistry:** Holds one or more `RetryConfig` objects and creates named `Retry` instances from them.
+- **Retry:** Uses its `RetryConfig` to wrap your code (a lambda, method reference, or functional interface) so that Resilience4j 
+    will automatically retry the operation on failure.
 
 With these building blocks, you can easily add retry logic around any remote call.
 
