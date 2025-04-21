@@ -554,11 +554,12 @@ private static void demonstrateRetryWithCheckedException() {
 
     // 5. Listen for retry lifecycle events
     retry.getEventPublisher()
-            .onRetry(event -> System.out
-                .printf("Retry #%d after waiting %d ms%n", event.getNumberOfRetryAttempts(), event.getWaitInterval().toMillis()))
-            .onSuccess(event -> System.out.printf("Succeeded after %d attempts%n", event.getNumberOfRetryAttempts()))
-            .onError(event -> System.err
-                .printf("Failed after %d attempts: %s%n", event.getNumberOfRetryAttempts(), event.getLastThrowable().getMessage()));
+            .onRetry(event -> System.out.printf("Retry #%d after waiting %d ms%n",
+                    event.getNumberOfRetryAttempts(), event.getWaitInterval().toMillis()))
+            .onSuccess(event -> System.out.printf("Succeeded after %d attempts%n", 
+                    event.getNumberOfRetryAttempts()))
+            .onError(event -> System.err.printf("Failed after %d attempts: %s%n", 
+                    event.getNumberOfRetryAttempts(), event.getLastThrowable().getMessage()));
 
     // 6. Prepare the checked supplier for a remote call
     UserQuery query = UserQuery.builder().firstName("Bob").build();
