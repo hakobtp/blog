@@ -30,15 +30,71 @@ Cache	Store results of costly remote operations
 
 ## Resilience4j Modules and Their Descriptions
 
-| Module         | Description                                                 |
-| -------------- | ----------------------------------------------------------- |
-| Retry          | Automatically try a failed call again                       |
-| RateLimiter    | Limit how often a call can be made in a given time          |
-| TimeLimiter    | Set a maximum time for a call to finish                     |
-| Circuit Breaker| Stop calling or use a fallback when failures keep happening |
-| Bulkhead       | Limit how many calls can run at the same time               |
-| Cache          | Save and reuse results of expensive calls                   |
+| Module         | Description                                                 |maven artifactId            |
+| -------------- | ----------------------------------------------------------- |:---------------------------|
+| Retry          | Automatically try a failed call again                       |resilience4j-retry          |
+| RateLimiter    | Limit how often a call can be made in a given time          |resilience4j-ratelimiter    |
+| TimeLimiter    | Set a maximum time for a call to finish                     |resilience4j-timelimiter    |
+| Circuit Breaker| Stop calling or use a fallback when failures keep happening |resilience4j-circuitbreaker |
+| Bulkhead       | Limit how many calls can run at the same time               |resilience4j-bulkhead       |
+| Cache          | Save and reuse results of expensive calls                   |resilience4j-cache          |
 
+
+Let’s set up a Maven project. Please note that I’ve added the `resilience4j-all` dependency, 
+but if you prefer, you can include only the modules you need.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hakobtp.blog</groupId>
+	<artifactId>blog</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<java.version>17</java.version>
+		<lombok.version>1.18.38</lombok.version>
+		<resilience4j.version>2.3.0</resilience4j.version>
+		<spring-cloud.version>2024.0.1</spring-cloud.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-all</artifactId>
+			<version>${resilience4j.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.11.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+```
 
 ---
 
