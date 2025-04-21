@@ -32,7 +32,7 @@ The Object Adapter wraps an `XmlService` instance and implements the `JsonServic
 **Class Diagram:**
 
 <p align="center">
-    <img src="./assets/img3.png" alt="img3" width="500"/>
+    <img src="./assets/img3.png" alt="img3" width="300"/>
 </p>
 
 
