@@ -173,7 +173,7 @@ With these building blocks, you can easily add retry logic around any remote cal
 In a simple retry, the operation is retried if a `RuntimeException` is thrown during the remote call. We can configure the number of attempts, how long to wait between attempts etc.:
 
 ```java
-private static void demonstrateResilience4j() {
+private static void demonstrateRetryWithUncheckedException() {
     System.out.println("\n=== Resilience4j Retry Demonstration ===");
 
     // 1. Define retry rules:
@@ -225,6 +225,29 @@ can use `executeSupplier()` instance method instead:
 var query = UserQuery.builder().firstName("Bob").build();
 List<User> users = retry.executeSupplier(()-> userService.search(query));
 ```
+
+### Checked Exceptions
+
+Now, suppose we need to retry operations that can throw both checked exceptions. For example, calling  `userService.searchThrowingException()` 
+may throw a checked exception. Because Java’s Supplier interface doesn’t allow checked exceptions, this will cause a compiler error. 
+Instead, you should use Resilience4j’s
+
+```java
+io.github.resilience4j.core.functions.CheckedSupplier
+```
+
+```java
+    private static void demonstrateRetryWithCheckedException() {
+        ...
+
+        var query = UserQuery.builder().firstName("Bob").build();
+        CheckedSupplier<List<User>> remoteCallSupplier = () -> userService.searchThrowingException(query);
+        CheckedSupplier<List<User>> retryingFlightSearch = Retry.decorateCheckedSupplier(retry, remoteCallSupplier);
+
+        ...
+    }
+```
+
 
 ---
 
