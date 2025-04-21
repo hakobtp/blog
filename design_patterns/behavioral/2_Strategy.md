@@ -17,27 +17,10 @@ Imagine a calculator that can add or multiply numbers. We use **Strategy** so th
 
 ### Diagram
 
-```mermaid
-classDiagram
-    class Strategy {
-        <<interface>>
-        + execute(a: int, b: int): int
-    }
-    class AddStrategy {
-        + execute(a: int, b: int): int
-    }
-    class MultiplyStrategy {
-        + execute(a: int, b: int): int
-    }
-    class Context {
-        - strategy: Strategy
-        + setStrategy(s: Strategy)
-        + performOperation(a: int, b: int): int
-    }
-    Strategy <|.. AddStrategy
-    Strategy <|.. MultiplyStrategy
-    Context --> Strategy
-```    
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="500"/>
+</p>
+
 
 ### Code
 
@@ -105,26 +88,10 @@ Output:
 
 ### Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Context
-    participant Strategy
-    participant Add as AddStrategy
-    participant Mul as MultiplyStrategy
+<p align="center">
+    <img src="./assets/img3.png" alt="img3" width="700"/>
+</p>
 
-    Client ->> Context: setStrategy(new AddStrategy())
-    Client ->> Context: performOperation(10, 5)
-    Context ->> Add: execute(10, 5)
-    Add -->> Context: 15
-    Context -->> Client: 15
-
-    Client ->> Context: setStrategy(new MultiplyStrategy())
-    Client ->> Context: performOperation(10, 5)
-    Context ->> Mul: execute(10, 5)
-    Mul -->> Context: 50
-    Context -->> Client: 50
-```
 
 ### Key Terms
 
