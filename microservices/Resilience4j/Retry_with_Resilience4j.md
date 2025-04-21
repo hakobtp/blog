@@ -21,12 +21,12 @@ It gives you tools to handle failures and keep your system running smoothly.
 Let’s have a quick look at the modules and their purpose:
 
 Module	Purpose
-Retry	Automatically retry a failed remote operation
-RateLimiter	Limit how many times we call a remote operation in a certain period
-TimeLimiter	Set a time limit when calling remote operation
-Circuit Breaker	Fail fast or perform default actions when a remote operation is continuously failing
-Bulkhead	Limit the number of concurrent remote operations
-Cache	Store results of costly remote operations
+- Retry	Automatically retry a failed remote operation
+- RateLimiter	Limit how many times we call a remote operation in a certain period
+- TimeLimiter	Set a time limit when calling remote operation
+- Circuit Breaker	Fail fast or perform default actions when a remote operation is continuously failing
+- Bulkhead	Limit the number of concurrent remote operations
+- Cache	Store results of costly remote operations
 
 ## Resilience4j Modules and Their Descriptions
 
@@ -53,44 +53,43 @@ but if you prefer, you can include only the modules you need.
 	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<java.version>17</java.version>
-		<lombok.version>1.18.38</lombok.version>
-		<resilience4j.version>2.3.0</resilience4j.version>
-		<spring-cloud.version>2024.0.1</spring-cloud.version>
+	  <java.version>17</java.version>
+	  <lombok.version>1.18.38</lombok.version>
+	  <resilience4j.version>2.3.0</resilience4j.version>
+	  <spring-cloud.version>2024.0.1</spring-cloud.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>${lombok.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.resilience4j</groupId>
-			<artifactId>resilience4j-all</artifactId>
-			<version>${resilience4j.version}</version>
-		</dependency>
+	  <dependency>
+	    <groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>${lombok.version}</version>
+		<scope>provided</scope>
+	  </dependency>
+	  <dependency>
+		<groupId>io.github.resilience4j</groupId>
+		<artifactId>resilience4j-all</artifactId>
+		<version>${resilience4j.version}</version>
+	  </dependency>
 	</dependencies>
-
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-							<version>${lombok.version}</version>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-		</plugins>
+	  <plugins>
+	    <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-compiler-plugin</artifactId>
+		  <version>3.11.0</version>
+		  <configuration>
+			<source>${java.version}</source>
+			<target>${java.version}</target>
+			<annotationProcessorPaths>
+			  <path>
+			    <groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+		      </path>
+			</annotationProcessorPaths>
+		   </configuration>
+	    </plugin>
+	  </plugins>
 	</build>
 </project>
 
