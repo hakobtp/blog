@@ -215,7 +215,7 @@ List<User> users = retry.executeSupplier(()-> userService.search(query));
 
 ### Checked Exceptions
 
-Now, suppose we need to retry operations that can throw both checked exceptions. For example, calling  `userService.searchThrowingException()` 
+Now, suppose we need to retry operations that can throw both checked and unchecked exceptions. For example, calling  `userService.searchThrowingException()` 
 may throw a checked exception. Because Java’s Supplier interface doesn’t allow checked exceptions, this will cause a compiler error. 
 Instead, you should use Resilience4j’s
 
