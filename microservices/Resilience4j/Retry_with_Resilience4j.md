@@ -81,11 +81,11 @@ but if you prefer, you can include only the modules you need.
 			<source>${java.version}</source>
 			<target>${java.version}</target>
 			<annotationProcessorPaths>
-			  <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
+                <path>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <version>${lombok.version}</version>
+                </path>
 			</annotationProcessorPaths>
 		   </configuration>
 	    </plugin>
