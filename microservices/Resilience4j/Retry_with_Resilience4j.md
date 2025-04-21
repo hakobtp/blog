@@ -254,7 +254,109 @@ If you prefer not to use `Supplier`, the Retry module offers other decorator met
 The plain `decorate*` methods only retry on unchecked exceptions (`RuntimeException`).  
 The `decorateChecked*` variants will retry on both checked (`Exception`) and unchecked exceptions.
 
+### Conditional Retry
+
+In real applications, we don’t always want to retry every error. For example, if an `AuthenticationException` happens, retrying won’t help. When calling an HTTP service, you can:
+
+- Check the HTTP status code (for example, 401 Unauthorized)  
+- Look for a specific error code in the response body  
+
+Use these checks to decide whether to retry. Next, we’ll see how to set up conditional retries in Resilience4j.
+
+```java
+private static void demonstrateRetryPredicateConfig() {
+    var errorCodes = List.of(5678, 5679);
+    RetryConfig config = RetryConfig.<UserWitErrorCode>custom()
+            .maxAttempts(3)
+            .waitDuration(Duration.of(2, SECONDS))
+            .retryOnResult(userWithErrorCode -> errorCodes.contains(userWithErrorCode.errorCode()))
+            .build();
+
+    RetryRegistry retryRegistry = RetryRegistry.of(config);
+    Retry retry = retryRegistry.retry("userServiceRetry", config);
+    Supplier<UserWitErrorCode> userWitErrorCodeSupplier = retry.decorateSupplier(() -> userService.findById(1));
+    
+    try {
+        var user = userWitErrorCodeSupplier.get().user();
+        System.out.println(user);
+    } catch (Exception e) {
+        System.err.println("All retries failed: " + e.getMessage());
+    }
+
+}
+```    
+
+In this example, `userService.findById(1)` returns a record:
+
+```java
+public record UserWithErrorCode(Integer errorCode, User user) { }
+```
+
+We use this line in our retry configuration:
+
+```java
+.retryOnResult(userWithErrorCode -> errorCodes.contains(userWithErrorCode.errorCode()))
+```
+
+This means:
+
+- If the returned `errorCode` is in the list `[5678, 5679]`, Resilience4j treats it as a temporary error. 
+    It waits 2 seconds, then retries the call—up to 3 attempts in total.
+- If the `errorCode` is not in that list, it stops retrying immediately.
+
+In other words, the `retryOnResult` predicate lets us retry only for specific error codes that we know are temporary.
+
+### Conditional Retry Based on Exception Types
+
+Sometimes we want to retry on general failures but skip retrying for certain cases. For example:
+
+- We throw `UserServiceException` for any unexpected error in the user service.  
+- But if a `UserNotFoundException` happens, retrying won’t help because the user does not exist.
+
+We can configure this with `retryExceptions` and `ignoreExceptions`:
+
+```java
+RetryConfig config = RetryConfig.<UserWithErrorCode>custom()
+    .maxAttempts(3)
+    .waitDuration(Duration.ofSeconds(2))
+    .retryExceptions(UserServiceException.class)   // retry on general service errors
+    .ignoreExceptions(UserNotFoundException.class) // do not retry if user not found
+    .build();
+```
+
+- `retryExceptions(...)` lists the exception types that trigger a retry (including subclasses).
+- `ignoreExceptions(...)` lists the exception types that should not be retried.
+- Any other exception (for example, `IOException`) will not be retried, because it is neither in `retryExceptions` nor in `ignoreExceptions`.
+
+
+### Conditional Retry with a Predicate
+
+Sometimes even a single exception type needs extra checks. For example, a `LimitException` may include an error code. 
+We only want to retry when that code is `34565`:
+
+```java
+Predicate<Throwable> limitPredicate = ex -> {
+    if (ex instanceof LimitException le) {
+        return le.getCode() == 34565; // retry only for code 34565
+    }
+    return false;
+};
+
+RetryConfig conditionalConfig = RetryConfig.<UserWithErrorCode>custom()
+            .maxAttempts(3)
+            .waitDuration(Duration.ofSeconds(2))
+            .retryOnException(limitPredicate)
+            .build();
+
+```
+
+- `retryOnException(...)` takes a test (`Predicate<Throwable>`) that returns true when we should retry.
+- You can make this test as simple or as detailed as you need (checking error codes, message text, etc.).
+
+With these options, you decide exactly which errors and conditions cause a retry.
+
 ---
+
 
 ## 📌 Explore More
 
