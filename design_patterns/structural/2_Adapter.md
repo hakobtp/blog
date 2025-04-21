@@ -31,22 +31,10 @@ The Object Adapter wraps an `XmlService` instance and implements the `JsonServic
 
 **Class Diagram:**
 
-```mermaid
-classDiagram
-    class JsonService {
-        <<interface>>
-        + fetchJson(): String
-    }
-    class XmlService {
-        + fetchXml(): String
-    }
-    class XmlToJsonAdapter {
-        - xmlService: XmlService
-        + fetchJson(): String
-    }
-    JsonService <|.. XmlToJsonAdapter
-    XmlToJsonAdapter --> XmlService
-```
+<p align="center">
+    <img src="./assets/img3.png" alt="img3" width="500"/>
+</p>
+
 
 **Code:**
 ```java
@@ -99,23 +87,12 @@ public class ClientApp {
 
 The Class Adapter extends `XmlService` and implements `JsonService` directly.
 
-Class Diagram
+**Class Diagram:**
 
-```mermaid
-classDiagram
-    class JsonService {
-        <<interface>>
-        + fetchJson(): String
-    }
-    class XmlService {
-        + fetchXml(): String
-    }
-    class XmlClassAdapter {
-        + fetchJson(): String
-    }
-    XmlClassAdapter ..|> JsonService
-    XmlClassAdapter --|> XmlService
-```
+<p align="center">
+    <img src="./assets/img4.png" alt="img4" width="500"/>
+</p>
+
 
 **Code:**
 
@@ -147,17 +124,9 @@ public class ClientAppClass {
 
 **Sequence Diagram:**
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Adapter
-    participant XmlSrv as XmlService
-
-    Client ->> Adapter: fetchJson()
-    Adapter ->> XmlSrv: fetchXml()
-    XmlSrv -->> Adapter: <user>…</user>
-    Adapter -->> Client: { "user": { "name": "Alice", "age": 30 } }
-```
+<p align="center">
+    <img src="./assets/img5.png" alt="img5" width="700"/>
+</p>
 
 ## When to Use
 
