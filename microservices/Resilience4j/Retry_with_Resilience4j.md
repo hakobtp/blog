@@ -96,6 +96,61 @@ but if you prefer, you can include only the modules you need.
 
 ```
 
+## What Is a Remote Operation?
+
+A **remote operation** is any request your application makes over a network. Common examples include:
+
+- Sending an HTTP request to a REST API  
+- Calling a remote procedure (RPC) or web service  
+- Reading or writing data in a database or object store  
+- Sending or receiving messages from a broker (RabbitMQ, Kafka, etc.)  
+
+### What Happens When It Fails?
+
+If a remote operation fails, you have two choices:
+
+1. **Fail fast** – immediately return an error to the client.  
+2. **Retry** – try the operation again.  
+
+Retrying can hide temporary issues so that clients don’t notice a hiccup. 
+
+### Which Option to Choose?
+
+Deciding between failing fast and retrying depends on:
+
+- **Error type**  
+  - **Transient errors** are short‑lived. A retry often succeeds.  
+    - Example: request throttled, network timeout, temporary service outage  
+  - **Permanent errors** cannot be fixed by retrying.  
+    - Example: hardware failure, HTTP 404 Not Found  
+
+- **Operation type**  
+  - **Idempotent operations** can run multiple times safely (e.g., reading data).  
+  - **Non‑idempotent operations** may cause unwanted side effects if repeated (e.g., money transfers).  
+
+- **Client type**  
+  - **Applications** (cron jobs, background processes) can wait longer.  
+  - **People** usually expect a quick response.  
+
+- **Use case**  
+  - Some tasks need high reliability more than speed (e.g., booking flights, transferring money).  
+
+### Why Idempotency Matters
+
+If a service processed your request but failed to send back the answer, a retry might be treated as a brand‑new request. 
+For safe retries, make sure the operation is **idempotent**—the system can handle the same request more than once without side effects.
+
+### Balancing Speed and Reliability
+
+- **Faster feedback** is better for human users. Failing quickly lets you show an error message right away.  
+- **More reliability** can matter more for critical tasks. In those cases, you might:
+
+  1. **Acknowledge** the request immediately (so the user knows it was received).  
+  2. **Perform retries** in the background.  
+  3. **Notify** the user when the work is done.  
+
+This way, you keep both reliability and a good user experience.
+
 ---
 
 ## 📌 Explore More
