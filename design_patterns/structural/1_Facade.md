@@ -83,6 +83,25 @@ public class Main {
 - **Reduce dependencies:** To decouple clients from subsystem classes.
 - **Improve readability:** To present a clear API for common tasks.
 
+## Consequences
+
+Pros:
+- Simplifies client code
+- Promotes loose coupling
+- Makes the system easier to test (mock the facade)
+
+Cons: 
+- Can become a god object if overused
+- May hide subsystem capabilities that clients need in special cases
+- Adds an extra layer of indirection
+
+## Implementation Tips
+
+- Keep facades skinny: only include common methods for clients.
+- Do not let subsystems reference the facade.
+- Combine with the Factory pattern to control facade creation.
+- Consider versioning your facade if subsystems evolve.
+
 ---
 
 ## 📌 Explore More
