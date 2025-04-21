@@ -72,22 +72,22 @@ but if you prefer, you can include only the modules you need.
 	  </dependency>
 	</dependencies>
 	<build>
-	  <plugins>
-	    <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-compiler-plugin</artifactId>
-		  <version>3.11.0</version>
-		  <configuration>
-			<source>${java.version}</source>
-			<target>${java.version}</target>
-            <annotationProcessorPaths>
-                <path>
-                    <groupId>org.projectlombok</groupId>
-                    <artifactId>lombok</artifactId>
-                    <version>${lombok.version}</version>
-                </path>
-            </annotationProcessorPaths>
-		   </configuration>
+	    <plugins>
+	        <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.11.0</version>
+		        <configuration>
+			        <source>${java.version}</source>
+			        <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+		        </configuration>
 	    </plugin>
 	  </plugins>
 	</build>
@@ -413,6 +413,48 @@ RetryConfig config = RetryConfig.custom()
 - Plus up to 100 ms random extra delay
 
 With IntervalFunction, you have full control over how delays grow. Pick the strategy that best fits your scenario.
+
+
+## Asynchronous Retries
+
+So far, our examples have used synchronous calls. Now let’s see how to retry **asynchronous** operations.
+
+Imagine we search for users on another thread:
+
+```java
+CompletableFuture
+    .supplyAsync(() -> userService.search(query))
+    .thenAccept(System.out::println);
+```
+
+Here, `supplyAsync()` runs `search(query)` in a separate thread. When it finishes, `thenAccept()` prints the list of users.
+
+To add retries, use the `executeCompletionStage()` method on your `Retry` instance. It needs:
+
+- A `ScheduledExecutorService` for scheduling retry attempts.
+- A `Supplier<CompletionStage<…>>` that wraps the async call.
+
+For example:
+
+```java
+// 1. Create a scheduler for retries
+ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+// 2. Wrap the async user search in a Supplier
+Supplier<CompletionStage<List<User>>> completionStageSupplier =
+    () -> CompletableFuture.supplyAsync(() -> userService.search(query));
+
+// 3. Execute with retry logic
+retry.executeCompletionStage(scheduler, completionStageSupplier)
+    .thenAccept(System.out::println);
+```              
+
+- **Step 1:** We use a single-threaded scheduler here, but in real apps, you would use a shared pool, e.g.: `Executors.newScheduledThreadPool(n)`.
+- **Step 2:** The supplier returns a `CompletionStage` that will run the search.
+- **Step 3:** `executeCompletionStage()` decorates and runs the async call, retrying if needed. 
+    The returned `CompletionStage` still lets you use `thenAccept()` or other callbacks.
+
+This approach makes your asynchronous code resilient, automatically retrying failed operations without blocking the main thread.
 
 ---
 
