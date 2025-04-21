@@ -46,40 +46,40 @@ but if you prefer, you can include only the modules you need.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.hakobtp.blog</groupId>
-	<artifactId>blog</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<properties>
-	  <java.version>17</java.version>
-	  <lombok.version>1.18.38</lombok.version>
-	  <resilience4j.version>2.3.0</resilience4j.version>
-	  <spring-cloud.version>2024.0.1</spring-cloud.version>
-	</properties>
-	<dependencies>
-	  <dependency>
-	    <groupId>org.projectlombok</groupId>
-		<artifactId>lombok</artifactId>
-		<version>${lombok.version}</version>
-		<scope>provided</scope>
-	  </dependency>
-	  <dependency>
-		<groupId>io.github.resilience4j</groupId>
-		<artifactId>resilience4j-all</artifactId>
-		<version>${resilience4j.version}</version>
-	  </dependency>
-	</dependencies>
-	<build>
-	    <plugins>
-	        <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-compiler-plugin</artifactId>
-		        <version>3.11.0</version>
-		        <configuration>
-			        <source>${java.version}</source>
-			        <target>${java.version}</target>
+    <groupId>com.hakobtp.blog</groupId>
+    <artifactId>blog</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <properties>
+        <java.version>17</java.version>
+        <lombok.version>1.18.38</lombok.version>
+        <resilience4j.version>2.3.0</resilience4j.version>
+        <spring-cloud.version>2024.0.1</spring-cloud.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-all</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.projectlombok</groupId>
@@ -87,10 +87,10 @@ but if you prefer, you can include only the modules you need.
                             <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
-		        </configuration>
-	    </plugin>
-	  </plugins>
-	</build>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 
 ```
@@ -455,6 +455,17 @@ retry.executeCompletionStage(scheduler, completionStageSupplier)
     The returned `CompletionStage` still lets you use `thenAccept()` or other callbacks.
 
 This approach makes your asynchronous code resilient, automatically retrying failed operations without blocking the main thread.
+
+
+### Events
+In all these examples, the decorator has been a black box - we don’t know when an attempt failed and the framework code is attempting a retry. Suppose for a given request, we wanted to log some details like the attempt count or the wait time until the next attempt. We can do that using Retry events that are published at different points of execution. Retry has an EventPublisher that has methods like onRetry(), onSuccess(), etc.↳
+
+We can collect and log details by implementing these listener methods:
+
+Retry.EventPublisher publisher = retry.getEventPublisher();
+publisher.onRetry(event -> System.out.println(event.toString()));
+publisher.onSuccess(event -> System.out.println(event.toString()));
+Similarly, RetryRegistry also has an EventPublisher which publishes events when Retry objects are added or removed from the registry.
 
 ---
 
