@@ -20,7 +20,7 @@ A facade decouples clients from subsystem classes and reduces the number of depe
 ## Structure
 
 <p align="center">
-    <img src="./assets/img1.png" alt="img1" width="400"/>
+    <img src="./assets/img1.png" alt="img1" width="500"/>
 </p>
 
 ## Example: Starting a Computer
@@ -74,7 +74,7 @@ public class Main {
 ## Sequence Diagram
 
 <p align="center">
-    <img src="./assets/img2.png" alt="img2" width="500"/>
+    <img src="./assets/img2.png" alt="img2" width="700"/>
 </p>
 
 ## When to Use
