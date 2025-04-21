@@ -544,6 +544,67 @@ In production, send these metrics to a monitoring system (Prometheus.) for dashb
 
 ---
 
+```java
+private static void demonstrateRetryWithCheckedException() {
+    RetryConfig config = RetryConfig.custom()
+            .maxAttempts(3)                         // up to 3 attempts
+            .waitDuration(Duration.ofSeconds(2))    // 2 seconds between attempts
+            .build();
+
+    // 2. Create registry and bind metrics
+    RetryRegistry retryRegistry = RetryRegistry.of(config);
+    MeterRegistry meterRegistry = new SimpleMeterRegistry();
+    TaggedRetryMetrics.ofRetryRegistry(retryRegistry).bindTo(meterRegistry);
+
+    // 3. Listen for registry events
+    retryRegistry.getEventPublisher()
+        .onEntryAdded(entry -> System.out.println("Retry created: " + entry.getAddedEntry().getName()))
+        .onEntryRemoved(entry -> System.out.println("Retry removed: " + entry.getRemovedEntry().getName()));
+
+    // 4. Create or retrieve a Retry instance
+    Retry retry = retryRegistry.retry("userServiceRetry");
+
+    // 5. Listen for retry lifecycle events
+    retry.getEventPublisher()
+            .onRetry(event -> System.out
+                .printf("Retry #%d after waiting %d ms%n", event.getNumberOfRetryAttempts(), event.getWaitInterval().toMillis()))
+            .onSuccess(event -> System.out.printf("Succeeded after %d attempts%n", event.getNumberOfRetryAttempts()))
+            .onError(event -> System.err
+                .printf("Failed after %d attempts: %s%n", event.getNumberOfRetryAttempts(), event.getLastThrowable().getMessage()));
+
+    // 6. Prepare the checked supplier for a remote call
+    UserQuery query = UserQuery.builder().firstName("Bob").build();
+    CheckedSupplier<List<User>> checkedSupplier = () -> userService.searchThrowingException(query);
+
+    // 7. Decorate it with retry logic
+    CheckedSupplier<List<User>> retryingSupplier = Retry.decorateCheckedSupplier(retry, checkedSupplier);
+
+    // 8. Execute and handle the result
+    try {
+        List<User> users = retryingSupplier.get();
+        users.forEach(System.out::println);
+    } catch (Throwable e) {
+        System.err.println("All retries failed: " + e.getMessage());
+    }
+
+    // 9. Print out captured metrics
+    meterRegistry.forEachMeter(meter -> {
+        String desc = meter.getId().getDescription();
+        String kind = meter.getId().getTag("kind");
+
+        double count = StreamSupport.stream(meter.measure().spliterator(), false)
+                .filter(ms -> ms.getStatistic().name().equals("COUNT"))
+                .findFirst()
+                .map(Measurement::getValue)
+                .orElse(0.0);
+
+        System.out.printf("%s - %s: %.0f%n", desc, kind, count);
+    });
+}
+```
+
+---
+
 
 ## 📌 Explore More
 
