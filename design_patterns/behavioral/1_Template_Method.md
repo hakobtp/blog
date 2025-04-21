@@ -139,6 +139,7 @@ Cons:
 - Overriding default steps may violate the Liskov Substitution Principle.
 - Complex templates with many steps can be harder to maintain.
 
+---
 
 ## 📌 Explore More
 

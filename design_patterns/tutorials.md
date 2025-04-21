@@ -4,6 +4,7 @@
 
 ### Behavioral Patterns
 - [Template Method](./behavioral/1_Template_Method.md)
+- [Strategy](./behavioral/2_Strategy.md)
 
 ### Structural Patterns
 - [Facade](./structural/1_Facade.md)
