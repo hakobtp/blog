@@ -82,10 +82,10 @@ but if you prefer, you can include only the modules you need.
 			<target>${java.version}</target>
 			<annotationProcessorPaths>
 			  <path>
-			    <groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-		      </path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
 			</annotationProcessorPaths>
 		   </configuration>
 	    </plugin>
@@ -353,6 +353,66 @@ RetryConfig conditionalConfig = RetryConfig.<UserWithErrorCode>custom()
 - You can make this test as simple or as detailed as you need (checking error codes, message text, etc.).
 
 With these options, you decide exactly which errors and conditions cause a retry.
+
+
+### Backoff Strategies
+
+Until now, we used a fixed wait time between retries. In most cases, it is better to **increase** the delay after each attempt. 
+This is called **backoff**, and it gives the remote service more time to recover if it is overloaded.
+
+Resilience4j uses an **IntervalFunction** to control backoff. An `IntervalFunction` takes the attempt number (1, 2, 3, …) 
+and returns the wait time in milliseconds.
+
+Use `ofRandomized(baseDelay)` to add randomness around a base delay. By default, it uses a **randomization factor** of `0.5`:
+
+```java
+RetryConfig config = RetryConfig.custom()
+    .maxAttempts(4)
+    .intervalFunction(IntervalFunction.ofRandomized(2000))
+    .build();
+```
+Base 
+- delay: 2000 ms
+- Factor: 0.5 (default)
+- Actual delay: between
+    - 2000 − 2000×0.5 = 1000 ms
+    - 2000 + 2000×0.5 = 3000 ms
+
+You can change the factor with `ofRandomized(baseDelay, randomizationFactor)`.
+
+Use `ofExponentialBackoff(initialDelay, multiplier)` so each wait time doubles (or more) each try:
+
+```java
+RetryConfig config = RetryConfig.custom()
+    .maxAttempts(6)
+    .intervalFunction(IntervalFunction.ofExponentialBackoff(1000, 2))
+    .build();
+```
+
+- Attempt 1: 1000 ms
+- Attempt 2: 1000 × 2 = 2000 ms
+- Attempt 3: 2000 × 2 = 4000 ms↳
+- …and so on.
+
+Combine both strategies with `ofExponentialRandomBackoff(initialDelay, multiplier)`. This adds randomness to the exponential delays.
+
+You can write your own function, for example, to add a small random jitter:
+
+```java
+IntervalFunction jitterBackoff = attempt ->
+    500L * (long) Math.pow(2, attempt - 1)
+    + ThreadLocalRandom.current().nextLong(100);
+
+RetryConfig config = RetryConfig.custom()
+    .maxAttempts(6)
+    .intervalFunction(jitterBackoff)
+    .build();
+```
+
+- Base exponential delay: 500 ms, doubled each attempt↳
+- Plus up to 100 ms random extra delay
+
+With IntervalFunction, you have full control over how delays grow. Pick the strategy that best fits your scenario.
 
 ---
 
