@@ -147,7 +147,7 @@ public class ClientAppClass {
 
 **Sequence Diagram:**
 
-```
+```mermaid
 sequenceDiagram
     participant Client
     participant Adapter
