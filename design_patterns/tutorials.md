@@ -6,6 +6,8 @@
 - [Template Method](./behavioral/1_Template_Method.md)
 
 ### Structural Patterns
+- [Facade](./structural/1_Facade.md)
+
 ### Creational Patterns
 
 ---
