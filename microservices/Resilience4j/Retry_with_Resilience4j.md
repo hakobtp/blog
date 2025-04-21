@@ -80,13 +80,13 @@ but if you prefer, you can include only the modules you need.
 		  <configuration>
 			<source>${java.version}</source>
 			<target>${java.version}</target>
-			<annotationProcessorPaths>
+            <annotationProcessorPaths>
                 <path>
                     <groupId>org.projectlombok</groupId>
                     <artifactId>lombok</artifactId>
                     <version>${lombok.version}</version>
                 </path>
-			</annotationProcessorPaths>
+            </annotationProcessorPaths>
 		   </configuration>
 	    </plugin>
 	  </plugins>
@@ -391,7 +391,7 @@ RetryConfig config = RetryConfig.custom()
 
 - Attempt 1: 1000 ms
 - Attempt 2: 1000 × 2 = 2000 ms
-- Attempt 3: 2000 × 2 = 4000 ms↳
+- Attempt 3: 2000 × 2 = 4000 ms
 - …and so on.
 
 Combine both strategies with `ofExponentialRandomBackoff(initialDelay, multiplier)`. This adds randomness to the exponential delays.
@@ -409,7 +409,7 @@ RetryConfig config = RetryConfig.custom()
     .build();
 ```
 
-- Base exponential delay: 500 ms, doubled each attempt↳
+- Base exponential delay: 500 ms, doubled each attempt
 - Plus up to 100 ms random extra delay
 
 With IntervalFunction, you have full control over how delays grow. Pick the strategy that best fits your scenario.
