@@ -19,30 +19,9 @@ A facade decouples clients from subsystem classes and reduces the number of depe
 
 ## Structure
 
- ```mermaid
-classDiagram
-    class Facade {
-        - CPU cpu
-        - Memory memory
-        - HardDrive hardDrive
-        + start()
-    }
-    class CPU {
-        + freeze()
-        + jump(position)
-        + execute()
-    }
-    class Memory {
-        + load(position, data)
-    }
-    class HardDrive {
-        + read(lba, size)
-    }
-    Facade --> CPU
-    Facade --> Memory
-    Facade --> HardDrive
-
-```
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
 
 ## Example: Starting a Computer
 
@@ -94,21 +73,9 @@ public class Main {
 
 ## Sequence Diagram
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Facade
-    participant CPU
-    participant HD as HardDrive
-    participant Mem as Memory
-
-    Client ->> Facade: start()
-    Facade ->> CPU: freeze()
-    Facade ->> HD: read(BOOT_SECTOR, SECTOR_SIZE)
-    Facade ->> Mem: load(BOOT_ADDRESS, bootData)
-    Facade ->> CPU: jump(BOOT_ADDRESS)
-    Facade ->> CPU: execute()
-```
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="500"/>
+</p>
 
 ## When to Use
 
