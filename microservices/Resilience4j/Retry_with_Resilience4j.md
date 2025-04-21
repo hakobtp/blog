@@ -206,7 +206,7 @@ re-use it at a different place in the codebase. If we want to create it and imme
 can use `executeSupplier()` instance method instead:
 
 - `Retry.decorateSupplier()` gives you a reusable function you can call multiple times.
-- `Retry.executeSupplier()` runs the supplier immediately with retry logic under the hood.
+- `retry.executeSupplier()` runs the supplier immediately with retry logic under the hood.
 
 ```java
 var query = UserQuery.builder().firstName("Bob").build();
