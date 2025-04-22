@@ -20,23 +20,33 @@ In other words, a proxy acts as a gatekeeper. It sits between a client and a rea
 
 This helps you protect sensitive actions or manage resource use without changing the real object or the client code.
 
-## Structure 
+**Class Diagram:**
 
 ```mermaid
 classDiagram
-    class CommandExecutor <<interface>>
-    class CommandExecutorProxy
-    class CommandExecutorImpl
+    class CommandExecutorProxy {
+        +runCommand(cmd)
+    }
+    class CommandExecutorImpl {
+        +runCommand(cmd)
+    }
+    class CommandExecutor {
+        <<interface>>
+        +runCommand(cmd)
+    }
     class Client
 
     Client --> CommandExecutorProxy: uses
     CommandExecutorProxy --> CommandExecutorImpl: delegates
-    CommandExecutorProxy ..|> CommandExecutor: implements
-    CommandExecutorImpl ..|> CommandExecutor: implements
-
-    CommandExecutorProxy : +runCommand(cmd)
-    CommandExecutorImpl : +runCommand(cmd)
+    CommandExecutorProxy --|> CommandExecutor: implements
+    CommandExecutorImpl --|> CommandExecutor: implements
 ```    
+
+This class diagram shows:
+
+- `CommandExecutor` is an interface implemented by both `CommandExecutorProxy` and `CommandExecutorImpl`.
+- The Client uses the proxy.
+- The proxy delegates calls to the real implementation.
 
 ## Example: Command Executor
 
