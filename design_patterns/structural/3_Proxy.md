@@ -128,6 +128,31 @@ This sequence diagram shows how the Proxy handles a client request:
 
 ## Common Uses of Proxy Pattern
 
+- **Virtual Proxy (Lazy Initialization):** Delay creating a heavy object until it is really needed.
+- **Protection Proxy (Access Control):** Allow only certain clients to use the object.
+- **Remote Proxy (Remote Service):** Handle network communication to a remote object.
+- **Logging Proxy:** Log each request before passing it to the real object.
+- **Caching Proxy:** Cache results of expensive operations and reuse them.
+- **Smart Reference:** Track and manage the lifecycle of a service object, freeing resources when no one uses it.
+
+## Consequences
+
+Pros:
+- Control access without changing the original object.
+- Add features (logging, caching, security) transparently.
+- Delay object creation and save resources.
+- Follow the Open/Closed Principle: you can add new proxies without changing existing code.
+
+Cons:
+- More classes to manage, which can lead to complexity.
+- Extra layer may add some performance overhead.
+
+## Relation to Other Patterns
+
+- Adapter provides a different interface to an object. Proxy uses the same interface.
+- Decorator adds responsibilities to an object. Proxy controls or manages access to the object.
+- Facade simplifies access to a group of objects. Proxy controls access to a single object.
+
 ---
 
 ## 📌 Explore More
