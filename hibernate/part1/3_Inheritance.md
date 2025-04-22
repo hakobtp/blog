@@ -256,6 +256,42 @@ While `JOINED` works well for polymorphism, be aware of its impact on query spee
 
 ## TABLE_PER_CLASS
 
+With the `TABLE_PER_CLASS` strategy, each class has its own table—just like in the `JOINED` strategy. 
+But here, every child table also includes all the columns of the parent class. In other words:
+
+- **No shared table:** Each entity (parent or child) has its own table.
+- **No discriminator column:** There is nothing to tell which table holds which type.
+- **Data repetition:** Parent fields appear again in each child table. This breaks normalisation because you copy the same columns into every table.
+
+To use this strategy, put the annotation on your root entity:
+
+```java
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+
+@Entity
+@Table(name = "products")
+@DiscriminatorValue("P")
+@DiscriminatorColumn(name = "product_type", discriminatorType = DiscriminatorType.CHAR)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class ProductEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private double price;
+}
+```
+
+Now, `BookEntity` and `ElectronicEntity` each get a separate table. Those tables include their own fields plus all fields from `ProductEntity`.
+
+<p align="center">
+    <img src="./assets/img4.png" alt="img4" width="350"/>
+</p>
+
+
 ---
 
 ## 📌 Explore More
