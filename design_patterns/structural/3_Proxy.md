@@ -60,7 +60,7 @@ public class CommandExecutorImpl implements CommandExecutor {
 **Proxy Class:**
 ```java
 public class CommandExecutorProxy implements CommandExecutor {
-    private static final String ADMIN_USER     = "Gurgen";
+    private static final String ADMIN_USER = "Gurgen";
     private static final String ADMIN_PWD = "J@urnalD$v";
 
     private final CommandExecutor executor;
@@ -96,8 +96,7 @@ public class CommandExecutorProxy implements CommandExecutor {
 ```java
 public class ProxyPatternTest {
     public static void main(String[] args) {
-        CommandExecutor executor =
-            new CommandExecutorProxy("Pankaj", "wrong_pwd");
+        CommandExecutor executor = new CommandExecutorProxy("Gurgen", "wrong_pwd");
         try {
             executor.runCommand("ls -ltr");
             executor.runCommand("rm -rf abc.pdf");
