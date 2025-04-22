@@ -87,7 +87,7 @@ In the `SINGLE_TABLE` strategy, JPA stores every class in one table—here, the 
 - All fields from `ProductEntity`, `ElectronicEntity`, and `BookEntity`
 - An extra column, called the discriminator column (`dtype`), which does not match any field in your Java classes
 
-When you save data, each row in `products` represents either a general product, an electronic item, or a book. The dtype column holds a simple label (for example, Product, Electronic, or Book) so that when JPA reads a row, it knows which Java class to create.
+When you save data, each row in `products` represents either a general product, an electronic, or a book. The dtype column holds a simple label (for example, Product, Electronic, or Book) so that when JPA reads a row, it knows which Java class to create.
 
 Here is a fragment of the `products` table. Notice that for simple `products` (first three rows), only `name` and `price` are filled; the other columns remain empty.
 
@@ -291,6 +291,12 @@ Now, `BookEntity` and `ElectronicEntity` each get a separate table. Those tables
     <img src="./assets/img4.png" alt="img4" width="350"/>
 </p>
 
+With the `TABLE_PER_CLASS` strategy:
+
+- **Good for single‑entity queries:** Each class has its own table. If you only need one entity type (for example, only books), 
+    JPA queries just that table. This is fast and easy.
+- **Slower for all‑entity queries:** To get every kind of `product` (`book`, `electrony`), JPA must run a query on each table and combine the results with a `UNION`. When you have lots of data, using `UNION` across many tables can be slow.
+-**Optional in JPA 2.2.:** Not every JPA provider must support this strategy. If you want your app to work everywhere, be careful using it.
 
 ---
 
