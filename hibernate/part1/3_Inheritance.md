@@ -79,7 +79,7 @@ public class ElectronicEntity extends ProductEntity {
 ```
 
 <p align="center">
-    <img src="./assets/img2.png" alt="img2" width="300"/>
+    <img src="./assets/img2.png" alt="img2" width="200"/>
 </p>
 
 In the `SINGLE_TABLE` strategy, JPA stores every class in one table—here, the `products` table. This table has:
@@ -213,7 +213,7 @@ public class ProductEntity {
 You do not need to change `ElectronicEntity` or `BookEntity`—they remain exactly as before.
 
 <p align="center">
-    <img src="./assets/img2.png" alt="img2" width="300"/>
+    <img src="./assets/img3.png" alt="img3" width="300"/>
 </p>
 
 ```sql
