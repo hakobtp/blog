@@ -33,11 +33,12 @@ JPA uses the `SINGLE_TABLE` strategy by default. With this approach, every class
 Because it’s the default, you don’t need to add the `@Inheritance` annotation on the root entity—JPA will pick `SINGLE_TABLE` automatically.
 
 ```java
-@Entity
 @Getter
 @Setter
 @ToString
 @Accessors(chain = true)
+
+@Entity
 @Table(name = "products")
 public class ProductEntity {
     @Id
@@ -49,11 +50,12 @@ public class ProductEntity {
 ```
 
 ```java
-@Entity
 @Getter
 @Setter
 @ToString
 @Accessors(chain = true)
+
+@Entity
 @Table(name = "books")
 public class BookEntity extends ProductEntity {
     private String author;
@@ -62,11 +64,12 @@ public class BookEntity extends ProductEntity {
 ```
 
 ```java
-@Entity
 @Getter
 @Setter
 @ToString
 @Accessors(chain = true)
+
+@Entity
 @Table(name = "electronics")
 public class ElectronicEntity extends ProductEntity {
     private String power;
@@ -103,6 +106,72 @@ Here is a fragment of the `products` table. Notice that for simple `products` (f
 
 You can see the `“holes”` where columns are unused for a given entity type.
 
+
+By default, JPA adds a column named `DTYPE`. This column is a `VARCHAR` and holds the name of each entity for every row. If you want a different column name or data type, put `@DiscriminatorColumn` on the root entity. With this annotation you can set a new column name (for example, `product_type`) and choose a type like `CHAR`. Normally, JPA writes the Java class name in that column, but you can change it with `@DiscriminatorValue` on each subclass. In the code example below, we:
+
+- Rename the column to `product_type`
+- Change its data type to `CHAR`
+- Use `P` for `ProductEntity`, `B` for `BookEntity`, and `E` for `ElectronicEntity`
+
+```java
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+
+@Entity
+@Table(name = "products")
+@DiscriminatorValue("P")
+@DiscriminatorColumn(name = "product_type", discriminatorType = DiscriminatorType.CHAR)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class ProductEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private double price;
+}
+```
+
+```java
+
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+
+@Entity
+@Table(name = "books")
+@DiscriminatorValue("B")
+public class BookEntity extends ProductEntity {
+    private String author;
+    private String isbn;
+}
+
+```
+
+```java
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+
+@Entity
+@Table(name = "electronics")
+@DiscriminatorValue("B")
+public class ElectronicEntity extends ProductEntity {
+    private String power;
+    @Column(name = "warranty_period_months")
+    private int warrantyPeriodMonths;
+}
+```
+
+By default, JPA uses the `SINGLE_TABLE` strategy. In this strategy, all classes in the inheritance hierarchy share one table. It is easy to understand and works well when your class hierarchy is small and does not change often.
+
+However, there are some drawbacks:
+
+- **Adding new classes or fields is hard:** To add a new entity or a new attribute, you must add a new column to the table, move existing data into the new format, and update any indexes.
+- **Many empty columns:** Every child‑class column must allow `null` values. For example, if the Book entity has a non‑null isbn column, you cannot insert an Electronic row—because Electronic has no isbn, and that column cannot be empty.
 
 ## JOINED
 ## TABLE_PER_CLASS
