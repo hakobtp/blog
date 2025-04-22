@@ -61,7 +61,7 @@ public class CommandExecutorImpl implements CommandExecutor {
 ```java
 public class CommandExecutorProxy implements CommandExecutor {
     private static final String ADMIN_USER     = "Gurgen";
-    private static final String ADMIN_PASSWORD = "J@urnalD$v";
+    private static final String ADMIN_PWD = "J@urnalD$v";
 
     private final CommandExecutor executor;
     private final boolean isAdmin;
@@ -71,7 +71,7 @@ public class CommandExecutorProxy implements CommandExecutor {
         Objects.requireNonNull(pwd,  "pwd cannot be null");
 
         this.executor = new CommandExecutorImpl();
-        this.isAdmin  = ADMIN_USER.equals(user) && ADMIN_PASSWORD.equals(pwd);
+        this.isAdmin  = ADMIN_USER.equals(user) && ADMIN_PWD.equals(pwd);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class ProxyPatternTest {
 ```
 
 In this example:
-- The client uses CommandExecutorProxy instead of CommandExecutorImpl.
+- The client uses `CommandExecutorProxy` instead of `CommandExecutorImpl`.
 - The proxy allows safe commands for all users.
 - It blocks dangerous commands for non-admin users.
 
