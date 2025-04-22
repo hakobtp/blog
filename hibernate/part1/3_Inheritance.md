@@ -74,7 +74,9 @@ public class ElectronicEntity extends ProductEntity {
 }
 ```
 
-
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="400"/>
+</p>
 
 ## JOINED
 ## TABLE_PER_CLASS
