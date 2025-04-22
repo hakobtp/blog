@@ -176,6 +176,38 @@ However, there are some drawbacks:
 - **Many empty columns:** Every child‑class column must allow `null` values. For example, if the Book entity has a non‑null isbn column, you cannot insert an Electronic row—because Electronic has no isbn, and that column cannot be empty.
 
 ## JOINED
+
+
+
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="300"/>
+</p>
+
+```sql
+create table products
+(
+    id           bigint           not null primary key,
+    price        double precision not null,
+    product_type char             not null,
+    name         varchar(255)
+);
+
+create table books
+(
+    id     bigint not null primary key constraint fk9j4... references products,
+    author varchar(255),
+    isbn   varchar(255)
+);
+
+create table electronics
+(
+    warranty_period_months integer,
+    id                     bigint not null primary key constraint fk9ap... references products,
+    power                  varchar(255)
+);
+```
+
+
 ## TABLE_PER_CLASS
 
 ---
