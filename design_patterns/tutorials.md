@@ -9,6 +9,7 @@
 ### Structural Patterns
 - [Facade](./structural/1_Facade.md)
 - [Adapter](./structural/2_Adapter.md)
+- [Proxy](./structural/3_Proxy.md)
 
 ### Creational Patterns
 
