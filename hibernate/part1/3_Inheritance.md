@@ -160,7 +160,7 @@ public class BookEntity extends ProductEntity {
 
 @Entity
 @Table(name = "electronics")
-@DiscriminatorValue("B")
+@DiscriminatorValue("E")
 public class ElectronicEntity extends ProductEntity {
     private String power;
     @Column(name = "warranty_period_months")
