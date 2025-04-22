@@ -21,32 +21,17 @@ In other words, a proxy acts as a gatekeeper. It sits between a client and a rea
 This helps you protect sensitive actions or manage resource use without changing the real object or the client code.
 
 **Class Diagram:**
+<p align="center">
+    <img src="./assets/img6.png" alt="img6" width="400"/>
+</p>
 
-```mermaid
-classDiagram
-    class CommandExecutorProxy {
-        +runCommand(cmd)
-    }
-    class CommandExecutorImpl {
-        +runCommand(cmd)
-    }
-    class CommandExecutor {
-        <<interface>>
-        +runCommand(cmd)
-    }
-    class Client
 
-    Client --> CommandExecutorProxy: uses
-    CommandExecutorProxy --> CommandExecutorImpl: delegates
-    CommandExecutorProxy --|> CommandExecutor: implements
-    CommandExecutorImpl --|> CommandExecutor: implements
-```    
+This class diagram illustrates the structure of the Proxy pattern:
 
-This class diagram shows:
-
-- `CommandExecutor` is an interface implemented by both `CommandExecutorProxy` and `CommandExecutorImpl`.
-- The Client uses the proxy.
-- The proxy delegates calls to the real implementation.
+- CommandExecutor is an interface defining runCommand(cmd).
+- CommandExecutorImpl is the real object that implements CommandExecutor.
+- CommandExecutorProxy also implements CommandExecutor and controls access before delegating to the real implementation.
+- The Client uses the proxy rather than the real object directly, ensuring safe access.
 
 ## Example: Command Executor
 
@@ -122,23 +107,11 @@ In this example:
 - The proxy allows safe commands for all users.
 - It blocks dangerous commands for non-admin users.
 
-## Sequence Diagram
+**Sequence Diagram**
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Proxy as CommandExecutorProxy
-    participant Real as CommandExecutorImpl
-
-    Client->>Proxy: runCommand(cmd)
-    alt isAdmin
-        Proxy->>Real: runCommand(cmd)
-        Real-->>Proxy: returns result
-        Proxy-->>Client: returns result
-    else not admin
-        Proxy-->>Client: throws Exception
-    end
-```
+<p align="center">
+    <img src="./assets/img7.png" alt="img7" width="700"/>
+</p>
 
 This sequence diagram shows how the Proxy handles a client request:
 
