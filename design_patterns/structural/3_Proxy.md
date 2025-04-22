@@ -64,8 +64,8 @@ public class CommandExecutorProxy implements CommandExecutor {
     private CommandExecutor executor;
 
     public CommandExecutorProxy(String user, String pwd) {
-        // Simple check: only user "Pankaj" with correct password is admin
-        if ("Pankaj".equals(user) && "J@urnalD$v".equals(pwd)) {
+        // Simple check: only user "Gurgen" with correct password is admin
+        if ("Gurgen".equals(user) && "J@urnalD$v".equals(pwd)) {
             isAdmin = true;
         }
         executor = new CommandExecutorImpl();
