@@ -177,7 +177,40 @@ However, there are some drawbacks:
 
 ## JOINED
 
+With the `JOINED` strategy, each class in your inheritance hierarchy gets its own database table:
 
+- Parent table (products)
+    - Has the common columns (like id, name, price)
+    - Includes the discriminator column (for example, dtype) to show which entity each row is
+
+- Child tables (electronics, books)
+    - Have only their own fields (like power for electronics, isbn for books)
+    - Use the same id value as the parent table (so they join back on id)
+    - Do not have a discriminator column
+
+To enable this strategy, add the annotation to your root entity:
+
+```java
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+
+@Entity
+@Table(name = "products")
+@DiscriminatorValue("P")
+@DiscriminatorColumn(name = "product_type", discriminatorType = DiscriminatorType.CHAR)
+@Inheritance(strategy = InheritanceType.JOINED)
+public class ProductEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private double price;
+}
+```
+
+You do not need to change `ElectronicEntity` or `BookEntity`—they remain exactly as before.
 
 <p align="center">
     <img src="./assets/img2.png" alt="img2" width="300"/>
@@ -207,6 +240,15 @@ create table electronics
 );
 ```
 
+You can still use @`DiscriminatorColumn` and @`DiscriminatorValue` on the root entity to change the name and values of the discriminator column. 
+The `JOINED` strategy feels natural because each class has its own table, just like in your code.
+
+However, this strategy can slow down queries:
+- To load a subclass (for example, an electronics), JPA must join the subclass table with the root (products) table.
+- The deeper your class hierarchy, the more joins you need to assemble one object.
+- More joins mean slower performance, especially if you have many levels or you query across the whole hierarchy.
+
+While `JOINED` works well for polymorphism, be aware of its impact on query speed when your hierarchy grows.
 
 ## TABLE_PER_CLASS
 
