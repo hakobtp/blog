@@ -79,6 +79,31 @@ public class ElectronicEntity extends ProductEntity {
     <img src="./assets/img2.png" alt="img2" width="400"/>
 </p>
 
+In the `SINGLE_TABLE` strategy, JPA stores every class in one table—here, the `products` table. This table has:
+
+- All fields from `ProductEntity`, `ElectronicEntity`, and `BookEntity`
+- An extra column, called the discriminator column (`dtype`), which does not match any field in your Java classes
+
+When you save data, each row in `products` represents either a general product, an electronic item, or a book. The dtype column holds a simple label (for example, Product, Electronic, or Book) so that when JPA reads a row, it knows which Java class to create.
+
+Here is a fragment of the `products` table. Notice that for simple `products` (first three rows), only `name` and `price` are filled; the other columns remain empty.
+
+| id  | name             | price   | power | warranty_period_months | author     | isbn          | dtype      |
+|-----|------------------|---------|-------|----------------------|------------|---------------|------------|
+| 1   | Basic Product    | 10.00   |       |                      |            |               | ProductEntity    |
+| 2   | Standard Item    | 20.50   |       |                      |            |               | ProductEntity    |
+| 3   | Sample Product   | 15.75   |       |                      |            |               | ProductEntity    |
+| 4   | Gaming Laptop    | 1200.00 | 150W  | 24                   |            |               | ElectronicEntity |
+| 5   | Java Programming | 35.00   |       |                      | Jane Smith | 978-1234567890| Book       |
+
+
+- **Rows 1–3:** `dtype = ProductEntity` so only `name` and `price` are used.
+- **Row 4:** `dtype = ElectronicEntity` fills `power` and `warranty_period_months`.
+- **Row 5:** `dtype = BookEntity` fills `author` and `isbn`.
+
+You can see the `“holes”` where columns are unused for a given entity type.
+
+
 ## JOINED
 ## TABLE_PER_CLASS
 
