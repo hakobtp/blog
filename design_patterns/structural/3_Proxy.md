@@ -28,9 +28,9 @@ This helps you protect sensitive actions or manage resource use without changing
 
 This class diagram illustrates the structure of the Proxy pattern:
 
-- CommandExecutor is an interface defining runCommand(cmd).
-- CommandExecutorImpl is the real object that implements CommandExecutor.
-- CommandExecutorProxy also implements CommandExecutor and controls access before delegating to the real implementation.
+- `CommandExecutor` is an interface defining `runCommand(cmd)`.
+- `CommandExecutorImpl` is the real object that implements `CommandExecutor`.
+- `CommandExecutorProxy` also implements `CommandExecutor` and controls access before delegating to the real implementation.
 - The Client uses the proxy rather than the real object directly, ensuring safe access.
 
 ## Example: Command Executor
@@ -119,6 +119,9 @@ This sequence diagram shows how the Proxy handles a client request:
 2) The Proxy checks if the user is an admin:
     - If `admin`, it delegates the call to `CommandExecutorImpl` and returns the result.
     - If not `admin`, it throws an exception for disallowed commands.
+
+
+## Common Uses of Proxy Pattern
 
 ---
 
