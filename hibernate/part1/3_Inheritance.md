@@ -216,6 +216,10 @@ You do not need to change `ElectronicEntity` or `BookEntity`—they remain exact
     <img src="./assets/img3.png" alt="img3" width="300"/>
 </p>
 
+
+Below is the SQL code that Hibernate generated for the three tables using the `JOINED` strategy:
+
+
 ```sql
 create table products
 (
