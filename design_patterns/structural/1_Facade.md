@@ -83,7 +83,7 @@ public class Main {
 - **Reduce dependencies:** To decouple clients from subsystem classes.
 - **Improve readability:** To present a clear API for common tasks.
 
-## Consequences
+## Pros&Cons
 
 Pros:
 - Simplifies client code

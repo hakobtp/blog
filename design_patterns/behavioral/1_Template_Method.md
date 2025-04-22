@@ -128,7 +128,7 @@ Use the Template Method pattern when:
 - Several classes share a common algorithm with minor variations.
 - Pulling up shared code into a superclass eliminates duplication.
 
-## Consequences
+## Pros&Cons
 
 Pros:
 - Control over algorithm structure; subclasses tweak only allowed steps.

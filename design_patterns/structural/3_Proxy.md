@@ -135,7 +135,7 @@ This sequence diagram shows how the Proxy handles a client request:
 - **Caching Proxy:** Cache results of expensive operations and reuse them.
 - **Smart Reference:** Track and manage the lifecycle of a service object, freeing resources when no one uses it.
 
-## Consequences
+## Pros&Cons
 
 Pros:
 - Control access without changing the original object.

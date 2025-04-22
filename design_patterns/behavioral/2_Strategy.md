@@ -105,7 +105,7 @@ Output:
 - **Switch at runtime:** You want to choose the method while the program runs.
 - **Clean code:** You want to avoid many `if` statements.
 
-### Consequences
+### Pros&Cons
 
 Pros:
 - Easy to add new algorithms

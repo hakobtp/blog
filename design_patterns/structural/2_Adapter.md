@@ -134,7 +134,7 @@ public class ClientAppClass {
 - You want to reuse existing classes without changing them.
 - You need a middle layer to translate one interface into another.
 
-## Consequences
+## Pros&Cons
 
 Pros:
 - Separates interface conversion from business logic
