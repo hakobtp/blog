@@ -24,19 +24,18 @@ This helps you protect sensitive actions or manage resource use without changing
 
 ```mermaid
 classDiagram
+    class CommandExecutor <<interface>>
+    class CommandExecutorProxy
+    class CommandExecutorImpl
+    class Client
+
     Client --> CommandExecutorProxy: uses
     CommandExecutorProxy --> CommandExecutorImpl: delegates
-    class Client
-    class CommandExecutorProxy {
-        +runCommand(cmd)
-    }
-    class CommandExecutorImpl {
-        +runCommand(cmd)
-    }
-    class CommandExecutor {
-        <<interface>>
-        +runCommand(cmd)
-    }
+    CommandExecutorProxy ..|> CommandExecutor: implements
+    CommandExecutorImpl ..|> CommandExecutor: implements
+
+    CommandExecutorProxy : +runCommand(cmd)
+    CommandExecutorImpl : +runCommand(cmd)
 ```    
 
 ## Example: Command Executor
@@ -113,7 +112,7 @@ In this example:
 - The proxy allows safe commands for all users.
 - It blocks dangerous commands for non-admin users.
 
-## Implementation Diagram
+## Sequence Diagram
 
 ```mermaid
 sequenceDiagram
