@@ -14,7 +14,7 @@ When you save an inheritance hierarchy in a relational database, you must choose
 - **JOINED:** Each class—parent and child—gets its own table. Child tables link back to their parent table with a foreign key.
 - **TABLE_PER_CLASS:** Only concrete (non‑abstract) classes get tables. Each table has columns for its own fields plus all inherited fields.
 
-> **Tip:** The `“one table per concrete class”` strategy is optional in JPA 2.2. To keep your application portable, it’s safer to stick with either the single‑table or joined‑tables strategies.
+> **Tip:** The `“TABLE_PER_CLASS”` strategy is optional in JPA 2.2. To keep your application portable, it’s safer to stick with either the single‑table or joined‑tables strategies.
 
 
 Every inheritance setup in JPA starts with a root entity. This root class tells JPA which strategy to use. You do this by adding the 
