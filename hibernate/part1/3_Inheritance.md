@@ -70,6 +70,7 @@ public class BookEntity extends ProductEntity {
 @Table(name = "electronics")
 public class ElectronicEntity extends ProductEntity {
     private String power;
+    @Column(name = "warranty_period_months")
     private int warrantyPeriodMonths;
 }
 ```
