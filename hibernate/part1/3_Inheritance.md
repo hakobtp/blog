@@ -23,28 +23,9 @@ JPA will choose the `InheritanceType.SINGLE_TABLE` hierarchy by default.
 
 To see how each strategy works, we’ll map two child entities—`Electronic` and `Book`—both of which extend the `Product` entity.
 
-```mermaid
-classDiagram
-    class ProductEntity {
-        <<entity>>
-        + Long id
-        + String name
-        + double price
-    }
-    class ElectronicEntity {
-        <<entity>>
-        + String power
-        + int warrantyPeriodMonths
-    }
-    class BookEntity {
-        <<entity>>
-        + String author
-        + String isbn
-    }
-
-    ProductEntity <|-- ElectronicEntity
-    ProductEntity <|-- BookEntity
-```
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
 
 ---
 
