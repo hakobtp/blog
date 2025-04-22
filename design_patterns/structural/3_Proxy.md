@@ -120,8 +120,8 @@ In this example:
 
 This sequence diagram shows how the Proxy handles a client request:
 
-1) The Client calls `runCommand(cmd)` on the `CommandExecutorProxy`.
-2) The Proxy checks if the user is an admin:
+- The Client calls `runCommand(cmd)` on the `CommandExecutorProxy`.
+- The Proxy checks if the user is an admin:
     - If `admin`, it delegates the call to `CommandExecutorImpl` and returns the result.
     - If not `admin`, it throws an exception for disallowed commands.
 
