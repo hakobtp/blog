@@ -49,7 +49,7 @@ public interface CommandExecutor {
 ```java
 public class CommandExecutorImpl implements CommandExecutor {
     @Override
-    public void runCommand(String cmd) throws IOException {
+    public void runCommand(String cmd) throws UnauthorizedException, CommandExecutionException {
         // Execute the system command
         Runtime.getRuntime().exec(cmd);
         System.out.println("Executed: '" + cmd + "'");
@@ -60,27 +60,33 @@ public class CommandExecutorImpl implements CommandExecutor {
 **Proxy Class:**
 ```java
 public class CommandExecutorProxy implements CommandExecutor {
-    private boolean isAdmin;
-    private CommandExecutor executor;
+    private static final String ADMIN_USER     = "Gurgen";
+    private static final String ADMIN_PASSWORD = "J@urnalD$v";
 
-    public CommandExecutorProxy(String user, String pwd) {
-        // Simple check: only user "Gurgen" with correct password is admin
-        if ("Gurgen".equals(user) && "J@urnalD$v".equals(pwd)) {
-            isAdmin = true;
-        }
-        executor = new CommandExecutorImpl();
+    private final CommandExecutor executor;
+    private final boolean isAdmin;
+
+     public CommandExecutorProxy(String user, String pwd) {
+        Objects.requireNonNull(user, "user cannot be null");
+        Objects.requireNonNull(pwd,  "pwd cannot be null");
+
+        this.executor = new CommandExecutorImpl();
+        this.isAdmin  = ADMIN_USER.equals(user) && ADMIN_PASSWORD.equals(pwd);
     }
 
     @Override
-    public void runCommand(String cmd) throws Exception {
-        if (isAdmin) {
+    public void runCommand(String cmd) throws UnauthorizedException, CommandExecutionException {
+        Objects.requireNonNull(cmd, "cmd cannot be null");
+        String trimmed = cmd.trim();
+
+        if (!isAdmin && trimmed.startsWith("rm")) {
+            throw new UnauthorizedException("Permission denied: non‑admin users cannot execute 'rm' commands.");
+        }
+
+        try {
             executor.runCommand(cmd);
-        } else {
-            // Block dangerous commands for non-admin users
-            if (cmd.trim().startsWith("rm")) {
-                throw new Exception("'rm' is not allowed for non-admin users.");
-            }
-            executor.runCommand(cmd);
+        } catch (Exception e) {
+            throw new CommandExecutionException("Error executing command: " + trimmed, e);
         }
     }
 }
