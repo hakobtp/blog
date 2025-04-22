@@ -27,6 +27,58 @@ To see how each strategy works, we’ll map two child entities—`Electronic` an
     <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
+## SINGLE_TABLE
+
+JPA uses the `SINGLE_TABLE` strategy by default. With this approach, every class in the inheritance hierarchy is stored in the same database table. 
+Because it’s the default, you don’t need to add the `@Inheritance` annotation on the root entity—JPA will pick `SINGLE_TABLE` automatically.
+
+```java
+@Entity
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+@Table(name = "products")
+public class ProductEntity {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+    private double price;
+}
+```
+
+```java
+@Entity
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+@Table(name = "books")
+public class BookEntity extends ProductEntity {
+    private String author;
+    private String isbn;
+}
+```
+
+```java
+@Entity
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+@Table(name = "electronics")
+public class ElectronicEntity extends ProductEntity {
+    private String power;
+    private int warrantyPeriodMonths;
+}
+```
+
+
+
+## JOINED
+## TABLE_PER_CLASS
+
 ---
 
 ## 📌 Explore More
