@@ -179,6 +179,18 @@ public class AuthorEntity {
 > 🔍 **Hint:** When we save an AuthorEntity into the database, Hibernate will generate the ID automatically. 
 > If the id is not null after saving, it means the author was successfully stored.
 
+An entity is a Java class that JPA treats as a table in the database. To make a class an entity, follow these rules:
+
+- Put `@javax.persistence.Entity` above your class so JPA knows it represents data in a table.
+- Use `@javax.persistence.Id` on a field to mark the primary key.
+- The class must have a `public` or `protected` constructor with **no parameters**. You can add more constructors if you like.
+- The entity cannot be an inner class, enum, or interface—it must be a regular, top-level class.
+- The class itself and any persistent fields or methods must not be `final`, so JPA can create and modify instances.
+- If you need to send entity objects over the network (for example, in a remote API), have the class implement `java.io.Serializable`. 
+    This step is not required by JPA but can help in distributed setups.
+    
+With these rules, JPA can map your class to a database table and manage its data.    
+
 🛠 **Step 2: The persistence.xml File**
 
 We also need a configuration file so that Hibernate knows how to connect to the database. Create the file in:
