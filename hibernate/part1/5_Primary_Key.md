@@ -53,7 +53,128 @@ public class Address {
 
 ## Composite Primary Keys
 
+When you map an entity, it’s best to use a single column as its primary key. But sometimes you need a composite key—for example, 
+when you work with a legacy database or when business rules require two values (like a date and an order number, or a country code and a timestamp).
+
+To use a composite key:
+
+- Create a key class that holds all the key fields.
+- Choose one of two annotations:
+    - `@EmbeddedId`
+    - `@IdClass`
+
+Both approaches produce the same database tables. The only difference is in how you write your code to load or query the entity.
+
+A class used for a composite primary key must follow these rules:
+
+- **Override equals() and hashCode()**: You must implement these methods so that two key objects are considered 
+    equal only when their database key values are exactly the same.
+- **Valid field types:** All key fields must use one of the simple types (primitives, wrappers, strings, dates, etc.) listed earlier.
+- **Public and no-arg constructor** The class must be public and have a public or protected constructor with no parameters.
+- **Serializable (optional)** If you pass key objects outside the persistence layer (for example, to the presentation layer), 
+    have the class implement Serializable.
+
+By following these rules, JPA and your code will handle composite keys correctly and safely.
+
 ### @EmbeddedId
+
+Let’s create the NewsId composite primary key class:
+
+```java
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Embeddable
+public class NewsId implements Serializable {
+
+    private String title;
+    private String language;
+}
+
+
+```
+
+As you can see, I’m using Lombok annotations to generate the getters, setters, constructors,  `equals()`, and `hashCode()` methods.
+
+In the next example, the `News` entity uses `@EmbeddedId` to include the `NewsId` key class. You do not need the `@Id` annotation here. 
+Remember, whatever you use with `@EmbeddedId` must be a class marked with `@Embeddable`.
+
+```java
+@Getter
+@Setter
+@Accessors(chain = true)
+
+@Entity
+public class News {
+
+    @EmbeddedId
+    private NewsId id;
+    private String content;
+}
+```
+
+JPA generated the following table:
+
+```sql
+CREATE TABLE news (
+  content  VARCHAR(255),
+  language VARCHAR(255) NOT NULL,
+  title    VARCHAR(255) NOT NULL,
+  PRIMARY KEY (language, title)
+);
+```
+
+Here, `language` and `title` together form the primary key.
+
+Now let’s write a simple unit test to check that our `News` entity with the composite key works correctly:
+
+```java
+
+class NewsTest {
+    private static EntityManager em;
+    private static EntityTransaction tx;
+    private static EntityManagerFactory emf;
+
+    @BeforeAll
+    static void init() {
+        emf = Persistence.createEntityManagerFactory("testDB");
+        em = emf.createEntityManager();
+        tx = em.getTransaction();
+    }
+
+    @AfterAll
+    static void close() {
+        if (em != null) {
+            em.close();
+        }
+
+        if (emf != null) {
+            emf.close();
+        }
+    }
+
+    @Test
+    void test() {
+        NewsId newsId = new NewsId("Humboldt penguin marks birthday", "EN");
+        tx.begin();
+        em.persist(new News().setContent("content").setId(newsId));
+        tx.commit();
+
+        tx.begin();
+        News news = em.find(News.class, newsId);
+        tx.commit();
+
+        assertEquals("content", news.getContent());
+        assertEquals(newsId, news.getId());
+    }
+}
+```
+
+
 ### @IdClass
 
 ---
