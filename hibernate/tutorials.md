@@ -4,6 +4,7 @@
 - [Understanding Transactions in JPA and Hibernate](./part1/2_Understanding_Transactions_in_JPA_and_Hibernate.md)
 - [Inheritance](./part1/3_Inheritance.md)
 - [Secondary Table](./part1/4_SecondaryTable.md)
+- [Primary Key](./part1/5_Primary_Key.md)
 
 
 

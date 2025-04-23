@@ -55,3 +55,4 @@ Using secondary tables can slow down your queries. When you load an entity, JPA 
 
 - 🏠 [Home](./../../README.md)
 - [Inheritance](./3_Inheritance.md)
+- [Primary Key](./5_Primary_Key.md)
