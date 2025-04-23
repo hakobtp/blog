@@ -177,6 +177,109 @@ class NewsTest {
 
 ### @IdClass
 
+Another way to define a composite key is with the `@IdClass` annotation. With this method, you:
+
+- Create a separate key class with your key fields.
+- Repeat those same fields in your entity class and mark each one with `@Id`.
+
+In this example, the `NewsId` class is just a plain Java object (POJO) and needs no JPA annotations.
+
+```java
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+public class NewsId implements Serializable {
+
+    private String title;
+    private String language;
+}
+```
+
+Next, the `News` entity defines its composite key with `@IdClass(NewsId.class)`. Each key field in 
+the class (for example, `title` and `language`) is marked with `@Id`. 
+
+```java
+@Getter
+@Setter
+@Accessors(chain = true)
+
+@Entity
+@IdClass(NewsId.class)
+public class News {
+
+    @Id
+    private String title;
+    @Id
+    private String language;
+    private String content;
+}
+```
+
+Both `@EmbeddedId` and `@IdClass` produce the same table layout:
+
+```sql
+CREATE TABLE news (
+  content  VARCHAR(255),
+  language VARCHAR(255) NOT NULL,
+  title    VARCHAR(255) NOT NULL,
+  PRIMARY KEY (language, title)
+);
+```
+
+Next, we write a simple unit test to make sure our `News` entity with its composite key works:
+
+> **NOTE:** Before calling `em.persist(news)`, set both the title and language on your `News` object.
+
+```java
+class NewsTest {
+
+    ....
+
+    @Test
+    void test() {
+        var language = "EN";
+        var title = "Humboldt penguin marks birthday";
+
+        var news = new News()
+                .setTitle(title)
+                .setContent("content")
+                .setLanguage(language);
+
+        tx.begin();
+        em.persist(news);
+        tx.commit();
+
+        NewsId newsId = new NewsId(title, language);
+
+        tx.begin();
+        News foundNews = em.find(News.class, newsId);
+        tx.commit();
+
+        assertEquals("content", foundNews.getContent());
+        assertEquals(newsId.getTitle(), foundNews.getTitle());
+        assertEquals(newsId.getLanguage(), foundNews.getLanguage());
+    }
+}
+```
+
+Using `@IdClass` can lead to mistakes because you must repeat each key field in both the key class and the entity, 
+and the names and types must match exactly. 
+
+
+One clear difference appears in JPQL queries:
+
+- With `@IdClass`, you refer to the key fields directly:
+    ```sql
+    SELECT n.title FROM News n
+    ```
+
+- With `@EmbeddedId`, you go through the embedded key object:    
+    ```sql
+    SELECT n.newsId.title FROM News n
+    ```
+
 ---
 
 ## 📌 Explore More
