@@ -236,5 +236,6 @@ class AccountRepositoryTest {
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
+- 🏛️ [Hibernate Tutorials](./../tutorials.md)
 - ⚙️ [Setting Up Hibernate with Maven (Step-by-Step Guide)](./1_maven_project_setup.md)
 - 🌳 [Inheritance](./3_Inheritance.md)

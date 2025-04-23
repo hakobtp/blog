@@ -465,4 +465,5 @@ class AuthorRepositoryTest {
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
+- 🏛️ [Hibernate Tutorials](./../tutorials.md)
 - 🔄 [Understanding Transactions in JPA and Hibernate](./2_Understanding_Transactions_in_JPA_and_Hibernate.md)

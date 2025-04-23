@@ -285,4 +285,5 @@ One clear difference appears in JPQL queries:
 ## 📌 Explore More
 
 - 🏠 [Home](./../../README.md)
+- 🏛️ [Hibernate Tutorials](./../tutorials.md)
 - [Secondary Table](./4_SecondaryTable.md)
