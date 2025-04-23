@@ -304,3 +304,4 @@ With the `TABLE_PER_CLASS` strategy:
 
 - 🏠 [Home](./../../README.md)
 - 🔄 [Understanding Transactions in JPA and Hibernate](./2_Understanding_Transactions_in_JPA_and_Hibernate.md)
+- [Secondary Table](./4_SecondaryTable.md)
