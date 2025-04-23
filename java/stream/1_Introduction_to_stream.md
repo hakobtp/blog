@@ -1,4 +1,4 @@
-# Introduction to stream
+# Introduction to Stream
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -6,11 +6,11 @@ Author      Ter-Petrosyan Hakob
 
 ---
 
-Streams let you work with data more simply than collections. With a stream, you tell Java what you want to do, not how to do it. 
+Streams let you work with collections more simply than loops. With a stream, you tell Java what you want to do, not how to do it. 
 Java then chooses the best way to run your code. 
 
 When you work with a collection, you often loop through its items and do something with each one. 
-For example, imagine you have a list of words and you want to count how many have more than five letters. 
+For example, imagine you have a list of words and you want to count how many have more than 8 letters. 
 
 ```java
 List<String> words = List.of(

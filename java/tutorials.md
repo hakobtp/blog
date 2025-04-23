@@ -4,6 +4,6 @@
 
 ### Stream
 
-- [Introduction to stream](./stream/1_Introduction_to_stream.md)
+- [Introduction to Stream](./stream/1_Introduction_to_stream.md)
 
 [Home](./../README.md)
