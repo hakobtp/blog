@@ -70,10 +70,14 @@ This pattern—making a stream, transforming it, and then getting a result—is 
 ---
 
 - **`java.util.stream.Stream<T>`**
-    - `**Stream<T> filter(Predicate<? super T> p)**` Creates a new stream that contains only those elements 
+    - **`Stream<T> filter(Predicate<? super T> p)`** Creates a new stream that contains only those elements 
         from the original stream for which `predicate` returns `true`.
     - **`long count()`** Returns how many elements are in the stream. This is a terminal operation, which means 
         it runs all previous steps and produces a final result.
+
+- **`java.util.Collection<E>`**
+    - **`default Stream<E> stream()`** Creates a normal (sequential) stream of the collection’s elements.
+    - **`default Stream<E> parallelStream()`** Creates a parallel stream, which may process elements at the same time on different threads.
 
 ---
 
