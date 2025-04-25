@@ -168,28 +168,26 @@ Sometimes you repeat these steps, for example if you have a root inside parenthe
 - **M & D**: Multiplication and Division (left → right)  
 - **A & S**: Addition and Subtraction (left → right)  
 
-## Using Properties of Real Numbers
+## Properties of Real Numbers
 
-For some activities we perform, the order of certain operations does not matter, but the order of other operations does.
-
-The following properties hold for real numbers **a**, **b**, and **c**.
+Real numbers follow simple rules that help us work with expressions. Here are the key properties for any numbers **a**, **b**, and **c**:
 
 
-- **Commutative Property:**
-    - `Addition:` $$a+b=b+a$$.
-    - `Multiplication:` $$a \times b=b \times a$$.
-- **Associative Property:**
-    - `Addition:` $$a+(b+c)=(a+b)+c$$.
-    - `Multiplication:` $$a\times(b\times c)=(a\times b)\times c$$.
-- **Distributive Property:**  $$a \times (b+c)=a \times b + a \times c$$.
-- **Identity Property**
+- **Commutative Property** (you can swap the order)  
+    - `Addition:` $$a+b=b+a$$. Swapping the addends does not change the sum.
+    - `Multiplication:` $$a \times b=b \times a$$. Swapping the factors does not change the product.
+- **Associative Property:**  (you can change the grouping)  
+    - `Addition:` $$a+(b+c)=(a+b)+c$$.  You can group the addends in any way. 
+    - `Multiplication:` $$a\times(b\times c)=(a\times b)\times c$$. You can group the factors in any way.
+- **Distributive Property:**  (you can spread multiplication over addition) $$a \times (b+c)=a \times b + a \times c$$. 
+    To multiply a sum by **a**, multiply each part by **a** and then add the results.
+- **Identity Property** (there are “do-nothing” numbers) 
     - `Addition:` There exists a unique real number called the additive identity, **0**, such that, for any real number **a** $$a+0=a$$.
     - `Multiplication:` There exists a unique real number called the multiplicative identity, **1**, such that, for any real $$a\times1=a$$.     
 - **Inverse Property**
     - `Addition:` Every real number **a** has an additive inverse, or opposite, denoted **–a**, such that $$a+(-a)=0$$.
-    - `Multiplication:` 
+    - `Multiplication:` Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)=1$$.
 
-Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)$$.
 
 
 
