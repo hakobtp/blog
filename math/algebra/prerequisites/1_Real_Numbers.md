@@ -182,7 +182,7 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - `Multiplication:` $$a \times b=b \times a$$.
 - **Associative Property:**
     - `Addition:` $$a+(b+c)=(a+b)+c$$.
-    - `Multiplication:` $$a(bc)=(ab)c$$.
+    - `Multiplication:` $$a\times(b\timesc)=(a\timesb)\timesc$$.
 - **Distributive Property:**  $$a \times (b+c)=a \times b + a \times c$$.
 - **Identity Property**
     - `Addition:` $$$$.
