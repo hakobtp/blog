@@ -122,7 +122,7 @@ To work out an expression correctly, follow these steps (the **order of operatio
    - Treat fraction lines, square‐root signs (radicals), and absolute‐value bars `| |` like grouping symbols too.
 
 2. **Exponents and roots**  
-   - Calculate any powers (like $$4^2$$) or roots (like *$$\sqrt{9}$$) next.
+   - Calculate any powers (like $$4^2$$) or roots (like $$\sqrt{9}$$) next.
 
 3. **Multiplication and division** (left to right)  
    - Move across the expression, doing each × or ÷ in order.
