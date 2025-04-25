@@ -188,11 +188,14 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - `Addition:` There exists a unique real number called the additive identity, **0**, such that, for any real number **a** $$a+0=a$$.
     - `Multiplication:` There exists a unique real number called the multiplicative identity, **1**, such that, for any real $$a\times1=a$$.     
 - **Inverse Property**
-    - `Addition:` $$$$.
-    - `Multiplication:` $$$$.
+    - `Addition:` Every real number **a** has an additive inverse, or opposite, denoted **–a**, such that $$a+(-a)=0$$.
+    - `Multiplication:` 
+
+Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)=1$$.
 
 
 
+---
 
 ## 📌 Explore More
 
