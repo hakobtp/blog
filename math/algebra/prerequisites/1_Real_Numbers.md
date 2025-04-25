@@ -172,8 +172,6 @@ Sometimes you repeat these steps, for example if you have a root inside parenthe
 
 For some activities we perform, the order of certain operations does not matter, but the order of other operations does.
 
-**Commutative Properties:** The commutative property of addition states that numbers may be added in any order without affecting the sum.
-
 The following properties hold for real numbers **a**, **b**, and **c**.
 
 
