@@ -182,14 +182,14 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - **Multiplication:** $$a \dot b=b \dot a$$.
 - **Associative Property:**
     - **Addition:** $$a+(b+c)=(a+b)+c$$.
-    - **Multiplication:**
+    - **Multiplication:** $$a(bc)=(ab)c$$.
 - **Distributive Property:**
 - **Identity Property**
-    - **Addition:**
-    - **Multiplication:**    
+    - **Addition:** $$$$.
+    - **Multiplication:** $$$$.     
 - **Inverse Property**
-    - **Addition:**
-    - **Multiplication:**
+    - **Addition:** $$$$.
+    - **Multiplication:** $$$$.
 
 
 
