@@ -16,6 +16,14 @@ When you multiply two expressions that have the same base, you simply add their 
 >   a^m \times a^n = a^{m + n}
 > $$
 
+**Example**  
+   Multiply $$x^3$$ by $$x^4$$:  
+   $$
+     x^3 \times x^4 
+     = (x \times x \times x) \times (x \times x \times x \times x) 
+     = x^7
+   $$
+
 ## Using the Product Rule of Exponents
 
 Consider the product $$x^3\cdot x^4$$ Both terms have the same base, **x**, but they are raised to different exponents. Expand each
