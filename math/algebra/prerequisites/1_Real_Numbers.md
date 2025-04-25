@@ -182,7 +182,7 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - `Multiplication:` $$a \times b=b \times a$$.
 - **Associative Property:**
     - `Addition:` $$a+(b+c)=(a+b)+c$$.
-    - `Multiplication:` $$a\times(b\timesc)=(a\timesb)\timesc$$.
+    - `Multiplication:` $$a\times(b\times c)=(a\times b)\times c$$.
 - **Distributive Property:**  $$a \times (b+c)=a \times b + a \times c$$.
 - **Identity Property**
     - `Addition:` There exists a unique real number called the additive identity, **0**, such that, for any real number **a** $$a+0=a$$.
@@ -191,7 +191,7 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - `Addition:` Every real number **a** has an additive inverse, or opposite, denoted **–a**, such that $$a+(-a)=0$$.
     - `Multiplication:` 
 
-Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)=1$$.
+Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)$$.
 
 
 
