@@ -8,13 +8,12 @@ Author      Ter-Petrosyan Hakob
 
 ## The Product Rule of Powers
 
-When you multiply two expressions that have the same base, you simply add their exponents.
+ 
+When you multiply powers with the same base, keep the base and add the exponents:  
 
-> **Product Rule**  
-> When you multiply powers with the same base, keep the base and add the exponents:  
-> $$
->   a^m \times a^n = a^{m + n}
-> $$
+$$
+    a^m \times a^n = a^{m + n}
+$$
 
 **Example**  
    Multiply $$x^3$$ by $$x^4$$:  
