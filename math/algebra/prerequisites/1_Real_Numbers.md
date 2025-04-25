@@ -96,7 +96,18 @@ Symbol Key for Number Sets
 
 ---
 
+## Using the Order of Operations
 
+Squaring a number means multiplying it by itself. For example:
+
+$$4^2 = 4 \times 4 = 16$$
+
+You can also raise any number to other powers. When we write $$a^n$$, it means you multiply **a** by itself **n** times:
+
+$$
+a^n = a \times a \times \dots \times a \quad(\text{n times})
+$$
+ 
 
 ## 📌 Explore More
 
