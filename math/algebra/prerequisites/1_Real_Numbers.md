@@ -176,13 +176,21 @@ For some activities we perform, the order of certain operations does not matter,
 
 The following properties hold for real numbers **a**, **b**, and **c**.
 
-|       |Addition|Multiplication|
-|:-------|:-------:|:-------:|
-|Commutative Property|$$a+b=b+a$$|$$a \dot b=b \dot a$$|
-|Associative Property|||
-|Distributive Property|||
-|Identity Property|||
-|Inverse Property|||
+
+- **Commutative Property:**
+    - **Addition:** $$a+b=b+a$$.
+    - **Multiplication:** $$a \dot b=b \dot a$$.
+- **Associative Property:**
+    - **Addition:** $$a+(b+c)=(a+b)+c$$.
+    - **Multiplication:**
+- **Distributive Property:**
+- **Identity Property**
+    - **Addition:**
+    - **Multiplication:**    
+- **Inverse Property**
+    - **Addition:**
+    - **Multiplication:**
+
 
 
 
