@@ -165,51 +165,25 @@ Sometimes you repeat these steps, for example if you have a root inside parenthe
 
 - **P**: Parentheses  
 - **E**: Exponents  
-- **M ÷ D**: Multiplication and Division (left → right)  
-- **A ÷ S**: Addition and Subtraction (left → right)  
+- **M & D**: Multiplication and Division (left → right)  
+- **A & S**: Addition and Subtraction (left → right)  
 
- 
-<!-- In this notation,  $$a^n$$ is read as the `nth` power of **a** where **a** is called the **base** and **n** is called the **exponent**.
+## Using Properties of Real Numbers
 
-To evaluate a mathematical expression, we perform the various operations. However, we do not perform them in any
-random order. We use the **order of operations**. This is a sequence of rules for evaluating such expressions.
+For some activities we perform, the order of certain operations does not matter, but the order of other operations does.
 
-Recall that in mathematics we use parentheses ( ), brackets [ ], and braces { } to group numbers and expressions so that
-anything appearing within the symbols is treated as a unit. Additionally, fraction bars, radicals, and absolute value bars
-are treated as grouping symbols. When evaluating a mathematical expression, begin by simplifying expressions within
-grouping symbols.
-The next step is to address any exponents or radicals. Afterward, perform multiplication and division from left to right
-and finally addition and subtraction from left to right.
+**Commutative Properties:** The commutative property of addition states that numbers may be added in any order without affecting the sum.
 
+The following properties hold for real numbers **a**, **b**, and **c**.
 
-Let’s take a look at the expression provided.
+|       |Addition|Multiplication|
+|:-------|:-------:|:-------:|
+|Commutative Property|$$a+b=b+a$$|$$a \dot b=b \dot a$$|
+|Associative Property|||
+|Distributive Property|||
+|Identity Property|||
+|Inverse Property|||
 
-$$24+6\cdot \frac{2}{3}- 4^2$$
-
-There are no grouping symbols, so we move on to exponents or radicals. The number 4 is raised to a power of 2, so
-simplify $$4^2$$ as 16.
-
-$$24+6\cdot \frac{2}{3}- 16$$
-
-Next, perform multiplication or division, left to right.
-
-$$24+ 4- 16$$
-
-Lastly, perform addition or subtraction, left to right.
-
-$$28- 16 =12$$
-
-For some complicated expressions, several passes through the order of operations will be needed. For instance, there
-may be a radical expression inside parentheses that must be simplified before the parentheses are evaluated. Following
-the order of operations ensures that anyone simplifying the same mathematical expression will get the same result.
-
-Order of Operations
-- Operations in mathematical expressions must be evaluated in a systematic order, which can be simplified using the
-
-Parentheses
-Exponents
-Multiplication and Division
-Addition and Subtraction -->
 
 
 ## 📌 Explore More
