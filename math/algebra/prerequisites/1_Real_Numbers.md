@@ -185,8 +185,8 @@ The following properties hold for real numbers **a**, **b**, and **c**.
     - `Multiplication:` $$a\times(b\timesc)=(a\timesb)\timesc$$.
 - **Distributive Property:**  $$a \times (b+c)=a \times b + a \times c$$.
 - **Identity Property**
-    - `Addition:` $$$$.
-    - `Multiplication:` $$$$.     
+    - `Addition:` There exists a unique real number called the additive identity, **0**, such that, for any real number **a** $$a+0=a$$.
+    - `Multiplication:` There exists a unique real number called the multiplicative identity, **1**, such that, for any real $$a\times1=a$$.     
 - **Inverse Property**
     - `Addition:` $$$$.
     - `Multiplication:` $$$$.
