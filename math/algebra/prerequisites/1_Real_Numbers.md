@@ -183,7 +183,7 @@ The following properties hold for real numbers **a**, **b**, and **c**.
 - **Associative Property:**
     - **Addition:** $$a+(b+c)=(a+b)+c$$.
     - **Multiplication:** $$a(bc)=(ab)c$$.
-- **Distributive Property:**
+- **Distributive Property:**  $$a \dot (b+c)=a \dot b + a \dot c$$.
 - **Identity Property**
     - **Addition:** $$$$.
     - **Multiplication:** $$$$.     
