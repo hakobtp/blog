@@ -24,6 +24,8 @@ When you multiply two expressions that have the same base, you simply add their 
      = x^7
    $$
 
+Use this rule to make expressions with the same base simpler by adding the exponents instead of writing out each factor.
+
 ## Using the Product Rule of Exponents
 
 Consider the product $$x^3\cdot x^4$$ Both terms have the same base, **x**, but they are raised to different exponents. Expand each
