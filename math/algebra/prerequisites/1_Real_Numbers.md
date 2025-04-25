@@ -179,11 +179,11 @@ The following properties hold for real numbers **a**, **b**, and **c**.
 
 - **Commutative Property:**
     - `Addition:` $$a+b=b+a$$.
-    - `Multiplication:` $$a \dot b=b \dot a$$.
+    - `Multiplication:` $$a \times b=b \times a$$.
 - **Associative Property:**
     - `Addition:` $$a+(b+c)=(a+b)+c$$.
     - `Multiplication:` $$a(bc)=(ab)c$$.
-- **Distributive Property:**  $$a \dot (b+c)=a \dot b + a \dot c$$.
+- **Distributive Property:**  $$a \times (b+c)=a \times b + a \times c$$.
 - **Identity Property**
     - `Addition:` $$$$.
     - `Multiplication:` $$$$.     
