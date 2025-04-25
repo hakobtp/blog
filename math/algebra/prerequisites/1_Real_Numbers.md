@@ -135,30 +135,30 @@ To work out an expression correctly, follow these steps (the **order of operatio
 ### Example
 
 Evaluate:  
-\[
+$$
 24 + 6 \times \frac{2}{3} - 4^2
-\]
+$$
 
 1. **Exponents first**  
-   \[
+   $$
    4^2 = 16
    \quad\Longrightarrow\quad
    24 + 6 \times \tfrac{2}{3} - 16
-   \]
+   $$
 
 2. **Multiplication next**  
-   \[
+   $$
    6 \times \tfrac{2}{3} = 4
    \quad\Longrightarrow\quad
    24 + 4 - 16
-   \]
+   $$
 
 3. **Addition and subtraction**  
-   \[
+   $$
    24 + 4 = 28
    \quad\text{then}\quad
    28 - 16 = 12
-   \]
+   $$
 
 Sometimes you repeat these steps, for example if you have a root inside parentheses. Always start with the innermost grouping symbols to get the same answer every time.
 
