@@ -178,18 +178,18 @@ The following properties hold for real numbers **a**, **b**, and **c**.
 
 
 - **Commutative Property:**
-    - **Addition:** $$a+b=b+a$$.
-    - **Multiplication:** $$a \dot b=b \dot a$$.
+    - `Addition:` $$a+b=b+a$$.
+    - `Multiplication:` $$a \dot b=b \dot a$$.
 - **Associative Property:**
-    - **Addition:** $$a+(b+c)=(a+b)+c$$.
-    - **Multiplication:** $$a(bc)=(ab)c$$.
+    - `Addition:` $$a+(b+c)=(a+b)+c$$.
+    - `Multiplication:` $$a(bc)=(ab)c$$.
 - **Distributive Property:**  $$a \dot (b+c)=a \dot b + a \dot c$$.
 - **Identity Property**
-    - **Addition:** $$$$.
-    - **Multiplication:** $$$$.     
+    - `Addition:` $$$$.
+    - `Multiplication:` $$$$.     
 - **Inverse Property**
-    - **Addition:** $$$$.
-    - **Multiplication:** $$$$.
+    - `Addition:` $$$$.
+    - `Multiplication:` $$$$.
 
 
 
