@@ -111,7 +111,7 @@ $$
 
 ## Reading Powers and the Order of Operations
 
-When you see \(a^n\), you say `“a to the n.”`  
+When you see $$a^n$$, you say `“a to the n.”`  
 - **a** is the **base**.  
 - **n** is the **exponent**.
 
