@@ -23,6 +23,12 @@ $$
 a^m \cdot a^n=a^{m+n}
 $$
 
+We can use the product rule of exponents to simplify
+expressions that are a product of two numbers or expressions with the same base but different exponents.
+
+> **The Product Rule of Exponents** For any real number **a** and natural numbers **m** and **n** the product rule of exponents states that
+> $$ a^m \cdot a^n=a^{m+n} $$
+
 ---
 
 ## 📌 Explore More
