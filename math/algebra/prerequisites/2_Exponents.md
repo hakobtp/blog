@@ -6,7 +6,7 @@ Author      Ter-Petrosyan Hakob
 
 ---
 
-## The Product Rule of Powers
+### Product Rule
 
  
 When you multiply powers with the same base, keep the base and add the exponents:  
