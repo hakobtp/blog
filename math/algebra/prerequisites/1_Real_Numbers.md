@@ -197,3 +197,4 @@ Real numbers follow simple rules that help us work with expressions. Here are th
 
 - 🏠 [Home](./../../../README.md)
 - [Algebra](./../tutorials.md)
+- [Exponents](./2_Exponents.md)
