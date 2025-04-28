@@ -45,7 +45,7 @@ public class Book {
 
 
 <p align="center">
-    <img src="./assets/img6.png" alt="img6" width="350"/>
+    <img src="./assets/img6.png" alt="img6" width="300"/>
 </p>
 
 **Generated SQL for book and tags:**
@@ -98,7 +98,7 @@ public class Podcast {
 ```
 
 <p align="center">
-    <img src="./assets/img7.png" alt="img7" width="350"/>
+    <img src="./assets/img7.png" alt="img7" width="300"/>
 </p>
 
 **Generated SQL for podcast and episodes:**
