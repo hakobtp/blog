@@ -58,7 +58,7 @@ Using secondary tables can slow down your queries. When you load an entity, JPA 
 >   ```
 > Note that the `wav` attribute of type `byte[]` is also annotated with `@Lob` to store the value as a large object (LOB). 
 > Database columns that can store these types of large objects require special JDBC calls to be accessed from Java. 
-> To inform the provider, an additional @Lob annotation must be added to the basic mapping.
+> To inform the provider, an additional `@Lob` annotation must be added to the basic mapping.
 
 
 ---
