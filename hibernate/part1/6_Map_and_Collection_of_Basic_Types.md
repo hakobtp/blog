@@ -9,9 +9,9 @@ Author      Ter-Petrosyan Hakob
 When your entity needs to store multiple simple values (like Strings or numbers), JPA provides the `@ElementCollection` annotation. 
 This tells the persistence provider that a field holds basic data rather than references to other entities. You can use it on fields of these types:
 
-- **Collection<T>:** The generic root interface for collections.
-- **Set<T>:** A collection that prevents duplicate entries.
-- **List<T>:** A collection that preserves insertion order.
+- **`Collection<T>`:** The generic root interface for collections.
+- **`Set<T>`:** A collection that prevents duplicate entries.
+- **`List<T>`:** A collection that preserves insertion order.
 
 To control where these values are stored, use `@CollectionTable`. If you skip it, JPA creates a table named by joining the entity name and the field name with an underscore.
 
