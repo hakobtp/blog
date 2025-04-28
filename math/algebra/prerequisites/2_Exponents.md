@@ -27,6 +27,18 @@ Use this rule to make expressions with the same base simpler by adding the expon
 
 ---
 
+### The Quotient Rule of Exponents
+
+For any real number **a**
+and natural numbers
+and
+such that
+the quotient rule of exponents states that
+
+
+
+---
+
 ## 📌 Explore More
 
 - 🏠 [Home](./../../../README.md)

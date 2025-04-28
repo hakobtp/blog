@@ -49,6 +49,9 @@ Each table holds different columns, but they all share the same primary key so J
 
 Using secondary tables can slow down your queries. When you load an entity, JPA must read from each table and then join the data together. However, secondary tables are useful when your entity has large fields—like images or files stored as BLOBs. By keeping those big attributes in a separate table, you only load them when you really need them, which can save time and resources.
 
+> You can annotate the attribute with `@Basic(fetch = FetchType.LAZY)` so the data will be retrieved from the database 
+    lazily (only when you access the attribute using its getter).
+
 ---
 
 ## 📌 Explore More
