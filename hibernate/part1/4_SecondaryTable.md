@@ -50,7 +50,16 @@ Each table holds different columns, but they all share the same primary key so J
 Using secondary tables can slow down your queries. When you load an entity, JPA must read from each table and then join the data together. However, secondary tables are useful when your entity has large fields—like images or files stored as BLOBs. By keeping those big attributes in a separate table, you only load them when you really need them, which can save time and resources.
 
 > You can annotate the attribute with `@Basic(fetch = FetchType.LAZY)` so the data will be retrieved from the database 
-    lazily (only when you access the attribute using its getter).
+> lazily (only when you access the attribute using its getter).
+>   ```java
+>    @Lob
+>    @Basic(fetch = FetchType.LAZY)
+>    private byte[] wav;
+>   ```
+> Note that the wav attribute of type `byte[]` is also annotated with `@Lob` to store the value as a large object (LOB). 
+> Database columns that can store these types of large objects require special JDBC calls to be accessed from Java. 
+> To inform the provider, an additional @Lob annotation must be added to the basic mapping.
+
 
 ---
 
