@@ -126,8 +126,6 @@ create table podcast_episodes
 - `@MapKeyColumn(name = "episode_number")` names the column for map keys (episode numbers). Without it, JPA would use `episodes_KEY`.
 - `@Column(name = "episode_title")` names the column for map values (episode titles).
 
-This setup creates a table `podcast_episodes` with three columns: the Podcast entity ID, `episode_number`, and `episode_title`.
-
 ---
 
 ## 📌 Explore More
