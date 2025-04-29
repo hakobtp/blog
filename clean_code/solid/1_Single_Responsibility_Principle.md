@@ -105,6 +105,10 @@ public final class EpubExporter implements BookExporter {
 
 With this structure, every class has exactly one reason to change.
 
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
 ---
 
 ## 📌 Explore More
