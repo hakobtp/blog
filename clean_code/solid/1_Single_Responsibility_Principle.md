@@ -5,6 +5,13 @@ Author      Ter-Petrosyan Hakob
 ```
 ---
 
+**Why the Single Responsibility Principle (SRP) matters**
+
+Imagine a restaurant where the chef also waits tables, washes dishes, and handles payments. It works—but if the chef falls ill, 
+everything stops. In code, SRP keeps each “chef” focused on one role. That way, your system stays healthy, easier to change, and simpler to test.
+
+## A class with one clear job
+
 A class should have only one reason to change:
 
 - It does just one task.
