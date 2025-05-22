@@ -132,6 +132,23 @@ before the sleep, but after waking up, it resumed on a different carrier thread 
 
 Mounting and unmounting happen very fast, much faster than an OS context switch. There is no heavy kernel context switch when a virtual thread unmounts – it’s more like saving and restoring a function call stack. This is why millions of virtual threads can be scheduled efficiently by the JVM.
 
+## Stack Memory Management: Virtual Threads vs Platform Threads
+
+One of the reasons virtual threads are lightweight is how they handle stack memory. 
+Every thread in Java has its own call stack where local variables and method calls live. With platform threads, 
+this stack is a chunk of memory allocated by the OS (native memory). By default it can be quite large (on the order of 1MB, though it may not all be committed at once). If you try to create 100,000 platform threads, you’d need up to 100k × 1MB = ~100 GB of memory just for stacks, which is obviously impractical. Virtual threads use a different strategy:
+
+- **Small initial stack:** A virtual thread starts with a very small stack (on the order of a few hundred bytes). 
+    It doesn’t allocate a huge contiguous region of memory up front.
+- **Stacks on the heap:** As the virtual thread calls methods and the call stack grows, the JVM allocates stack frames on the Java heap (managed by the garbage collector) rather than a fixed OS-memory buffer. The frames are allocated as needed and can be garbage-collected when the thread is suspended or completed. This means the memory footprint of each virtual thread is very low when it’s not doing much, and it can grow dynamically if needed.    
+- **Stack slicing (continuations):** When a virtual thread is unmounted (suspended), its stack frames may be copied out to heap storage (if not already there) and the carrier thread’s stack is freed. Later, when resumed, those frames are used to reconstruct the call stack. Essentially, a virtual thread’s call stack lives as an object (or series of objects) on the heap that can be saved or restored at will. This is fundamentally enabled by the continuation mechanism in the JVM.
+
+
+Because of this design, virtual threads have a much smaller memory cost per thread. Instead of a big chunk of native memory per thread, we have many small stacks in the heap that expand only as needed. As one source put it, platform threads use “megabyte-scale chunks of memory” for the stack, while a virtual thread’s stack footprint “starts at just a few hundred bytes” and grows in the heap. This is why you can create millions of virtual threads – their total memory usage is manageable and mostly garbage-collectible. In effect, the cost of a thread is almost as small as the cost of a Runnable or a Task object, plus whatever actual stack depth it’s using at the moment.
+
+## Continuations: The Secret to Pausing and Resuming
+
+
 ---
 
 ## 📌 Explore More
