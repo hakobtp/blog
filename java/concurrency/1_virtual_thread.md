@@ -81,12 +81,14 @@ a single virtual thread, it will not automatically switch out to let others run 
 
 If you have as many carrier threads as CPU cores, CPU-bound tasks on different carriers can run in parallel, but if you artificially limit the carrier thread pool (e.g. to 1 thread) and run a never-blocking loop on one virtual thread, it could starve others from running on that single carrier. In practice, the default carrier pool is sized to CPUs, so compute-bound tasks will use all cores, similar to platform threads. But virtual threads truly shine for I/O-bound and high-concurrency workloads where threads spend a lot of time waiting.
 
-**Example:** 
-
-Suppose you have a server with 4 CPU cores and thus ~4 carrier threads by default. 
-If you create 1000 virtual threads that each handle a network request, the JVM will schedule at most 4 of them to run 
-at once (one per carrier). Whenever any of those threads hits an I/O wait (e.g., waiting for a database response), 
-that thread is unmounted and another pending virtual thread is mounted on that carrier thread. In this way, the carriers are always kept busy doing real work, and none are stuck waiting on I/O. The result is high throughput with a small number of actual OS threads. The JVM’s goal is to keep the carrier threads busy but not blocked.
+> **Example:** 
+>
+> Suppose you have a server with 4 CPU cores and thus ~4 carrier threads by default. 
+> If you create 1000 virtual threads that each handle a network request, the JVM will schedule at most 4 of them to run 
+> at once (one per carrier). Whenever any of those threads hits an I/O wait (e.g., waiting for a database response), 
+> that thread is unmounted and another pending virtual thread is mounted on that carrier thread. In this way, the carriers 
+> are always kept busy doing real work, and none are stuck waiting on I/O. The result is high throughput with a small 
+> number of actual OS threads. The JVM’s goal is to keep the carrier threads busy but not blocked.
 
 ## Mounting and Unmounting: Running vs. Waiting in a Virtual Thread
 
@@ -148,6 +150,44 @@ Because of this design, virtual threads have a much smaller memory cost per thre
 
 ## Continuations: The Secret to Pausing and Resuming
 
+How can a thread be suspended and resumed in the middle of execution? The answer is continuations. A continuation is a low-level construct that represents a segment of code that can be paused (yielded) and resumed later, preserving its state.
+
+In Project Loom, each virtual thread is backed by a Continuation object internally. You can think of a continuation like a bookmark in the execution of the thread. When the virtual thread needs to pause (for example, it calls a blocking I/O operation), the continuation mechanism creates a snapshot of that thread’s execution state (the call stack, instruction pointer, etc.). This is similar to how if you pause a single-player video game, the game saves all your progress and state so you can come back later exactly where you left off.
+
+When the thread is ready to run again (say the I/O is done), the JVM uses the continuation to resume execution from where it paused. All the local variables, the point in the code, etc., are restored, and the thread continues as if nothing happened – except it might now be running on a different carrier thread.
+
+To put it simply: A virtual thread = a scheduled continuation (task) managed by the JVM scheduler. The continuation provides the ability to suspend and resume, and the scheduler provides the where and when to run it.
+
+These continuations are delimited, meaning the JVM controls exactly where a virtual thread is allowed to pause (typically at JVM-defined safepoints like blocking calls). The Java code in a virtual thread can’t arbitrarily pause at any CPU instruction; it pauses in well-defined places that the JVM knows about (like method calls that go into the JVM’s thread parking logic).
+
+You normally don’t interact with Continuation objects directly when writing application code (the Continuation API is internal/preview for now), but it’s useful to know they exist. They’re the “magic” that makes virtual thread suspension possible. One author described a continuation as “sequential code that may suspend or yield execution at some point by itself and can be resumed by a caller”. In our context, the “caller” is the JVM scheduler that resumes the virtual thread when it’s time.
+
+So, when you see a virtual thread go to sleep or wait on I/O, under the hood the JVM is doing roughly: save continuation (thread state) → free carrier thread → later, restore continuation on a carrier thread → continue execution. All of this is optimized in the JVM so that it’s extremely fast – certainly much faster than the equivalent thread context-switch involving OS scheduler.
+
+## Blocking I/O in Virtual Threads – What Really Happens?
+
+One of the biggest benefits of virtual threads is that you can call blocking I/O operations (like reading from a socket, waiting for a file, calling a database, etc.) without worrying about blocking an OS thread. In a traditional thread-per-request model, if a thread blocked on I/O, that OS thread would sit idle, unable to do other work, until the I/O finished. With thousands of concurrent operations, that meant having thousands of OS threads, which doesn’t scale.
+
+With virtual threads, when a thread blocks on I/O, the JVM tries to transparently turn it into a non-blocking operation and park the virtual thread. For example, when a virtual thread performs a socket read, the JDK underneath uses asynchronous I/O (if available on the platform) or a lightweight mechanism to wait for data, and it unmounts the virtual thread while waiting. The carrier thread is released to run other tasks. Once the data is ready, the virtual thread is resumed (mounted again) and continues processing the data.
+
+From the developer’s perspective, it looks like a normal blocking call – you can use the simple synchronous I/O APIs – but it behaves like asynchronous I/O under the hood, giving you the best of both worlds (simplicity and scalability). Virtual threads are often described as allowing “structured concurrency with threads” – you write sequential code that blocks, but it scales like asynchronous code.
+
+> **Example:** 
+> 
+> If you use a virtual thread per incoming HTTP request in a server, when one request handler calls 
+> `database.query()` and that query is waiting on the DB, that virtual thread will unmount. The OS thread 
+> running it will go pick up another request’s thread to run in the meantime. When the DB query results return, 
+> the original virtual thread is woken up and continues sending the response. Meanwhile, the OS threads were never 
+> idle; they were always busy handling whatever work was ready.
+
+
+This is why virtual threads are especially useful for I/O-bound workloads where threads spend a lot of time waiting. You can spawn massive numbers of threads to handle many concurrent I/O operations, and the JVM will efficiently manage them so that only the active ones tie up carrier threads.
+
+What about file I/O or other blocking calls? Most of Java’s classic I/O (especially networking) is handled in a way that 
+Loom can unmount the thread. However, certain operations might not yet be Loom-optimized. For instance, blocking 
+file I/O (like reading a file from disk) may not unmount the virtual thread on some platforms. If a virtual thread calls a blocking file I/O operation, the current implementation might pin the virtual thread to the carrier until the I/O is done (because the JVM can’t easily park and switch on purely kernel-level file read). The Loom team has worked to cover many common operations, but it’s good to be aware that not every blocking call is virtual-thread friendly. In practice, network I/O, sleep(), wait(), and other high-level blocking APIs are handled. 
+
+Next, let’s discuss a tricky area: synchronized blocks and other locks, which introduce the concept of pinning.
 
 ---
 
