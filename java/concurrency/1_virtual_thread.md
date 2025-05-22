@@ -67,6 +67,29 @@ In essence, the JVM is multiplexing many virtual threads onto a fixed small pool
 
 Virtual threads (orange) are executed on platform threads (blue), which run on OS threads (green). A virtual thread currently running is “mounted” to a platform thread (solid boxes). Virtual threads that are ready but not yet running remain unmounted and waiting (blue dashed box: “Unmounted Ready” threads). Virtual threads that are blocked (e.g. waiting on I/O) are unmounted and parked (orange dashed box: “Unmounted Blocked” threads). The JVM’s scheduler keeps carrier threads busy by mounting different virtual threads when others are blocked.
 
+
+Because of this scheduling model, blocking a virtual thread doesn’t block a carrier OS thread in many cases. 
+The OS thread simply moves on to run other virtual threads. This is how we can have thousands of concurrent tasks without tying up thousands of OS threads.
+
+
+### Cooperative vs Preemptive Scheduling 
+
+It’s important to realize that the JVM scheduling is cooperative. A virtual thread will run uninterrupted on a carrier 
+until it voluntarily yields (for example, by hitting a blocking call). The JVM won’t preempt (stop) a running virtual 
+thread just to schedule another one, except at these safepoints. This means if you have a long CPU-bound calculation in 
+a single virtual thread, it will not automatically switch out to let others run on that same carrier thread. 
+
+If you have as many carrier threads as CPU cores, CPU-bound tasks on different carriers can run in parallel, but if you artificially limit the carrier thread pool (e.g. to 1 thread) and run a never-blocking loop on one virtual thread, it could starve others from running on that single carrier. In practice, the default carrier pool is sized to CPUs, so compute-bound tasks will use all cores, similar to platform threads. But virtual threads truly shine for I/O-bound and high-concurrency workloads where threads spend a lot of time waiting.
+
+**Example:** 
+
+Suppose you have a server with 4 CPU cores and thus ~4 carrier threads by default. 
+If you create 1000 virtual threads that each handle a network request, the JVM will schedule at most 4 of them to run 
+at once (one per carrier). Whenever any of those threads hits an I/O wait (e.g., waiting for a database response), 
+that thread is unmounted and another pending virtual thread is mounted on that carrier thread. In this way, the carriers are always kept busy doing real work, and none are stuck waiting on I/O. The result is high throughput with a small number of actual OS threads. The JVM’s goal is to keep the carrier threads busy but not blocked.
+
+
+
 ---
 
 ## 📌 Explore More
