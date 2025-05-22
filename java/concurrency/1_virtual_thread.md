@@ -218,6 +218,29 @@ Additionally, if a virtual thread is trying to enter a synchronized block (waiti
   </li>
 </ol> 
 
+There may be other niche situations as Loom evolves (for example, the early Loom versions pinned for some file I/O as mentioned, or certain JDK synchronization constructs), but `synchronized` and native calls are the primary culprits.
+
+
+**Why is pinning bad for scalability?** Because if a carrier thread is pinned, it cannot be used to run any 
+other virtual thread until the pinning is over. If enough carrier threads become pinned, new virtual threads will be 
+stuck waiting for a free carrier. In the worst case, if all carriers are pinned (say, all are stuck in long sync blocks), 
+your application throughput stalls – no other work can be scheduled until a carrier frees up. 
+The JVM can mitigate this a bit by creating additional carrier threads if the pool is not at its max size, to avoid 
+a deadlock of progress. By default the carrier pool can grow up to some limit (for example, 256 threads). But if you 
+consistently pin a lot of threads, you could hit those limits or degrade performance.
+
+**Practical example of pinning:** Imagine a web server where each request is handled by a 
+virtual thread. Suppose a certain handler method has a synchronized block (maybe guarding access to a static resource) 
+and inside that block it makes a blocking call (like writing to a file or waiting on a condition). If many requests hit 
+this simultaneously, one gets the lock and the others block. All those blocked virtual threads are pinned on their 
+carriers. If the number of contending threads equals your carrier threads, you’ve effectively made your server 
+single-threaded until that lock is released – not good! Netflix engineers ran into a similar issue 
+with Tomcat + virtual threads, where a lock caused multiple virtual threads to pin and exhaust the 
+carrier pool, leading to stalled throughput.
+
+## Best Practices and Things to Avoid with Virtual Threads
+
+
 ---
 
 ## 📌 Explore More
