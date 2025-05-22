@@ -39,7 +39,27 @@ Instead, many virtual threads can share a few OS threads under the hood. Key dif
     it behaves similar to many platform threads – the OS will time-slice across the available carrier threads. The big win is with I/O or other blocking operations, where virtual threads that are waiting don’t consume any OS thread or CPU time.    
 
 In short, a virtual thread is a lightweight, managed thread that the JVM can park and resume efficiently. 
-This lets us write code in the simple thread-per-request style and still handle huge concurrency.    
+This lets us write code in the simple thread-per-request style and still handle huge concurrency.
+
+## How the JVM Schedules Virtual Threads
+
+Scheduling virtual threads is the job of the JVM (Java Virtual Machine) rather than the OS. 
+The JVM uses a scheduler (executor) internally to manage virtual threads. By default, it uses a fork-join pool (similar to the common pool) 
+as a carrier thread pool. Carrier threads are the actual OS threads that carry out the work of virtual threads. By default, the number of carrier threads is equal to the number of CPU cores on your machine (this can be tuned via the JVM property `-Djdk.virtualThreadScheduler.parallelism`).
+
+Here’s how scheduling works step by step:
+
+- When you start a new virtual thread, the JVM picks an available carrier thread (an OS thread) from its pool and 
+    mounts the virtual thread on it. Mounting means the virtual thread’s execution begins on that carrier. 
+    The OS thread now runs the virtual thread’s code.
+
+- The virtual thread runs on the carrier until it can’t make progress, usually when it hits a blocking operation 
+    (like waiting for I/O, sleeping, parking, etc.). Virtual threads use cooperative scheduling: they continue to run and are not preempted by the JVM unless they hit a blocking call or explicitly yield. There is no time-slicing of virtual threads as with OS threads – a carrier thread will not switch between different virtual threads in the middle of a compute task just to balance CPU time. As long as a virtual thread is actively running Java code (not blocking), it stays mounted on the carrier thread.
+
+- If the virtual thread performs a blocking operation (for example, calls `Thread.sleep()` or does a blocking I/O read), the JVM suspends that virtual thread and unmounts it from the carrier. At this point, the carrier OS thread is free to run another virtual thread. The suspended virtual thread is parked, waiting for its blocking operation to complete (or for a wake-up signal).
+
+- The JVM scheduler then picks another virtual thread that is ready to run (if any) and mounts it on the freed carrier thread. 
+In essence, the JVM is multiplexing many virtual threads onto a fixed small pool of carrier (OS) threads, keeping those carriers busy with work only when there is work to do.
 
 ---
 
