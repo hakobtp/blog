@@ -61,6 +61,12 @@ Here’s how scheduling works step by step:
 - The JVM scheduler then picks another virtual thread that is ready to run (if any) and mounts it on the freed carrier thread. 
 In essence, the JVM is multiplexing many virtual threads onto a fixed small pool of carrier (OS) threads, keeping those carriers busy with work only when there is work to do.
 
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
+Virtual threads (orange) are executed on platform threads (blue), which run on OS threads (green). A virtual thread currently running is “mounted” to a platform thread (solid boxes). Virtual threads that are ready but not yet running remain unmounted and waiting (blue dashed box: “Unmounted Ready” threads). Virtual threads that are blocked (e.g. waiting on I/O) are unmounted and parked (orange dashed box: “Unmounted Blocked” threads). The JVM’s scheduler keeps carrier threads busy by mounting different virtual threads when others are blocked.
+
 ---
 
 ## 📌 Explore More
