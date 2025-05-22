@@ -65,7 +65,9 @@ In essence, the JVM is multiplexing many virtual threads onto a fixed small pool
     <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
-Virtual threads (orange) are executed on platform threads (blue), which run on OS threads (green). A virtual thread currently running is “mounted” to a platform thread (solid boxes). Virtual threads that are ready but not yet running remain unmounted and waiting (blue dashed box: “Unmounted Ready” threads). Virtual threads that are blocked (e.g. waiting on I/O) are unmounted and parked (orange dashed box: “Unmounted Blocked” threads). The JVM’s scheduler keeps carrier threads busy by mounting different virtual threads when others are blocked.
+Virtual threads (orange) are executed on platform threads (blue), which run on OS threads (green). 
+A virtual thread currently running is **mounted** to a platform thread (solid boxes). Virtual threads that are ready 
+but not yet running remain **unmounted** and waiting (blue dashed box: **Unmounted Ready** threads). Virtual threads that are blocked (e.g. waiting on I/O) are **unmounted** and parked (orange dashed box: **Unmounted Blocked** threads). The JVM’s scheduler keeps carrier threads busy by mounting different virtual threads when others are blocked.
 
 
 Because of this scheduling model, blocking a virtual thread doesn’t block a carrier OS thread in many cases. 
