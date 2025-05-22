@@ -211,7 +211,7 @@ Additionally, if a virtual thread is trying to enter a synchronized block (waiti
   
   </li>
   <li>
-  When calling a native method or foreign function. If your virtual thread calls into native code (via JNI or 
+  <b>When calling a native method or foreign function.</b> If your virtual thread calls into native code (via JNI or 
   a foreign function interface) that blocks in the native layer, the JVM cannot suspend and resume that at the Java 
   level. The thread will remain pinned to the OS thread until the native call returns. Essentially, the JVM only controls Java code; once you’re in native code, Loom’s tricks can’t be applied.
 
