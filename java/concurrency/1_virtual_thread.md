@@ -1,4 +1,4 @@
-# 📘 Java Record
+# Virtual Threads
 
 ```
 Author: Ter-Petrosyan Hakob

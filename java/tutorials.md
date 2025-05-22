@@ -4,7 +4,7 @@
 
 ## Concurrency
 
-- [Virtual Thread](./concurrency/1_virtual_thread.md)
+- [Virtual Threads](./concurrency/1_virtual_thread.md)
 
 ### Stream
 
