@@ -240,6 +240,49 @@ carrier pool, leading to stalled throughput.
 
 ## Best Practices and Things to Avoid with Virtual Threads
 
+Virtual threads are powerful, but to use them effectively, keep these best practices and tips in mind:
+
+- **Prefer virtual threads for I/O-bound tasks:** They excel in scenarios with lots of waiting 
+(e.g. waiting for network responses, user input, database calls). You can spawn a thread per task without worry. 
+For CPU-bound tasks that don’t block, virtual threads don’t give much benefit over using a thread pool – they’ll behave 
+similarly to platform threads. For data-parallel CPU tasks, consider using parallel streams or structured concurrency with limited parallelism.
+
+- **Beware of long `synchronized` blocks:** If you have locks that many threads contend for, consider redesigning 
+to reduce contention or using alternative concurrency constructs. Holding a lock for a long time in a virtual thread can pin a carrier thread, hurting scalability. If you need to lock, do the minimum work inside the critical section. Avoid calling blocking I/O while holding a lock.
+
+- **Use `ReentrantLock` or other Lock APIs if appropriate:** The JDK documentation suggests 
+    using `java.util.concurrent.locks.ReentrantLock` to guard long I/O operations instead of `synchronized`. 
+    This is because waiting for a `ReentrantLock` doesn’t pin the thread in the same way – a virtual thread parking to wait on a Lock’s condition can unmount (since it’s not inside a monitor). Also, with `Lock` objects you have more control (`tryLock`, `timeouts`, etc.) which can help avoid getting stuck.
+
+- **Avoid blocking calls in foreign libraries:** If you call native libraries or methods that perform 
+    blocking system calls (not aware of Loom), those will pin the virtual thread. For example, some database drivers
+    or legacy APIs might do a blocking wait internally. Where possible, use Loom-integrated libraries or ones that use Java’s I/O (which is Loom-friendly). If you must use a blocking call that isn’t Loom-friendly, you might isolate it on a separate platform thread or use an async wrapper.
+
+- **Don’t oversubscribe CPU with too many active threads:** You can create millions of virtual threads, but if they’re all runnable at once doing CPU work, you’re just context-switching with little gain. The sweet spot is using lots of threads that are mostly waiting or doing short bursts of work. If you do have many CPU-heavy tasks, limit their concurrency or let them queue up (or use a bounded carrier pool) to avoid thrashing. 
+
+- **Name your virtual threads for debugging:** Virtual threads are still `java.lang.Thread` instances under the hood. 
+You can give them names (e.g., `Thread.ofVirtual().name("client-handler-", id).start(runnable)`). This can be helpful when diagnosing issues with thread dumps or logs – a dump of thousands of `“VirtualThread[#.../runnable]"` with no context can be hard to decipher. Meaningful names (or using structured concurrency which names threads after tasks) can ease debugging.
+
+**Use updated tools for thread dumps:** Traditional jstack might not list all virtual threads or their stack traces 
+`by default (to avoid overwhelming output). Instead, use `jcmd Thread.dump_to_file `or JDK Mission
+ Control/Flight Recorder which have added support for virtual threads. These tools can capture the state of virtual threads if needed. Be aware that an idle virtual thread might not show up with a meaningful stack (it’s parked).
+
+
+- **Monitor pinning and adjust if needed:** JDK Flight Recorder has an event `jdk.VirtualThreadPinned` that is enabled by 
+default (with a threshold like 20ms). This can alert you if a virtual thread stayed pinned too long. Use such tools in testing to catch problematic code. If you find threads are frequently pinned, consider increasing the carrier thread pool size (using the aforementioned system property) or, better, fix the cause (e.g., refactor that synchronized section).
+
+
+- **Remember:** not a silver bullet for bad algorithms: Virtual threads simplify concurrency but won’t automatically make a single-threaded algorithm faster. They also won’t reduce memory usage if your tasks themselves hold a lot of data. Use them to write cleaner concurrent code, but still design efficient algorithms and use appropriate data structures.
+
+## Conclusion
+
+Java’s virtual threads allow us to write straightforward concurrent code (like spawning a thread per task) that scales to huge levels of concurrency. They work by using a small pool of OS carrier threads to run a large number of virtual threads through a clever scheduling of mounting (running) and unmounting (parking) threads as they block and resume. Under the hood, the JVM uses continuations to capture a thread’s state and manage stack frames on the heap, making suspension and resumption of threads extremely fast. Virtual threads shine for applications that are I/O-bound or have a high level of concurrency with a lot of waiting (such as servers handling many requests), enabling near-optimal hardware utilization with a simple programming model.
+
+By understanding how the JVM handles virtual threads – especially the cooperative nature of scheduling and the concept of pinning – developers can design applications to avoid pitfalls. Keep critical sections short, avoid blocking operations under locks, and be mindful of any code that might pin or block a carrier thread. With these best practices, virtual threads can drastically simplify writing high-throughput concurrent applications in Java, giving you the performance of asynchronous code with the readability of sequential code.
+
+## Summary: 
+
+Virtual threads are lightweight threads managed by the JVM that allow you to create thousands or millions of concurrent tasks with minimal overhead. They are scheduled cooperatively on a small set of carrier (OS) threads, automatically pausing on blocking calls and resuming later, which frees up the OS threads to do other work. Embrace virtual threads for simpler concurrent code, but use them wisely by avoiding long blocking critical sections and understanding their scheduling model. With Project Loom’s virtual threads, you can have the simplicity of one-thread-per-task and achieve the scalability that was once only possible with complex async frameworks – truly the best of both worlds for Java developers.
 
 ---
 
