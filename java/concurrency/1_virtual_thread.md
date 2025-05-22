@@ -129,8 +129,9 @@ Before sleep: VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1
 After sleep:  VirtualThread[#21]/runnable@ForkJoinPool-1-worker-7
 ```
 
-Notice that the **same virtual thread (#21)** was running on one carrier thread (ForkJoinPool-1-worker-1) 
-before the sleep, but after waking up, it resumed on a different carrier thread (worker-7) ! This demonstrates mounting and unmounting in action. The virtual thread was mounted on the first worker, then during `Thread.sleep()` it got unmounted (freeing worker-1 to do something else), and later the scheduler remounted it on worker-7 to print the second line. From the virtual thread’s perspective, it just went to sleep and woke up – it doesn’t “know” it switched carriers.
+Notice that the **same virtual thread (#21)** was running on one carrier thread (`ForkJoinPool-1-worker-1`) 
+before the sleep, but after waking up, it resumed on a different carrier thread (`ForkJoinPool-1-worker-7`) 
+! This demonstrates mounting and unmounting in action. The virtual thread was mounted on the first worker, then during `Thread.sleep()` it got unmounted (freeing `ForkJoinPool-1-worker-1` to do something else), and later the scheduler remounted it on `ForkJoinPool-1-worker-7` to print the second line. From the virtual thread’s perspective, it just went to sleep and woke up – it doesn’t “know” it switched carriers.
 
 **How does the JVM park and unpark threads so smoothly?** This is where the magic of continuations comes in, which we’ll cover soon. Essentially, when a virtual thread blocks, the JVM captures its current state (the call stack, program counter, etc.) into a continuation object and then frees the carrier thread. When it’s time to resume, the saved state is used to continue where it left off.
 
