@@ -200,7 +200,7 @@ virtual thread gets pinned to its carrier and won’t unmount on block:
 
 <ol>
   <li>
-  <h1>While executing inside a synchronized block or method.</h1> If a virtual thread holds a monitor lock 
+  <h6>While executing inside a synchronized block or method.</h6> If a virtual thread holds a monitor lock 
 (entered a synchronized section) and then it hits a blocking operation, the JVM will not unmount it. 
 It stays pinned to the carrier until the synchronized block is exited. This is because allowing it 
 to unmount could lead to thread-safety issues; the lock is tied to the thread holding it, and if that 
