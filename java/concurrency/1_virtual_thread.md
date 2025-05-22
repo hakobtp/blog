@@ -210,7 +210,12 @@ monitor. It’s simpler and safer to just keep it pinned.
 Additionally, if a virtual thread is trying to enter a synchronized block (waiting for a lock) and gets blocked because another thread holds the lock, it is effectively pinned waiting for that monitor. Several virtual threads contending on a synchronized lock can each pin a carrier thread while they wait. This was observed in real cases: e.g., if 4 virtual threads are all waiting on the same lock, and you only have 4 carrier threads, those 4 carriers can all become stuck (pinned) waiting – meaning no other work can proceed until one gets the lock and releases the others.
   
   </li>
-  <li>Add condiments</li>
+  <li>
+  When calling a native method or foreign function. If your virtual thread calls into native code (via JNI or 
+  a foreign function interface) that blocks in the native layer, the JVM cannot suspend and resume that at the Java 
+  level. The thread will remain pinned to the OS thread until the native call returns. Essentially, the JVM only controls Java code; once you’re in native code, Loom’s tricks can’t be applied.
+
+  </li>
 </ol> 
 
 ---
