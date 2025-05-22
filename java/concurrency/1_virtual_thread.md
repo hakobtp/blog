@@ -88,7 +88,49 @@ If you create 1000 virtual threads that each handle a network request, the JVM w
 at once (one per carrier). Whenever any of those threads hits an I/O wait (e.g., waiting for a database response), 
 that thread is unmounted and another pending virtual thread is mounted on that carrier thread. In this way, the carriers are always kept busy doing real work, and none are stuck waiting on I/O. The result is high throughput with a small number of actual OS threads. The JVM’s goal is to keep the carrier threads busy but not blocked.
 
+## Mounting and Unmounting: Running vs. Waiting in a Virtual Thread
 
+We’ve already used the terms mounted and unmounted, which are central to how virtual threads work. Let’s define them clearly:
+
+- **Mounted:** A virtual thread is mounted when it’s actively running on a carrier (platform) thread. 
+    While mounted, the virtual thread is consuming an OS thread (carrier) and executing instructions.
+- **Unmounted:** A virtual thread is unmounted when it’s not currently running on any carrier. This happens when the 
+    thread is parked waiting for something (I/O, sleep, lock, etc.), or if it hasn’t been started yet, or if it yielded. An unmounted thread’s state (its call stack, registers, etc.) is saved so it can be resumed later. While unmounted, it occupies minimal resources (just some heap memory to hold its stack) and no OS thread.    
+
+A virtual thread will frequently mount and unmount during its lifecycle. It mounts to run, 
+then unmounts when it waits, then mounts again (possibly on a different carrier thread) to continue running when it’s ready. 
+This is how a single virtual thread can “jump” between different underlying OS threads over time. 
+It’s very different from a platform thread, which stays on the same OS thread for its entire life. 
+
+For example, consider this simple code using a virtual thread:
+
+```java
+Thread vt = Thread.ofVirtual().unstarted(() -> {
+    System.out.println("Before sleep: " + Thread.currentThread());
+    try {
+        Thread.sleep(20);    // simulate blocking
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    System.out.println("After sleep: " + Thread.currentThread());
+});
+vt.start();
+vt.join();
+```
+
+When you run this, the output might be something like:
+
+```
+Before sleep: VirtualThread[#21]/runnable@ForkJoinPool-1-worker-1
+After sleep:  VirtualThread[#21]/runnable@ForkJoinPool-1-worker-7
+```
+
+Notice that the **same virtual thread (#21)** was running on one carrier thread (ForkJoinPool-1-worker-1) 
+before the sleep, but after waking up, it resumed on a different carrier thread (worker-7) ! This demonstrates mounting and unmounting in action. The virtual thread was mounted on the first worker, then during `Thread.sleep()` it got unmounted (freeing worker-1 to do something else), and later the scheduler remounted it on worker-7 to print the second line. From the virtual thread’s perspective, it just went to sleep and woke up – it doesn’t “know” it switched carriers.
+
+**How does the JVM park and unpark threads so smoothly?** This is where the magic of continuations comes in, which we’ll cover soon. Essentially, when a virtual thread blocks, the JVM captures its current state (the call stack, program counter, etc.) into a continuation object and then frees the carrier thread. When it’s time to resume, the saved state is used to continue where it left off.
+
+Mounting and unmounting happen very fast, much faster than an OS context switch. There is no heavy kernel context switch when a virtual thread unmounts – it’s more like saving and restoring a function call stack. This is why millions of virtual threads can be scheduled efficiently by the JVM.
 
 ---
 
