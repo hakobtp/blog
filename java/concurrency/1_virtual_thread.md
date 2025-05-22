@@ -189,6 +189,24 @@ file I/O (like reading a file from disk) may not unmount the virtual thread on s
 
 Next, let’s discuss a tricky area: synchronized blocks and other locks, which introduce the concept of pinning.
 
+## Pinning: Synchronized Blocks and Other Limitations
+
+Pinning is a situation where a virtual thread cannot be unmounted from its carrier thread, effectively tying that carrier thread down. 
+Pinning is not an error – the code still works correctly – but it means you lose the scalability benefits for that duration, since the 
+OS thread is stuck waiting along with the virtual thread. The goal is to avoid or minimize pinning, or design around it.
+
+When does pinning happen? According to the JDK documentation and design of Loom, there are two main cases where a 
+virtual thread gets pinned to its carrier and won’t unmount on block:
+
+1) While executing inside a synchronized block or method. If a virtual thread holds a monitor lock 
+(entered a synchronized section) and then it hits a blocking operation, the JVM will not unmount it. 
+It stays pinned to the carrier until the synchronized block is exited. This is because allowing it 
+to unmount could lead to thread-safety issues; the lock is tied to the thread holding it, and if that 
+thread “disappeared” off the carrier, the JVM would have to prevent any other thread from entering that 
+monitor. It’s simpler and safer to just keep it pinned. 
+
+Additionally, if a virtual thread is trying to enter a synchronized block (waiting for a lock) and gets blocked because another thread holds the lock, it is effectively pinned waiting for that monitor. Several virtual threads contending on a synchronized lock can each pin a carrier thread while they wait. This was observed in real cases: e.g., if 4 virtual threads are all waiting on the same lock, and you only have 4 carrier threads, those 4 carriers can all become stuck (pinned) waiting – meaning no other work can proceed until one gets the lock and releases the others.
+
 ---
 
 ## 📌 Explore More
