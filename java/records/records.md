@@ -1,4 +1,4 @@
-# 📘 Java Record
+# Java Record
 
 ```
 Author: Ter-Petrosyan Hakob
@@ -461,6 +461,7 @@ By using this custom utility, you can experiment with record copying until [JEP�
 
 
 ---
+## Explore More
 
-- 🏠 [Home](./../../README.md)
-- ☕ [Java Tutorials](./../tutorials.md)
+- [Home](./../../README.md)
+- [Java Tutorials](./../tutorials.md)

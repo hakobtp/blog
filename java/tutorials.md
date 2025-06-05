@@ -1,4 +1,4 @@
-## ☕ Java Tutorials
+## Java Tutorials
 
 - [Record](./records/records.md)
 

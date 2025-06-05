@@ -289,9 +289,9 @@ Virtual threads are lightweight threads managed by the JVM that allow you to cre
 
 ---
 
-## 📌 Explore More
+## Explore More
 
-- 🏠 [Home](./../../README.md)
-- ☕ [Java Tutorials](./../tutorials.md)
+- [Home](./../../README.md)
+- [Java Tutorials](./../tutorials.md)
 
 ---
