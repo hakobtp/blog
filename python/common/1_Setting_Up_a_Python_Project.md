@@ -15,6 +15,28 @@ When starting a new Python project, managing dependencies and environment-specif
 - **requirements.txt:** pinning Python packages for reproducible installs.
 - **environment.yml:** using Conda to manage both Python and non-Python dependencies, including best practices and key differences from `requirements.txt`.
 
+By the end, you’ll understand not only how to create each file but also when and why to use each tool in your workflow.
+
+## Virtual Environments (venv)
+
+A virtual environment (commonly abbreviated **“venv”**) is a self-contained directory that holds a specific Python interpreter and a set of packages isolated from your system’s global Python installation. In essence, it allows every project to maintain its own dependencies without interfering with other projects.
+
+**Why isolation matters:**
+- You might need Django 3.2 for one project and Django 4.2 for another. Without isolation, upgrading Django system-wide could break older projects.
+- Some libraries require conflicting versions of the same package. Virtual environments prevent clashes.
+
+### How venv Works under the Hood
+
+When you run: 
+
+```bash
+python3 -m venv venv
+```
+Python creates a folder named `venv/` containing:
+- A Python interpreter (often a copy of or symlink to your system Python).
+- A pip binary.
+- Subdirectories for installed packages (`lib/pythonX.Y/site-packages` on Linux/macOS or `Lib\site-packages` on Windows).
+
 ---
 
 ## Explore More
