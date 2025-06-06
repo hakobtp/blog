@@ -185,6 +185,26 @@ print("Secret Key:", SECRET_KEY)
 print("Debug mode:", DEBUG)
 ```
 
+If you don’t want to hardcode the filename, you can use `find_dotenv()` to discover the nearest dotenv file. 
+By default, `find_dotenv()` searches for a file named `.env`. To find `.env.local`, call it with the filename:
+
+```python
+from dotenv import load_dotenv, find_dotenv
+import os
+
+
+# Load default .env if present
+default_path = find_dotenv(".env", raise_error_if_not_found=False)
+load_dotenv(default_path, override=False)
+
+# Then override with .env.local if present
+local_path = find_dotenv(".env.local", raise_error_if_not_found=False)
+load_dotenv(local_path, override=True)
+
+# Now environment variables from .env.local are available
+print("Debug:", os.getenv("DEBUG"))
+```
+
 ---
 
 ## Explore More
