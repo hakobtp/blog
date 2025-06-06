@@ -57,6 +57,30 @@ source venv/bin/activate
 
 ```
 
+After activation, your prompt usually shows (`venv`) at the beginning, indicating you’re inside that environment
+
+```bash
+(venv) ~
+```
+
+**Deactivate when you’re done:**
+
+```bash
+deactivate
+
+```
+
+This returns you to the system Python.
+
+### Best Practices and Tips
+
+- **Name conventions:** It’s common to name the folder `venv/`, `.venv/`, or `env/`. Prefixing with a dot (`.venv/`) hides it from most directory listings.
+- **Add venv to .gitignore:** You do not want to commit the entire virtual environment. Instead, share only `requirements.txt` (or `environment.yml`). 
+- **Pin Python version:** If you rely on language features introduced in Python 3.10 (for example, structural pattern matching), 
+    consider documenting “Python 3.10+” in your README so collaborators know which interpreter to use.
+- **Activate automatically (optional):** Tools like direnv can auto-load environment variables and activate your 
+    venv when you cd into the project folder. This can save you from typing source `venv/bin/activate` every time.    
+
 
 ---
 
