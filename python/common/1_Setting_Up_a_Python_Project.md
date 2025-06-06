@@ -154,6 +154,10 @@ This ensures you never push secrets to the repository. If collaborators need def
     DATABASE_URL=postgres://user:password@localhost:5432/dbname
     DEBUG=False
     ```
+- **Differentiate environments.** You might have `.env.development`, `.env.staging`, and `.env.production`. 
+    Your deployment pipeline or CI/CD can choose which one to load.
+- **Avoid storing sensitive files in Docker images.** Instead, pass secrets as Docker environment variables or use a secrets manager 
+    (e.g., AWS Secrets Manager, HashiCorp Vault).
 
 ---
 
