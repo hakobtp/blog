@@ -37,6 +37,10 @@ Python creates a folder named `venv/` containing:
 - A pip binary.
 - Subdirectories for installed packages (`lib/pythonX.Y/site-packages` on Linux/macOS or `Lib\site-packages` on Windows).
 
+Once you **activate** this environment, any `pip install` commands will install into `venv/lib/...` (rather than the global site-packages). Deactivating returns your shell to the system interpreter.
+
+>If you have multiple Pythons (e.g., Python 3.9 and 3.11), specify exactly: ```python3.11 -m venv venv```
+
 ---
 
 ## Explore More
