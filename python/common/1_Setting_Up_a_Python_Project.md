@@ -456,14 +456,6 @@ if __name__ == "__main__":
 ```
 
 
-```bash
-```
-
-
-```bash
-```
-
-
 ### Conda-Based Project (environment.yml)
 
 Create the project folder and Git repo:
