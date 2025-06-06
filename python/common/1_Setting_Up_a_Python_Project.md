@@ -159,6 +159,32 @@ This ensures you never push secrets to the repository. If collaborators need def
 - **Avoid storing sensitive files in Docker images.** Instead, pass secrets as Docker environment variables or use a secrets manager 
     (e.g., AWS Secrets Manager, HashiCorp Vault).
 
+```
+my_app/
+├── .env              ← general defaults (optional)
+├── .env.local        ← local overrides (not committed)
+├── .gitignore
+└── app.py
+```
+
+```python
+from dotenv import load_dotenv
+import os
+
+# 1) First load the default .env (if you have one)
+load_dotenv(dotenv_path=".env", override=False)
+
+# 2) Then load .env.local, overriding any values from .env
+load_dotenv(dotenv_path=".env.local", override=True)
+
+# Now os.getenv() will reflect values from .env.local for any keys defined there.
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
+
+print("Secret Key:", SECRET_KEY)
+print("Debug mode:", DEBUG)
+```
+
 ---
 
 ## Explore More
