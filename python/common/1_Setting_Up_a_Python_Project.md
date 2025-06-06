@@ -205,6 +205,83 @@ load_dotenv(local_path, override=True)
 print("Debug:", os.getenv("DEBUG"))
 ```
 
+## requirements.txt
+
+Once you have activated your virtual environment and installed packages via `pip`, you need a way to record exactly which packages (and versions) your project depends on. That’s where `requirements.txt` comes in. It’s simply a plain-text file listing:
+
+```txt
+Flask==2.1.2
+requests==2.28.1
+python-dotenv==1.0.0
+```
+
+Using this file, anyone (or any CI/CD pipeline) can install your project’s dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+This replicates the same package versions you used during development.
+
+How to Generate and Maintain `requirements.txt`
+
+Install everything you need:
+```bash
+pip install flask requests python-dotenv
+```
+
+“Freeze” your environment:
+
+```bash
+pip freeze > requirements.txt
+
+```
+
+This writes every installed package in the current venv to `requirements.txt`, pinned to the exact version.
+
+If you omit versions (e.g., Flask instead of Flask==2.1.2), you risk installing a newer or older version that may introduce breaking changes.
+
+```bash
+cat requirements.txt 
+
+certifi==2025.4.26
+charset-normalizer==2.1.1
+click==8.2.1
+Flask==2.1.2
+idna==3.10
+itsdangerous==2.2.0
+Jinja2==3.1.6
+MarkupSafe==3.0.2
+python-dotenv==1.0.0
+requests==2.28.1
+urllib3==1.26.20
+Werkzeug==3.1.3
+```
+
+Regularly update as needed:
+- If you add a new package (e.g., `pip install sqlalchemy`), run `pip freeze > requirements.txt` again to update.
+- If you bump versions, do so deliberately and then re-freeze.
+
+### Best practice in long-term projects:
+
+- **Use two files:**
+    - requirements.txt (pins exact versions).
+    - requirements.in (lists top-level packages without versions).
+
+Then use a tool like <span class="site-footer-credits"><a href="https://github.com/jazzband/pip-tools"  target="_blank">pip-tools</span>:
+
+```
+# In requirements.in:
+flask
+requests
+python-dotenv
+
+# To compile:
+pip-compile requirements.in  # generates a version-pinned requirements.txt
+```
+
+This separates “I want Flask” (in .in) from “we tested with Flask 2.1.2” (in .txt), making upgrades more controlled.
+
 ---
 
 ## Explore More
