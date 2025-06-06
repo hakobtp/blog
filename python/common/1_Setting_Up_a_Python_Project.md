@@ -268,7 +268,7 @@ Regularly update as needed:
     - requirements.txt (pins exact versions).
     - requirements.in (lists top-level packages without versions).
 
-Then use a tool like <span class="site-footer-credits"><a href="https://github.com/jazzband/pip-tools"  target="_blank">pip-tools</span>:
+Then use a tool like <span class="site-footer-credits"><a href="https://github.com/jazzband/pip-tools"  target="_blank">pip-tools </span>:
 
 ```
 # In requirements.in:
