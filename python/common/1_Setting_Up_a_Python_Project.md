@@ -41,6 +41,23 @@ Once you **activate** this environment, any `pip install` commands will install 
 
 > If you have multiple Pythons (e.g., Python 3.9 and 3.11), specify exactly: ```python3.11 -m venv venv```
 
+**Activate the venv:**
+
+```bash
+# macOS/Linux (bash, zsh):
+
+source venv/bin/activate
+
+```
+
+```powershell
+# Windows PowerShell:
+
+.\venv\Scripts\Activate.ps1
+
+```
+
+
 ---
 
 ## Explore More
