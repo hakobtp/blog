@@ -1,4 +1,4 @@
-## 🐘 PostgreSQL Tutorials
+##  PostgreSQL Tutorials
 
 ---
 
@@ -30,4 +30,4 @@
 
 ---
 
-🏠 [Home](./../README.md)
+[Home](./../README.md)
