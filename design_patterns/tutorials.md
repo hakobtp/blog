@@ -1,4 +1,4 @@
-## 🎨 Design Patterns
+## Design Patterns
 
 ---
 
@@ -15,5 +15,5 @@
 
 ---
 
-- 🏠 [Home](./../README.md)
+- [Home](./../README.md)
 

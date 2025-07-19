@@ -141,7 +141,7 @@ Cons:
 
 ---
 
-## 📌 Explore More
+## Explore More
 
-- 🏠 [Home](./../../README.md)
-- 🎨 [ Design Patterns](./../tutorials.md)
+- [Home](./../../README.md)
+- [Design Patterns](./../tutorials.md)
