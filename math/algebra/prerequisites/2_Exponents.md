@@ -38,6 +38,8 @@ $$
 
 $$
 
+---
+
 ### The Power Rule of Exponents
 
 For any real number **a** and positive integers **m** and **n**, the power rule of exponents states that
@@ -57,6 +59,13 @@ For any nonzero real number **a**, the zero exponent rule of exponents states th
 $$
 a^0 = 1
 $$
+---
+
+### The Negative Rule of Exponents
+
+
+
+---
 
 
 ## Explore More
