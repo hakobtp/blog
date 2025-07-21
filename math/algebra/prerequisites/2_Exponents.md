@@ -29,11 +29,14 @@ Use this rule to make expressions with the same base simpler by adding the expon
 
 ### The Quotient Rule of Exponents
 
-For any real number **a**
-and natural numbers
-and
-such that
+For any real number **a** and natural numbers **m** and **n** such that **m > n**, 
 the quotient rule of exponents states that
+
+$$
+
+\frac{a^m}{a^n} = a^{m+n}
+
+$$
 
 
 
