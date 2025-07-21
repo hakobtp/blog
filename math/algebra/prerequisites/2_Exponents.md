@@ -109,7 +109,7 @@ Scientific notation is a way to write very large or very small numbers more simp
     - If you moved the decimal to the left, **n** is positive.
     - If you moved the decimal to the right, **n** is negative.    
 4. **Combine them**
-    - The result is: $$(new number) \times 10^n$$
+    - The result is: $$(new_number) \times 10^n$$
 
 
 Example 1: A large number
