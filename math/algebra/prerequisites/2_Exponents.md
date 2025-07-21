@@ -124,7 +124,7 @@ Example 2: A very small number
 - Exponent: −12 (because we moved right)
 - Scientific notation: $$2.35 \times 10^{-12}$$
 
-> A number is written in scientific notation if it has the form $$a\times 10^n$$ where $$$$
+> A number is written in scientific notation if it has the form $$a\times 10^n$$ where $$1\le a < 10$$
 
 ## Explore More
 
