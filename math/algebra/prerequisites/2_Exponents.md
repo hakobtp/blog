@@ -94,6 +94,23 @@ $$
 
 $$
 
+---
+
+### Scientific Notation
+
+Scientific notation is a way to write very large or very small numbers more simply. We use powers of ten to do this.
+
+1. **Choose the first digit**
+    - Write the number so there is one nonzero digit before the decimal point.
+    - This gives a new number between 1 and 10.
+2. **Count the moves**
+    - Count how many places you moved the decimal point. Call this number **n**.
+3. **Write the power of ten**
+    - If you moved the decimal to the left, **n** is positive.
+    - If you moved the decimal to the right, **n** is negative.    
+
+4. **Combine them**
+    - The result is: $$(new number) \times 10^n$$
 
 ## Explore More
 
