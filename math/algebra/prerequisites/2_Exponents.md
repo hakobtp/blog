@@ -74,6 +74,14 @@ $$
 
 ---
 
+### The Power of a Product Rule of Exponents
+
+For any real numbers **a** and **b** and any integer **n**, the power of a product rule of exponents states that
+
+$$
+(ab)^n = a^n \cdot b^n
+$$
+
 
 ## Explore More
 
