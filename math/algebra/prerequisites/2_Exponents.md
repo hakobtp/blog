@@ -109,7 +109,7 @@ Scientific notation is a way to write very large or very small numbers more simp
     - If you moved the decimal to the left, **n** is positive.
     - If you moved the decimal to the right, **n** is negative.    
 4. **Combine them**
-    - The result is: $$(new_number) \times 10^n$$
+    - The result is: $$(newNumber) \times 10^n$$
 
 
 Example 1: A large number
@@ -123,6 +123,8 @@ Example 2: A very small number
 - Move the decimal point right 12 times: 2.35
 - Exponent: −12 (because we moved right)
 - Scientific notation: $$2.35 \times 10^{-12}$$
+
+> A number is written in scientific notation if it has the form $$a\times 10^n$$ where $$$$
 
 ## Explore More
 
