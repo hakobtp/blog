@@ -44,11 +44,20 @@ For any real number **a** and positive integers **m** and **n**, the power rule 
 
 $$
 
-(a^m)^n=a^{m \dot n}
+(a^m)^n=a^{m \cdot n}
 
 $$
 
 ---
+
+### The Zero Exponent Rule of Exponents
+
+For any nonzero real number **a**, the zero exponent rule of exponents states that
+
+$$
+a^0 = 1
+$$
+
 
 ## Explore More
 
