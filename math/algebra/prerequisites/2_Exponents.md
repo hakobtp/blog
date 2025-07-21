@@ -82,6 +82,18 @@ $$
 (ab)^n = a^n \cdot b^n
 $$
 
+---
+
+### The Power of a Quotient Rule of Exponents
+
+For any real numbers **a** and **b** and any integer **n**, the power of a quotient rule of exponents states that
+
+$$
+
+ \left(\frac{a}{b}\right)^n=\frac{a^n}{b^n}
+
+$$
+
 
 ## Explore More
 
