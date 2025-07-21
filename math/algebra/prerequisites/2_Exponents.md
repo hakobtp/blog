@@ -63,7 +63,13 @@ $$
 
 ### The Negative Rule of Exponents
 
+For any nonzero real number **a** and natural number **n** the negative rule of exponents states that
 
+$$
+
+a^{-n}= \frac{1}{a^n}
+
+$$
 
 ---
 
