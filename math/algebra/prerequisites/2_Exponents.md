@@ -111,6 +111,13 @@ Scientific notation is a way to write very large or very small numbers more simp
 4. **Combine them**
     - The result is: $$(new number) \times 10^n$$
 
+
+Example 1: A large number
+- Original number: 4567834
+- Move the decimal point left 6 times: 4.567834
+- Exponent: +6 (because we moved left)
+- Scientific notation: $$4.567834 \times 10^6$$
+
 ## Explore More
 
 - [Home](./../../../README.md)
