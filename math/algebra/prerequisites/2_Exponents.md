@@ -59,6 +59,7 @@ For any nonzero real number **a**, the zero exponent rule of exponents states th
 $$
 a^0 = 1
 $$
+
 ---
 
 ### The Negative Rule of Exponents
