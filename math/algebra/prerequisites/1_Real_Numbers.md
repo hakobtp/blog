@@ -188,13 +188,10 @@ Real numbers follow simple rules that help us work with expressions. Here are th
     - `Addition:` Every real number **a** has an additive inverse, or opposite, denoted **–a**, such that $$a+(-a)=0$$.
     - `Multiplication:` Every nonzero real number **a** has a multiplicative inverse, or reciprocal, denoted $$\frac{1}{a}$$ such that $$a \times \left( \frac{1}{a}\right)=1$$.
 
-
-
-
 ---
 
-## 📌 Explore More
+## Explore More
 
-- 🏠 [Home](./../../../README.md)
+- [Home](./../../../README.md)
 - [Algebra](./../tutorials.md)
 - [Exponents](./2_Exponents.md)

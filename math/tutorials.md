@@ -1,4 +1,4 @@
-## 📐 Math Tutorials
+## Math Tutorials
 
 - [Algebra](./algebra/tutorials.md)
 
@@ -11,4 +11,4 @@
 
 ---
 
-🏠 [Home](./../README.md)
+[Home](./../README.md)
