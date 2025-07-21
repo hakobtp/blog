@@ -39,8 +39,8 @@ the quotient rule of exponents states that
 
 ---
 
-## 📌 Explore More
+## Explore More
 
-- 🏠 [Home](./../../../README.md)
+- [Home](./../../../README.md)
 - [Algebra](./../tutorials.md)
 - [Real Numbers](./1_Real_Numbers.md)
