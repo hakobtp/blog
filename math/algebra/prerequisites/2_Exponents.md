@@ -118,6 +118,12 @@ Example 1: A large number
 - Exponent: +6 (because we moved left)
 - Scientific notation: $$4.567834 \times 10^6$$
 
+Example 2: A very small number
+- Original number: 0.00000000000235 
+- Move the decimal point right 12 times: 2.35
+- Exponent: −12 (because we moved right)
+- Scientific notation: $$2.35 \times 10^{-12}$$
+
 ## Explore More
 
 - [Home](./../../../README.md)
