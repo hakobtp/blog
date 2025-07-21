@@ -34,11 +34,19 @@ the quotient rule of exponents states that
 
 $$
 
-\frac{a^m}{a^n} = a^{m+n}
+\frac{a^m}{a^n} = a^{m-n}
 
 $$
 
+### The Power Rule of Exponents
 
+For any real number **a** and positive integers **m** and **n**, the power rule of exponents states that
+
+$$
+
+(a^m)^n=a^{m \dot n}
+
+$$
 
 ---
 
