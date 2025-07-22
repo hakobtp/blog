@@ -14,27 +14,13 @@ $$
 
 $$
 
-
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
 
 
 **The Python code**
 
 ```python
-import matplotlib . pyplot as plt
-import sympy as sp
 
-def createPlot ( fromTick , toTick ) :
-    # Create an empty plot
-    plt.figure ()
-
-# Set the x and y- axis limits
-9 plt . xlim ( fromTick , toTick )
-10 plt . ylim ( fromTick , toTick )
-11
-12 # Define ticks for both axes
-13 ticks = list ( range ( fromTick , toTick + 1) ) # Include toTick in ticks
-14
-15 # Set the x and y- axis ticks
-16 plt . xticks ( ticks )
-17 plt . yticks ( ticks )
 ```
