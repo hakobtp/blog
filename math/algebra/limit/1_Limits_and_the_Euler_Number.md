@@ -17,7 +17,7 @@ even if it never actually reaches that point.
 ### Example
 
 Consider the function $$f(x) = \frac{1}{x}$$.
-
+- As $$\(x\)$$ becomes very large ($$\(1000, 10\,000,\ldots\)$$), **\(f(x)\)** becomes very small. 
 <!-- # Limits and the Euler Number
 
 
