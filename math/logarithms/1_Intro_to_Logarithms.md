@@ -146,6 +146,8 @@ This means that `2` is `8` raised to the power of $$x=\frac{1}{3}$$, which is th
 
 **Example 2:**
 - To solve $$\log_{8}(\frac{1}{2})$$, we want to find the exponent `x` such that: $$8^x=\frac{1}{2}$$.
+- We know that $$8=2^3$$. So we can rewrite the equation using this: $$(2^3)^x=\frac{1}{2}$$.
+- Using the power of a power rule $$(a^m)^n=a^{mn}$$ , we can simplify: $$2^{3x}=\frac{1}{2}$$.
 
 ---
 
