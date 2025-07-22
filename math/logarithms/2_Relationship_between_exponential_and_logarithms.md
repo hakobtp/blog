@@ -33,6 +33,12 @@ $$
 
 $$
 
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="400"/>
+</p>
+
+And the whole reason is to give you this appreciation that these are inverse functions of each other.
+
 **The Python code**
 
 ```python
