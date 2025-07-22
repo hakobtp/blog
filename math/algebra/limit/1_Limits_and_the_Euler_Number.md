@@ -20,7 +20,9 @@ Consider the function $$f(x) = \frac{1}{x}$$. As **x** becomes very large ($$100
  We say 
  
  $$ 
-    \lim_{x \to \infty} \frac{1}{x} = 0
+ 
+ \lim_{x \to \infty} \frac{1}{x} = 0
+     
  $$, 
  
  meaning that $$\frac{1}{x}$$ gets arbitrarily close to **0** as **x** grows without bound.
