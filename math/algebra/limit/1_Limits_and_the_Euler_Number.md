@@ -52,6 +52,10 @@ $$
 \lim_{x \to \infty} \left( 1+\frac{1}{n} \right)^n= 0
 $$
 
+$$
+     \lim_{n \to \infty}\Bigl(1 + \tfrac{1}{n}\Bigr)^{n} \;=\; e.
+$$
+
 ---
 
 - [Home](./../../../README.md)
