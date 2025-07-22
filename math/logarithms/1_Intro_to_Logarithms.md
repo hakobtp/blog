@@ -150,6 +150,11 @@ This means that `2` is `8` raised to the power of $$x=\frac{1}{3}$$, which is th
 - Using the power of a power rule $$(a^m)^n=a^{mn}$$ , we can simplify: $$2^{3x}=\frac{1}{2}$$.
 - The fraction $$\frac{1}{2}$$ can be expressed as a negative exponent: $$\frac{1}{2}=2^{-1}$$.
 - So, the equation becomes: $$2^{3x}=2^{-1}$$.
+- Since the bases are the same, we can set the exponents equal to each other: $$3x=-1$$.
+- Divide both sides by `3` to solve for `x`: $$x=-\frac{1}{3}$$.
+- Conclusion: $$\log_{8}(\frac{1}{2})=-\frac{1}{3}$$.
+
+This means that to get $$\frac{1}{2}$$ from `8`, you need to raise `8` to the power of $$-\frac{1}{3}$$.
 
 ---
 
