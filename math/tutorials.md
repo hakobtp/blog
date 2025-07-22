@@ -8,13 +8,9 @@
 
   <!-- Second list -->
   <ul style="display:inline-block; vertical-align:top;">
-    
+     <li><a href="./logarithms/1_Intro_to_Logarithms.html">Intro to Logarithms</a></li>
   </ul>
 </div>
-
-### Logarithms
-
-- [Intro to Logarithms](./logarithms/1_Intro_to_Logarithms.md)
 
 ---
 
