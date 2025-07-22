@@ -1,4 +1,12 @@
-# Limits and the Euler Number
+# Understanding Limits and the Euler Number
+
+Mathematics is full of concepts that might seem abstract at first but are crucial for describing the natural  
+world and many scientific principles. Two such concepts are the **limit** (often denoted as *lim*) and **Euler’s number**  
+(denoted as *e*). In this post, we’ll explore what these mean in simple terms and how they relate to each other.
+
+
+
+<!-- # Limits and the Euler Number
 
 
 Mathematics is full of concepts that might seem abstract at first but are crucial for 
@@ -50,11 +58,9 @@ would have after one year, as the compounding becomes infinite, is:
 
 $$
 \lim_{x \to \infty} \left( 1+\frac{1}{n} \right)^n= 0
-$$
+$$ -->
 
-$$
-     \lim_{n \to \infty}\Bigl(1 + \tfrac{1}{n}\Bigr)^{n} \;=\; e.
-$$
+
 
 ---
 
