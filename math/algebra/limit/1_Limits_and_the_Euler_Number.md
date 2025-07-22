@@ -16,8 +16,9 @@ even if it never actually reaches that point.
 
 ### Example
 
-Consider the function $$f(x) = \frac{1}{x}$$.
-- As **x** becomes very large ($$1000, 10000, \ldots$$), **\(f(x)\)** becomes very small. 
+Consider the function $$f(x) = \frac{1}{x}$$. As **x** becomes very large ($$1000, 10000, \ldots$$), **f(x)** becomes very small. 
+ We say $$ \lim_{x \to \infty} \frac{1}{x} = 0$$, meaning that $$\frac{1}{x}$$ gets arbitrarily close to **0** as **x** grows without bound.
+
 
 <!-- # Limits and the Euler Number
 
