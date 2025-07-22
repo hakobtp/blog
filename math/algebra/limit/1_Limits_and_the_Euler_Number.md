@@ -11,8 +11,12 @@ even if it never actually reaches that point.
 
 > **Analogy:**  
 > Imagine you’re filling a cup with water drop by drop. You can get arbitrarily close to full without ever overflowing.  
-> That “almost full” state is like a limit.
+> That `almost full` state is like a limit.
 
+
+### Example
+
+Consider the function $$f(x) = \frac{1}{x}$$.
 
 <!-- # Limits and the Euler Number
 
