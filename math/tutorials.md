@@ -17,4 +17,14 @@
 
 ---
 
+<div>
+  <!-- 1 list -->
+  <ul style="display:inline-block; vertical-align:top; margin-right:2em;">
+    <li><a href="./geometry/1/1_The_Pythagorean_Theorem.html">The Pythagorean Theorem</a></li>
+  </ul>
+</div>
+
+
+---
+
 [Home](./../README.md)
