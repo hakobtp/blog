@@ -4,6 +4,14 @@ Mathematics is full of concepts that might seem abstract at first but are crucia
 world and many scientific principles. Two such concepts are the **limit** (often denoted as *lim*) and **Euler’s number**  
 (denoted as *e*). In this post, we’ll explore what these mean in simple terms and how they relate to each other.
 
+## What Is a Limit?
+
+A **limit** describes the value that a function or sequence *approaches* as its input gets closer to some point,  
+even if it never actually reaches that point.
+
+> **Analogy:**  
+> Imagine you’re filling a cup with water drop by drop. You can get arbitrarily close to full without ever overflowing.  
+> That “almost full” state is like a limit.
 
 
 <!-- # Limits and the Euler Number
