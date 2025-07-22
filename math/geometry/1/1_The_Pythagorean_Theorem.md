@@ -20,12 +20,16 @@ $$
 
 ## Diagram and Setup
 
-Consider triangle  $\bigtriangleup ABC$ with right angle at $C$:
+Consider triangle  $$\bigtriangleup ABC$$ with right angle at $$C$$:
 
 <p align="center">
     <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
+
+- Side $$AC=b$$
+- Side $$BC=a$$
+- Hypotenuse $$AB=c$$
 
 ---
 
