@@ -140,7 +140,9 @@ and are actually very common in the world around us. For example, many physical 
 - Simplifying the left side, we get: $$2^{3x}=2^1$$.
 - Since the bases are the same, we can set the exponents equal to each other: $$3x=1$$.
 - Now, solve for `x`: $$x=\frac{1}{3}$$.
+- So: $$\log_{8}(2)=\frac{1}{3}$$.
 
+This means that `2` is `8` raised to the power of $$x=\frac{1}{3}$$, which is the cube root of `8`.
 
 ---
 
