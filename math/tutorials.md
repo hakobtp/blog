@@ -1,5 +1,3 @@
-## Math Tutorials
-
 <div>
   <!-- First list -->
   <ul style="display:inline-block; vertical-align:top; margin-right:2em;">
