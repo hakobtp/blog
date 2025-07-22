@@ -14,4 +14,6 @@
 
 ---
 
+[ssss](./logarithms/2_Relationship_between_exponential_and_logarithms.md)
+
 [Home](./../README.md)
