@@ -37,9 +37,11 @@ mathematics because it arises naturally in many different contexts, especially t
 
 The number $e$ can be understood through the concept of continuously compounding interest. Here’s a simplified explanation:
 
-1. **Compounded Interest:** Imagine you have `$1` in a bank account with a `100%` interest rate per year.
-    - If the interest is compounded once a year, you’d have `$2` at the end of the year $$1+1=2$$. 
-
+1. **Compounded Interest:** Imagine you have `1$` in a bank account with a `100%` interest rate per year.
+    - If the interest is compounded once a year, you’d have `2$` at the end of the year $$1+1=2$$. 
+    - If the interest is compounded every six months, you’d have more than `2.25$` at the end of the year.
+        - After 6 months:  $1 + \frac{1}{2} = 1.5$.
+        - After 1 year:  $1.5 + \frac{1.5}{2} = 2.25$.
 ---
 
 - [Home](./../../../README.md)
