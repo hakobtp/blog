@@ -15,7 +15,7 @@
 
   <!-- 2 list -->
   <ul style="display:inline-block; vertical-align:top;">
-     <li><a href="./algebra/limit/1_Limits_and_the_Euler_Number.html">Limits and the Euler Number</a></li>
+     <li><a href="./algebra/limit/1_Limits_and_the_Euler_Number.html">Understanding Limits and the Euler Number</a></li>
   </ul>
 </div>
 
