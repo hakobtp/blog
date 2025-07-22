@@ -31,6 +31,10 @@ In mathematical terms, if we look at the function $$f(x)=\frac{1}{x}$$.
 
 ## Introducing the Euler Number ($e$)
 
+The Euler number, denoted as $e$, is a special number in mathematics, approximately equal to $2.718$. 
+It is named after the Swiss mathematician Leonhard Euler and is one of the most important numbers in 
+mathematics because it arises naturally in many different contexts, especially those involving growth, decay, and continuous processes.
+
 ---
 
 - [Home](./../../../README.md)
