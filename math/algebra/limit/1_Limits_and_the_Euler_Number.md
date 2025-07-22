@@ -42,7 +42,8 @@ The number $e$ can be understood through the concept of continuously compounding
     - If the interest is compounded every six months, you’d have more than `2.25$` at the end of the year.
         - After 6 months:  $1 + \frac{1}{2} = 1.5$.
         - After 1 year:  $1.5 + \frac{1.5}{2} = 2.25$.
-        
+    - If it is compounded monthly, weekly, daily, or every second, the amount keeps increasing, but not by much.        
+    
 ---
 
 - [Home](./../../../README.md)
