@@ -121,6 +121,6 @@ show_plot()
 
 ---
 
-- [Home](./../../README.md)
-- [Math Tutorials](./../tutorials.md)
+- [Home](./../../../README.md)
+- [Math Tutorials](./../../tutorials.md)
 - [Intro to Logarithms](./1_Intro_to_Logarithms.md)
