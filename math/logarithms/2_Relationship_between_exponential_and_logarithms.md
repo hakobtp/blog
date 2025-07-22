@@ -19,6 +19,8 @@ $$
 </p>
 
 
+Based only on these 3 points, we plot the 3 corresponding points that must be on the graph of $$y=\log_{b}(x)$$.
+
 **The Python code**
 
 ```python
