@@ -6,9 +6,8 @@ Author      Ter-Petrosyan Hakob
 
 ---
 
-### Product Rule
+**Product Rule**
 
- 
 When you multiply powers with the same base, keep the base and add the exponents:  
 
 $$
@@ -27,7 +26,7 @@ Use this rule to make expressions with the same base simpler by adding the expon
 
 ---
 
-### The Quotient Rule of Exponents
+**The Quotient Rule of Exponents**
 
 For any real number **a** and natural numbers **m** and **n** such that **m > n**, 
 the quotient rule of exponents states that
@@ -40,7 +39,7 @@ $$
 
 ---
 
-### The Power Rule of Exponents
+**The Power Rule of Exponents**
 
 For any real number **a** and positive integers **m** and **n**, the power rule of exponents states that
 
@@ -52,7 +51,7 @@ $$
 
 ---
 
-### The Zero Exponent Rule of Exponents
+**The Zero Exponent Rule of Exponents**
 
 For any nonzero real number **a**, the zero exponent rule of exponents states that
 
@@ -62,7 +61,7 @@ $$
 
 ---
 
-### The Negative Rule of Exponents
+**The Negative Rule of Exponents**
 
 For any nonzero real number **a** and natural number **n** the negative rule of exponents states that
 
@@ -74,7 +73,7 @@ $$
 
 ---
 
-### The Power of a Product Rule of Exponents
+**The Power of a Product Rule of Exponents**
 
 For any real numbers **a** and **b** and any integer **n**, the power of a product rule of exponents states that
 
@@ -84,7 +83,7 @@ $$
 
 ---
 
-### The Power of a Quotient Rule of Exponents
+**The Power of a Quotient Rule of Exponents**
 
 For any real numbers **a** and **b** and any integer **n**, the power of a quotient rule of exponents states that
 
