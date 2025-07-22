@@ -139,7 +139,7 @@ and are actually very common in the world around us. For example, many physical 
 - Substituting this into the equation, we get: $$(2^3)^x=2$$. 
 - Simplifying the left side, we get: $$2^{3x}=2^1$$.
 - Since the bases are the same, we can set the exponents equal to each other: $$3x=1$$.
-Now, solve for `x`: $$x=\frac{1}{3}$$.
+- Now, solve for `x`: $$x=\frac{1}{3}$$.
 
 
 ---
