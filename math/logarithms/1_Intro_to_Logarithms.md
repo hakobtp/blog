@@ -134,7 +134,7 @@ and are actually very common in the world around us. For example, many physical 
 ## Evaluating logarithms
 
 **Example 1:**  
-- To solve $$\log_{8}(2)$$ we want to find the exponent **x** such that: $$8^x=2$$. 
+- To solve $$\log_{8}(2)$$ we want to find the exponent `x` such that: $$8^x=2$$. 
 - To solve this, let’s express `8` as a power of `2`: $$8=2^3$$. 
 - Substituting this into the equation, we get: $$(2^3)^x=2$$. 
 - Simplifying the left side, we get: $$2^{3x}=2^1$$.
