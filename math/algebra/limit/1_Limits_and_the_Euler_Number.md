@@ -35,7 +35,10 @@ The Euler number, denoted as $e$, is a special number in mathematics, approximat
 It is named after the Swiss mathematician Leonhard Euler and is one of the most important numbers in 
 mathematics because it arises naturally in many different contexts, especially those involving growth, decay, and continuous processes.
 
- The number $e$ can be understood through the concept of continuously compounding interest. Here’s a simplified explanation:
+The number $e$ can be understood through the concept of continuously compounding interest. Here’s a simplified explanation:
+
+1. **Compounded Interest:** Imagine you have $\$1$ in a bank account with a $100\%$ interest rate per year.
+    - If the interest is compounded once a year, you’d have $\$2$ at the end of the year $$1+1=2$$. 
 
 ---
 
