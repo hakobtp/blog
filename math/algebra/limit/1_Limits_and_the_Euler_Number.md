@@ -43,7 +43,15 @@ The number $e$ can be understood through the concept of continuously compounding
         - After 6 months:  $1 + \frac{1}{2} = 1.5$.
         - After 1 year:  $1.5 + \frac{1.5}{2} = 2.25$.
     - If it is compounded monthly, weekly, daily, or every second, the amount keeps increasing, but not by much.        
-    
+
+2. **Continuous Compounding:** Now, think about compounding the interest an infinite
+number of times within the same year. The formula that represents the amount you
+would have after one year, as the compounding becomes infinite, is:
+
+$$
+\lim_{x \to \infty} \left( 1+\frac{1}{n} \right)^n= 0
+$$
+
 ---
 
 - [Home](./../../../README.md)
