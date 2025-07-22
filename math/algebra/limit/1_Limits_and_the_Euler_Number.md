@@ -19,7 +19,13 @@ getting closer to that limit without quite reaching it.
 
 In mathematical terms, if we look at the function $$f(x)=\frac{1}{x}$$.
 - As `x` becomes a very large number (like 1000, 10000, etc.), the value of $$f(x)=\frac{1}{x}$$ becomes smaller and smaller.
-- The limit of $$f(x)$$ as `x` approaches infinity is `0`. This is written as: $$\lim_{x \to \infty} \frac{1}{x} = 0$$
+- The limit of $$f(x)$$ as `x` approaches infinity is `0`. This is written as:
+
+ $$
+ 
+ \lim_{x \to \infty} \frac{1}{x} = 0
+ 
+ $$
 
 
 ---
