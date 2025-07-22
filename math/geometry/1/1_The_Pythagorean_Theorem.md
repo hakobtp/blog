@@ -1,7 +1,7 @@
 # The Pythagorean Theorem
 
 The **Pythagorean Theorem** is one of the most famous results in mathematics. 
-It relates the three sides of a rightangled triangle. In this post, we will:
+It relates the three sides of a right-angled triangle. In this post, we will:
 
 1. State the theorem
 2. Illustrate it with diagrams
@@ -10,13 +10,24 @@ It relates the three sides of a rightangled triangle. In this post, we will:
 
 ## Statement of the Theorem
 
-In any rightangled triangle, the square of the length of the hypotenuse (the side opposite the right angle) equals the sum of the squares of the other two sides. If we name the legs $a$ and $b$, and the hypotenuse $c$ then:
+In any right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) equals the sum of the squares of the other two sides. If we name the legs $a$ and $b$, and the hypotenuse $c$ then:
 
 $$
 
 a^2+b^2=c^2
 
 $$
+
+## Diagram and Setup
+
+Consider triangle  $\bigtriangleup ABC$
+△
+𝐴
+𝐵
+𝐶
+△ABC with right angle at 
+𝐶
+C:
 
 ---
 
