@@ -8,8 +8,8 @@
 
   <!-- Second list -->
   <ul style="display:inline-block; vertical-align:top;">
-     <li><a href="./logarithms/1_Intro_to_Logarithms.html">Intro to Logarithms</a></li>
-     <li><a href="./logarithms/2_Relationship_between_exponential_and_logarithms.html">Exponential VS Logarithms</a></li>
+     <li><a href="./algebra/logarithms/1_Intro_to_Logarithms.html">Intro to Logarithms</a></li>
+     <li><a href="./algebra/logarithms/2_Relationship_between_exponential_and_logarithms.html">Exponential VS Logarithms</a></li>
      
   </ul>
 </div>
