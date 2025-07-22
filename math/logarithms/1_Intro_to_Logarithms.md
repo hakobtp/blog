@@ -160,3 +160,4 @@ This means that to get $$\frac{1}{2}$$ from `8`, you need to raise `8` to the po
 
 - [Home](./../../README.md)
 - [Math Tutorials](./../tutorials.md)
+- [Exponential VS Logarithms](./2_Relationship_between_exponential_and_logarithms.md)

@@ -1,4 +1,4 @@
-# Relationship between exponential and logarithms
+# Exponential VS Logarithms
 
 The 3 points plotted below are on the graph of $$y=b^x$$ for $$b=4$$.
 
@@ -118,3 +118,9 @@ show_plot()
 <p align="center">
     <img src="./assets/img3.png" alt="img3" width="400"/>
 </p>
+
+---
+
+- [Home](./../../README.md)
+- [Math Tutorials](./../tutorials.md)
+- [Intro to Logarithms](./1_Intro_to_Logarithms.md)
