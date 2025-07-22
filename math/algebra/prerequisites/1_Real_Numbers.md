@@ -190,8 +190,6 @@ Real numbers follow simple rules that help us work with expressions. Here are th
 
 ---
 
-## Explore More
-
 - [Home](./../../../README.md)
 - [Math Tutorials](./../../tutorials.md)
 - [Exponents](./2_Exponents.md)

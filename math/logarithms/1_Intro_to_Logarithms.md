@@ -133,7 +133,5 @@ and are actually very common in the world around us. For example, many physical 
 
 ---
 
-## Explore More
-
 - [Home](./../../README.md)
 - [Math Tutorials](./../tutorials.md)
