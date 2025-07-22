@@ -20,14 +20,12 @@ $$
 
 ## Diagram and Setup
 
-Consider triangle  $\bigtriangleup ABC$
-△
-𝐴
-𝐵
-𝐶
-△ABC with right angle at 
-𝐶
-C:
+Consider triangle  $\bigtriangleup ABC$ with right angle at $C$:
+
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
 
 ---
 
