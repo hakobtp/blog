@@ -131,6 +131,11 @@ You will learn how to evaluate this logarithmic expression over the following le
 Logarithmic expressions and functions also turn out to be very interesting by themselves, 
 and are actually very common in the world around us. For example, many physical phenomena are measured with logarithmic scales.
 
+## Evaluating logarithms
+
+**Example 1:**  To solve $$\log_{8}{2}$$ we want to find the exponent **x** such that: $$8^x=2$$.
+
+
 ---
 
 - [Home](./../../README.md)
