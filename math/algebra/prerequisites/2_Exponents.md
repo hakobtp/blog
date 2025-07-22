@@ -128,5 +128,5 @@ Example 2: A very small number
 ## Explore More
 
 - [Home](./../../../README.md)
-- [Algebra](./../tutorials.md)
+- [AlMath Tutorials](./../../tutorials.md)
 - [Real Numbers](./1_Real_Numbers.md)
