@@ -29,6 +29,8 @@ In mathematical terms, if we look at the function $$f(x)=\frac{1}{x}$$.
 
  This notation means that as `x` gets larger and larger, the value of $\frac{1}{x}$ gets closer and closer to `0`.
 
+## Introducing the Euler Number ($e$)
+
 ---
 
 - [Home](./../../../README.md)
