@@ -144,6 +144,9 @@ and are actually very common in the world around us. For example, many physical 
 
 This means that `2` is `8` raised to the power of $$x=\frac{1}{3}$$, which is the cube root of `8`.
 
+**Example 2:**
+- To solve $$\log_{8}(\frac{1}{2})$$, we want to find the exponent `x` such that: $$8^x=\frac{1}{2}$$.
+
 ---
 
 - [Home](./../../README.md)
