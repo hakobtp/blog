@@ -12,6 +12,16 @@ A limit is a fundamental idea in mathematics that describes the value that a fun
 sequence _approaches_ as the input gets closer to a certain point. Think of a limit as a destination
 that a function or a series of numbers is trying to reach, even if it never actually gets there.
 
+Imagine you’re filling a cup with water very slowly. The closer you get to the top, the closer you
+are to the cup being full. If you keep adding water drop by drop, you’ll approach a limit—the
+cup being full. But as long as you keep adding tiny drops without overflowing, you’re always
+getting closer to that limit without quite reaching it.
+
+In mathematical terms, if we look at the function $$f(x)=\frac{1}{x}$$.
+- As `x` becomes a very large number (like 1000, 10000, etc.), the value of $$f(x)=\frac{1}{x}$$ becomes smaller and smaller.
+- The limit of $$f(x)$$ as `x` approaches infinity is `0`. This is written as: $$\lim_{x \to \infty} \frac{1}{x} = 0$$
+
+
 ---
 
 - [Home](./../../../README.md)
