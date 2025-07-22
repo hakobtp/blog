@@ -133,5 +133,7 @@ and are actually very common in the world around us. For example, many physical 
 
 ---
 
-- 🏠 [Home](./../../README.md)
-- 📐 [Math Tutorials](./../tutorials.md)
+## Explore More
+
+- [Home](./../../README.md)
+- [Math Tutorials](./../tutorials.md)

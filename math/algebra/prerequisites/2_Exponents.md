@@ -125,8 +125,10 @@ Example 2: A very small number
 
 > A number is written in scientific notation if it has the form $$a\times 10^n$$ where $$1\le a < 10$$
 
+---
+
 ## Explore More
 
 - [Home](./../../../README.md)
-- [AlMath Tutorials](./../../tutorials.md)
+- [Math Tutorials](./../../tutorials.md)
 - [Real Numbers](./1_Real_Numbers.md)
