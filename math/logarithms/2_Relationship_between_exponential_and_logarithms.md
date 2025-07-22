@@ -21,6 +21,18 @@ $$
 
 Based only on these 3 points, we plot the 3 corresponding points that must be on the graph of $$y=\log_{b}(x)$$.
 
+$$
+
+\begin{array}{c|c}
+            x & y=\log_b(x) \\
+            \hline
+            1 &     \log_b(1)=0     \\
+            4 &     \log_b(4)=1     \\
+            16 &    \log_b(16)=2    \\
+\end{array}
+
+$$
+
 **The Python code**
 
 ```python
