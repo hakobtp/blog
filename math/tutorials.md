@@ -14,7 +14,7 @@
 
   <!-- 3 list -->
   <ul style="display:inline-block; vertical-align:top;">
-    <li><a href="./geometry/1_The_Pythagorean_Theorem.md">The Pythagorean Theorem</a></li>
+    <li><a href="./geometry/1_The_Pythagorean_Theorem.html">The Pythagorean Theorem</a></li>
   </ul>
 
 </div>
