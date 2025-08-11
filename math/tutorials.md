@@ -10,7 +10,11 @@
   <ul style="display:inline-block; vertical-align:top;">
      <li><a href="./algebra/logarithms/1_Intro_to_Logarithms.html">Intro to Logarithms</a></li>
      <li><a href="./algebra/logarithms/2_Relationship_between_exponential_and_logarithms.html">Exponential VS Logarithms</a></li>
-     
+  </ul>
+
+  <!-- 3 list -->
+  <ul style="display:inline-block; vertical-align:top;">
+    <li><a href="./geometry/1_The_Pythagorean_Theorem.md">The Pythagorean Theorem</a></li>
   </ul>
 
 </div>
