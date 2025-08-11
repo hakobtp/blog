@@ -9,6 +9,11 @@ $$
 a^2 + b^2 = c^2
 $$
 
+Where:
+
+- $$a$$ and $$b$$ are the legs (the shorter sides meeting at the right angle).
+- $$c$$ is the hypotenuse (the longest side, opposite the right angle).
+
 ---
 
 - [Home](./../../README.md)
