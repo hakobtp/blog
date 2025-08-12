@@ -30,7 +30,7 @@ However, in most cases, we use the principal square root, which means the nonneg
 
 ---
 
-**The Product Rule for Simplifying Square Roots:**
+**The Product Rule**
 
 If $$a$$ and $$b$$ are nonnegative, the square root of the product $$ab$$ is equal to the product of the square roots of $$a$$ and $$b$$.
 $$
@@ -39,13 +39,22 @@ $$
 
 ---
 
-**The Quotient Rule for Simplifying Square Roots**
+**The Quotient Rule**
 
 The square root of the quotient $$\frac{a}{b}$$ is equal to the quotient of the square roots of $$a$$ and $$b$$, where $$b\neq 0$$.
 
 $$
 \sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}
 $$
+
+---
+
+**Adding and Subtracting Square Roots**
+
+We can add or subtract radical expressions only when they have the same radicand and when they have the same radical
+type such as square roots. For example, the sum of $$\sqrt{2}$$ and $$3\sqrt{2}$$ is $$4\sqrt{2}$$. However, it is often possible 
+to simplify radical expressions, and that may change the radicand. The radical expression
+
 
 ---
 
