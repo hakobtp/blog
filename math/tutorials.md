@@ -22,4 +22,6 @@
 
 ---
 
+<!-- haselem Rationalizing Denominators grem 4_Radicals_and_Rational_Exponents.html -->
+
 [Home](./../README.md)
