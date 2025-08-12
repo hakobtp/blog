@@ -21,7 +21,12 @@ $$
 
 It can be **positive** or **negative**, because:
 
+
+<p align="center">
+
 $$4 \times 4 = 16$$ and $$(-4) \times (-4) = 16$$.
+
+</p>
 
 However, in most cases, we use the principal square root, which means the nonnegative root. This is what you see on a calculator.
 
