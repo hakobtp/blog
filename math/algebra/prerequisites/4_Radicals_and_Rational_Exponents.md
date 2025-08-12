@@ -28,6 +28,14 @@ However, in most cases, we use the principal square root, which means the nonneg
 > The **principal square root** of $$a$$ is the nonnegative number that, when multiplied by itself, equals $$a$$. It is written as a
 > **radical expression**, with a symbol called a **radical** over the term called the **radicand**: $$\sqrt{a}$$.
 
+---
+
+**The Product Rule for Simplifying Square Roots:**
+
+If $$a$$ and $$b$$ are nonnegative, the square root of the product $$ab$$ is equal to the product of the square roots of $$a$$ and $$b$$.
+$$
+\sqrt{ab}=\sqrt{a} \cdot \sqrt{b}
+$$
 
 ---
 
