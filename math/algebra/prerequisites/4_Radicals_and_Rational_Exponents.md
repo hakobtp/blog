@@ -58,7 +58,7 @@ to simplify radical expressions, and that may change the radicand.
 **Example:**
 
 $$
-\sqrt{2} + \sqrt{18} = \sqrt{2} + \sqrt{9 \times 2} =
+\sqrt{2} + \sqrt{18} = \sqrt{2} + \sqrt{9 \times 2} = \sqrt{2} + \sqrt{9} \times \sqrt{2} = \sqrt{2} + 3 \times \sqrt{2}
 $$
 
 
