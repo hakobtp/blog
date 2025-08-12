@@ -23,6 +23,12 @@ rectangle into two right triangles.
     <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
+A rectangle is $$9$$ cm wide and $$12$$ cm tall. Find its diagonal:
+
+$$
+c = \sqrt{9^2 + 12^2} = \sqrt{81 + 144} = \sqrt{225} = 15
+$$
+
 ---
 
 - [Home](./../../README.md)
