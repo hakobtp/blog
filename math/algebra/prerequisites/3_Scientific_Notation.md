@@ -32,5 +32,5 @@ Example 2: A very small number
 
 - [Home](./../../../README.md)
 - [Math Tutorials](./../../tutorials.md)
-- [Real Numbers](./1_Real_Numbers.md)
 - [Exponents](./2_Exponents.md)
+- [Radicals and Rational Exponents](./4_Radicals_and_Rational_Exponents.md)
