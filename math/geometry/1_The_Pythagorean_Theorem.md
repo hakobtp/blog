@@ -34,11 +34,6 @@ This is used in real life for:
 - Construction work
 - Finding distances on maps
 
-
-## Proof (Bhaskara's Dissection Method)
-
-1) Draw a square with side length a + b.
-
 ---
 
 - [Home](./../../README.md)
