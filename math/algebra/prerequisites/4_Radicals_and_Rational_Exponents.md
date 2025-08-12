@@ -53,7 +53,8 @@ $$
 
 We can add or subtract radical expressions only when they have the same radicand and when they have the same radical
 type such as square roots. For example, the sum of $$\sqrt{2}$$ and $$3\sqrt{2}$$ is $$4\sqrt{2}$$. However, it is often possible 
-to simplify radical expressions, and that may change the radicand. The radical expression
+to simplify radical expressions, and that may change the radicand. The radical expression $$\sqrt{18}$$ can be written with a $$2$$ in 
+the radicand, as $$3\sqrt{2}$$ 
 
 
 ---
