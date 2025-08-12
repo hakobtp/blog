@@ -10,6 +10,13 @@ The square root is like the **opposite action** of squaring — just like subtra
 
 - $$\sqrt{}$$ called the **radical**.
 
+
+> **Principal Square Root**
+>
+> The **principal square root** of $$a$$ is the nonnegative number that, when multiplied by itself, equals $$a$$. It is written as a
+> **radical expression**, with a symbol called a **radical** over the term called the **radicand**: $$\sqrt{a}$$.
+
+
 ---
 
 - [Home](./../../../README.md)
