@@ -13,6 +13,18 @@ The square root is like the **opposite action** of squaring — just like subtra
 - $$\sqrt{a}$$: called a **radical expression**.
 
 
+If $$a$$ is a positive number, the square root of $$a$$ is a number that, when multiplied by itself, equals $$a$$.
+
+$$
+\sqrt{a} \times \sqrt{a} = a
+$$        
+
+It can be **positive** or **negative**, because:
+
+$$4 \times 4 = 16$$ and $$(-4) \times (-4) = 16$$.
+
+However, in most cases, we use the principal square root, which means the nonnegative root. This is what you see on a calculator.
+
 > **Principal Square Root**
 >
 > The **principal square root** of $$a$$ is the nonnegative number that, when multiplied by itself, equals $$a$$. It is written as a
