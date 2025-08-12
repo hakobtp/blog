@@ -16,6 +16,13 @@ $$
 
 **In words:** The square built on the hypotenuse is equal in area to the sum of the squares built on the other two sides.
 
+A rectangle can help us see the theorem in action. If we draw a diagonal in a rectangle, it divides the
+rectangle into two right triangles.
+
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
 ---
 
 - [Home](./../../README.md)
