@@ -1,4 +1,4 @@
-# 🔗 Full Oouter Join
+# 🔗 Full Outer Join
 
 ```info
 Author      Ter-Petrosyan Hakob
