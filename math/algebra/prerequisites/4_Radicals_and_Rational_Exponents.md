@@ -8,7 +8,9 @@ $$
 
 The square root is like the **opposite action** of squaring — just like subtraction is the opposite of addition. To “undo” squaring, we take the square root.
 
-- $$\sqrt{}$$ called the **radical**.
+- $$\sqrt{}$$: called the **radical**.
+- $$a$$: called the **radicand** (the number under the radical).
+- $$\sqrt{a}$$: called a **radical expression**.
 
 
 > **Principal Square Root**
