@@ -29,6 +29,11 @@ $$
 c = \sqrt{9^2 + 12^2} = \sqrt{81 + 144} = \sqrt{225} = 15
 $$
 
+This is used in real life for:
+- Measuring TV and monitor sizes
+- Construction work
+- Finding distances on maps
+
 ---
 
 - [Home](./../../README.md)
