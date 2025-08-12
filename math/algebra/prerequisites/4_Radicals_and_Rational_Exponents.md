@@ -39,6 +39,16 @@ $$
 
 ---
 
+**The Quotient Rule for Simplifying Square Roots**
+
+The square root of the quotient $$\frac{a}{b}$$ is equal to the quotient of the square roots of $$a$$ and $$b$$, where $$b\neq 0$$.
+
+$$
+\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}
+$$
+
+---
+
 - [Home](./../../../README.md)
 - [Math Tutorials](./../../tutorials.md)
 - [Scientific Notation](./3_Scientific_Notation.md)
