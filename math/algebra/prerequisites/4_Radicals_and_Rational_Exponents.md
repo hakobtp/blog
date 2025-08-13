@@ -138,7 +138,14 @@ Example: $$(-3)^5=-243$$. So $$-3$$ is the **5th root** of $$−243$$.
 If $$a$$ is a real number with at least one nth root, then the **principal nth root** of $$a$$ is the number with 
 the same sign as $$a$$ that, when raised to the nth power, equals $$a$$.
 
-We write the principal nth root as: $$\sqrt[\leftroot{-2} \uproot{2} n]{a}$$.
+We write the principal nth root as: 
+
+$$\sqrt[\leftroot{-2} \uproot{2} n]{a}$$
+
+where:
+- $$n$$ is a positive integer ($$ \geq 2$$)
+- $$n$$ is called the index of the radical
+- $$a$$ is called the radicand
 
 ---
 
