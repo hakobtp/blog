@@ -91,11 +91,15 @@ $$
 \frac{4}{2 + \sqrt{5}} \times \frac{2-\sqrt{5}}{2-\sqrt{5}} = \frac{4(2-\sqrt{5})}{(2+\sqrt{5})(2-\sqrt{5})}
 $$
 
-The denominator becomes:
+When you multiply $$(2+\sqrt{5})(2-\sqrt{5})$$ , you are using the difference of squares formula:
 
 $$
-(2+\sqrt{5})(2-\sqrt{5}) = 2 \times 2 - 2\sqrt{5} + 2\sqrt{5} - 5 = 4-5=-1
+(a+b)(a-b)=a^2-b^2
 $$
+
+Here: 
+- $$a = 2$$.
+- $$b=\sqrt{5}$$.
 
 ---
 
