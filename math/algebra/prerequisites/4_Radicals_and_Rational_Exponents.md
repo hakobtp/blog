@@ -107,6 +107,12 @@ $$
 (2+\sqrt{5})(2-\sqrt{5}) = 2^2 - (\sqrt{5})^2 = 4-5=-1
 $$
 
+The denominator becomes $$−1$$, so:
+
+$$
+\frac{4(2-\sqrt{5})}{-1} = -8 + 4\sqrt{5}
+$$
+
 
 ---
 
