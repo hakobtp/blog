@@ -26,7 +26,12 @@ few simple commands, you can move around your system, create files, and manage f
     - **ls -a** also shows hidden files (their names start with a dot).
 - Change directory:	**cd** `folder_name`
 - Go back/up one directory:	**cd ..**
-- Create a file:  **touch** `file.txt`
+- Create a file: **touch** `file.txt`
+- Create a folder: **mkdir** `myfolder`
+- Delete a file: **rm** `file.txt`
+- Delete a folder: 
+    - **rm -r** `foldername` removes a directory and everything inside it recursively, including subfolders and files.
+    - If you want extra safety, you can use: **rm -ri** `foldername` (**-i** asks for confirmation before deleting each file.)
 
 ---
 
