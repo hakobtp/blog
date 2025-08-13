@@ -125,6 +125,8 @@ These functions are useful when we want to find **the number that, when raised t
 
 Example: Cube Roots
 - If we know that: $$a^3=8$$.
+- we ask: What number, when raised to the 3rd power, equals $$8$$?
+- Since: $$2^3=8$$ we say $$2$$ is the cube root of $$8$$.
 
 ---
 
