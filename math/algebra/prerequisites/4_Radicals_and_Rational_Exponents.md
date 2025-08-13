@@ -88,7 +88,7 @@ The conjugate is made by changing the sign between the two terms.
 Example:
 
 $$
-\frac{4}{2 + \sqrt{5}}
+\frac{4}{2 + \sqrt{5}} \times \frac{2-\sqrt{5}}{2-\sqrt{5}}
 $$
 
 ---
