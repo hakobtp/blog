@@ -114,6 +114,14 @@ $$
 $$
 
 
+## Understanding nth Roots
+
+When we talk about roots in math, we often think of square roots. But there are also **cube roots**, **4th roots**, **5th roots**, 
+and so on.
+
+Roots are the **inverse** (opposite) of powers. Just like the square root is the opposite of squaring a number, the cube root is the opposite of cubing a number, and the nth root is the opposite of raising a number to the power of $$n$$.
+
+
 ---
 
 - [Home](./../../../README.md)
