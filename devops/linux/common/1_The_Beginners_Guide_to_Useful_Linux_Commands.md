@@ -23,6 +23,8 @@ create files, and manage folders easily. Here are some of the most useful comman
 |Move or rename a file      |**mv** `file1.txt` `folder/file2.txt`  |
 |Copy a file                |**cp** `file1.txt` `file2.txt`         |
 |View contents of a file    |**cat** `file.txt` quickly shows all the text in a file.<br>**less** `file.txt`  lets you scroll through the file one screen at a time.|
+| Add text to a file       | **echo** `"My first DevOps lesson"` > `notes.txt` creates the file or replaces its contents.  
+**echo** `"My first DevOps lesson"` >> `notes.txt` creates the file if it doesn’t exist or appends the text if it does. |
 
 ---
 
