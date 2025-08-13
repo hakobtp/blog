@@ -76,7 +76,7 @@ SELECT current_time, txid_current();
 As you can see from the example above, the system assigned two different transaction IDs—1888 and 1889—to each **SELECT** statement. 
 This confirms that each statement was executed in a separate implicit transaction.
 
-🔸 **You may see different numbers on your own system, as transaction IDs increase over time.**
+**You may see different numbers on your own system, as transaction IDs increase over time.**
 
 PostgreSQL stores the transaction ID that created each row in a special hidden column called **xmin**. 
 You can query this column to find out which transaction inserted each row:
