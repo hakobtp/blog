@@ -13,7 +13,7 @@ create files, and manage folders easily. Here are some of the most useful comman
 |Action                     |Command Example                |
 |:--------------------------|:------------------------------|
 |Show current directory     |pwd                            |
-|List files                 |ls, ls -l, ls -a               |
+|List files                 |**ls** lists the files and folders in your current location.</br>**ls -l** shows more details, like file size and date.</br>**ls -a** also shows hidden files (their names start with a dot).|
 |Change directory           |cd folder_name                 |
 |Go back/up one directory   |cd ..                          |
 |Create a file              |touch file.txt                 |
@@ -25,6 +25,8 @@ create files, and manage folders easily. Here are some of the most useful comman
 |View contents of a file    |cat file.txt, less file.txt    |
 
 ---
+
+
 
 [HOME](./../../../README.md)\
 [Linux](./../tutorials.md)
