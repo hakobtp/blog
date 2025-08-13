@@ -80,6 +80,17 @@ $$
 \frac{5}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}
 $$
 
+### Denominator with Two Terms (Rational + Radical)
+
+If the denominator has two terms—a rational number and a radical—multiply by the conjugate of the denominator. 
+The conjugate is made by changing the sign between the two terms.
+
+Example:
+
+$$
+\frac{4}{2 + \sqrt{5}}
+$$
+
 ---
 
 - [Home](./../../../README.md)
