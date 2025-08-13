@@ -62,6 +62,24 @@ $$
 $$
 
 
+## How to Remove Square Roots from Denominators
+
+When we simplify a fraction in math, we try to avoid having a square root (radical) in the denominator. 
+The process of removing the radical is called rationalizing the denominator.
+
+We use the fact that multiplying any expression by $$1$$ does not change its value. 
+To remove the radical, we multiply both the numerator (top) and denominator (bottom) by a special form of $$1$$ that makes the denominator a whole number or at least removes the radical.
+
+### Denominator with a Single Radical Term
+
+If the denominator has only one term with a radical, multiply both numerator and denominator by that radical.
+
+Example:
+
+$$
+\frac{5}{\sqrt{3}}
+$$
+
 ---
 
 - [Home](./../../../README.md)
