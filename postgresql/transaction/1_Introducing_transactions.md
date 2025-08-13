@@ -1,4 +1,4 @@
-# 🔁 Introducing Transactions
+# Introducing Transactions
 
 
 ```info
@@ -44,11 +44,11 @@ Sometimes, you may not want the database to automatically manage your statements
 
 Before we look at how these two types of transactions work and compare them, let’s review two important concepts:
 
-- 🔢 **Transaction ID (xid)**
+- **Transaction ID (xid)**
     - Every transaction—whether implicit or explicit—is given a unique number called a transaction ID, or **xid**. 
         PostgreSQL automatically assigns an **xid** to each new transaction and guarantees that no two transactions 
         will share the same **xid** at the same time.
-- 📦 **Tuples and xids**
+- **Tuples and xids**
     - PostgreSQL also stores the **xid** of the transaction that created or modified a row (called a tuple) inside the tuple itself.        
 
 You’ll understand why this is important when we later explore how PostgreSQL handles multiple transactions at the 
@@ -107,7 +107,7 @@ PostgreSQL manages several of these hidden system columns that are not shown unl
 - **cmin** – the command ID of the inserting statement
 - **cmax** – the command ID of the deleting or updating statement
 
-## 🧩 Implicit vs Explicit Transactions: What's the Difference?
+## Implicit vs Explicit Transactions: What's the Difference?
 
 **Implicit** transactions are transactions that you don’t manually start—PostgreSQL creates them for you automatically. In other words, PostgreSQL controls the transaction boundaries, deciding when a transaction begins and ends.
 
@@ -139,7 +139,7 @@ This means that each **INSERT** statement was given a new transaction ID (**xid*
 In other words, every statement runs in its own transaction, even if you didn’t explicitly start one. Each **INSERT** 
 is wrapped in a single-statement implicit transaction.
 
-> 📌 **NOTE:**  The reason you see the **xid** values increasing by just one each time is because, 
+> **NOTE:**  The reason you see the **xid** values increasing by just one each time is because, 
 > in these examples, no other database activity is happening. In other words, there’s no concurrency—no other users 
 > or processes are running queries at the same time.
 > 
@@ -153,8 +153,8 @@ An explicit transaction is a group of statements where you define the start and 
 
 - You start the transaction with **BEGIN**.
 - You end it with either **COMMIT** or **ROLLBACK**.
-    - ✅ If you use **COMMIT**, all changes are saved permanently.
-    - ❌ If you use **ROLLBACK**, the transaction is canceled, and all changes are undone.
+    - If you use **COMMIT**, all changes are saved permanently.
+    - If you use **ROLLBACK**, the transaction is canceled, and all changes are undone.
 
 Let’s see how this works by inserting a group of categories within a single explicit transaction:
 
@@ -298,7 +298,7 @@ you should use **ROLLBACK**. This cancels the transaction and keeps the database
 Use an explicit transaction any time you have a group of operations that must all succeed or all fail together. 
 This is especially important when partial success could lead to data inconsistency.
 
-## ⏱️ Time Behavior Inside Transactions Explained
+## Time Behavior Inside Transactions Explained
 
 Transactions are time-discrete, which means that the time stays fixed during the entire transaction.
 Even if you wait a few seconds and run **SELECT current_time**; again, you'll still get the same time—the one from when the transaction started.
@@ -347,9 +347,9 @@ SELECT CURRENT_TIME, clock_timestamp()::time;
 
 ---
 
-## 📌 Explore More
+## Explore More
 
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🧪 [ACID](./0_Understanding_ACID_in_PostgreSQL.md) 
-- 🔢 [Transaction Identifiers](./2_transaction_identifiers.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [ACID](./0_Understanding_ACID_in_PostgreSQL.md) 
+- [Transaction Identifiers](./2_transaction_identifiers.md)
