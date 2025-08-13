@@ -128,6 +128,11 @@ Example: Cube Roots
 - we ask: What number, when raised to the 3rd power, equals $$8$$?
 - Since: $$2^3=8$$ we say $$2$$ is the cube root of $$8$$.
 
+
+The **nth root** of a number $$a$$ is a number that, when raised to the power of $$n$$, equals $$a$$.
+
+Example: $$(-3)^5=-243$$. So $$-3$$ is the **5th root** of $$−243$$.
+
 ---
 
 - [Home](./../../../README.md)
