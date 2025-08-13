@@ -143,9 +143,11 @@ We write the principal nth root as:
 $$\sqrt[\leftroot{-2} \uproot{2} n]{a}$$
 
 where:
-- $$n$$ is a positive integer ($$ \geq 2$$)
-- $$n$$ is called the index of the radical
-- $$a$$ is called the radicand
+- $$n$$ is a **positive integer** ($$ \geq 2$$)
+- $$n$$ is called the **index** of the radical
+- $$a$$ is called the **radicand**
+
+Example: $$\sqrt[\leftroot{-2} \uproot{2} 4]{81}=3$$ because $$3^4=81$$
 
 ---
 
