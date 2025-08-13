@@ -3,10 +3,6 @@
 ```info
 Author      Ter-Petrosyan Hakob
 ```
-[Atomicity](#-atomicity)\
-[Consistency](#-consistency)\
-[Isolation](#-isolation)\
-[Durability](#-durability)
 
 ---
 
