@@ -121,6 +121,10 @@ and so on.
 
 Roots are the **inverse** (opposite) of powers. Just like the square root is the opposite of squaring a number, the cube root is the opposite of cubing a number, and the nth root is the opposite of raising a number to the power of $$n$$.
 
+These functions are useful when we want to find **the number that, when raised to a certain power, gives a specific result**.
+
+Example: Cube Roots
+- If we know that: $$a^3=8$$.
 
 ---
 
