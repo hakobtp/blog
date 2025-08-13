@@ -18,26 +18,15 @@ few simple commands, you can move around your system, create files, and manage f
 |View contents of a file    |**cat** `file.txt` quickly shows all the text in a file.<br>**less** `file.txt`  lets you scroll through the file one screen at a time.|
 | Add text to a file       | **echo** `"My first DevOps lesson"` `>` `notes.txt` creates the file or replaces its contents.<br>**echo** `"My first DevOps lesson"` `>>` `notes.txt` creates the file if it doesn’t exist or appends the text if it does. |
 
-The correct answer for question 4 is:
 
-
-
-Example:
-
-bash
-Copy
-Edit
-rm -r myfolder
-This deletes myfolder and all files/subfolders inside it.↳
-
-
-
-
-bash
-Copy
-Edit
-
-
+- Show current directory: **pwd** 
+- List files:
+    - **ls** lists the files and folders in your current location.
+    - **ls -l** shows more details, like file size and date. 
+    - **ls -a** also shows hidden files (their names start with a dot).
+- Change directory:	**cd** `folder_name`
+- Go back/up one directory:	**cd ..**
+- Create a file:  **touch** `file.txt`
 
 ---
 
