@@ -77,7 +77,7 @@ If the denominator has only one term with a radical, multiply both numerator and
 Example:
 
 $$
-\frac{5}{\sqrt{3}}
+\frac{5}{\sqrt{3}} \times \frac{\sqrt{3}}{\sqrt{3}} = \frac{5\sqrt{3}}{3}
 $$
 
 ---
