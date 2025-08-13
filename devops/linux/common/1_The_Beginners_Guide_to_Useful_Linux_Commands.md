@@ -23,8 +23,8 @@ few simple commands, you can move around your system, create files, and manage f
     - **cat** `file.txt` quickly shows all the text in a file.
     - **less** `file.txt` lets you scroll through the file one screen at a time.
 - Add text to a file:
-    - **echo** `"My first DevOps lesson"` **>** `notes.txt` creates the file or replaces its contents.
-    - **echo** `"My first DevOps lesson"` **> >** `notes.txt` creates the file if it doesn’t exist or appends the text if it does.    
+    - **echo** `"My first DevOps lesson"` `>` `notes.txt` creates the file or replaces its contents.
+    - **echo** `"My first DevOps lesson"` `>>` `notes.txt` creates the file if it doesn’t exist or appends the text if it does.    
 
 ---
 
