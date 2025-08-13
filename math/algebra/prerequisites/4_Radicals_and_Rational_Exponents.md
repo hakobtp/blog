@@ -94,7 +94,7 @@ $$
 The denominator becomes:
 
 $$
-(2+\sqrt{5})(2-\sqrt{5}) = 
+(2+\sqrt{5})(2-\sqrt{5}) = 2 \times 2 - 2\sqrt{5} + 2\sqrt{5} - 5 = 4-5=-1
 $$
 
 ---
