@@ -1,4 +1,4 @@
-# 🔄 Multi-Version Concurrency Control
+# Multi-Version Concurrency Control
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -226,7 +226,7 @@ To solve this issue, PostgreSQL has special tools called **VACUUM** and **autova
 
 When does **VACUUM** delete an old record version? It deletes it when no active transactions can see it anymore—that is, when no transactions still refer to its **xmin** (its creation transaction ID). In other words, a record version can be removed once it’s no longer visible to any ongoing transactions.
 
-## 🔍 Detailed Explanation of Internal Fields
+## Detailed Explanation of Internal Fields
 
 **xmin** is just one part of how PostgreSQL manages **MVCC**.
 
@@ -250,7 +250,7 @@ SELECT xmin, xmax, cmin, cmax, * FROM categories ORDER BY name;
 (8 rows)
 ```
 
-🧾 **What Each Field Means:**
+**What Each Field Means:**
 
 - **xmin** – The transaction ID (xid) of the transaction that created the row.
 - **xmax** – The xid of the transaction that deleted or invalidated the row (if any).
@@ -259,7 +259,7 @@ SELECT xmin, xmax, cmin, cmax, * FROM categories ORDER BY name;
 
 > PostgreSQL assigns a unique command ID to each statement inside a transaction, starting from 0.
 
-🧠 **Why Are cmin and cmax Important?**
+**Why Are cmin and cmax Important?**
 
 PostgreSQL’s default isolation level is **READ_COMMITTED**.
 This means each statement in a transaction must see the database as it was when that statement began.
@@ -319,7 +319,7 @@ So far, in this transaction, we’ve inserted two new rows. If you look at the r
 That’s because they were inserted by two different **INSERT** commands within the same transaction.
 PostgreSQL starts counting commands from 0, so every statement inside a transaction is given a unique command ID.
 
-> ✅ This shows that PostgreSQL not only tracks which transaction created a row, but also which specific command within that transaction.
+> This shows that PostgreSQL not only tracks which transaction created a row, but also which specific command within that transaction.
 
 
 Let’s continue the transaction by opening a cursor that selects from the categories table, and then delete all rows except two. The transaction session continues like this:
@@ -379,7 +379,7 @@ Since the cursor was declared before the **DELETE** statement, it continues to s
 You may also notice that **cmin** and **cmax** sometimes have the same value.
 This is because both fields share the same internal storage, and PostgreSQL uses one or the other depending on whether the row was inserted, updated, or deleted.
 
-## 🧾 Summary
+## Summary
 
 **MVCC** stands for **Multi-Version Concurrency Control**. It's an important feature in PostgreSQL and many other modern databases. 
 **MVCC** allows multiple transactions to read and write data at the same time, ensuring the data remains consistent and correct.
@@ -409,9 +409,9 @@ This is because both fields share the same internal storage, and PostgreSQL uses
   - Vacuuming removes old versions of data that are no longer visible or needed.
   - This prevents the database from growing unnecessarily large over time.
 
-## 📌 Explore More
+---
 
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔢 [Transaction Identifiers](./2_transaction_identifiers.md)
-- 🆚 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Transaction Identifiers](./2_transaction_identifiers.md)
+- [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
