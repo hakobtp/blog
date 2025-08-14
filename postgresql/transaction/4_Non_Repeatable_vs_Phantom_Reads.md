@@ -1,4 +1,4 @@
-# 🆚 Non-Repeatable vs Phantom Reads: What's the Real Difference?
+# Non-Repeatable vs Phantom Reads: What's the Real Difference?
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -14,11 +14,11 @@ In this post, we'll clearly explain the difference between these two anomalies u
 
 In this post, we'll break down the difference between these two read anomalies using simple language and practical PostgreSQL SQL examples.
 
-## 🔁 Non-Repeatable Read
+## Non-Repeatable Read
 
 A **non-repeatable** read happens when a transaction reads the **same row more than once**, but gets different results because another transaction updated or deleted that row in the meantime.
 
-🧪 **Example scenario:**
+**Example scenario:**
 
 Let's say we have the following table:
 
@@ -75,19 +75,19 @@ SELECT * FROM accounts WHERE account_number = '1001';
 
 ```
 
-🔍 **What Happened?**
+**What Happened?**
 - **Transaction 1** starts and reads the balance of account '1001'. It sees 500.
 - **Transaction 2** starts and updates the balance to 600, then commits.
 - **Transaction 1** reads the same row again and sees 600, not the original 500.
 
-💡 This is a **non-repeatable read** — the same row returned **different values** within one transaction.
+This is a **non-repeatable read** — the same row returned **different values** within one transaction.
 
-## 👻 Phantom Read
+## Phantom Read
 
 A **phantom read** occurs when a transaction **runs the same query twice**, and the **number of rows returned changes**, 
 because another transaction inserted or deleted rows that match the query condition.
 
-🧪 **Example scenario:**
+**Example scenario:**
 
 We have a table like this:
 
@@ -137,14 +137,14 @@ SELECT * FROM orders WHERE total_amount > 90;
 
 ```
 
-🔍 What Happened?
+What Happened?
 - **Transaction 1** runs a query to find all orders where total_amount > 90. It sees order '1001'.
 - **Transaction 2** inserts a new order '1002' with a total_amount of 120, and commits.
 - **Transaction 1** runs the same query again and now sees two rows: '1001' and '1002'.
 
-💡 This is a **phantom read** — the result set changed between two identical queries during the same transaction.
+This is a **phantom read** — the result set changed between two identical queries during the same transaction.
 
-## 🧾 Summary
+## Summary
 
 |Feature                    |Non-Repeatable Read                                |Phantom Read                                               |
 |:--------------------------|:--------------------------------------------------|:----------------------------------------------------------|
@@ -153,12 +153,11 @@ SELECT * FROM orders WHERE total_amount > 90;
 |Example change	            |`UPDATE` or `DELETE` of a row	                    |`INSERT` or `DELETE` of rows matching a condition          |
 |Isolation level to avoid   |`REPEATABLE READ` or higher                        |`SERIALIZABLE`                                               |
 
+---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔄 [Multi-Version Concurrency Control](./3_Multi_Version_Concurrency_Control.md)
-- [💾 Savepoints](./5_Savepoints.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Multi-Version Concurrency Control](./3_Multi_Version_Concurrency_Control.md)
+- [Savepoints](./5_Savepoints.md)
 
 
