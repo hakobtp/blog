@@ -19,7 +19,7 @@ Let’s look at what each of these means in PostgreSQL.
 
 **Atomicity** means that a transaction is treated as one complete unit. It either **succeeds entirely** or **fails completely**.
 
-- In PostgreSQL, if one SQL statement in a transaction fails, all the previous changes in that transaction are **automatically rolled back**.
+- If one SQL statement in a transaction fails, all the previous changes in that transaction are **automatically rolled back**.
 - This ensures that the database is not left in a partial or broken state.
 
 ## Consistency
