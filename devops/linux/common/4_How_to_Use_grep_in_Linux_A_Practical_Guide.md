@@ -155,8 +155,21 @@ grep -x "Developers should review pull requests daily." notes.txt
 Developers should review pull requests daily.
 ```
 
+## Fast literal search (no regex)
+
+Sometimes you want to search exact text and skip regex rules.
+
+```bash
+grep -F "user=bob   action=upload" server.log
+
+2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
+```
+
+`-F` treats the pattern as a fixed string (faster and simpler).
+
 ---
 
 - [HOME](./../../../README.md)
 - [Linux](./../tutorials.md)
 - [System Info and Processes](./3_System_Info_and_Processes.md)
+- [How to Use grep with Regex](./5_How_to_Use_grep_with_Regex.md)
