@@ -52,6 +52,42 @@ EOF
 
 ```
 
+## Basic usage
+
+Find a word
+```bash
+grep "ERROR" server.log #Shows lines that contain ERROR.
+```
+
+Ignore case
+```bash
+grep -i "error" server.log #Matches ERROR, Error, error, etc.
+```
+
+Show line numbers
+```bash
+grep -n "upload" server.log #Helpful when you want to edit that line later.
+```
+
+Invert the match (show lines without the word)
+```bash
+grep -v "INFO" server.log #Useful to focus on warnings or errors only.
+```
+
+Search many files (recursive)
+```bash
+grep -r "login" . #-r searches inside subfolders too.
+```
+
+Only show the file names that match
+```bash
+grep -l "download" *.log #-l = list matching files, not the lines.
+```
+
+Count matches
+```bash
+grep -c "Alice" data.csv #Good for quick stats.
+```
 
 ---
 
