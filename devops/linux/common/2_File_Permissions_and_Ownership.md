@@ -41,6 +41,64 @@ Diagram: How Linux Permissions Work
 - Next 3 → group permissions
 - Last 3 → others’ permissions
 
+Use the `ls -l` command  for checking File permissions
+
+```bash
+ls -l
+
+-rwxr-xr-- 1 john devops 1024 Aug 14 script.sh
+```
+
+Breakdown:
+- `-rwxr-xr--`  permission string
+- `john`  user (owner)
+- `devops`  group
+- `script.sh`  file name
+
+
+How to Read `-rwxr-xr--`
+
+| Position | Owner Type | Permissions | Meaning              |
+| -------- | ---------- | ----------- | -------------------- |
+| 1–3      | User       | rwx         | Read, write, execute |
+| 4–6      | Group      | r-x         | Read, execute        |
+| 7–9      | Others     | r--         | Read only            |
+
+## Changing File Permissions
+
+The command is:
+
+```bash
+chmod [permissions] filename
+```
+
+Example:
+
+```bash
+chmod 755 script.sh
+```
+
+This means:
+
+| Number | Permissions | Meaning              |
+| ------ | ----------- | -------------------- |
+| 7      | rwx         | read, write, execute |
+| 5      | r-x         | read, execute        |
+| 5      | r-x         | read, execute        |
+
+
+How numbers map to permissions:
+
+| Number | Binary | Permissions |
+| ------ | ------ | ----------- |
+| 7      | 111    | rwx         |
+| 6      | 110    | rw-         |
+| 5      | 101    | r-x         |
+| 4      | 100    | r--         |
+| 0      | 000    | ---         |
+
+
+
 ---
 
 - [HOME](./../../../README.md)
