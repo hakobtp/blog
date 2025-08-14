@@ -167,6 +167,30 @@ grep -F "user=bob   action=upload" server.log
 
 `-F` treats the pattern as a fixed string (faster and simpler).
 
+### Short cheat sheet
+
+```bash
+grep "text" file        # simple search
+grep -i "text" file     # ignore case
+grep -n "text" file     # show line numbers
+grep -v "text" file     # invert match (lines without)
+grep -r "text" dir/     # recursive
+grep -l "text" files*   # only filenames
+grep -c "text" file     # count
+grep -w "word" file     # whole word
+grep -x "line" file     # whole line
+grep -F "a*b" file      # fixed string (no regex)
+grep -E "a|b" file      # extended regex
+grep -A2 -B2 "x" file   # show context
+```
+
+### Performance & safety tips
+- **Quote your pattern:** use single quotes 'pattern' so the shell doesn’t expand `*` or `?`.
+- **Use:** `-F` for plain text searches: faster and avoids regex confusion.
+- **Binary files:** add `-I` to skip or `-a` to treat them as text.
+- **Locale:** if you need pure byte speed, `LC_ALL=C grep ...` can be faster (advanced).
+- **Color:** `--color=auto` helps you see matches quickly.
+
 ---
 
 - [HOME](./../../../README.md)
