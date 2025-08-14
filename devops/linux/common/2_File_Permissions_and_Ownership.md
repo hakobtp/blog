@@ -97,7 +97,42 @@ How numbers map to permissions:
 | 4      | 100    | r--         |
 | 0      | 000    | ---         |
 
+## Changing File Ownership
 
+To change who owns the file:
+
+```bash
+sudo chown hakob:devops script.sh
+```
+
+**hakob** → the username of the **new owner**
+**devops** → the **group** that will own the file
+**script.sh** → the file whose ownership you are changing
+**sudo** → runs the command with admin rights (needed if you’re not the current owner)
+
+If `hakob` is not already a user on your system, chown will fail with an error:
+
+```bash
+chown: invalid user: ‘hakob:devops’
+```
+
+If `devops` is not already a group on your system, you’ll get:
+
+```bash
+chown: invalid group: ‘devops’
+```
+
+It never creates users or groups To create them, you would use:
+
+```bash
+sudo useradd hakob
+sudo groupadd devops
+```
+
+Examples:
+- Change only the user: `sudo chown hakob script.sh`
+- Change only the group: `sudo chown :devops script.sh`
+- Change both user and group: `sudo chown hakob:devops script.sh`
 
 ---
 
