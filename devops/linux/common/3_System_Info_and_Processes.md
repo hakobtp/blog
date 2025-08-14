@@ -67,8 +67,6 @@ Key columns
 - **Mounted on:** where it is attached in your directory tree
 
 Common questions
-
-- “Why is `/` almost full?” → Check big folders under `/` (see Bonus at the end).
 - “What is `tmpfs`?” → A memory-backed filesystem (temporary).
 
 Tips
@@ -160,6 +158,10 @@ root       1   0.0  0.1 168324 11000 ?     Ss   Aug09   0:10 /sbin/init
 hakob   2123   3.2  1.5 945672 250000 ?    Sl   10:55   1:30 /usr/bin/code
 hakob   2301   0.0  0.2 512000  35000 pts/0 Ss+ 10:56   0:00 bash
 ```
+
+- The vertical bar `|` is a pipe, which sends the output of the command on the left (`ps aux`) into the command on the right (`head`).
+- `head` is a command that displays only the ↳first 10 lines of its input by default.
+- If you wanted to show, say, the first 20 lines, you could use: `ps aux | head -n 20`
 
 Columns to know
 
