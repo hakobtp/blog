@@ -288,9 +288,9 @@ kill -9 34567      # force stop (only if other signals failed)
 
 Safe order to stop a bad process
 
-1) Try to close the app normally (GUI or Ctrl+C).
-2) `kill <PID> (TERM)`.
-3) `kill -9 <PID>` only if it will not exit.
+1. Try to close the app normally (GUI or Ctrl+C).<br>
+2. `kill <PID> (TERM)`.<br>
+3. `kill -9 <PID>` only if it will not exit.<br>
 
 Finding the PID first
 ```bash
