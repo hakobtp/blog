@@ -191,6 +191,25 @@ grep -A2 -B2 "x" file   # show context
 - **Locale:** if you need pure byte speed, `LC_ALL=C grep ...` can be faster (advanced).
 - **Color:** `--color=auto` helps you see matches quickly.
 
+
+### File filters when searching directories
+
+Include or exclude certain files as you recurse:
+
+```bash
+# Only search .log files in logs/
+grep -r --include='*.log' 'ERROR' logs/
+
+# Exclude big folders and temp files
+grep -r --exclude-dir='node_modules' --exclude='*.tmp' -n 'TODO' .
+
+# Multiple includes (repeat the flag)
+grep -r --include='*.{js,ts}' --include='*.tsx' -n '\buse strict\b' src/
+# (Brace expansion may be a shell feature; when unsure, repeat --include)
+```
+
+On many systems: `-R` follows symlinks, `-r` usually doesn’t. Check man grep for your platform.
+
 ---
 
 - [HOME](./../../../README.md)

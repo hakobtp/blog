@@ -173,6 +173,59 @@ grep -E '^(INFO|WARN|ERROR)\b' server.log  # line starts with a log level
 - These are special in regex: `.` `()` `[]` `{}` `+` `?` `*` `^` `$` `|`.
 - To search for them literally, put a backslash before them: `\.` `\[` `\]` …
 
+```bash
+grep '\.$' notes.txt           # lines that end with a literal period .
+grep '\[INFO\]' server.log     # literal [INFO]
+grep 'price\$' prices.txt      # the dollar sign itself
+```
+
+Tip: put your whole pattern in single quotes `'...'` so the shell doesn’t change `*`, `$`, or `\.`
+
+### Extended vs Basic regex
+
+- Basic regex (default): `*` works, but `+`, `?`, `{m,n}`, `|`, and `()` are awkward and often need backslashes.
+- Extended regex (`-E` or egrep): lets you write `+`, `?`, `{m,n}`, `|`, `()` naturally. Recommendation: use `-E` for clarity and fewer escapes.
+
+
+### Practical mini-tasks (cleaned up)
+
+Count how many ERROR lines happened per user
+```bash
+grep 'ERROR' server.log | grep -o 'user=[a-z]*' | sort | uniq -c
+```
+
+Show only the matching piece (not the whole line)
+```bash
+grep -o 'user=[a-z]*' server.log
+```
+
+Find lines that don’t mention a rack code
+```bash
+grep -v 'rack [A-Z][0-9]\+' notes.txt
+```
+
+Case-insensitive search for “ali” as a whole word
+```bash
+grep -i -w 'ali' data.csv
+```
+
+Find repeated scores (same number appears on multiple lines)
+```bash
+cut -d, -f3 data.csv | tail -n +2 | sort | uniq -d
+# Show full rows for a score (example: 92)
+grep -E ',92$' data.csv
+```
+
+## Performance & safety tips
+
+- **Quote your pattern:** use single quotes `'pattern'` to prevent the shell from expanding `*`, `?`, or `$`.
+- **Use** `-F` for fixed-string searches (no regex): faster and safer for plain text. `grep -F 'a.b' file` matches `a.b` literally.
+- **Skip binary files** with `-I`, or force treat as text with `-a` if needed.
+- **Show filenames** with `-H` (on by default when searching multiple files).
+- **Context helps debugging:** add `-n` for line numbers, `--color=auto` for highlights, and `-C NUM` for context lines.
+- **Locale affects classes** like `[[:alpha:]]`. For pure byte speed, some admins use `LC_ALL=C` (advanced).
+- Portability: `grep -P` (Perl regex) is powerful but not guaranteed on all systems; prefer `-E` unless you need PCRE features.
+
 ---
 
 - [HOME](./../../../README.md)
