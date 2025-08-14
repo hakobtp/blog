@@ -174,6 +174,52 @@ Columns to know
 - **START / TIME:** start time and total CPU time
 - **COMMAND:** the program and its arguments
 
+- **-e** Select all processes.
+    - Equivalent to `-A`.
+    - Without it, `ps` might only show your processes or processes linked to your terminal session.
+- **-o** Output format.
+    - Lets you explicitly choose which columns to show and in what order.
+    - You list them separated by commas, with no spaces.
+
+In short:
+- Use `aux` when you want a quick, standard, full list.
+- Use `-e` + `-o` when you want control over which columns are shown.
+
+```bash
+ps -eo pid,comm
+
+PID COMMAND
+1   systemd
+2   kthreadd
+3   rcu_gp
+4   rcu_par_gp
+
+```
+
+You can rename columns with `=`:
+
+```bash
+ps -o pid=P_ID,comm=COMMAND
+
+P_ID    COMMAND
+1156779 bash
+1173938 ps
+
+```
+
+**Important:** `-u` has two completely different meanings depending on where you put it.
+
+- **Case 1:** `ps -u <username>`
+    - **Meaning:** Select processes for this user.
+    - **Example:**
+        ```bash
+        whoami
+        username
+
+        ps -u username
+        ```
+
+
 ```bash
 ps aux | grep java
 
