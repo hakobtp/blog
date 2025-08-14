@@ -213,14 +213,22 @@ P_ID    COMMAND
 >    - **Meaning:** Select processes for this user.
 >    - **Example:**
 >        ```bash
->        whoami
->        username
->
->        ps -u username
+>        ps -u $USER
 >        ```
 > - **Case 2:** `ps -u` (without a username, just the flag)
 >     - **Meaning:** Show extra info in BSD-style format (adds columns like `%CPU`, `%MEM`, `START`, `TIME`, etc.).
 >    - This is why `ps aux` includes `%CPU` and `%MEM`.
+
+
+Combined example
+
+```bash
+ps -eo user,pid,%cpu,%mem,command
+
+USER       PID %CPU %MEM COMMAND
+root         1  0.0  0.1 /sbin/init
+hakob     3201  1.2  3.4 java -jar myapp.jar
+```
 
 
 ```bash
