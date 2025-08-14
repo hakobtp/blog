@@ -30,7 +30,7 @@ Negation with `[^...]` (anything except):
 grep 'code=[^0-9]' server.log   # code= followed by a non-digit
 ```
 
-**POSIX** classes (portable and clear inside `[]`):
+## POSIX classes
 
 POSIX character classes are named sets of characters you use inside a bracket expression.
 Syntax: they must be wrapped like this: `[[:digit:]]`, `[[:alpha:]]`, `[[:space:]]`.
@@ -47,41 +47,97 @@ Syntax: they must be wrapped like this: `[[:digit:]]`, `[[:alpha:]]`, `[[:space:
     - `[:space:]` → whitespace (space, tab, newline, etc.)
     - `[:lower:]`, `[:upper:]`, `[:punct:]`, `[:blank:]`, `[:xdigit:]` (hex), `[:print:]`, `[:graph:]`
 
-Important: `[:digit:]` alone won’t work. It must be inside `[...]`: `**[[:digit:]]**`.
+Important: `[:digit:]` alone won’t work. It must be inside `[...]`: `[[:digit:]]`.
 
 ```bash
-grep -E 'name,[[:alpha:]]+,[[:digit:]]+' data.csv
+cat data.csv 
 
-```
-
-
-**Repeaters:** `*`, `+`, `?`, `{m,n}`
-
-Use extended regex (`-E`) for `+`, `?`, `{m,n}`.
-```bash
-grep -E 'user=[a-z]+' server.log       # one or more letters
-grep -E 'size=[0-9]{1,3}' server.log   # 1 to 3 digits
-grep -E 'Ali(ce)?' data.csv            # "Ali" or "Alice"
-
+id,name,score
+1,Alice,92
+2,Bob,81
+3,Caroline,92
+4,Ali,70
+5,O'Neil,77
+6,Jean-Luc Picard!,99
+6,Jean-Luc Picard,99
 ```
 
+**Pattern 1:**
+```bash
+grep -E '^[[:digit:]]+,[[:alpha:]]+,[[:digit:]]+$' data.csv
+
+1,Alice,92
+2,Bob,81
+3,Caroline,92
+4,Ali,70
+```
+
+Goal: match lines like `123,Alice,92`
+
+- `^` — start of line (anchor).
+- `[[:digit:]]+` — one or more digits → the ID field.
+- `,` — a literal comma (delimiter).
+- `[[:alpha:]]+` — one or more letters only (A–Z, a–z; plus locale letters) → the Name field with no spaces or hyphens (e.g., Alice, Bob).
+- `,` — comma.
+- `[[:digit:]]+` — one or more digits → the Score field.
+- `$` — end of line (anchor).
+
+**Doesn’t match:** 1,Ali ce,92 (space), 1,Mary-Jane,92 (hyphen), header id,name,score (no leading digits).
+
+**Pattern 2:**
+```bash
+grep -E '^[[:digit:]]+,[[:alpha:][:space:]-]+,[[:digit:]]+$' data.csv
+
+1,Alice,92
+2,Bob,81
+3,Caroline,92
+4,Ali,70
+6,Jean-Luc Picard,99
+```
+
+Goal: allow multi-word or hyphenated names: `123,Mary Jane-Smith,92`
+
+What changed
+- Middle field: `[[:alpha:][:space:]-]+` one or more of:
+    - `[:alpha:]` — letters,
+    - `[:space:]` — whitespace (space, tab, etc.),
+    - `-` — a literal hyphen
+
+So names like `“Alice Smith”` or `“Mary-Jane”` now match.
+
+**Doesn’t match:** 5,O'Neil,77 (apostrophe not allowed), 6,Jean-Luc Picard!,99 (! not allowed)
+
+- Key differences (at a glance)
+    - **Pattern 1:** Name = letters only
+    - **Pattern 2:** Name = letters + spaces + hyphens
+- Both require:
+    - **Field 1:** `digits` **Field 2:** `alpha` Field 3: `digits`
+    - Fields separated by commas, line fully matched due to `^` and `$`.    
+
+
+**Allow apostrophes in names:**
+```bash
+grep -E '^[[:digit:]]+,[[:alpha:][:space:]'\''-]+,[[:digit:]]+$' data.csv
+
+1,Alice,92
+2,Bob,81
+3,Caroline,92
+4,Ali,70
+5,O'Neil,77
+6,Jean-Luc Picard,99
+```
+
+(Note the escaped `'` inside single quotes.)
+
+**Allow only space (not tabs) between words:**
 
 ```bash
+grep -E '^[[:digit:]]+,[[:alpha:] -]+,[[:digit:]]+$' data.csv
 ```
-```bash
-```
-```bash
-```
-```bash
-```
-```bash
-```
-```bash
-```
-```bash
-```
-```bash
-```
+
+(That middle class includes ` ` and `-`, but not `[:space:]`.)
+
+if you need non-ASCII letters (e.g., accents), ensure your locale is set (e.g., `LC_ALL=en_US.UTF-8`), because `[:alpha:]` is locale-aware.
 
 ---
 
