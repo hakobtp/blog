@@ -133,6 +133,20 @@ Examples:
 - Change only the user: `sudo chown hakob script.sh`
 - Change only the group: `sudo chown :devops script.sh`
 - Change both user and group: `sudo chown hakob:devops script.sh`
+- If you downloaded a shell script and can’t run it: `chmod +x install.sh`
+- If you have a private file: `chmod 600 secrets.txt`
+    - Only **you** (the user) can read and write it. No one else can open it.
+- If you want everyone in your group to edit a file: `chmod 664 project.txt`    
+
+## Tips for Beginners
+
+- Always check permissions before running unknown scripts
+- Use the principle of least privilege — give only the permissions needed
+- Use `ls -ld foldername` to check folder permissions
+
+Understanding Linux permissions is not just for system administrators — it’s a skill every Linux user should have. 
+By learning how to view, change, and manage permissions, you can keep your files secure and your system running smoothly.
+
 
 ---
 
