@@ -185,6 +185,78 @@ Note: `grep` will also show itself; `pgrep` avoids this.
 
 **top** — Live resource usage
 
+`top` updates every few seconds and shows the most “hungry” processes.
+
+Header (top lines)
+- **load average** (same as uptime)
+- **Tasks:** total processes, running, sleeping, etc.
+- **%Cpu(s):** CPU usage split by user/system/io-wait, etc.
+- **MiB Mem / Swap:** memory and swap use
+
+Useful keys inside top
+- **q**: quit
+- **h**: help (shows all keys)
+- **P**: sort by CPU
+- **M**: sort by memory
+- **1**: toggle view of each CPU core
+- **k**: send a signal to a PID (same as kill) — use with care
+
+Reading top like a pro (but in simple words)
+
+- If load `average ≫ cores`, the system is too busy.
+- If `%Cpu(s) iowait` is high, disks may be slow or blocked.
+- If `Mem available` is low and `Swap used` keeps growing, you may need more RAM or to stop heavy apps.
+
+---
+
+***kill <PID>*** — Stop or control a process (with signals)
+
+`kill` does not always “kill.” It sends a signal. Some signals ask the app to exit cleanly.
+
+
+Common signals
+- **TERM (15):** polite “please exit now.” (default)
+- **INT (2):** like pressing Ctrl+C
+- **HUP (1):** “hang up”; many daemons reload config on HUP
+- **KILL (9):** force stop immediately (last resort: no cleanup)
+
+```
+kill 12345         # send TERM (15) to PID 12345
+kill -15 12345     # same as above
+kill -HUP 23456    # ask process to reload (if it supports HUP)
+kill -9 34567      # force stop (only if other signals failed)
+```
+
+Safe order to stop a bad process
+
+1) Try to close the app normally (GUI or Ctrl+C).
+2) `kill <PID> (TERM)`.
+3) `kill -9 <PID>` only if it will not exit.
+
+Finding the PID first
+```bash
+pgrep -a myapp     # show PID(s) for myapp with command names
+```
+
+Related tools
+
+- `pkill <name>` → send a signal by process name
+- `killall <name>` → same idea (varies by distro); be careful with generic names
+
+---
+
+```
+uname -a        # kernel + system identity
+df -h           # disk usage per filesystem
+free -h         # memory and swap usage (check 'available')
+uptime          # time since boot + load average
+
+ps aux          # list all processes
+top             # live CPU/memory/process view
+kill <PID>      # send TERM (15) by default; use -9 only last
+nproc           # number of CPU cores (for load comparison)
+```
+
 ---
 
 - [HOME](./../../../README.md)
