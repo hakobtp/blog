@@ -2,48 +2,27 @@
 
 A regular expression (regex) describes a search pattern. Here are the most useful pieces for day-to-day work.
 
-> Tip on quoting: wrap your pattern in single quotes '...' so the shell doesn’t change special characters.
+> Tip on quoting: wrap your pattern in single quotes `'...'` so the shell doesn’t change special characters.
 
 **Literals:** Match exact text
 ```bash
 grep 'rack A3' notes.txt
-
-The new server is in rack A3.
 ```
 
 **Anchors:** start `^` and end `$`
 ```bash
 grep '^2025-08-14' server.log   # lines that start with the date
-
-2025-08-14 10:01:22 INFO  user=alice action=login
-2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
-2025-08-14 10:03:42 ERROR user=carol action=download code=403
-2025-08-14 10:05:10 INFO  user=bob   action=logout
-
-
 grep 'daily\.$'   notes.txt     # lines that end with the word "daily."
-
-Developers should review pull requests daily.
 ```
 
 **Any single character:** `.`
 ```bash
 grep 'A.ice' data.csv     # matches "Alice" and "A-ice" (any one char between A and ice)
-
-1,Alice,92
 ```
+
 **Character sets:** `[ ... ]` and ranges
 ```bash
 grep 'user=[abc][a-z]*' server.log # user=a..., user=b..., or user=c..., followed by letters
-
-2025-08-14 10:01:22 INFO  user=alice action=login
-2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
-2025-08-14 10:03:42 ERROR user=carol action=download code=403
-2025-08-14 10:05:10 INFO  user=bob   action=logout
-
-grep 'user=[a][a-z]*' server.log
-
-2025-08-14 10:01:22 INFO  user=alice action=login
 ```
 
 Negation with `[^...]` (anything except):
