@@ -61,32 +61,46 @@ grep "ERROR" server.log #Shows lines that contain ERROR.
 
 Ignore case
 ```bash
-grep -i "error" server.log #Matches ERROR, Error, error, etc.
+$ grep -i "error" server.log #Matches ERROR, Error, error, etc.
+
+2025-08-14 10:03:42 ERROR user=carol action=download code=403
 ```
 
 Show line numbers
 ```bash
-grep -n "upload" server.log #Helpful when you want to edit that line later.
+$ grep -n "upload" server.log #Helpful when you want to edit that line later.
+
+2:2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
 ```
 
 Invert the match (show lines without the word)
 ```bash
-grep -v "INFO" server.log #Useful to focus on warnings or errors only.
+$ grep -v "INFO" server.log #Useful to focus on warnings or errors only.
+
+2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
+2025-08-14 10:03:42 ERROR user=carol action=download code=403
+
 ```
 
 Search many files (recursive)
 ```bash
-grep -r "login" . #-r searches inside subfolders too.
+$ grep -r "login" . #-r searches inside subfolders too.
+
+./server.log:2025-08-14 10:01:22 INFO  user=alice action=login
 ```
 
 Only show the file names that match
 ```bash
-grep -l "download" *.log #-l = list matching files, not the lines.
+$ grep -l "download" *.log #-l = list matching files, not the lines.
+
+server.log
 ```
 
 Count matches
 ```bash
-grep -c "Alice" data.csv #Good for quick stats.
+$ grep -c "Alice" data.csv #Good for quick stats.
+
+1
 ```
 
 ---
