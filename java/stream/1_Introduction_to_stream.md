@@ -81,9 +81,5 @@ This pattern—making a stream, transforming it, and then getting a result—is 
 
 ---
 
-## Explore More
-
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
-
----

@@ -461,7 +461,6 @@ By using this custom utility, you can experiment with record copying until [JEPÂ
 
 
 ---
-## Explore More
 
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
