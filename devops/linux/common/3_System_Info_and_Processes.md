@@ -207,17 +207,20 @@ P_ID    COMMAND
 
 ```
 
-**Important:** `-u` has two completely different meanings depending on where you put it.
-
-- **Case 1:** `ps -u <username>`
-    - **Meaning:** Select processes for this user.
-    - **Example:**
-        ```bash
-        whoami
-        username
-
-        ps -u username
-        ```
+> **Important:** `-u` has two completely different meanings depending on where you put it.
+>
+> - **Case 1:** `ps -u <username>`
+>    - **Meaning:** Select processes for this user.
+>    - **Example:**
+>        ```bash
+>        whoami
+>        username
+>
+>        ps -u username
+>        ```
+> - **Case 2:** `ps -u` (without a username, just the flag)
+>     - **Meaning:** Show extra info in BSD-style format (adds columns like `%CPU`, `%MEM`, `START`, `TIME`, etc.).
+>    - This is why `ps aux` includes `%CPU` and `%MEM`.
 
 
 ```bash
