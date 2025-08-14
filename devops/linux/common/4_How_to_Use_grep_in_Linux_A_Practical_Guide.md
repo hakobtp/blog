@@ -105,6 +105,56 @@ $ grep -c "Alice" data.csv #Good for quick stats.
 1
 ```
 
+## Make results easier to read
+
+Color highlights (often on by default)
+
+```bash
+grep --color=auto -n "WARN" server.log
+
+```
+
+Show context lines around a match
+
+```bash
+grep -nC2 "ERROR" server.log   # 2 lines before and after
+
+1-2025-08-14 10:01:22 INFO  user=alice action=login
+2-2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
+3:2025-08-14 10:03:42 ERROR user=carol action=download code=403
+4-2025-08-14 10:05:10 INFO  user=bob   action=logout
+
+
+grep -nA1 "WARN" server.log    # 1 line After
+
+2:2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
+3-2025-08-14 10:03:42 ERROR user=carol action=download code=403
+
+
+grep -nB1 "logout" server.log  # 1 line Before
+
+3-2025-08-14 10:03:42 ERROR user=carol action=download code=403
+4:2025-08-14 10:05:10 INFO  user=bob   action=logout
+```
+
+## Match whole words or whole lines
+
+Whole word
+
+```bash
+grep -w "Alice" data.csv #This avoids matching “Alicea” or “Malice”.
+
+1,Alice,92
+```
+
+Whole line
+
+```bash
+grep -x "Developers should review pull requests daily." notes.txt
+
+Developers should review pull requests daily.
+```
+
 ---
 
 - [HOME](./../../../README.md)
