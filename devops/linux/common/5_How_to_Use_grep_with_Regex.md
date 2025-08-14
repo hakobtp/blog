@@ -135,9 +135,43 @@ grep -E '^[[:digit:]]+,[[:alpha:][:space:]'\''-]+,[[:digit:]]+$' data.csv
 grep -E '^[[:digit:]]+,[[:alpha:] -]+,[[:digit:]]+$' data.csv
 ```
 
-(That middle class includes ` ` and `-`, but not `[:space:]`.)
+(That middle class includes `   ` and `-`, but not `[:space:]`.)
 
 if you need non-ASCII letters (e.g., accents), ensure your locale is set (e.g., `LC_ALL=en_US.UTF-8`), because `[:alpha:]` is locale-aware.
+
+
+### Repeaters: *, +, ?, {m,n}
+
+Use extended regex with -E to write these cleanly.
+
+- `*` → zero or more
+- `+` → one or more
+- `?` → zero or one (optional)
+- `{m,n}` → between `m` and `n` times (use `{m,}` for “at least m”; `{m}` for “exactly m”)
+
+```bash
+grep -E 'user=[a-z]+' server.log        # one or more letters after user=
+grep -E 'size=[0-9]{1,3}' server.log    # 1 to 3 digits (000–999)
+grep -E 'Ali(ce)?' data.csv             # "Ali" or "Alice" (group is optional)
+grep -E 'code=[0-9]{3}' server.log      # exactly 3 digits (like 200, 403, 500)
+grep -E 'v[0-9]+\.[0-9]+' notes.txt     # versions like v2.1, v10.12
+```
+
+### Grouping (...) and alternation |
+
+- Grouping `(...)` lets you treat many characters as one unit.
+- Alternation `|` means “this or that”.
+
+```bash
+grep -E '(ERROR|WARN)' server.log       # lines containing ERROR or WARN
+grep -E 'Ali(ce|son)?' data.csv         # Ali, Alice, or Alison
+grep -E '^(INFO|WARN|ERROR)\b' server.log  # line starts with a log level
+```
+
+### Escaping special characters
+
+- These are special in regex: `.` `()` `[]` `{}` `+` `?` `*` `^` `$` `|`.
+- To search for them literally, put a backslash before them: `\.` `\[` `\]` …
 
 ---
 
