@@ -24,7 +24,8 @@ What it shows
 - System identity: kernel name and version, machine type (e.g., x86_64), and more.
 
 ```bash
-$ uname -a
+uname -a
+
 Linux myhost 6.8.0-39-generic #42-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
 ```
 
@@ -74,6 +75,115 @@ Tips
 
 - `df -hT` adds `type` (e.g., ext4, xfs).
 - `df -h /home` shows only the filesystem for /home.
+
+---
+
+**free -h** — Memory usage
+
+What it shows
+- How your RAM and swap are used.
+
+```bash
+free -h
+              total   used   free  shared  buff/cache  available
+Mem:            16G     3G     1G    300M         12G        13G
+Swap:            4G   256M     3.8G
+```
+
+Important ideas (simple but deep)
+
+- Linux uses free RAM as cache to make programs faster.
+- Because of cache, the “used” number looks big, but much of it is cache and can be freed.
+- “available” is the best quick number to ask: “How much memory can apps use right now without swapping?”
+
+
+Columns
+- **total:** total RAM
+- **used:** used now (includes cache)
+- **free:** completely unused RAM (usually small on purpose)
+- **shared:** RAM shared by tmpfs/shmem
+- **buff/cache:** file cache + buffers
+- **available:** safe estimate of RAM apps can still use
+
+**Swap** Used when RAM is not enough. If Swap used grows and the system is slow, you may not have enough RAM for your workload.
+
+---
+
+**uptime** — Time since boot & load average
+
+What it shows
+- How long the system has been up
+- Number of logged-in users
+- Load average for the last 1, 5, 15 minutes
+
+```bash
+uptime
+
+11:20:03 up 5 days,  3:12,  2 users,  load average: 0.85, 1.10, 0.90
+```
+
+Load average (very important)
+
+- Roughly: how many processes are running or waiting for CPU/IO.
+- Compare it with the number of CPU cores.
+    - If you have 4 cores, a load around 4.0 means all cores are busy.
+    - If the load is much higher than core count for a long time, the system is overloaded.
+
+```bash
+nproc    # shows number of CPU cores
+```
+
+### Processes 101
+
+A process is a running program. Each process has a `PID` (process ID).
+There is often a parent process (`PPID`) that started it.
+
+Why you care:
+- To find what is using CPU or memory
+- To stop a hung or misbehaving program
+- To understand system load
+
+--- 
+
+**ps aux** — List all processes
+
+What the options mean
+
+- **a:** show processes from all users
+- **u:** show in a user-friendly format (with usernames)
+- **x:** include processes without a terminal
+
+```bash
+$ ps aux | head
+USER     PID  %CPU %MEM    VSZ   RSS TTY   STAT START   TIME COMMAND
+root       1   0.0  0.1 168324 11000 ?     Ss   Aug09   0:10 /sbin/init
+hakob   2123   3.2  1.5 945672 250000 ?    Sl   10:55   1:30 /usr/bin/code
+hakob   2301   0.0  0.2 512000  35000 pts/0 Ss+ 10:56   0:00 bash
+```
+
+Columns to know
+
+- **USER:** owner
+- **PID:** process ID
+- **%CPU / %MEM:** CPU and memory usage
+- **VSZ / RSS:** virtual vs resident memory (RSS is real RAM used)
+- **TTY:** terminal (if any)
+- **STAT:** state (e.g., R running, S sleeping, D uninterruptible I/O, T stopped, Z zombie).
+- **START / TIME:** start time and total CPU time
+- **COMMAND:** the program and its arguments
+
+```bash
+ps aux | grep java
+
+# Better:
+pgrep -a java     # shows matching PIDs and commands
+```
+
+Note: `grep` will also show itself; `pgrep` avoids this.
+
+--- 
+
+**top** — Live resource usage
 
 ---
 
