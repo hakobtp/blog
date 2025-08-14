@@ -13,6 +13,14 @@ Every file and folder in Linux has three types of owners:
 | **Group**  | A set of users with shared access rights                      |
 | **Others** | Anyone else on the system                                     |
 
+Each of these can have three permissions:
+
+| Permission  | Symbol | What It Does                                         |
+| ----------- | ------ | ---------------------------------------------------- |
+| **Read**    | `r`    | View the file’s contents (or list files in a folder) |
+| **Write**   | `w`    | Modify the file (or add/delete files in a folder)    |
+| **Execute** | `x`    | Run the file as a program or script                  |
+
 
 
 ---
