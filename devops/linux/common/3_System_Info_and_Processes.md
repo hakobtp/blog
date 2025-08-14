@@ -18,6 +18,34 @@ Quick map of commands:
 
 ---
 
+**uname -a** — Kernel and system version
+
+What it shows 
+- System identity: kernel name and version, machine type (e.g., x86_64), and more.
+
+```bash
+$ uname -a
+Linux myhost 6.8.0-39-generic #42-Ubuntu SMP PREEMPT_DYNAMIC x86_64 GNU/Linux
+```
+
+How to read
+- **Linux:** kernel name.
+- **myhost:** your machine (node) name.
+- **6.8.0-39-generic:** kernel release (version).
+- **#42-Ubuntu …:** build info.
+- **x86_64:** architecture (64-bit).
+- **GNU/Linux:** OS family.
+
+Why it matters
+- When you report a bug or install drivers, kernel and arch are important.
+
+Tip
+
+- `uname -r` → only the kernel release
+- `uname -m` → only the machine hardware name (e.g., x86_64, aarch64)
+
+---
+
 - [HOME](./../../../README.md)
 - [Linux](./../tutorials.md)
 - [File Permissions and Ownership](./2_File_Permissions_and_Ownership.md)
