@@ -310,7 +310,7 @@ SELECT xmin, xmax, cmin, cmax, name, txid_current() FROM categories ORDER BY nam
 
 So far, in this transaction, we’ve inserted two new rows. If you look at the result of the second **SELECT** query, you’ll notice that:
 
-- Both of the new rows (go and Ruby) have the same **xmin** value: 894, which matches 
+- Both of the new rows (go and Ruby) have the same **xmin** value: 905, which matches 
   the output of **txid_current()**. This confirms that both rows were created by the same transaction.
 - However, the **cmin** values are different:
   - `go` has **cmin = 0**
