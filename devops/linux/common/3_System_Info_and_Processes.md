@@ -268,7 +268,7 @@ Reading top like a pro (but in simple words)
 
 ---
 
-***kill <PID>*** — Stop or control a process (with signals)
+**kill <PID>** — Stop or control a process (with signals)
 
 `kill` does not always “kill.” It sends a signal. Some signals ask the app to exit cleanly.
 
