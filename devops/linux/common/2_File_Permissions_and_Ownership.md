@@ -28,6 +28,19 @@ Diagram: How Linux Permissions Work
   user    group   others
 ```
 
+- First character (**-**) is file type 
+    - **-** regular file
+    - **d** directory
+    - **l** symbolic link, and other special file types like 
+    - **b** block device file (e.g., hard drive, USB)
+    - **c** character device file (e.g., keyboard, serial port)
+    - **p** named pipe (FIFO)
+    - **s** socket file
+
+- Next 3 → user permissions
+- Next 3 → group permissions
+- Last 3 → others’ permissions
+
 ---
 
 - [HOME](./../../../README.md)
