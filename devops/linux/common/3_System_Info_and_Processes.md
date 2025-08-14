@@ -46,6 +46,38 @@ Tip
 
 ---
 
+**df -h** — Disk space
+
+What it shows
+- How much space is used and available on each mounted filesystem.
+
+```
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda3       200G  150G   40G  79% /
+tmpfs            16G   60M   16G   1% /run
+/dev/sdb1       500G  320G  161G  67% /data
+```
+
+Key columns
+- **Filesystem:** device or volume name
+- **Size /Used/Avail:** total, used, and free space
+- **Use%:** percent used
+- **Mounted on:** where it is attached in your directory tree
+
+Common questions
+
+- “Why is `/` almost full?” → Check big folders under `/` (see Bonus at the end).
+- “What is `tmpfs`?” → A memory-backed filesystem (temporary).
+
+Tips
+
+- `df -hT` adds `type` (e.g., ext4, xfs).
+- `df -h /home` shows only the filesystem for /home.
+
+---
+
 - [HOME](./../../../README.md)
 - [Linux](./../tutorials.md)
 - [File Permissions and Ownership](./2_File_Permissions_and_Ownership.md)
+- [How to Use grep in Linux: A Practical Guide](./4_How_to_Use_grep_in_Linux_A_Practical_Guide.md)

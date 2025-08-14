@@ -1,0 +1,60 @@
+# How to Use grep in Linux: A Practical Guide
+
+`grep` searches text and shows the lines that match a pattern (a word or a regular expression). 
+The name comes from global regular expression print. 
+You can use it to find errors in logs, filter data, or check code quickly.
+
+Quick commands
+
+```bash
+grep "text" file.txt          # Find lines containing "text"
+grep -i "text" file.txt       # Case-insensitive match
+grep -r "text" src/           # Search all files under a directory (recursively)
+grep -rl "text" src/          # List filenames whose CONTENT includes "text"
+
+find . -type f -name "*Test*"     # Filenames that CONTAIN "Test" (case-sensitive)
+find . -type f -iname "*test*"    # Filenames that contain "test" (case-insensitive)
+
+```
+
+- `grep` searches inside files.
+    - Use `grep -rl` when you want the names of files whose contents match a pattern. 
+    - Use `find ... -name/-iname` when you want filenames that contain a string.
+
+## Sample files (so you can follow along)
+
+Create three small files in your home directory:
+
+```bash
+# 1) server.log
+cat > server.log <<'EOF'
+2025-08-14 10:01:22 INFO  user=alice action=login
+2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
+2025-08-14 10:03:42 ERROR user=carol action=download code=403
+2025-08-14 10:05:10 INFO  user=bob   action=logout
+EOF
+
+# 2) notes.txt
+cat > notes.txt <<'EOF'
+Remember to back up the database on Friday.
+The new server is in rack A3.
+Developers should review pull requests daily.
+EOF
+
+# 3) data.csv
+cat > data.csv <<'EOF'
+id,name,score
+1,Alice,92
+2,Bob,81
+3,Caroline,92
+4,Ali,70
+EOF
+
+```
+
+
+---
+
+- [HOME](./../../../README.md)
+- [Linux](./../tutorials.md)
+- [System Info and Processes](./3_System_Info_and_Processes.md)
