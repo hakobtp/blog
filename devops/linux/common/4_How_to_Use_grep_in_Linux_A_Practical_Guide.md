@@ -57,18 +57,20 @@ EOF
 Find a word
 ```bash
 grep "ERROR" server.log #Shows lines that contain ERROR.
+
+2025-08-14 10:03:42 ERROR user=carol action=download code=403
 ```
 
 Ignore case
 ```bash
-$ grep -i "error" server.log #Matches ERROR, Error, error, etc.
+grep -i "error" server.log #Matches ERROR, Error, error, etc.
 
 2025-08-14 10:03:42 ERROR user=carol action=download code=403
 ```
 
 Show line numbers
 ```bash
-$ grep -n "upload" server.log #Helpful when you want to edit that line later.
+grep -n "upload" server.log #Helpful when you want to edit that line later.
 
 2:2025-08-14 10:02:05 WARN  user=bob   action=upload size=0
 ```
