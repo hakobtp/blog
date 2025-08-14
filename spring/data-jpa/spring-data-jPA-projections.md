@@ -708,5 +708,5 @@ The source code for this article is available [over on GitHub](https://github.co
 
 ---
 
-[Home](./../../README.md) 
-| [<< Spring Data JPA](./tutorials.md)
+- [Home](./../../README.md) 
+- [Spring Data JPA](./tutorials.md)
