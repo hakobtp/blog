@@ -1,32 +1,37 @@
 # Objects in Python
 
-In Python, **everything is an object** — numbers, text, lists, even functions.
-You might not notice this right away because Python hides most of the technical details behind a simple and friendly syntax.
+In Python, **everything is an object** — numbers, strings, lists, dictionaries, even functions.
+You might not always see it because Python hides most of the technical details behind its simple syntax.
 
-
-For example, if you write:
-
+For example:
 ```py
 score = 10
 ```
 
-you are actually creating an object of type `int` (integer) with the value `10`. Then, Python links 
-the name `score` to that object. You don’t need to think about the “internal machinery” unless you want to build your own objects 
-or change how existing ones behave.
+Here’s what actually happens:
 
-## What is an object?
+- Python creates an object of type `int` with the value `10`.
+- The name `score` is linked to that object.
 
-An object is a special kind of data structure that can hold both:
+You don’t normally need to worry about how Python builds objects unless you want to:
+- Create your own objects.
+- Change the way existing ones behave.
+
+## What exactly is an object?
+
+An object is a container that can hold:
 - **Data** → stored in variables called attributes.
 - **Code** → stored in functions called methods.
 
-You can imagine objects as `nouns` (things) and methods as `verbs` (actions).
+You can think of:
+- Objects as nouns (things).
+- Methods as verbs (actions).
 
 For example:
-- A `Book` object might have attributes like `title` and `pages`.
-- It might have methods like `open()` and `read_page()`.
+- A `Book` object might have `title` and `pages` as attributes.
+- It might have `open()` and `read_page()` as methods.
 
-
+Every object is created from a class, which acts as a blueprint.
 
 ---
 
