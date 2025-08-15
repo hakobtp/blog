@@ -97,6 +97,74 @@ print(million)    # 1000000  (underscores don’t print)
 
 > MISTAKE TO AVOID: `var = 1,000,000` creates a `tuple (1, 0, 0)`, not an integer. Commas separate values.
 
+
+## Basic operators
+
+- `+` `-` `*` — add, subtract, multiply
+- `/` — true division → always a float
+- `//` — floor division → rounds down to an integer result
+- `%` — remainder (modulo)
+- `**` — exponent
+
+```py
+7 / 2     # 3.5
+7 // 2    # 3
+7 % 2     # 1
+3 ** 4    # 81
+```
+
+With negatives (good to know):
+
+```py
+-7 // 2   # -4  (rounds down)
+-7 % 2    # 1   (because: (-7) = 2*(-4) + 1)
+```
+
+Get quotient and remainder together:
+
+```py
+divmod(19, 5)  # (3, 4)
+```
+
+Exponent edge cases:
+```py
+0 ** 3   # 0
+0 ** 0   # 1   (by Python’s rules)
+2 ** 3.0 # 8.0 (mixing int and float -> float)
+```
+
+## Number bases
+
+You can write integers in other bases with prefixes:
+
+- Binary: 0b1010
+- Octal: 0o12
+- Hex: 0xFF
+
+Convert a decimal number to strings in other bases:
+
+```py
+n = 255
+bin(n)   # '0b11111111'
+oct(n)   # '0o377'
+hex(n)   # '0xFF'
+```
+
+Convert from a string in some base to an integer:
+
+```py
+int("1010", 2)   # 10
+int("ff", 16)    # 255
+int("10", 22)    # 22  (bases 2..36 are allowed)
+```
+
+Also handy:
+```py
+chr(65)   # 'A'
+ord('A')  # 65
+```
+
+
 ---
 
 - [Home](./../../README.md)
