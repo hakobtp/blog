@@ -34,9 +34,41 @@ while n <= 100:
     print(n)
     n *= 2
 print("Done")
+
+```
+What happens? Prints `6`, `12`, `24`, `48`, `96` and then stops. We updated `n` each time; this prevents an infinite loop.
+
+
+**Example B** — Sentinel loop with break and continue
+
+Ask for words until the user types stop. Ignore very short words.
+
+```py
+while True:
+    word = input("Word (type 'stop' to finish): ")
+    if word == "stop":
+        break              # leave the loop completely
+    if len(word) < 3:
+        continue           # skip the rest of this round
+    print("Accepted:", word)
 ```
 
+The `else` block runs only if the loop ended normally (condition became `False`) and no `break` was used.
 
+```py
+numbers = [3, 5, 12, 7]
+index = 0
+
+while index < len(numbers):
+    if numbers[index] < 0:
+        print("Found a negative:", numbers[index])
+        break
+    index += 1
+else:  # executed only if we never broke out
+    print("No negatives found")
+```
+
+> **IDEA:** Think of `else` as a “break checker.” If you never `break`, `else` runs.
 
 ---
 
