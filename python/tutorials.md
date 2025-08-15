@@ -1,6 +1,24 @@
 ## Python Tutorials
 
-- [Setting Up a Python Project](./common/1_Setting_Up_a_Python_Project.md)
+
+<div>
+
+  <div style="display:inline-block; vertical-align:top; margin-right:2em;">
+    <h3 style="margin:0;">OOP</h3>
+    <ul style="margin:0; padding-left:0px; list-style:none;">
+      <li><a href="./oop/1_object.html">Object</a></li>
+    </ul>
+  </div>
+
+<div style="display:inline-block; vertical-align:top; margin-right:2em;">
+    <h3 style="margin:0;">Tools</h3>
+    <ul style="margin:0; padding-left:0; list-style:none;">
+      <li><a href="./common/1_Setting_Up_a_Python_Project.html">Setting Up a Python Project</a></li>
+    </ul>
+  </div>
+</div>
+
+- [](./common/1_Setting_Up_a_Python_Project.md)
 
 ---
 

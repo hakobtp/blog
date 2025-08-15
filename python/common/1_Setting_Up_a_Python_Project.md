@@ -546,7 +546,5 @@ in `requirements.txt` or `environment.yml`—you’ll achieve a reproducible, ma
 
 ---
 
-## Explore More
-
 - [Home](./../../README.md)
 - [Python Tutorials](./../tutorials.md)
