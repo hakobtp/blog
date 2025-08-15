@@ -1,4 +1,4 @@
-# 🔗 Lateral Join
+# Lateral Join
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -57,14 +57,12 @@ Unlike **EXISTS**, which only tests for presence, **LATERAL JOIN** lets you pull
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔗 [Introduction to Joins](./1_Introduction_to_Joins.md)
-- 🔗 [Cross Join](./2_cross_join.md)
-- 🔗 [Inner Join](./3_Inner_Join.md)
-- 🔗 [Left Join](./4_Left_Join.md)
-- 🔗 [Right Join](./5_Right_Join.md)
-- 🔗 [Full Oouter Join](./6_Full_Oouter_Join.md)
-- 🔗 [Self Join](./8_self_join.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Introduction to Joins](./1_Introduction_to_Joins.md)
+- [Cross Join](./2_cross_join.md)
+- [Inner Join](./3_Inner_Join.md)
+- [Left Join](./4_Left_Join.md)
+- [Right Join](./5_Right_Join.md)
+- [Full Oouter Join](./6_Full_Oouter_Join.md)
+- [Self Join](./8_self_join.md)

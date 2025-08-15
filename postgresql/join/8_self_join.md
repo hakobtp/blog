@@ -1,4 +1,4 @@
-# 🔗 Self Join
+# Self Join
 
 
 ```info
@@ -75,14 +75,12 @@ WHERE p.id IS NULL;
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔗 [Introduction to Joins](./1_Introduction_to_Joins.md)
-- 🔗 [Cross Join](./2_cross_join.md)
-- 🔗 [Inner Join](./3_Inner_Join.md)
-- 🔗 [Left Join](./4_Left_Join.md)
-- 🔗 [Right Join](./5_Right_Join.md)
-- 🔗 [Full Oouter Join](./6_Full_Oouter_Join.md)
-- 🔗 [Lateral Join](./7_Lateral_Join.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Introduction to Joins](./1_Introduction_to_Joins.md)
+- [Cross Join](./2_cross_join.md)
+- [Inner Join](./3_Inner_Join.md)
+- [Left Join](./4_Left_Join.md)
+- [Right Join](./5_Right_Join.md)
+- [Full Oouter Join](./6_Full_Oouter_Join.md)
+- [Lateral Join](./7_Lateral_Join.md)

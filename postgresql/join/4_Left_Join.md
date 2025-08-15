@@ -1,4 +1,4 @@
-# 🔗 Left Join
+# Left Join
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -88,14 +88,12 @@ WHERE g.category_id IS NULL;
 
 --- 
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔗 [Introduction to Joins](./1_Introduction_to_Joins.md)
-- 🔗 [Cross Join](./2_cross_join.md)
-- 🔗 [Inner Join](./3_Inner_Join.md)
-- 🔗 [Right Join](./5_Right_Join.md)
-- 🔗 [Full Oouter Join](./6_Full_Oouter_Join.md)
-- 🔗 [Lateral Join](./7_Lateral_Join.md)
-- 🔗 [Self Join](./8_self_join.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Introduction to Joins](./1_Introduction_to_Joins.md)
+- [Cross Join](./2_cross_join.md)
+- [Inner Join](./3_Inner_Join.md)
+- [Right Join](./5_Right_Join.md)
+- [Full Oouter Join](./6_Full_Oouter_Join.md)
+- [Lateral Join](./7_Lateral_Join.md)
+- [Self Join](./8_self_join.md)
