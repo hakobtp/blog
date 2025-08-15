@@ -15,9 +15,9 @@ Understanding the anomalies that isolation levels aim to address can help in cho
 
 - **Dirty Reads:** Occur when a transaction reads data that another transaction has written but not yet committed. No production database allows dirty reads.
 
-**Non-Repeatable Reads:** Happen when a transaction reads the same row twice and sees different data because another committed transaction updated that row between the two reads.
+- **Non-Repeatable Reads:** Happen when a transaction reads the same row twice and sees different data because another committed transaction updated that row between the two reads.
 
-**Phantom Reads:** Occur when a transaction re-executes a query returning a set of rows and finds additional rows (or missing rows) that were inserted or deleted by another committed transaction.
+- **Phantom Reads:** Occur when a transaction re-executes a query returning a set of rows and finds additional rows (or missing rows) that were inserted or deleted by another committed transaction.
 
 Higher isolation levels (i.e., **REPEATABLE READ** and **SERIALIZABLE**) are designed to eliminate these anomalies—but with the trade-off of potentially reduced concurrency and performance.
 
