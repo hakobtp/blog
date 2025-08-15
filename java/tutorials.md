@@ -1,7 +1,7 @@
 <div>
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">OOP</h3>
-    <ul style="margin:0; padding-left:20px;">
+    <ul style="margin:0; padding-left:0; list-style:none;">
       <li><a href="./records/records.html">Record</a></li>
     </ul>
   </div>
@@ -20,6 +20,7 @@
     </ul>
   </div>
 </div>
+
 
 
 ## Java Tutorials
