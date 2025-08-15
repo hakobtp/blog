@@ -1,4 +1,4 @@
-# ♻️ Deadlocks
+# Deadlocks
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -87,7 +87,7 @@ As shown in the error message, PostgreSQL clearly identifies that transaction 20
 Since there’s no way forward, PostgreSQL must cancel one to break the cycle.
 
 
-## 🔍 How PostgreSQL Detects Deadlocks
+## How PostgreSQL Detects Deadlocks
 
 Deadlock detection is a complex and resource-heavy process, so PostgreSQL doesn’t run it constantly.
 Instead, it checks for deadlocks on a schedule.
@@ -138,7 +138,7 @@ After editing the file, restart or reload PostgreSQL:
 SELECT pg_reload_conf();
 ```
 
-⚠️ **Be careful when decreasing deadlock_timeout.**
+**Be careful when decreasing deadlock_timeout.**
 
 Lowering this value means PostgreSQL will detect deadlocks sooner, and your transactions will **fail faster** if they're in a deadlock situation.
 
@@ -149,9 +149,7 @@ So, unless you have a specific reason, don’t set this value too low. It’s of
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🛡️ [Isolation levels](./6_Isolation_levels.md)
-- 📜 [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Isolation levels](./6_Isolation_levels.md)
+- [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md)
