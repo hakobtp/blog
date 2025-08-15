@@ -1,4 +1,4 @@
-# 🛡️ Isolation levels
+# Isolation levels
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -57,7 +57,7 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
 ```
 
-❗ **Important:** The **SET TRANSACTION** statement must be the first command in the transaction block. Any statement executed before setting the isolation level causes subsequent attempts to change it to fail:
+**Important:** The **SET TRANSACTION** statement must be the first command in the transaction block. Any statement executed before setting the isolation level causes subsequent attempts to change it to fail:
 
 ```sql
 BEGIN;
@@ -181,9 +181,7 @@ By choosing the appropriate isolation level, you can balance the need for consis
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 💾 [Savepoints](./5_Savepoints.md)
-- ♻️ [Deadlocks](./7_Deadlocks.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Savepoints](./5_Savepoints.md)
+- [Deadlocks](./7_Deadlocks.md)
