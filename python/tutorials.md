@@ -3,10 +3,17 @@
 
 <div>
 
+  <!-- <div style="display:inline-block; vertical-align:top; margin-right:2em;">
+    <h3 style="margin:0;">Functrion</h3>
+    <ul style="margin:0; padding-left:0px; list-style:none;">
+      <li><a href="./oop/1_object.html">Object</a></li>
+    </ul>
+  </div> -->
+
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">OOP</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
-      <li><a href="./oop/1_object.html">Object</a></li>
+      <li><a href="./oop/1_object_in_python.html">Objects in Python</a></li>
     </ul>
   </div>
 
@@ -18,7 +25,6 @@
   </div>
 </div>
 
-- [](./common/1_Setting_Up_a_Python_Project.md)
 
 ---
 
