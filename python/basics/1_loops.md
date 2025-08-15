@@ -70,6 +70,64 @@ else:  # executed only if we never broke out
 
 > **IDEA:** Think of `else` as a “break checker.” If you never `break`, `else` runs.
 
+## for: go through items in a sequence
+
+Structure:
+
+```py
+for item in <iterable>:
+    # use item
+```
+
+**Example A** — Shopping list with continue and break
+
+```py
+items = ["bread", "apples", "sugar", "eggs", "tea"]
+
+for item in items:
+    if item == "sugar":
+        continue              # skip sugar
+    print("Buy:", item)
+    if item == "eggs":
+        print("Got eggs — stopping early.")
+        break                 # stop the whole loop
+```
+
+`for ... else`: run only if loop didn’t break
+
+```py
+word = "piano"
+for ch in word:
+    if ch == "z":
+        print("Found a 'z'.")
+        break
+else:
+    print("No 'z' found.")
+```    
+ 
+> **USE CASE:** Searching. If you don’t find what you want (no break), the else part confirms that.
+
+## range(): number streams for counting
+
+`range()` produces numbers on demand (it doesn’t build a big list by default).
+- `range(stop)` → 0 up to (but not including) stop
+- `range(start, stop)`
+- `range(start, stop, step)` (step can be negative)
+
+```py
+for i in range(1, 4):   # 1, 2, 3
+    print(i)
+
+print(list(range(5)))            # [0, 1, 2, 3, 4]
+print(list(range(10, 0, -2)))    # [10, 8, 6, 4, 2]
+```
+
+> **REMEMBER:** the stop value is excluded.
+
+## Helpful patterns
+
+
+
 ---
 
 - [Home](./../../README.md)
