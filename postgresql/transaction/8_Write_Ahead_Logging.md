@@ -145,7 +145,8 @@ There’s another big advantage: after a checkpoint, PostgreSQL knows the older 
 
 Because of this smart system, the amount of storage needed for **WAL** segments stays fairly constant. And if the database crashes, only a small number of **WALs**—those created since the last checkpoint—need to be replayed.
 
-> **Note:**
+> **NOTE:**
+>
 > PostgreSQL can show how much **WAL** data a query generates. You can use the **EXPLAIN** command to see this information.
 >
 > You can also check system catalogs and logs to view details about checkpoints, and how many **WAL** segments were created or recycled.
@@ -218,8 +219,11 @@ But if the database is not very active and doesn’t reach the `max_wal_size` li
 
 By default, PostgreSQL creates a checkpoint every 5 minutes or after 1 GB of **WAL** data has been written—whichever comes first.
 
-> **Important:**
-> A checkpoint only happens if something has changed since the last one. If no new data has been written to the database, PostgreSQL skips the checkpoint, even > if the timeout has passed—because there's nothing to save.
+> **IMPORTANT:**
+>
+> A checkpoint only happens if something has changed since the last one. 
+> If no new data has been written to the database, PostgreSQL skips the checkpoint, even 
+> if the timeout has passed—because there's nothing to save.
 
 #### Checkpoint Throttling
 
