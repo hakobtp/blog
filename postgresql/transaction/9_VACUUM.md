@@ -1,4 +1,4 @@
-# 🧹 VACUUM
+# VACUUM
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -7,7 +7,8 @@ Author      Ter-Petrosyan Hakob
 
 PostgreSQL uses [MVCC](./3_Multi_Version_Concurrency_Control.md){:target="_blank" rel="noopener"} to store multiple versions of the same data (called tuples) so different transactions can see the version they need. However, keeping these extra versions takes up more space on disk. Over time, if nothing is done, this unused data can fill your storage. To solve this, PostgreSQL includes a tool called **VACUUM**. Its job is to look at old tuple versions and remove the ones that are no longer needed.
 
-> 🧠 **REMINDER:**
+>  **REMINDER:**
+>
 > A tuple is no longer visible (or perceivable) if no active transaction can still access it. 
 > These outdated versions are called dead tuples, and they are safe to remove.
 
@@ -35,7 +36,7 @@ There are three main types of manual **VACUUM** operations, each one more aggres
 3) **VACUUM FREEZE:** This version freezes old rows that will never change again. This prevents a serious issue known as 
     XID wraparound, which can corrupt your database over time if not managed.
 
-> ⚠️ **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
+> **NOTE:** You cannot run **VACUUM** inside a transaction, function, or stored procedure.
 
 You can also add:
 
@@ -125,7 +126,7 @@ Let’s take a closer look at the categories table in our PostgreSQL database.
     So yes—`relkind = 'r'` filters the query to only return real physical tables.
 
 
-    📊 **What Do These Columns Mean?**
+    **What Do These Columns Mean?**
 
     | Column               | Description                                                                |
     |----------------------|----------------------------------------------------------------------------|
@@ -135,12 +136,12 @@ Let’s take a closer look at the categories table in our PostgreSQL database.
     | `pg_size_pretty(...)`| The formatted size of the table — 8192 bytes = 8 KB                        |
 
 
-    🧠 **This kind of query helps you:**
+    **This kind of query helps you:**
 
-    - 📏 Check table size before and after running VACUUM
-    - 📦 Monitor storage usage
-    - 🔍 Understand how PostgreSQL stores your data internally
-    - 💡 Tip: You can run similar queries for other tables to keep track of space and performance in your database.
+    - Check table size before and after running VACUUM
+    - Monitor storage usage
+    - Understand how PostgreSQL stores your data internally
+    - Tip: You can run similar queries for other tables to keep track of space and performance in your database.
 
 As you can see, the table currently has only 8 tuples and takes up just one data page on disk—about 8 KB in size. 
 Now, let’s populate the table with around 1 million random tuples to observe how its size and structure change.
@@ -219,13 +220,13 @@ system usage: CPU: user: 0.47 s, system: 0.03 s, elapsed: 0.55 s
 ```
 
 This tells us that:
-- ✅ PostgreSQL found and cleaned up 1 million dead index entries (these pointed to outdated tuples).
-- ✅ There are 1,000,008 active row versions in the table — no dead tuples remain.
-- ❌ The table still uses 14,687 pages and is 115 MB in size — this did not shrink, because plain **VACUUM** doesn’t rewrite the table or remove empty pages.
+- PostgreSQL found and cleaned up 1 million dead index entries (these pointed to outdated tuples).
+- There are 1,000,008 active row versions in the table — no dead tuples remain.
+- The table still uses 14,687 pages and is 115 MB in size — this did not shrink, because plain **VACUUM** doesn’t rewrite the table or remove empty pages.
 
 So, while space inside the pages is now free for reuse, no actual disk space has been returned to the system.
 
- 🧠 **What’s the Purpose of Plain VACUUM?**
+**What’s the Purpose of Plain VACUUM?**
 
  Even though it doesn’t reduce the file size on disk, plain VACUUM is still very useful. It frees up 
  space inside each data page, allowing PostgreSQL to reuse that space for new inserts or updates.
@@ -282,7 +283,7 @@ but the table was still taking space for 2 million rows, just with half of it em
 4) Next, we updated the rows again, creating 1 million new versions.
 This time, PostgreSQL did not need to grow the table, because it reused the internal free space from the previous cleanup—even though that space was scattered across many pages.
 
-> 📌 **In short:** **VACUUM** didn’t shrink the file, but it recycled the storage, so PostgreSQL could keep working without using more disk space.
+> **In short:** **VACUUM** didn’t shrink the file, but it recycled the storage, so PostgreSQL could keep working without using more disk space.
 
 Unlike plain **VACUUM**, **VACUUM FULL** not only cleans up dead tuples, but it also compacts the table, physically reclaiming the freed space on disk.
 
@@ -324,7 +325,7 @@ But the key difference is in the result:
 - It physically rewrites the table, removing the dead space and compacting the file to the smallest size needed to hold only the active tuples
 - This means the table gains back all the disk space that was previously taken by dead rows.
 
-> ⚠️ **Important note:**
+> **Important note:**
 > While this is effective, **VACUUM FULL** is a heavy operation. It locks the table, rewrites it entirely, 
 > and puts pressure on your disk (I/O system). On large, busy tables, this could cause performance issues if not scheduled carefully.
 
@@ -347,11 +348,11 @@ When you run plain VACUUM, PostgreSQL:
 
 - Removes the dead tuples inside each page
 - Compacts the valid tuples within the page
-- ❌ But it does not reduce the total number of pages
+- But it does not reduce the total number of pages
 
 So, the table will still use two pages, even though one might now be mostly empty.
 
-> 📌 In short: **VACUUM** cleans and rearranges data inside the pages—but does not shrink the file on disk.
+> In short: **VACUUM** cleans and rearranges data inside the pages—but does not shrink the file on disk.
 
 You can see this process in the figure below, where the dead tuples are removed, and the active ones are compacted but stay spread across both pages.
 
@@ -366,7 +367,7 @@ If **VACUUM FULL** executes, the table’s data pages are fully rewritten to com
     <img src="./assets/img7.png" alt="img7" width="500" />
 </p>
 
-## 🤖 Automatic VACUUM (autovacuum)
+## Automatic VACUUM (autovacuum)
 
 Since version 8.4, PostgreSQL has included a background feature called **autovacuum**. This feature helps keep your database clean and fast by running 
 **VACUUM** automatically.
@@ -447,9 +448,6 @@ These control when statistics are updated by the autovacuum process.
 
 ---
 
-
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 📜 [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Write-Ahead Logging (WAL)](./8_Write_Ahead_Logging.md)
