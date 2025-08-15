@@ -215,7 +215,7 @@ However, the amount of **WAL** data is not exactly the same as the amount of use
 
 The `max_wal_size` setting means that when PostgreSQL writes a certain amount of data changes, it will start a checkpoint. This ensures that all recent changes in memory are saved to disk.
 
-But if the database is not very active and doesn’t reach the `max_wal_size` limit, PostgreSQL will still perform a checkpoint after a certain time—defined by checkpoint_timeout. This way, even low-traffic systems are safely synced at regular intervals.
+But if the database is not very active and doesn’t reach the `max_wal_size` limit, PostgreSQL will still perform a checkpoint after a certain time—defined by `checkpoint_timeout`. This way, even low-traffic systems are safely synced at regular intervals.
 
 By default, PostgreSQL creates a checkpoint every 5 minutes or after 1 GB of **WAL** data has been written—whichever comes first.
 

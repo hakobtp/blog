@@ -1,4 +1,4 @@
-# 🔗 Introduction to Joins
+# Introduction to Joins
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -66,16 +66,12 @@ INSERT INTO goods (name, category_id, price) VALUES
 
 ---
 
-Now that everything is ready, let’s start learning about each joint type. We'll begin with [Cross Join](./2_cross_join.md).
-
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🔗 [Cross Join](./2_cross_join.md)
-- 🔗 [Inner Join](./3_Inner_Join.md)
-- 🔗 [Left Join](./4_Left_Join.md)
-- 🔗 [Right Join](./5_Right_Join.md)
-- 🔗 [Full Oouter Join](./6_Full_Oouter_Join.md)
-- 🔗 [Lateral Join](./7_Lateral_Join.md)
-- 🔗 [Self Join](./8_self_join.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Cross Join](./2_cross_join.md)
+- [Inner Join](./3_Inner_Join.md)
+- [Left Join](./4_Left_Join.md)
+- [Right Join](./5_Right_Join.md)
+- [Full Oouter Join](./6_Full_Oouter_Join.md)
+- [Lateral Join](./7_Lateral_Join.md)
+- [Self Join](./8_self_join.md)
