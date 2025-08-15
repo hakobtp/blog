@@ -129,10 +129,10 @@ SELECT name FROM categories WHERE name LIKE '%Compiler';
 
 Here, even though the transaction was committed, everything after the `perl` savepoint was undone, including `gcc`.
 
-- In short:
+- **In short:**
     - Rolling back to a savepoint undoes all statements after that point. Anything before it stays safe—until the transaction ends.
 
-- Coming Up:
+- **Coming Up:**
     - Transactions can sometimes lead to a situation where the database can't move forward—this is called a deadlock.
 
 ---
