@@ -115,6 +115,8 @@ class Dog:
         self.age = age
 ```
 
+The `self` argument specifies that it refers to the individual object itself. When you define `__init__()` in a class definition, its first parameter should be named `self` . Although `self` is not a reserved word in Python, it’s common usage.
+
 Now we can pass values when creating a new object:
 
 ```py
@@ -139,6 +141,13 @@ Python:
     - `2` as `age`.
 - Stores these values in the object.
 - Returns the finished object and links it to the name puppy.
+
+This new object is like any other object in Python. You can use it as an element of a list, tuple, dictionary, or set. You can pass it to a function as an argument, or return it as a result.
+
+You don’t have to put an `__init__()` method in every class.
+We use it only when we want to give an object special settings or values that make it different from other objects of the same class.
+In some programming languages, this is called a “constructor,” but in Python the object is already created before `__init__()` runs.
+You can think of `__init__()` as a setup step that prepares the new object.
 
 ## Why use objects?
 
