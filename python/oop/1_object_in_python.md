@@ -33,6 +33,145 @@ For example:
 
 Every object is created from a class, which acts as a blueprint.
 
+## Objects are everywhere
+
+Examples of built-in Python objects:
+- `42` → integer object from the `int` class.
+- `"hello"` → string object from the `str` class, with methods like `.upper()` and `.replace()`.
+- `[1, 2, 3]` → list object from the `list` class, with methods like `.append()` and `.sort()`.
+
+## Multiple objects, different values
+
+Unlike modules (which are single files), you can have many objects of the same type at the same time, each with its own attributes.
+
+For example, you can have two different book objects:
+
+```py
+class Book:
+    pass
+
+book1 = Book()
+book2 = Book()
+```
+
+If you print an object without a custom display method, Python shows its `type` and a `memory address`:
+
+```py
+class Dog:
+    pass
+
+buddy = Dog()
+rocky = Dog()
+
+print(buddy)  # <__main__.Dog object at 0x7f21a8b2fa90>
+print(rocky)  # <__main__.Dog object at 0x7f21a8b2fcd0>
+
+```
+
+These memory addresses change every time you run the code.
+
+## Adding attributes to objects
+
+You can add attributes to objects after creating them:
+
+```py
+buddy.name = "Buddy"
+buddy.age = 4
+```
+
+Objects can also refer to other objects as attributes:
+
+```py
+buddy.friend = rocky
+```
+
+If you try to access an attribute that doesn’t exist, Python raises an `AttributeError`:
+
+```py
+print(buddy.friend.name)
+# AttributeError: 'Dog' object has no attribute 'name'
+```
+
+We can fix this by giving the `friend` object a `name`:
+
+```py
+buddy.friend.name = "Rocky"
+print(buddy.friend.name)  # Rocky
+```
+
+When programmers talk about “attributes,” they usually mean object attributes.
+There are also class attributes, which we’ll discuss later.
+
+## Setting attributes at creation time
+
+If you want an object to have attributes right from the start, use Python’s initializer method `__init__()`:
+
+```py
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+```
+
+Now we can pass values when creating a new object:
+
+```py
+puppy = Dog("Max", 2)
+print(puppy.name)  # Max
+print(puppy.age)   # 2
+```
+
+### How it works step-by-step
+
+When you write:
+```py
+puppy = Dog("Max", 2)
+```
+
+Python:
+- Finds the `Dog` class.
+- Creates a new empty object in memory.
+- Calls `__init__()` with:
+    - The new object as `self`.
+    - `"Max"` as `name`.
+    - `2` as `age`.
+- Stores these values in the object.
+- Returns the finished object and links it to the name puppy.
+
+## Why use objects?
+
+Objects make your code:
+- **Organized** → keep data and actions together.
+- **Reusable** → one class can produce many different objects.
+- **Clear** → no need for messy lists of separate variables.
+
+Instead of:
+
+```py
+names = ["Buddy", "Rocky"]
+ages = [4, 6]
+```
+
+You can do:
+
+```py
+dogs = [
+    Dog("Buddy", 4),
+    Dog("Rocky", 6)
+]
+
+```
+
+Now each dog has both its name and age stored together.
+
+## Recap
+
+- Everything in Python is an object.
+- Objects have attributes (data) and methods (actions).
+- A class is the blueprint; an object is an instance of it.
+- `__init__()` lets you set attributes during creation.
+- Missing attributes cause AttributeError.
+
 ---
 
 - [Home](./../../README.md)
