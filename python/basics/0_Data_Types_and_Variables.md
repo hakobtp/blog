@@ -205,6 +205,77 @@ False + 5.0  # 5.0
 **NOTE:** Floating-point numbers are approximate. For money, consider `decimal.Decimal`.
 
 
+## Reassigning names vs copying
+
+Reassigning just moves the name to a new object; it does not change the old object.
+
+```py
+x = 5
+y = x
+x = 29
+print(y, x)   # 5 29
+```
+
+For mutables, both names see changes unless you copy:
+
+```py
+a = ["A", "B"]
+b = a
+a[0] = "Z"
+print(b)      # ['Z', 'B']  (same list)
+
+b = a.copy()  # now b is a separate list
+a[1] = "Y"
+print(a)      # ['Z', 'Y']
+print(b)      # ['Z', 'B']
+```
+
+## Writing long lines
+
+You can break long code over multiple lines. Two safe methods:
+
+Use parentheses/brackets/braces (preferred):
+```py
+total = (
+    1 +
+    2 +
+    3 +
+    4
+)
+```
+
+Use a backslash `\` (works, but easier to make mistakes if you add spaces after it):
+
+```py
+total = 1 + \
+        2 + \
+        3 + \
+        4
+```
+
+## Python: strong + dynamic
+
+Types belong to objects, and checks happen **at runtime**.  
+
+```py
+"3" + 3        # TypeError (no silent coercion from str to int)
+int("3") + 3   #  6 (explicit conversion)
+len(3)         #  TypeError
+3 + 4.0        #  7.0 (numeric promotion is allowed)
+True + 2       #  3  (bool is a subclass of int in Python)
+
+```
+
+Python is dynamically and strongly typed,” not “weakly typed, because Python refuses unsafe implicit conversions.
+
+You can add type hints and use a checker like mypy or Pyright for early (static-like) feedback, while runtime stays dynamic.
+
+```py
+def greet(name: str) -> str:
+    return "Hello, " + name
+```
+
+This runs with or without hints, but a checker can warn you if you call `greet(123)`.
 
 ---
 
