@@ -1,6 +1,3 @@
-## Python Tutorials
-
-
 <div>
 
   <!-- <div style="display:inline-block; vertical-align:top; margin-right:2em;">
