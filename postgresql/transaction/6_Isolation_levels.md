@@ -57,7 +57,9 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
 ```
 
-> **Important:** The **SET TRANSACTION** statement must be the first command in the transaction block. 
+> **IMPORTANT:** 
+>
+>The **SET TRANSACTION** statement must be the first command in the transaction block. 
 > Any statement executed before setting the isolation level causes subsequent attempts to change it to fail:
 
 ```sql
