@@ -140,7 +140,7 @@ Python:
     - `"Max"` as `name`.
     - `2` as `age`.
 - Stores these values in the object.
-- Returns the finished object and links it to the name puppy.
+- Returns the finished object and links it to the name `puppy`.
 
 This new object is like any other object in Python. You can use it as an element of a list, tuple, dictionary, or set. You can pass it to a function as an argument, or return it as a result.
 
