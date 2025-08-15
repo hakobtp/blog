@@ -1,4 +1,4 @@
-# 💾 Savepoints
+# Savepoints
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -14,13 +14,13 @@ This is useful when you want a large transaction (with many statements) to conti
 PostgreSQL does not support true nested transactions, so you can't use multiple **BEGIN** and **COMMIT/ROLLBACK** blocks inside one another.
 However, savepoints let PostgreSQL mimic nested transactions by allowing you to mark rollback points within a transaction.
 
-🏷️ **How Savepoints Work**
+**How Savepoints Work**
 - A savepoint is defined using a unique name.
 - You can **ROLLBACK TO SAVEPOINT** to undo everything after that point.
 - If you reuse the same savepoint name, the previous one is overwritten.
 
 
-🧪 **Example: Rolling Back a Savepoint**
+**Example: Rolling Back a Savepoint**
 
 ```sql
 BEGIN;
@@ -68,13 +68,13 @@ In this example:
 - IntelliJIdea IDE was inserted after the rollback and committed successfully.
 
 
-🧹 **Releasing Savepoints**
+**Releasing Savepoints**
 
 You can also choose to release a savepoint using **RELEASE SAVEPOINT**, which means:
 - The savepoint is removed.
 - The statements before and after it now follow the main transaction.
 
-🧪 **Example:**
+**Example:**
 
 ```sql
 BEGIN;
@@ -102,11 +102,11 @@ SELECT * FROM categories WHERE name like '%Editor';
 After **RELEASE SAVEPOINT**, the earlier inserts are no longer grouped—they behave as if they were part of the main transaction.
 
 
-🔄 **Rolling Back with Multiple Savepoints**
+**Rolling Back with Multiple Savepoints**
 
 If you roll back to a savepoint, PostgreSQL removes that savepoint and all that came after it.
 
-🧪 Example:
+Example:
 
 ```sql
 BEGIN;
@@ -129,19 +129,15 @@ SELECT name FROM categories WHERE name LIKE '%Compiler';
 
 Here, even though the transaction was committed, everything after the `perl` savepoint was undone, including `gcc`.
 
-- 👉 In short:
+- In short:
     - Rolling back to a savepoint undoes all statements after that point. Anything before it stays safe—until the transaction ends.
 
-- 🧠 Coming Up:
+- Coming Up:
     - Transactions can sometimes lead to a situation where the database can't move forward—this is called a deadlock.
 
+---
 
-
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- 🆚 [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
-- 🛡️ [Isolation levels](./6_Isolation_levels.md)
-
-
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Non-Repeatable vs Phantom Reads: What's the Real Difference?](./4_Non_Repeatable_vs_Phantom_Reads.md)
+- [Isolation levels](./6_Isolation_levels.md)
