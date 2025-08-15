@@ -218,6 +218,25 @@ for i, fruit in enumerate(fruits):
 - Avoid changing the list while iterating. If needed, loop over a copy.
 - **Remember:** `enumerate()` returns an iterator; convert to a list only if you really need to.
 
+## The walrus operator := (Python 3.8+)
+
+The walrus operator **assigns and returns** a value in one expression.
+Use it when it **makes code clearer**, not just shorter.
+
+```py
+# Keep reading words until the user enters a blank line
+while (word := input("Word (blank to stop): ")) != "":
+    print(f"You typed: {word}")
+```
+
+```py
+numbers = [12, -3, 7, 0, 15]
+for n in numbers:
+    if (gap := 10 - n) >= 0:
+        print(f"{n} fits; {gap} space left.")
+```
+
+
 ## Common mistakes (and quick fixes)
 
 - Forgetting to update the variable in `while` → infinite loop. Always change the variable inside the loop.
