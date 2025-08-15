@@ -126,7 +126,120 @@ print(list(range(10, 0, -2)))    # [10, 8, 6, 4, 2]
 
 ## Helpful patterns
 
+Get index and value with `enumerate`
+```py
+letters = "data"
+for pos, ch in enumerate(letters):
+    print(pos, ch)
+```
 
+Nested loops (a small grid)
+```py
+for r in range(2):
+    for c in range(3):
+        print(f"({r},{c})")
+```
+
+Simple countdown
+```py
+for seconds in range(3, 0, -1):
+    print(seconds)
+print("Lift-off!")
+```
+
+## enumerate
+
+`enumerate()` is a built-in Python function that lets you loop over a sequence and get both the `index` and the `value` at the same time.
+
+```py
+enumerate(iterable, start=0)
+```
+
+- `iterable`: something you can loop over (list, string, etc.)
+- `start`: the first index to use (default is `0`)
+- What it returns: an **iterator** that gives pairs `(index, value)`.
+
+List with default indexing (starts at 0)
+
+```py
+fruits = ["apple", "banana", "pear"]
+for i, fruit in enumerate(fruits):
+    print(i, fruit)
+# 0 apple
+# 1 banana
+# 2 pear
+```
+
+Start counting from 1 (useful for line numbers)
+
+```py
+lines = ["first", "second", "third"]
+for line_no, text in enumerate(lines, start=1):
+    print(f"Line {line_no}: {text}")
+# Line 1: first
+# Line 2: second
+# Line 3: third
+```
+
+String characters with positions
+
+```py
+for pos, ch in enumerate("data"):
+    print(pos, ch)
+# 0 d
+# 1 a
+# 2 t
+# 3 a
+```
+
+See the pairs directly
+
+```py
+list(enumerate("cat"))
+# [(0, 'c'), (1, 'a'), (2, 't')]
+```
+
+Why use `enumerate()` instead of `range(len(...))`?
+
+This:
+```py
+for i in range(len(fruits)):
+    print(i, fruits[i])
+```
+
+works, but is less readable and easier to make mistakes with. Prefer:
+
+```py
+for i, fruit in enumerate(fruits):
+    print(i, fruit)
+```
+
+- if you don’t need the `index`, don’t use `enumerate()`—just write `for x in seq:`.
+- Avoid changing the list while iterating. If needed, loop over a copy.
+- **Remember:** `enumerate()` returns an iterator; convert to a list only if you really need to.
+
+## Common mistakes (and quick fixes)
+
+- Forgetting to update the variable in `while` → infinite loop. Always change the variable inside the loop.
+- Confusing `break` and `continue` → `break` leaves the loop; `continue` skips to the next round.
+- Using `range(len(seq))` when you only need values → iterate directly: `for x in seq`:. Use `enumerate` if you also need the index.
+- Misreading `for/while ... else` → `else` runs only if there was no `break`.
+- Off-by-one with `range()` → remember that `stop` is not included.
+- Changing a list while iterating over it → iterate over a copy or build a new list.
+
+
+## Recap
+- **Loop:** Code that runs again and again.
+- **Iteration:** One pass through the loop.
+- **Condition:** A test that is True/False.
+- **Counter:** A number you change each round (e.g., i += 1).
+- **Sentinel value:** A special word/number that tells the loop to stop (e.g., "stop").
+- **Iterable:** Something you can loop over (list, string, range).
+- **Iterator:** An object that gives the next item each time.
+- **break:** Exit the loop.
+- **continue:** Skip the rest of this round.
+- **range():** Produces numbers for counting.
+- **Nested loop:** A loop inside another loop.
 
 ---
 
