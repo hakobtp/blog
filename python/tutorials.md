@@ -4,7 +4,8 @@
     <h3 style="margin:0;">Basics</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
     <li><a href="./basics/0_Data_Types_and_Variables.html">Data Types and Variables</a></li>
-      <li><a href="./basics/1_loops.html">Loops</a></li>
+    <li><a href="./basics/01_If_Statement.html">If Statement</a></li>
+    <li><a href="./basics/1_loops.html">Loops</a></li>
     </ul>
   </div>
 
