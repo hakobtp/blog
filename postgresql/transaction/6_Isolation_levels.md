@@ -165,9 +165,9 @@ Although discussed above, phantom reads deserve special attention:
 - **Definition:** A phantom read occurs when a transaction executes a query twice and, on the second execution, finds additional rows (or missing rows) because another transaction inserted or deleted rows that meet the query’s criteria.
 
 - **Example Scenario:**
-    1) `Transaction A` queries the Employees table for records with `Gender = 'Male'` and retrieves 2 rows.
-    2) Concurrently, `Transaction B` inserts a new row for a `male` employee.
-    3) When `Transaction A` re-executes the query, it now returns 3 rows, showing the `“phantom”` row.
+    1. `Transaction A` queries the Employees table for records with `Gender = 'Male'` and retrieves 2 rows.<br>
+    2. Concurrently, `Transaction B` inserts a new row for a `male` employee.<br>
+    3. When `Transaction A` re-executes the query, it now returns 3 rows, showing the `“phantom”` row.<br>
 - **Mitigation:** Using **SERIALIZABLE** (or, in some systems, snapshot isolation) prevents phantom reads by ensuring the transaction works from a consistent snapshot of the data.
 
 ## Unrepeatable Reads vs. Phantom Reads
