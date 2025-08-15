@@ -7,5 +7,5 @@
 
 ---
 
-- [Home](./../../README.md)
-- [DevOps](./../tutorials.md)
+[Home](./../../README.md)<br>
+[DevOps](./../tutorials.md)<br>
