@@ -164,6 +164,47 @@ chr(65)   # 'A'
 ord('A')  # 65
 ```
 
+## Type conversions
+
+```py
+int(True)      # 1
+int(False)     # 0
+int(98.6)      # 98   (truncates toward zero)
+int("99")      # 99
+int("-23")     # -23
+```
+
+> **CORRECTION:** `int("1_000_000")` raises `ValueError`. Underscores work in code literals (`1_000_000`), not inside strings.
+
+If you must parse a string with underscores:
+```py
+int("1_000_000".replace("_", ""))  # 1000000
+```
+
+Invalid numeric strings cause `ValueError`:
+
+```py
+int("")                      # ValueError
+int("99 bottles of milk")    # ValueError
+```
+
+Floats:
+```py
+float(98)         # 98.0
+float("98.6")     # 98.6
+float("1.0e4")    # 10000.0
+```
+
+Mixing ints and floats produces floats:
+```py
+4 + 7.0      # 11.0
+True + 2     # 3  (True behaves like 1)
+False + 5.0  # 5.0
+```
+
+**NOTE:** Floating-point numbers are approximate. For money, consider `decimal.Decimal`.
+
+
 
 ---
 
