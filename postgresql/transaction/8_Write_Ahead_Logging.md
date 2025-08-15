@@ -1,4 +1,4 @@
-# 📜 Write-Ahead Logging (WAL)
+# Write-Ahead Logging (WAL)
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -32,7 +32,7 @@ All transactions read and write to these shared buffers because it’s much fast
 
 This improves performance and keeps the system efficient, even under high workloads.
 
-📊 The next image illustrates how data pages are loaded into shared memory from disk.
+The next image illustrates how data pages are loaded into shared memory from disk.
 
 <p align="center">
     <img src="./assets/img1.png" alt="img1" width="500" />
@@ -145,7 +145,7 @@ There’s another big advantage: after a checkpoint, PostgreSQL knows the older 
 
 Because of this smart system, the amount of storage needed for **WAL** segments stays fairly constant. And if the database crashes, only a small number of **WALs**—those created since the last checkpoint—need to be replayed.
 
-> 📝 **Note:**
+> **Note:**
 > PostgreSQL can show how much **WAL** data a query generates. You can use the **EXPLAIN** command to see this information.
 >
 > You can also check system catalogs and logs to view details about checkpoints, and how many **WAL** segments were created or recycled.
@@ -218,7 +218,7 @@ But if the database is not very active and doesn’t reach the `max_wal_size` li
 
 By default, PostgreSQL creates a checkpoint every 5 minutes or after 1 GB of **WAL** data has been written—whichever comes first.
 
-> 🔍 **Important:**
+> **Important:**
 > A checkpoint only happens if something has changed since the last one. If no new data has been written to the database, PostgreSQL skips the checkpoint, even > if the timeout has passed—because there's nothing to save.
 
 #### Checkpoint Throttling
@@ -268,9 +268,9 @@ But why would someone want to run a checkpoint manually, since it uses system re
 
 One common reason is to make sure all changes in memory are saved to disk—for example, before starting streaming replication or doing a file-level backup. In these cases, having fully up-to-date data on disk is important.
 
-## 📌 Explore More
+---
 
-- 🏠 [Home](./../../README.md)
-- 📚 [PostgreSql Tutorials](./../tutorials.md)
-- ♻️ [Deadlocks](./7_Deadlocks.md)
-- 🧹 [VACUUM](./9_VACUUM.md)
+- [Home](./../../README.md)
+- [PostgreSql Tutorials](./../tutorials.md)
+- [Deadlocks](./7_Deadlocks.md)
+- [VACUUM](./9_VACUUM.md)
