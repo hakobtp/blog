@@ -54,6 +54,8 @@ book1 = Book()
 book2 = Book()
 ```
 
+This is the smallest possible class: it does nothing yet. The `pass` statement means “do nothing” and is only there so Python accepts the empty class.
+
 If you print an object without a custom display method, Python shows its `type` and a `memory address`:
 
 ```py
