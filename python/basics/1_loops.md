@@ -245,4 +245,4 @@ for i, fruit in enumerate(fruits):
 
 - [Home](./../../README.md)
 - [Python Tutorials](./../tutorials.md)
-- [Data Types and Variables](./0_Data_Types_and_Variables.md)
+- [If Statement](./01_If_Statement.md)

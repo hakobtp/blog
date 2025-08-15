@@ -281,4 +281,4 @@ This runs with or without hints, but a checker can warn you if you call `greet(1
 
 - [Home](./../../README.md)
 - [Python Tutorials](./../tutorials.md)
-- [Loops](./1_loops.md)
+- [If Statement](./01_If_Statement.md)
