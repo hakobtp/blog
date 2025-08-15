@@ -517,26 +517,26 @@ conda activate myenv
 
 ### Conda Environment Commands
 
-| Command                                           | Description                                                            |                                                            |
-| ------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------- |
-| `conda create --name myenv`                       | Create a new environment named `myenv`.                                |                                                            |
-| `conda create --name myenv python=3.10`           | Create an environment with a specific Python version.                  |                                                            |
-| `conda activate myenv`                            | Activate an environment.                                               |                                                            |
-| `conda deactivate`                                | Deactivate the current environment.                                    |                                                            |
-| `conda env list` or `conda info --envs`           | List all environments.                                                 |                                                            |
-| `conda remove --name myenv --all`                 | Delete an environment.                                                 |                                                            |
-| `conda list`                                      | Show installed packages in the current environment.                    |                                                            |
-| `conda install package_name`                      | Install a package into the active environment.                         |                                                            |
-| `conda install package_name=1.2.3`                | Install a specific package version.                                    |                                                            |
-| `conda update package_name`                       | Update a specific package.                                             |                                                            |
-| `conda update --all`                              | Update all packages in the environment.                                |                                                            |
-| `conda env export > environment.yml`              | Export the current environment to a YAML file (includes dependencies). |                                                            |
-| \`conda env export --no-builds                    | grep -v "prefix:" > environment.yml\`                                  | Export without build numbers and prefix (for portability). |
-| `conda env create --file environment.yml`         | Create an environment from a YAML file.                                |                                                            |
-| `conda env update --file environment.yml`         | Update the current environment from a YAML file.                       |                                                            |
-| `conda env update --file environment.yml --prune` | Update and remove any packages not in the YAML file.                   |                                                            |
-| `conda search package_name`                       | Search for a package in Conda repositories.                            |                                                            |
-| `conda clean --all`                               | Remove unused packages and caches.                                     |                                                            |
+| Command                                                               | Description                                                            |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `conda create --name myenv`                                           | Create a new environment named `myenv`.                                |
+| `conda create --name myenv python=3.10`                               | Create an environment with a specific Python version.                  |
+| `conda activate myenv`                                                | Activate an environment.                                               |
+| `conda deactivate`                                                    | Deactivate the current environment.                                    |
+| `conda env list` or `conda info --envs`                               | List all environments.                                                 |
+| `conda remove --name myenv --all`                                     | Delete an environment.                                                 |
+| `conda list`                                                          | Show installed packages in the current environment.                    |
+| `conda install package_name`                                          | Install a package into the active environment.                         |
+| `conda install package_name=1.2.3`                                    | Install a specific package version.                                    |
+| `conda update package_name`                                           | Update a specific package.                                             |
+| `conda update --all`                                                  | Update all packages in the environment.                                |
+| `conda env export > environment.yml`                                  | Export the current environment to a YAML file (includes dependencies). |
+| `conda env export --no-builds \| grep -v "prefix:" > environment.yml` | Export without build numbers and prefix (for portability).             |
+| `conda env create --file environment.yml`                             | Create an environment from a YAML file.                                |
+| `conda env update --file environment.yml`                             | Update the current environment from a YAML file.                       |
+| `conda env update --file environment.yml --prune`                     | Update and remove any packages not in the YAML file.                   |
+| `conda search package_name`                                           | Search for a package in Conda repositories.                            |
+| `conda clean --all`                                                   | Remove unused packages and caches.                                     |
 
 
 ## Conclusion
