@@ -4,11 +4,6 @@
 Author      Ter-Petrosyan Hakob
 ```
 
-- [How xid Works](#how-xid-works)
-- [How VACUUM Helps](#how-vacuum-helps)
-    - [Special Values and the Freezing Mechanism](#special-values-and-the-freezing-mechanism)
-- [Virtual and Real Transaction Identifiers](#virtual-and-real-transaction-identifiers)
-
 ---
 
 Every transaction in PostgreSQL gets a special number called an **xid**. **xid** means `transaction identifier`. 

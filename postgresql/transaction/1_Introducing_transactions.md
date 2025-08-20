@@ -51,7 +51,7 @@ Before we look at how these two types of transactions work and compare them, let
 You’ll understand why this is important when we later explore how PostgreSQL handles multiple transactions at the 
 same time—a concept called concurrency. For now, just remember: every row in every table is tagged with the xid (transaction ID) of the transaction that created or changed it.
 
-PostgreSQL provides a special function **called txid_current()** that lets you check the transaction ID of the current transaction.
+PostgreSQL provides a special function called **txid_current()** that lets you check the transaction ID of the current transaction.
 
 For example, try running a few simple queries like this:
 
