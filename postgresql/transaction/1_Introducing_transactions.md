@@ -4,9 +4,6 @@
 ```info
 Author      Ter-Petrosyan Hakob
 ```
-- [Implicit vs Explicit Transactions: What's the Difference?](#-implicit-vs-explicit-transactions-whats-the-difference)
-    - [When Should You Use an Explicit Transaction?](#-when-should-you-use-an-explicit-transaction)
-- [Time Behavior Inside Transactions Explained](#️-time-behavior-inside-transactions-explained)
 
 ---
 
