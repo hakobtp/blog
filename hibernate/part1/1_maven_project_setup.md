@@ -1,4 +1,4 @@
-# ⚙️ Setting Up Hibernate with Maven (Step-by-Step Guide)
+# Setting Up Hibernate with Maven (Step-by-Step Guide)
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -129,21 +129,21 @@ Here is a simple `pom.xml` file with the basic dependencies for a Hibernate proj
 </project>
 ```
 
-📦 **What This `pom.xml` File Does:**
+**What This `pom.xml` File Does:**
 
-- ✅ Sets up Hibernate to work with JPA, so you can map Java classes to database tables.
-- ✅ Uses H2, a lightweight in-memory database, perfect for testing and learning.
-- ✅ Enables Lombok support during Maven builds, saving you from writing boilerplate code like getters, setters, and constructors.
-- ✅ Adds SLF4J logging support, so you can easily use `@Slf4j` from Lombok to log messages in your classes.
-- ✅ Includes JUnit 5 for writing unit tests with modern annotations like `@Test`, `@BeforeEach`, and `@DisplayName`.
-- ✅ Includes Mockito, which helps you create mock objects for testing classes in isolation.
-- ✅ Adds the Surefire Plugin, which allows Maven to run your tests automatically when you build the project.
+- Sets up Hibernate to work with JPA, so you can map Java classes to database tables.
+- Uses H2, a lightweight in-memory database, perfect for testing and learning.
+- Enables Lombok support during Maven builds, saving you from writing boilerplate code like getters, setters, and constructors.
+- Adds SLF4J logging support, so you can easily use `@Slf4j` from Lombok to log messages in your classes.
+- Includes JUnit 5 for writing unit tests with modern annotations like `@Test`, `@BeforeEach`, and `@DisplayName`.
+- Includes Mockito, which helps you create mock objects for testing classes in isolation.
+- Adds the Surefire Plugin, which allows Maven to run your tests automatically when you build the project.
 
 ## Creating and Testing a Simple JPA Entity with Hibernate
 
 Let’s start with a very basic example. Don’t worry if this looks simple — it will make more sense as we go further in the series.
 
-📘 **Step 1: The Author Entity**
+**Step 1: The Author Entity**
 
 Suppose we have an author who must have:
 - a first name
@@ -176,7 +176,7 @@ public class AuthorEntity {
 }
 ```
 
-> 🔍 **Hint:** When we save an AuthorEntity into the database, Hibernate will generate the ID automatically. 
+> **Hint:** When we save an AuthorEntity into the database, Hibernate will generate the ID automatically. 
 > If the id is not null after saving, it means the author was successfully stored.
 
 An entity is a Java class that JPA treats as a table in the database. To make a class an entity, follow these rules:
@@ -191,7 +191,7 @@ An entity is a Java class that JPA treats as a table in the database. To make a 
     
 With these rules, JPA can map your class to a database table and manage its data.    
 
-🛠 **Step 2: The persistence.xml File**
+**Step 2: The persistence.xml File**
 
 We also need a configuration file so that Hibernate knows how to connect to the database. Create the file in:
 
@@ -235,14 +235,14 @@ Here’s the content:
 </persistence>
 ```
 
-✅ What this file does:
+What this file does:
 
 - Sets up an in-memory H2 database (no need to install anything)↳
 - Uses Hibernate to manage our data
 - Tells Hibernate to show SQL logs in the console
 - Automatically drops and recreates the schema each time the application runs
 
-🧪 **Step 3: Writing Tests for the Entity**
+**Step 3: Writing Tests for the Entity**
 
 Let’s write a test class to check if our AuthorEntity works as expected.
 
@@ -340,10 +340,10 @@ class AuthorPersistenceTest {
 
 ```
 
-📝 Note: The name `"bookstore"` in the test must match the persistence-unit name in `persistence.xml`.
+Note: The name `"bookstore"` in the test must match the persistence-unit name in `persistence.xml`.
 
 
-## 🧱 Creating a JPA Repository for Authors
+## Creating a JPA Repository for Authors
 
 Now that we have our AuthorEntity and Hibernate configuration ready, let’s write a simple repository 
 class to interact with the database using pure JPA (no manual SQL or JDBC).
@@ -379,7 +379,7 @@ public class AuthorRepository {
 ```
 This repository uses the **EntityManager** provided by JPA to save and retrieve data, without writing any SQL.
 
-✅ **Testing the Repository**
+**Testing the Repository**
 
 Let’s now write some unit tests to make sure our repository works correctly. We'll use:
 
@@ -462,8 +462,6 @@ class AuthorRepositoryTest {
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 🏛️ [Hibernate Tutorials](./../tutorials.md)
-- 🔄 [Understanding Transactions in JPA and Hibernate](./2_Understanding_Transactions_in_JPA_and_Hibernate.md)
+- [Home](./../../README.md)
+- [Hibernate Tutorials](./../tutorials.md)
+- [Understanding Transactions in JPA and Hibernate](./2_Understanding_Transactions_in_JPA_and_Hibernate.md)
