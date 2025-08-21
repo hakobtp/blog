@@ -244,7 +244,7 @@ create table electronics
 );
 ```
 
-You can still use @`DiscriminatorColumn` and @`DiscriminatorValue` on the root entity to change the name and values of the discriminator column. 
+You can still use `@DiscriminatorColumn` and `@DiscriminatorValue` on the root entity to change the name and values of the discriminator column. 
 The `JOINED` strategy feels natural because each class has its own table, just like in your code.
 
 However, this strategy can slow down queries:
