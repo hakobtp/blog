@@ -1,7 +1,3 @@
-## 🧩 Microservices
-
----
-
 ### Resilience4j
 - [Retry](./Resilience4j/Retry_with_Resilience4j.md)
 - Rate Limiting 
