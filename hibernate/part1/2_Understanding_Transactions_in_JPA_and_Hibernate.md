@@ -51,9 +51,9 @@ Transactions follow four main rules called ACID:
 
 Imagine you're moving $100 from your Savings account to your Checking account. That transaction may involve:
 
-1) Debiting the **Savings** account
-2) Crediting the **Checking** account
-3) Logging the transfer in a table
+1. Debiting the **Savings** account<br>
+2. Crediting the **Checking** account<br>
+3. Logging the transfer in a table
 
 All of these steps must happen **together**.
 If one fails, the whole transaction should roll back. **Why?** Because you don’t want to lose money or create incorrect records.
