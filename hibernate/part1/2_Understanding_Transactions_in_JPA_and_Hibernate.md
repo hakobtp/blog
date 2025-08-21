@@ -228,7 +228,6 @@ class AccountRepositoryTest {
 | **Transaction block** | You control when a transaction starts, commits, or rolls back           |
 | **Consistency**       | All balances are changed together, or not at all                         |
 | **Rollback safety**   | Errors don’t corrupt your database                                       |
-| **Pure Hibernate**    | No Spring, no extra libraries — just JPA + Hibernate + H2               |
 
 
 ---
