@@ -128,8 +128,6 @@ create table podcast_episodes
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 🏛️ [Hibernate Tutorials](./../tutorials.md)
+- [Home](./../../README.md)
+- [Hibernate Tutorials](./../tutorials.md)
 - [Primary Key](./5_Primary_Key.md)

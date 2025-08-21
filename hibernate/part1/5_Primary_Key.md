@@ -282,9 +282,7 @@ One clear difference appears in JPQL queries:
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 🏛️ [Hibernate Tutorials](./../tutorials.md)
+- [Home](./../../README.md)
+- [Hibernate Tutorials](./../tutorials.md)
 - [Secondary Table](./4_SecondaryTable.md)
 - [Map and Collection of Basic Types](./6_Map_and_Collection_of_Basic_Types.md)
