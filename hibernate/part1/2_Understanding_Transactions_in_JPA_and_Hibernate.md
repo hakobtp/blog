@@ -1,4 +1,4 @@
-# 🔄 Understanding Transactions in JPA and Hibernate
+# Understanding Transactions in JPA and Hibernate
 
 ```info
 Author      Ter-Petrosyan Hakob
@@ -119,9 +119,9 @@ public class AccountRepository {
             from.setBalance(from.getBalance() - amount);
             to.setBalance(to.getBalance() + amount);
 
-            tx.commit(); // ✅ All operations succeed — commit
+            tx.commit(); // All operations succeed — commit
         } catch (Exception e) {
-            tx.rollback(); // ❌ Something went wrong — rollback
+            tx.rollback(); // Something went wrong — rollback
             throw new RuntimeException("Transfer failed", e);
         }
     }
@@ -221,7 +221,7 @@ class AccountRepositoryTest {
 }
 ```
 
-🧠 **Key Lessons:**
+**Key Lessons:**
 
 | Concept            | Description                                                           |
 |--------------------|------------------------------------------------------------------------|
@@ -233,9 +233,7 @@ class AccountRepositoryTest {
 
 ---
 
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 🏛️ [Hibernate Tutorials](./../tutorials.md)
-- ⚙️ [Setting Up Hibernate with Maven (Step-by-Step Guide)](./1_maven_project_setup.md)
-- 🌳 [Inheritance](./3_Inheritance.md)
+- [Home](./../../README.md)
+- [Hibernate Tutorials](./../tutorials.md)
+- [Setting Up Hibernate with Maven (Step-by-Step Guide)](./1_maven_project_setup.md)
+- [Inheritance](./3_Inheritance.md)
