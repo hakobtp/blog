@@ -219,4 +219,4 @@ s.forEach(x -> items.remove(x)); // Error
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Introduction to Stream](./1_Introduction_to_stream.md)
-- [filter, map, and flatMap](./3_filter_map,_and_flatMap.md)
+- [Stream: filter, map, and flatMap](./3_filter_map,_and_flatMap.md)

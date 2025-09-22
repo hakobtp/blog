@@ -18,7 +18,9 @@
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./stream/1_Introduction_to_stream.html">Introduction to Stream</a></li>
       <li><a href="./stream/2_Creating_Streams.html">Creating Streams</a></li>
-       <li><a href="./stream/3_filter_map,_and_flatMap.html">filter, map, and flatMap</a></li>
+       <li><a href="./stream/3_filter_map,_and_flatMap.html">Stream: filter, map, and flatMap</a></li>
+       <li><a href="./stream/4_Stream_Transform_Combine_and_Reduce_Data.html">Stream: Transform, Combine, and Reduce Data</a></li>
+       
     </ul>
   </div>
 </div>
