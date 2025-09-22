@@ -78,6 +78,8 @@ C
 D
 ```
 
+---
+
 - `java.util.stream.Stream`
    - `Stream<T> limit(long maxSize)` Takes the first `maxSize` elements from the stream.
    - `Stream<T> skip(long n)` Ignores the first `n` elements and keeps the rest.
@@ -94,44 +96,69 @@ D
 ```java
 Stream<String> unique = Stream.of("apple","apple","banana").distinct();
 unique.forEach(System.out::println);
+```
 
+Output:
+
+```
+apple
+banana
+```
+
+You can sort elements alphabetically or with custom rules.
+
+```java
+List<String> words = List.of("cat","elephant","dog");
+Stream<String> longestFirst = words.stream()
+   .sorted(Comparator.comparing(String::length)
+   .reversed());
+
+longestFirst.forEach(System.out::println);
+```
+
+Output:
+
+```
+elephant
+cat
+dog
+```
+
+Peek lets you see elements while the stream is processed.
+
+```java
+Stream<Integer> powers = Stream.iterate(1, n -> n * 2)
+   .peek(n -> System.out.println("Processing " + n))
+   .limit(5);
+powers.forEach(n -> {});
+
+```
+
+Output:
+
+```
+Processing 1
+Processing 2
+Processing 4
+Processing 8
+Processing 16
+```
+---
+
+- `java.util.stream.Stream`
+   - `Stream<T> distinct()` Keeps only unique elements, removing duplicates.
+   - `Stream<T> sorted()` Sorts elements in natural order. Important: the elements must implement `Comparable`, 
+      meaning they can be compared to each other (like numbers or strings).
+   - `Stream<T> sorted(Comparator<? super T> comparator)` Sorts the elements using a custom rule you provide.
+   - `Stream<T> peek(Consumer<? super T> action)` Looks at each element while the stream is processed, useful for debugging.
+
+
+### Simple Reductions
+
+Reductions are terminal operations that return a single value from a stream.
 
 ------
 
-
-
-
-
-
-
-## Other Stream Transformations
-The distinct method returns a stream that yields elements from the original stream, in the same order, except that duplicates are suppressed. The duplicates need not be adjacent.
-
-Stream<String> uniqueWords
-   = Stream.of("merrily", "merrily", "merrily", "gently").distinct();
-   // Only one "merrily" is retained
-For sorting a stream, there are several variations of the sorted method. One works for streams of Comparable elements, and another accepts a Comparator. Here, we sort strings so that the longest ones come first:
-
-Stream<String> longestFirst
-   = words.stream().sorted(Comparator.comparing(String::length).reversed());
-As with all stream transformations, the sorted method yields a new stream whose elements are the elements of the original stream in sorted order.
-
-Of course, you can sort a collection without using streams. The sorted method is useful when the sorting process is part of a stream pipeline.
-
-Finally, the peek method yields another stream with the same elements as the original, but a function is invoked every time an element is retrieved. That is handy for debugging:
-
-Object[] powers = Stream.iterate(1.0, p -> p * 2)
-   .peek(e -> System.out.println("Fetching " + e))
-   .limit(20).toArray();
-When an element is actually accessed, a message is printed. This way you can verify that the infinite stream returned by iterate is processed lazily.
-
-When you use a debugger to debug a stream computation, you can set a breakpoint in a method that is called from one of the transformations. With most IDEs, you can also set breakpoints in lambda expressions. If you just want to know what happens at a particular point in the stream pipeline, add
-
-.peek(x ->
-   {
-      return;
-   })
-and set a breakpoint on the second line.
 
 
 ## Simple Reductions
