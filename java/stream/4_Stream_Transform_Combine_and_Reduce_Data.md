@@ -46,29 +46,62 @@ Output:
 3
 ```
 
+Opposite of `takeWhile`: skip elements until the condition is `false`.
+
+```java
+Stream<String> fruits = Stream.of(""," ","apple","banana");
+Stream<String> clean = fruits.dropWhile(s -> s.isBlank());
+clean.forEach(System.out::println);
+```
+
+Output:
+
+```
+apple
+banana
+```
+
+You can merge two streams into one.
+
+```java
+Stream<String> letters = Stream.concat(Stream.of("A","B"), Stream.of("C","D"));
+
+letters.forEach(System.out::println);
+```
+
+Output:
+
+```
+A
+B
+C
+D
+```
+
+- `java.util.stream.Stream`
+   - `Stream<T> limit(long maxSize)` Takes the first `maxSize` elements from the stream.
+   - `Stream<T> skip(long n)` Ignores the first `n` elements and keeps the rest.
+   - `Stream<T> takeWhile(Predicate<? super T> predicate)` Takes elements from the start while the condition is `true`.
+   - `Stream<T> dropWhile(Predicate<? super T> predicate)` Skips elements from the start while the condition is `true`, then keeps the rest.
+   - `static <T> Stream<T> concat(Stream<? extends T> a, Stream<? extends T> b)` Joins two streams: first `a`, then `b`.
+
+
+
+### Other Transformations
+
+`distinct()` – Remove duplicate elements
+
+```java
+Stream<String> unique = Stream.of("apple","apple","banana").distinct();
+unique.forEach(System.out::println);
+
+
 ------
 
 
 
-The call stream.skip(n) does the exact opposite. It discards the first n elements. This is handy in our book reading example where, due to the way the split method works, the first element is an unwanted empty string. We can make it go away by calling skip:
 
-Stream<String> words = Stream.of(contents.split("\\PL+")).skip(1);
-The stream.takeWhile(predicate) call takes all elements from the stream while the predicate is true, and then stops.
 
-For example, suppose we use the graphemeClusters method of the preceding section to split a string into characters, and we want to collect all initial digits. The takeWhile method can do this:
-
-Stream<String> initialDigits = graphemeClusters(str).takeWhile(
-   s -> "0123456789".contains(s));
-The dropWhile method does the opposite, dropping elements while a condition is true and yielding a stream of all elements starting with the first one for which the condition was false. For example,
-
-Stream<String> withoutInitialWhiteSpace = graphemeClusters(str).dropWhile(
-   s -> s.strip().length() == 0);
-You can concatenate two streams with the static concat method of the Stream class:
-
-Stream<String> combined = Stream.concat(
-   graphemeClusters("Hello"), graphemeClusters("World"));
-   // Yields the stream ["H", "e", "l", "l", "o", "W", "o", "r", "l", "d"]
-Of course, the first stream should not be infinite—otherwise the second one wouldn’t ever get a chance.
 
 
 ## Other Stream Transformations
