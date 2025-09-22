@@ -196,6 +196,7 @@ s.forEach(x -> items.remove(x)); // Error
 - `java.util.Scanner`   
     - `public Stream<String> tokens()` Creates a stream of words (or tokens) from a `Scanner`.
     Each token is what the scanner would normally return using `next()`. 
+
     ```java
     String text = "apple banana cherry";
     Scanner scanner = new Scanner(text);
@@ -204,7 +205,8 @@ s.forEach(x -> items.remove(x)); // Error
 
     words.forEach(System.out::println);
     scanner.close();
-    ```        
+    ```
+      
     `tokens()` is a simple way to turn scanner input into a stream for easy processing.
 
 ---
