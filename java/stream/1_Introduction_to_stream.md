@@ -74,7 +74,7 @@ This pattern—making a stream, transforming it, and then getting a result—is 
         from the original stream for which `predicate` returns `true`.
     - **`long count()`** Returns how many elements are in the stream. This is a terminal operation, which means 
         it runs all previous steps and produces a final result.
-        
+
 ---
 
 - **`java.util.Collection<E>`**
@@ -226,6 +226,9 @@ s.forEach(x -> items.remove(x)); // Error
         );
         ```    
 
+- `java.util.Arrays`
+    - `static <T> Stream<T> stream(T[] array, int startInclusive, int endExclusive)` Creates a stream from a part of an array.
+    The range starts at `startInclusive` (included) and ends at `endExclusive` (not included).
 ---
 
 - [Home](./../../README.md)
