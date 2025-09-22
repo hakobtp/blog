@@ -156,6 +156,50 @@ try (Stream<String> lines = Files.lines(Path.of("data.txt"))) {
 }
 ```
 
+The `try` block makes sure the file closes properly.
+
+If you need to build a stream step by step, use `Stream.Builder`:
+
+```java
+Stream.Builder<Integer> builder = Stream.builder();
+builder.add(10);
+builder.add(20);
+builder.add(30);
+Stream<Integer> numbers = builder.build();
+
+```
+
+If you only have an `Iterator` or `Iterable` (not a collection), you can still make a stream:
+
+```java
+Stream<String> fromIterator = StreamSupport.stream(Spliterators
+        .spliteratorUnknownSize(iterator, Spliterator.ORDERED), false);
+```
+
+If you have an Iterable that is not a collection, you can turn it into a stream by callin
+
+```java
+StreamSupport.stream(iterable.spliterator(), false);
+````
+
+
+Streams work on top of collections. If you change the collection while the stream is running, strange errors may happen.
+
+**Safe (though unusual):**
+```java
+List<String> items = new ArrayList<>(List.of("A", "B"));
+Stream<String> s = items.stream();
+items.add("C"); 
+long count = s.count(); // Works, but not recommended
+```
+
+**Unsafe:**
+```java
+List<String> items = new ArrayList<>(List.of("A", "B"));
+Stream<String> s = items.stream();
+s.forEach(x -> items.remove(x)); // Error
+```
+
 ---
 
 - [Home](./../../README.md)
