@@ -226,9 +226,32 @@ s.forEach(x -> items.remove(x)); // Error
         );
         ```    
 
+---
+
 - `java.util.Arrays`
     - `static <T> Stream<T> stream(T[] array, int startInclusive, int endExclusive)` Creates a stream from a part of an array.
     The range starts at `startInclusive` (included) and ends at `endExclusive` (not included).
+
+---
+
+- `java.lang.String`
+    - `static Stream<String> lines()` Splits a text into lines and returns them as a stream of strings.
+    Each line (separated by `\n`) becomes one element in the stream.
+
+- `java.util.regex.Pattern`    
+    - `Stream<String> splitAsStream(CharSequence input)` Splits a text using a regular expression (regex) and gives the parts as a stream of strings.
+    Each match of the pattern is used as a separator.
+    ```java
+        String text = "apple,banana;cherry orange";
+
+        // Split by comma, semicolon, or space
+        Pattern pattern = Pattern.compile("[,; ]+");
+
+        Stream<String> words = pattern.splitAsStream(text);
+
+        words.forEach(System.out::println);
+    ```            
+
 ---
 
 - [Home](./../../README.md)
