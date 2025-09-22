@@ -81,7 +81,7 @@ This pattern—making a stream, transforming it, and then getting a result—is 
     - **`default Stream<E> parallelStream()`** Creates a parallel stream, which may process elements at the same time on different threads.
 
 
-## Creating Streams in Java
+## Creating Streams
 
 Streams in Java let you work with data in a flexible way. Instead of writing loops again and again, you can describe what you want to do with the data, and the stream takes care of the rest.
 
@@ -214,8 +214,16 @@ s.forEach(x -> items.remove(x)); // Error
 ---
 
 - `java.util.Spliterators`
-
-
+    - `static <T> Spliterator<T> spliteratorUnknownSize(Iterator<? extends T> iterator, int characteristics)` Turns an Iterator into a `Spliterator` 
+        (an iterator that can split work for parallel processing). The characteristics value describes special properties of the data, 
+        for example `Spliterator.ORDERED` if the elements have a fixed order. Key idea `spliteratorUnknownSize` helps you reuse old-style Iterator code with modern streams.
+        ```java
+          Iterator<String> iterator = List.of("apple", "banana", "cherry").iterator();
+            Stream<String> stream = StreamSupport.stream(
+            Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED),
+            false
+        );
+        ```    
 
 ---
 
