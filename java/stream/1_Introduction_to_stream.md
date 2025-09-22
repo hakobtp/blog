@@ -264,5 +264,39 @@ s.forEach(x -> items.remove(x)); // Error
 
 ---
 
+- `java.util.stream.StreamSupport`
+    - `static <T> Stream<T> stream(Spliterator<T> spliterator, boolean parallel)` Creates a stream from a `Spliterator`.
+    You can choose `parallel = true` to process the elements in parallel or `false` for normal sequential processing.
+
+---
+
+- `java.lang.Iterable`
+    - `Spliterator<T> spliterator()` Creates a `Spliterator` from any `Iterable` (like a `List` or `Set`).
+    A `Spliterator` can be used to make a stream or for parallel processing.
+    The default version does not split the elements and does not know the size.
+
+---
+
+- `java.util.Scanner`   
+    - `public Stream<String> tokens()` Creates a stream of words (or tokens) from a `Scanner`.
+    Each token is what the scanner would normally return using `next()`.
+    ```java
+    String text = "apple banana cherry";
+    Scanner scanner = new Scanner(text);
+
+    Stream<String> words = scanner.tokens();
+
+    words.forEach(System.out::println);
+    scanner.close();
+    ```        
+    `tokens()` is a simple way to turn scanner input into a stream for easy processing.
+
+---
+
+- `java.util.function.Supplier<T>`
+    - `T get()` Produces or “supplies” a value when called. It does not take any input, it just returns something
+
+---
+
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
