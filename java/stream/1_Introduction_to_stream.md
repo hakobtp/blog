@@ -139,6 +139,23 @@ Stream<Integer> upToFive = Stream.iterate(0, n -> n < 5, n -> n + 1);
 This produces `0, 1, 2, 3, 4`.
 
 
+- Special Factory Methods
+    - `Stream.ofNullable(obj)` → makes a stream of 1 element if obj is not null, otherwise empty.
+    - `String.lines()` → turns a text block into a stream of its lines.
+
+```java
+String text = "Hello\nHola\nCiao";
+Stream<String> greetings = text.lines();
+```
+
+If you want to process a file line by line:
+
+```java
+try (Stream<String> lines = Files.lines(Path.of("data.txt"))) {
+    lines.forEach(System.out::println);
+}
+```
+
 ---
 
 - [Home](./../../README.md)
