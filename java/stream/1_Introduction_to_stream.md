@@ -200,6 +200,15 @@ Stream<String> s = items.stream();
 s.forEach(x -> items.remove(x)); // Error
 ```
 
+- `java.util.stream.Stream` 
+    - `static <T> Stream<T> of(T... values)` Creates a stream from the given values..
+    - `static <T> Stream<T> empty()` Creates a stream with no elements.
+    - `static <T> Stream<T> generate(Supplier<T> s)` Creates an infinite stream. Each element is produced by calling the given function again and again.
+    - `static <T> Stream<T> iterate(T seed, UnaryOperator<T> f)` Creates an infinite stream. Starts with `seed`, then applies the function to get the next values.
+    - `static <T> Stream<T> iterate(T seed, Predicate<? super T> hasNext, UnaryOperator<T> f)` Like the previous method, but stops when 
+        the condition (`hasNext`) is no longer true.
+    - `static <T> Stream<T> ofNullable(T t)` If `t` is null, returns an empty stream. Otherwise, returns a stream with that single value.
+
 ---
 
 - [Home](./../../README.md)
