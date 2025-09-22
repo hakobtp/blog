@@ -157,29 +157,62 @@ Processing 16
 
 Reductions are terminal operations that return a single value from a stream.
 
-------
+`count()` – Count elements
 
+```java
+long total = Stream.of("apple","banana","cherry").count();
+```
+---
 
+`max()` and `min()` – Find largest or smallest
 
-## Simple Reductions
-Now that you have seen how to create and transform streams, we will finally get to the most important point—getting answers from the stream data. The methods covered in this section are called reductions. Reductions are terminal operations. They reduce the stream to a nonstream value that can be used in your program.
+These return an `Optional<T>`, which is safer than returning `null`.
 
-You have already seen a simple reduction: the count method that returns the number of elements of a stream.
+```java
+Optional<String> largest = Stream.of("apple","banana","cherry").max(String::compareToIgnoreCase);
+System.out.println(largest.orElse("No words"));
+```
 
-Other simple reductions are max and min that return the largest or smallest value. There is a twist—these methods return an Optional<T> value that either wraps the answer or indicates that there is none (because the stream happened to be empty). In the olden days, it was common to return null in such a situation. But that can lead to null pointer exceptions when it happens in an incompletely tested program. The Optional type is a better way of indicating a missing return value. We discuss the Optional type in detail in the next section. Here is how you can get the maximum of a stream:
+---
 
-Optional<String> largest = words.max(String::compareToIgnoreCase);
-System.out.println("largest: " + largest.orElse(""));
-The findFirst returns the first value in a nonempty collection. It is often useful when combined with filter. For example, here we find the first word that starts with the letter Q, if it exists:
+`findFirst()` and `findAny()` – Find elements
 
-Optional<String> startsWithQ
-   = words.filter(s -> s.startsWith("Q")).findFirst();
-If you are OK with any match, not just the first one, use the findAny method. This is effective when you parallelize the stream, since the stream can report any match that it finds instead of being constrained to the first one.
+```java
+Optional<String> first = Stream.of("apple","banana","cherry")
+                               .filter(s -> s.startsWith("b"))
+                               .findFirst();
+System.out.println(first.orElse("No match"));
+```
 
-Optional<String> startsWithQ
-   = words.parallel().filter(s -> s.startsWith("Q")).findAny();
-If you just want to know if there is a match, use the terminal anyMatch operation with a predicate argument:
+`findAny()` is useful in parallel streams when you don’t care which match is returned.
 
-boolean aWordStartsWithQ
-   = words.parallel().anyMatch(s -> s.startsWith("Q"));
-There are methods allMatch and noneMatch that return true if all or no elements match a predicate. These methods also benefit from being run in parallel.
+---
+
+Match checks: `anyMatch`, `allMatch`, `noneMatch`
+
+```java
+Stream<String> words = Stream.of("apple","banana","cherry");
+
+// Check if any word starts with "b"
+boolean anyB = words.anyMatch(s -> s.startsWith("b"));
+System.out.println(anyB); // true
+```
+
+- `allMatch` → `true` if all elements match a condition.
+- `noneMatch` → `true` if no elements match a condition.
+
+---
+
+- `java.util.stream.Stream` 
+   - `Optional<T> max(Comparator<? super T> comparator)` Finds the largest element in the stream using the comparator. Returns an `Optional` (empty if the stream has no elements).
+   - `Optional<T> min(Comparator<? super T> comparator)` Finds the smallest element in the stream using the comparator. Returns an `Optional`.
+   - `Optional<T> findFirst()` Returns the first element of the stream, or empty if the stream is empty.
+   - `Optional<T> findAny()` Returns any element of the stream, useful in parallel streams.
+   - `boolean anyMatch(Predicate<? super T> predicate)` Returns `true` if any element matches the condition.
+   - `boolean allMatch(Predicate<? super T> predicate)` Returns `true` if all elements match the condition.
+   - `boolean noneMatch(Predicate<? super T> predicate)` Returns `true` if no element matches the condition.
+---
+
+- [Home](./../../README.md)
+- [Java Tutorials](./../tutorials.md)
+- [Stream: filter, map, and flatMap](./3_filter_map,_and_flatMap.md)
