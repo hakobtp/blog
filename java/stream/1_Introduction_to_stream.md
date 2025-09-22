@@ -74,6 +74,7 @@ This pattern—making a stream, transforming it, and then getting a result—is 
         from the original stream for which `predicate` returns `true`.
     - **`long count()`** Returns how many elements are in the stream. This is a terminal operation, which means 
         it runs all previous steps and produces a final result.
+        
 ---
 
 - **`java.util.Collection<E>`**
