@@ -74,6 +74,7 @@ This pattern—making a stream, transforming it, and then getting a result—is 
         from the original stream for which `predicate` returns `true`.
     - **`long count()`** Returns how many elements are in the stream. This is a terminal operation, which means 
         it runs all previous steps and produces a final result.
+---
 
 - **`java.util.Collection<E>`**
     - **`default Stream<E> stream()`** Creates a normal (sequential) stream of the collection’s elements.
@@ -199,6 +200,7 @@ List<String> items = new ArrayList<>(List.of("A", "B"));
 Stream<String> s = items.stream();
 s.forEach(x -> items.remove(x)); // Error
 ```
+---
 
 - `java.util.stream.Stream` 
     - `static <T> Stream<T> of(T... values)` Creates a stream from the given values..
@@ -208,6 +210,12 @@ s.forEach(x -> items.remove(x)); // Error
     - `static <T> Stream<T> iterate(T seed, Predicate<? super T> hasNext, UnaryOperator<T> f)` Like the previous method, but stops when 
         the condition (`hasNext`) is no longer true.
     - `static <T> Stream<T> ofNullable(T t)` If `t` is null, returns an empty stream. Otherwise, returns a stream with that single value.
+
+---
+
+- `java.util.Spliterators`
+
+
 
 ---
 
