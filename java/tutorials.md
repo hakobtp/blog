@@ -17,10 +17,10 @@
     <h3 style="margin:0;">Stream</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./stream/1_Introduction_to_stream.html">Introduction to Stream</a></li>
+      <li><a href="./stream/2_Creating_Streams.html">Creating Streams</a></li>
     </ul>
   </div>
 </div>
-
 
 <!-- strtemi mech grem partitioningBy -->
 --- 
