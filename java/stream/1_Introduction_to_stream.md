@@ -238,6 +238,8 @@ s.forEach(x -> items.remove(x)); // Error
     - `static Stream<String> lines()` Splits a text into lines and returns them as a stream of strings.
     Each line (separated by `\n`) becomes one element in the stream.
 
+--- 
+
 - `java.util.regex.Pattern`    
     - `Stream<String> splitAsStream(CharSequence input)` Splits a text using a regular expression (regex) and gives the parts as a stream of strings.
     Each match of the pattern is used as a separator.
@@ -251,6 +253,14 @@ s.forEach(x -> items.remove(x)); // Error
 
         words.forEach(System.out::println);
     ```            
+
+---
+
+- `java.nio.file.Files`
+    - `static Stream<String> lines(Path path)` 
+    - `static Stream<String> lines(Path path, Charset cs)` Read a text file and return a stream of lines.
+    Each line in the file becomes one element in the stream.
+    By default, it uses UTF-8, or you can provide a different charset.
 
 ---
 
