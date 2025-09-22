@@ -211,6 +211,7 @@ System.out.println(anyB); // true
    - `boolean anyMatch(Predicate<? super T> predicate)` Returns `true` if any element matches the condition.
    - `boolean allMatch(Predicate<? super T> predicate)` Returns `true` if all elements match the condition.
    - `boolean noneMatch(Predicate<? super T> predicate)` Returns `true` if no element matches the condition.
+   
 ---
 
 - [Home](./../../README.md)
