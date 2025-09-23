@@ -177,6 +177,14 @@ git diff
 git diff main feature-login
 ```
 
+Then edit the files, and save your changes:
+```bash
+git add index.html
+git commit
+```
+
+**Example:** If you and your teammate both change the same paragraph in index.html, Git will ask you to choose which change to keep.
+
 ---
 
 - [Home](./../../README.md)
