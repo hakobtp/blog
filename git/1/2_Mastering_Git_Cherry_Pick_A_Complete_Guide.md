@@ -51,6 +51,18 @@ Feature Branch:      main branch:
             D
 ```
 
+- Commits `A`, `B`, `C` exist on feature branch.
+- Commit `D` is the bug fix you want on main.
+
+After cherry-picking `D`:
+
+```
+Feature Branch:      main branch:  
+      A---B---C          X---Y---Z---D
+           \
+            D
+```
+
 ---
 
 - [Home](./../../README.md)
