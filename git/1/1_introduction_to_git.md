@@ -191,6 +191,105 @@ git commit
 
 **Example:** If you and your teammate both change the same paragraph in index.html, Git will ask you to choose which change to keep.
 
+## Working with Remote Repositories
+
+A remote repository is like a copy of your project stored on GitHub or GitLab. You can link your local repository to it:
+
+```bash
+git remote add origin https://github.com/yourname/project.git
+git remote set-url origin https://github.com/yourname/new-project.git
+git remote rename origin main-remote
+```
+
+Send your work to the remote repository:
+
+```bash
+git push -u origin feature-login  # Upload branch and set upstream
+git pull origin feature-login     # Download changes from remote
+```
+
+
+Update your local copy without merging:
+
+```bash
+git fetch
+```
+
+`git fetch` downloads changes from the remote repository (like GitHub) without changing your current files. 
+It just updates your local copy of the remote branches. Think of it like checking if your teammate has done something new, but not touching your own work yet. After this command, Git knows what new commits exist on the remote repository, but your current branch doesn’t change.
+
+**Example:**
+
+Imagine you and a friend are working on a website:
+1. You are on branch main.
+2. Your friend adds a new page called about.html on the remote repository.
+3. You run:
+    ```bash
+    git fetch
+    ```
+
+- Git now knows that about.html exists on the remote.
+- Your local main branch hasn’t changed yet.
+- You can look at the changes, or merge them later when you’re ready.
+
+How it’s different from `git pull`
+
+- `git pull` = `git fetch` + `git merge` Pull downloads the changes and automatically merges them into your current branch.
+- `git fetch` only downloads the changes. You choose when and how to merge them.
+
+```bash
+git fetch          # Just update your knowledge of the remote
+git merge origin/main  # Merge the remote main into your current branch
+```
+
+Quick analogy:
+
+- `git fetch` = Checking the mailbox
+- `git pull` = Checking the mailbox and taking the letters inside
+
+## Undoing Changes
+
+You can undo changes in a file or revert commits if something goes wrong.
+
+```bash
+git reset app.js             # Unstage changes in a file
+git reset --soft HEAD~1      # Undo last commit, keep changes staged
+git reset --mixed HEAD~1     # Undo last commit, keep changes in files
+git reset --hard HEAD~1      # Undo last commit and delete changes
+```
+
+Revert a commit safely:
+
+```bash
+git revert 1a2b3c4           # Create a new commit that undoes '1a2b3c4'
+```
+
+**Example:** If you accidentally added a wrong feature, git revert lets you undo it without rewriting history.
+
+## Saving Work Temporarily: Stash
+
+Sometimes you need to switch branches but aren’t ready to commit your work. Stash it!
+
+```bash
+git stash       # Save your changes
+git stash pop   # Reapply and remove stash
+git stash apply # Reapply without removing stash
+git stash clear # Remove all stashes
+```
+
+**Example:** You’re halfway through designing a homepage but need to fix a bug on another branch. Stashing saves your unfinished work safely.
+
+
+## Pushing Your Branch
+
+Finally, share your branch with others:
+
+```bash
+git push origin feature-login
+```
+
+This sends your branch to the remote repository so your team can see and work with it.
+
 ---
 
 - [Home](./../../README.md)
