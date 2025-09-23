@@ -73,6 +73,57 @@ git push -u origin main
 
 Now your local project is connected to the online repository.
 
+## Using Branches
+
+Branches let you work on new features without affecting the main project. Create a new branch:
+
+```bash
+git checkout -b new-feature
+```
+
+Make changes, add them, commit, and push:
+
+```bash
+git add .
+git commit -m "Add new login page"
+git push origin new-feature
+```
+
+## Tracking Changes
+
+Git keeps track of file changes in two main steps: staging and committing.
+
+- Stage files (prepare them to be committed):
+```bash
+git add index.html         # Stage a single file
+git add .                  # Stage all files
+```
+
+- Commit files (save changes to the repository):
+```bash
+git commit -m "Add homepage design"
+git commit -am "Update styles"   # Add and commit tracked files in one step
+git commit --amend              # Change the last commit message
+```
+
+## Checking Status and History
+
+To see what has changed or needs committing:
+```bash
+git status
+```
+
+To see previous commits:
+
+```bash
+git log            # Full history
+git log --oneline  # Short summary
+```
+
+## Example Scenario
+
+Imagine you are working on a website. You start with `index.html` and `style.css`. You add these files to Git (`git add .`) and commit (`git commit -m "Initial website setup"`). Later, you create a branch contact-page, add a new `contact.html`, commit, and push. This way, your main site stays safe while you work on new pages.
+
 ---
 
 - [Home](./../../README.md)
