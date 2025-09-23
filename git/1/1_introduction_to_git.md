@@ -38,6 +38,13 @@ Git will now keep track of changes in your folder.
     git add .
     ````
 
+4. Save your first commit:
+
+    ```bash
+    git commit -m "First commit: project setup"
+    ```
+
+
 ---
 
 - [Home](./../../README.md)
