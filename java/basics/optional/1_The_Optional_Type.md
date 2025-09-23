@@ -35,5 +35,28 @@ String result = optionalString.orElseThrow(IllegalStateException::new);
 
 ---
 
+- `java.util.Optional`
+    - `T orElse(T other)` Returns the value if present, otherwise returns other.
+    - `T orElseGet(Supplier<? extends T> other)` Returns the value if present, otherwise runs the supplier function and returns its result.
+    - `<X extends Throwable> T orElseThrow(Supplier<? extends X> exceptionSupplier)` Returns the value if present, otherwise throws the exception created by the supplier.
+
+## Using a Value If It Exists
+
+In the last section, we looked at how to give a default value when an `Optional` is empty.
+Another way is to use the value only if it exists;
+
+- `ifPresent` → Runs some code only when the `Optional` has a value. If it’s empty, nothing happens.
+    ```java
+    optionalValue.ifPresent(v -> results.add(v));  
+    // adds v to the set only if v is present
+    ```
+
+    This can also be written shorter with a method reference:
+    ```java
+    optionalValue.ifPresent(results::add);
+    ```
+
+---
+
 - [Home](./../../../README.md)
 - [Java Tutorials](./../../tutorials.md)
