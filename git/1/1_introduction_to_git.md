@@ -12,6 +12,18 @@ git config --global user.email "alice.johnson@example.com"
 git config --list
 ```
 
+This ensures your commits are labeled correctly.
+
+## Starting a New Project with Git
+
+To track a project with Git, you need to initialize a repository.
+
+1. Open a terminal and go to your project folder:
+
+```bash
+cd /home/alice/projects/my-app
+```
+
 ---
 
 - [Home](./../../README.md)

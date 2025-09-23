@@ -6,7 +6,5 @@
 
 ---
 
-[](/1/1_introduction_to_git.md)
-
 [Home](./../README.md)
   
