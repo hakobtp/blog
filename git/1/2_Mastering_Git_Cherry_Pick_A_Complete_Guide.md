@@ -15,10 +15,18 @@ Imagine you have two branches: `main` and `feature-login`. You fixed a small bug
 
 1. Picking a Single Commit
     To apply one commit to your current branch:
-    
+
     ```bash
     git cherry-pick <commit-hash>
     ```
+
+    **Example:** You fixed a typo in `readme.md` on `feature-login` branch (commit `f3e4a2b`) and want it on main:
+    ```bash
+    git checkout main
+    git cherry-pick f3e4a2b
+    ```
+
+    The typo fix is now applied on `main` without merging the entire `feature-login` branch.
 
 ---
 
