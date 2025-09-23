@@ -102,6 +102,7 @@ Another good strategy is to keep the `Optional` and transform it step by step.
     - `<U> Optional<U> map(Function<? super T,? extends U> mapper)` If a value is present, applies the function and wraps the result in a new `Optional`.
     - `Optional<T> filter(Predicate<? super T> predicate)` Keeps the value only if it matches the condition (predicate). If it doesn’t, returns an empty `Optional`.
     - `Optional<T> or(Supplier<? extends Optional<? extends T>> supplier)` If a value is present, returns this `Optional`. If not, calls the supplier to provide an alternative `Optional`.
+    
 ---
 
 - [Home](./../../../README.md)
