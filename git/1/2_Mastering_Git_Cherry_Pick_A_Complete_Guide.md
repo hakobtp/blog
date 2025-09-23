@@ -65,6 +65,31 @@ Feature Branch:      main branch:
 
 Notice that only `D` is copied.
 
+## Handling Conflicts
+
+Sometimes, Git cannot automatically apply the changes. This is called a conflict.
+
+**Steps to Resolve Conflicts:**
+1. Open the files with conflicts and edit them.
+2. Stage the resolved files:
+
+    ```bash
+    git add <file>
+    ```
+3. Continue cherry-picking:
+
+    ```bash
+    git cherry-pick --continue
+    ```    
+4. If you want to stop the cherry-pick completely:
+
+    ```bash
+    git cherry-pick --abort
+    ```
+
+## Advanced Cherry-Pick Options
+
+
 ---
 
 - [Home](./../../README.md)
