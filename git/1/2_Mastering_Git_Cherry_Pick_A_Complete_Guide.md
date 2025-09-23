@@ -89,6 +89,25 @@ Sometimes, Git cannot automatically apply the changes. This is called a conflict
 
 ## Advanced Cherry-Pick Options
 
+- Skip a commit:
+
+    ```bash
+    git cherry-pick --skip
+    ```
+
+- Apply without committing:
+
+    ```bash
+    git cherry-pick <commit-hash> --no-commit
+    ```
+
+- Edit the commit message:
+
+    ```bash
+    git cherry-pick <commit-hash> -e
+    ```
+
+These options give you flexibility to control how commits are applied.
 
 ---
 
