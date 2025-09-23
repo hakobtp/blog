@@ -31,6 +31,11 @@ To track a project with Git, you need to initialize a repository.
 
 Git will now keep track of changes in your folder.
 
+3. Add your project files to the staging area (ready to be committed):
+    ````bash
+    git add .
+    ````
+
 ---
 
 - [Home](./../../README.md)
