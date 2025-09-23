@@ -19,6 +19,7 @@ This ensures your commits are labeled correctly.
 To track a project with Git, you need to initialize a repository.
 
 1. Open a terminal and go to your project folder:
+
     ```bash
     cd /home/alice/projects/my-app
     ```
@@ -32,6 +33,7 @@ To track a project with Git, you need to initialize a repository.
 Git will now keep track of changes in your folder.
 
 3. Add your project files to the staging area (ready to be committed):
+
     ````bash
     git add .
     ````
