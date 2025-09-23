@@ -39,7 +39,57 @@ Let's break down the operations and analyze the `Big O` complexity:
     - The `reverse()` method then reverses the string, which again processes each character once, making it $O(n)$.
 - Comparing Strings: `contentEquals(...)` compares the original string to the reversed string, which in the worst-case scenario 
     requires checking all $n$ characters. This is $O(n)$.
-    
+
+**Overall Complexity**
+- Time Complexity: Since the major operations (conversion, reversal, and comparison) are each $O(n)$, 
+    the overall time complexity is $O(n)$, where $$n$$ is the number of digits in the number $x$.
+- Space Complexity: The space required is also $O(n)$ because you store: 
+    - The string representation of $x$ (with $n$ characters).
+    - The reversed string (also $n$ characters).
+
+Even though $n$ is generally small (e.g., at most 10 or 11 for typical integer sizes), 
+the theoretical complexity is linear with respect to the number of digits.
+
+---
+
+**Approach B:** Reversing the Number Mathematically
+- Concept: Reverse the digits of the number using arithmetic operations, and then compare the reversed number to the original.
+    - Techniques to Learn:
+        - Modulo and Division: Use the modulo operator to extract the last digit (e.g., x % 10) and 
+            division to remove the last digit (e.g., x // 10 in Python).
+        - Building the Reversed Number: Learn how to construct the reversed number by iteratively adding digits 
+            (e.g., multiplying the current reversed number by 10 and then adding the extracted digit).
+        - Edge Case Handling: Understand why negative numbers or numbers ending with zero (other than 0 itself) might need special consideration.
+
+```java
+public boolean isPalindrome(int x) {
+    if (x < 0) {
+        return false;
+    }
+    int original = x;
+    int reverse = 0;
+    while (x != 0) {
+        reverse = reverse * 10 + x % 10;
+        x = x / 10;
+    }
+    return original == reverse;
+}
+```
+- Original Value Storage: The variable original holds the initial value of $x$, so you can compare it with the reversed number later.
+- Reversal Logic: The loop extracts each digit from $x$ (using `x % 10`) and builds the reversed number. Each iteration removes 
+    the last digit by dividing $x$ by 10.
+- Final Comparison: Once the loop completes, original is compared to reverse to check if the number is a palindrome.    
+
+**Complexity**
+- Time Complexity: $O(logx)$ because the number of iterations depends on the number of digits in $x$.
+- Space Complexity: $O(1)$ since only a few extra variables are used regardless of the input size.
+
+## Edge Cases
+
+- **Negative Numbers:** Typically, negative numbers are not considered palindromes because of the minus sign.
+- **Numbers with Trailing Zeros:** For example, 10 is not a palindrome even though 01 (if you reversed it) might be considered the same as 10 when ignoring leading zeros.
+- **Zero:** Zero is usually considered a palindrome.
+
 ---
 
 - [Home](./../../README.md)
