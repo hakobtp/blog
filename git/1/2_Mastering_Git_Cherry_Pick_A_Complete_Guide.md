@@ -109,6 +109,47 @@ Sometimes, Git cannot automatically apply the changes. This is called a conflict
 
 These options give you flexibility to control how commits are applied.
 
+## Common Use Cases
+
+- **Bug Fixes:** Apply a fix from one branch to another without merging unrelated features.
+- **Feature Sharing:** Move a single feature without merging the full branch.
+- **Hotfixes:** Quickly patch a production branch with important commits.
+
+## Example Scenario
+
+You fixed a login bug on `bugfix-login` branch (commit `f3e4a2b`) and need it on `main`:
+
+1. Switch to main:
+
+    ```bash
+    git checkout main
+    ```
+
+2. Cherry-pick the bug fix:
+
+    ```bash
+    git cherry-pick f3e4a2b
+    ```
+
+3. Push the updated branch:
+
+    ```bash
+    git push origin main
+    ```
+
+Now the login bug is fixed on the `main` branch without merging the full `bugfix-login` branch.
+
+## Tips for Using Cherry-Pick
+
+- Always check the branch you are on before cherry-picking.
+- Use `git log` to find the correct commit hashes.
+- Be careful with commits that depend on previous commits. Cherry-picking a dependent commit alone can cause conflicts.
+- Consider creating a backup branch before cherry-picking complex changes.
+
+## Conclusion
+
+Git cherry-pick is a powerful tool that helps you move specific changes between branches without merging everything. By understanding how to cherry-pick, resolve conflicts, and use advanced options, you can manage your projects more efficiently and safely.
+
 ---
 
 - [Home](./../../README.md)
