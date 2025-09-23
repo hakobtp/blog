@@ -128,3 +128,4 @@ Imagine you are working on a website. You start with `index.html` and `style.css
 
 - [Home](./../../README.md)
 - [Git Tutorials](./../tutorials.md)
+- [Mastering Git Cherry-Pick: A Complete Guide](./2_Mastering_Git_Cherry_Pick_A_Complete_Guide.md)
