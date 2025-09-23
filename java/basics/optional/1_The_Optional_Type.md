@@ -207,6 +207,32 @@ Until now, we have mostly looked at how to use an `Optional` object created by s
     - `static <T> Optional<T> ofNullable(T value)`Creates an `Optional` containing the value if it is not `null`. If the value is `null`, it returns an empty Optional.
     - `static <T> Optional<T> empty()` Creates an empty `Optional` that contains no value.
 
+## Combining Optional Values Using flatMap
+
+Sometimes, we have a method that returns an `Optional<T>`, and the type `T` itself has a method that returns an `Optional<U>`. 
+If these were normal methods, we might just write `s.f().g()`. But that doesn’t work here because `s.f()` gives an `Optional<T>`, not a `T`.
+
+Instead, we can use `flatMap` to chain these calls safely:
+
+```java
+Optional<U> result = s.f().flatMap(T::g);
+```
+
+Here’s what happens:
+
+- If `s.f()` contains a value, the method `g` is applied to it.
+- If `s.f()` is empty, the result is an empty `Optional<U>` automatically.
+
+This technique can be repeated for multiple methods or functions that return `Optional` values. By chaining `flatMap` calls, 
+you can create a pipeline of operations that only produces a result if all steps succeed.
+
+---
+
+- `java.util.Optional`
+    - `<U> Optional<U> flatMap(Function<? super T,? extends Optional<? extends U>> mapper)` This method takes a function and applies it to the value inside the Optional, if there is one.
+        - If the Optional is empty, it returns an empty Optional.
+        - If the Optional has a value, it returns the result of the function, which is also an Optional.
+
 ---
 
 - [Home](./../../../README.md)
