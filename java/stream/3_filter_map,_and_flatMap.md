@@ -1,4 +1,4 @@
-# Stream: filter, map, and flatMap
+# filter, map, and flatMap
 
 Streams let you transform data easily. Transformation means creating a new stream whose elements are based on another stream.
 
@@ -90,4 +90,4 @@ letters.forEach(System.out::println);
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Creating Streams](./2_Creating_Streams.md)
-- [Stream: Transform, Combine, and Reduce Data](./4_Stream_Transform_Combine_and_Reduce_Data.md)
+- [Transform, Combine, and Reduce Data](./4_Transform_Combine_and_Reduce_Data.md)

@@ -1,4 +1,4 @@
-## Stream: Transform, Combine, and Reduce Data
+## Transform, Combine, and Reduce Data
 
 Streams are a powerful way to work with data in Java. You can take parts of a stream, combine streams, remove duplicates, sort elements, or calculate results. Let’s see how.
 
@@ -216,4 +216,5 @@ System.out.println(anyB); // true
 
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
-- [Stream: filter, map, and flatMap](./3_filter_map,_and_flatMap.md)
+- [filter, map, and flatMap](./3_filter_map,_and_flatMap.md)
+- [How to Convert Optional Values into Streams](./5_How_to_Convert_Optional_Values_into_Streams.md)
