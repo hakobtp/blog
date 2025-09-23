@@ -39,9 +39,11 @@ $$ -->
 
   <ul style="display:inline-block; vertical-align:top;">
     <li><a href="/devops/tutorials.html">DevOps</a></li>  
+    <li><a href="/leetcode/tutorials.html">LeetCode</a></li>  
   </ul>
 </div>
 
+[leetcode](./leetcode/tutorials.md)
 
 <!-- ```mermaid
 classDiagram
