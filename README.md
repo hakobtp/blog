@@ -43,8 +43,6 @@ $$ -->
   </ul>
 </div>
 
-[leetcode](./leetcode/tutorials.md)
-
 <!-- ```mermaid
 classDiagram
     CaffeineBeverage <|-- Tea

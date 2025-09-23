@@ -31,7 +31,15 @@ public boolean isPalindrome(int x) {
 
 Let's break down the operations and analyze the `Big O` complexity:
 - Negative Check: The condition `if (x < 0)` takes constant time, $O(1)$
-
+- Conversion to String:
+    - `String.valueOf(x)` converts the integer to a string.
+    - Let $n$ be the number of digits in $x$; this operation is $O(n)$.
+- Creating and Reversing with StringBuilder:
+    - Constructing the `StringBuilder` from the string takes $O(n)$ because it copies each character.    
+    - The `reverse()` method then reverses the string, which again processes each character once, making it $O(n)$.
+- Comparing Strings: `contentEquals(...)` compares the original string to the reversed string, which in the worst-case scenario 
+    requires checking all $n$ characters. This is $O(n)$.
+    
 ---
 
 - [Home](./../../README.md)
