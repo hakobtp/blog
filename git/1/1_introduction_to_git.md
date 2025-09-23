@@ -44,6 +44,34 @@ Git will now keep track of changes in your folder.
     git commit -m "First commit: project setup"
     ```
 
+## Cloning an Existing Project
+
+Sometimes, you want to copy a project that already exists online. This is called cloning.
+
+Get the project’s URL (HTTPS or SSH), for example:
+
+- **HTTPS:** https://github.com/alice/my-app.git
+- **SSH:** git@github.com:alice/my-app.git
+
+Clone it like this:
+
+```bash
+git clone <repository-url>
+```
+
+This makes a local copy on your computer.
+
+## Working with Remote Repositories
+
+If you create a new repository on a platform like GitHub or GitLab, follow these steps to link it with your local project:
+
+```bash
+git remote add origin <repository-url>
+git branch -M main
+git push -u origin main
+```
+
+Now your local project is connected to the online repository.
 
 ---
 
