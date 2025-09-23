@@ -158,6 +158,12 @@ Think of your project's history as a story.
     linear history, making it look as if you did all your work sequentially.
 
 
+| Feature | `git merge` | `git rebase` |
+| :--- | :--- | :--- |
+| **Commit History** | Preserves the full, branching history and adds a "merge commit". | Creates a clean, perfectly linear history by rewriting commits. |
+| **Branch Impact**| Non-destructive. The original branch histories are left unchanged. | Potentially destructive. It rewrites the history of the feature branch. |
+| **Primary Use Case**| Combining a feature branch into a shared public branch (e.g., `main`). | Cleaning up a local, private feature branch *before* merging. |
+
 ## Removing Branches
 
 After finishing a feature, you can delete the branch to keep your repository clean.
