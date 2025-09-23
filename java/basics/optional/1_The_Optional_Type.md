@@ -98,11 +98,106 @@ Another good strategy is to keep the `Optional` and transform it step by step.
     );
     ```
 
+---
+
 - `java.util.Optional`
     - `<U> Optional<U> map(Function<? super T,? extends U> mapper)` If a value is present, applies the function and wraps the result in a new `Optional`.
     - `Optional<T> filter(Predicate<? super T> predicate)` Keeps the value only if it matches the condition (predicate). If it doesn’t, returns an empty `Optional`.
     - `Optional<T> or(Supplier<? extends Optional<? extends T>> supplier)` If a value is present, returns this `Optional`. If not, calls the supplier to provide an alternative `Optional`.
-    
+
+
+## How Not to Use Optional
+
+Many developers like the `Optional` type in Java because it makes code safer and easier to read. But if you use it in the wrong way, it is no better than the old “value or null” style.
+
+### Why get() Is a Problem
+
+
+The method `get()` gives you the value inside an `Optional` if one is present. But if the `Optional` is empty, `get()` will `throw` an exception.
+
+```java
+Optional<User> maybeUser = ...;
+maybeUser.get().sendEmail();
+```
+
+This code is just as dangerous as:
+
+```java
+User user = ...;
+user.sendEmail();
+```
+
+In both cases, you risk an error if there is no user. Using `get()` directly makes your code no safer than working with `null`.
+
+### Why isPresent() and isEmpty() Don’t Help Much
+
+You might try:
+
+```java
+if (maybeUser.isPresent()) {
+    maybeUser.get().sendEmail();
+}
+```
+
+But this is almost the same as:
+
+```java
+if (user != null) {
+    user.sendEmail();
+}
+```
+
+The logic is clearer, but you have not really solved the problem. You are still checking manually instead of using better features of `Optional`.
+
+### Better Approaches
+
+Instead of calling `get()`, try these methods:
+
+```java
+maybeUser.ifPresent(user -> user.sendEmail());
+```
+
+The code runs only if a user is present.
+
+```java
+User user = maybeUser.orElse(new GuestUser());
+```
+
+You provide a default value when the `Optional` is empty.
+
+```java
+User user = maybeUser.orElseThrow();
+```
+
+This makes it clear that the program should fail if no user exists. Only use this when you are sure the value is there.
+
+### Common Mistakes to Avoid
+
+Here are some tips for writing cleaner code with `Optional`:
+- Never assign null to an `Optional`. If you do, you create confusion: `Optional` is meant to replace `null`, not hide it.
+- Avoid `Optional` as a field inside a class.
+    For example:
+    ```java
+    class Order {
+        private Optional<String> note; // Not recommended
+    }
+    ```
+
+    Each `Optional` creates an extra object, and it adds no real benefit inside your own class. Use `null` internally if a field is absent.
+
+- `Optional` as a method parameter is not recommended. It makes the method call harder when you already have a value. 
+    Instead, write two versions of the method: one with the parameter and one without.
+- Returning an `Optional` is fine. It shows that the result may be missing.    
+- Don't put Optional objects in a set, and don't use them as keys for a map. Collect the values instead.
+
+---
+
+- `java.util.Optional` 
+    - `T get()` Returns the value inside the `Optional`. If the `Optional` is empty, it throws a `NoSuchElementExcepti`
+    - `T orElseThrow()` Works like `get()`. It gives the value, or throws an exception if there is no value.
+    - `boolean isEmpty()` Returns `true` if there is no value inside the `Optional`.
+    - `boolean isPresent()` Returns `true` if there is a value inside the `Optional`.
+
 ---
 
 - [Home](./../../../README.md)
