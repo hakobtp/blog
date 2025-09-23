@@ -24,6 +24,14 @@ To track a project with Git, you need to initialize a repository.
 cd /home/alice/projects/my-app
 ```
 
+2. Create a Git repository:
+
+```bash
+git init
+```
+
+Git will now keep track of changes in your folder.
+
 ---
 
 - [Home](./../../README.md)
