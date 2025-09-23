@@ -145,7 +145,37 @@ git merge feature-login  # Combine changes from 'feature-login' into your curren
 git rebase main          # Reapply your branch changes on top of 'main'
 ```
 
-**Example:** You’ve finished the login form in `feature-login`. Merging it into `main` makes it live for the whole project. Rebasing is useful if you want a cleaner history without extra merge commits.
+**Example:** You’ve finished the login form in `feature-login`. Merging it into `main` makes it live for the whole project.
+
+Think of your project's history as a story.
+
+- `git merge` adds a new chapter that says, "At this point, the stories from the `main` branch and the 
+    `feature-login` branch were combined." It preserves the exact history of both branches and ties them 
+    together with a special merge commit. This creates a graph-like history.
+
+- `git rebase` takes the chapters you wrote in your `feature-login` branch, goes back to where it split from `main`, 
+    fast-forwards `main` to its latest version, and then rewrites your chapters one by one on top of it. This creates a clean, 
+    linear history, making it look as if you did all your work sequentially.
+
+
+## Removing Branches
+
+After finishing a feature, you can delete the branch to keep your repository clean.
+
+```bash
+git branch -d feature-login    # Delete branch locally
+git push origin :feature-login # Delete branch on the remote server
+```
+
+## Solving Merge Conflicts
+
+Sometimes, Git cannot combine branches automatically. You need to fix conflicts manually.
+
+Check differences:
+```bash
+git diff
+git diff main feature-login
+```
 
 ---
 
