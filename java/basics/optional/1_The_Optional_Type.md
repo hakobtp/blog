@@ -32,3 +32,8 @@ String result = optionalString.orElseGet(() -> System.getProperty("myapp.default
 String result = optionalString.orElseThrow(IllegalStateException::new);
 // Throws the exception when no value is present
 ```
+
+---
+
+- [Home](./../../../README.md)
+- [Java Tutorials](./../../tutorials.md)
