@@ -198,6 +198,15 @@ Here are some tips for writing cleaner code with `Optional`:
     - `boolean isEmpty()` Returns `true` if there is no value inside the `Optional`.
     - `boolean isPresent()` Returns `true` if there is a value inside the `Optional`.
 
+## Creating Optional Values in Java
+
+Until now, we have mostly looked at how to use an `Optional` object created by someone else. But sometimes you need to create your own `Optional`. Java provides several static methods to do this.
+
+- `java.util.Optional`
+    - `static <T> Optional<T> of(T value)` Creates an `Optional` with the given value. Warning: If the value is `null`, it throws a `NullPointerException`.
+    - `static <T> Optional<T> ofNullable(T value)`Creates an `Optional` containing the value if it is not `null`. If the value is `null`, it returns an empty Optional.
+    - `static <T> Optional<T> empty()` Creates an empty `Optional` that contains no value.
+
 ---
 
 - [Home](./../../../README.md)
