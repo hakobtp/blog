@@ -56,6 +56,15 @@ Another way is to use the value only if it exists;
     optionalValue.ifPresent(results::add);
     ```
 
+- `ifPresentOrElse` → Runs one action if the value exists, and another action if it does not.
+    ```java
+    optionalValue.ifPresentOrElse(
+        v -> System.out.println("Found " + v),
+        () -> System.out.println("No value found")
+    );
+    ```
+    This way, you don’t need to check for null yourself.
+    
 ---
 
 - [Home](./../../../README.md)
