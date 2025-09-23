@@ -124,6 +124,29 @@ git log --oneline  # Short summary
 
 Imagine you are working on a website. You start with `index.html` and `style.css`. You add these files to Git (`git add .`) and commit (`git commit -m "Initial website setup"`). Later, you create a branch contact-page, add a new `contact.html`, commit, and push. This way, your main site stays safe while you work on new pages.
 
+## Creating and Switching Branches
+
+You can create a new branch to work on a feature or fix a bug. Then, you can switch between branches whenever you need.
+
+```bash
+git branch feature-login     # Make a new branch called 'feature-login'
+git checkout feature-login   # Move to the 'feature-login' branch
+git checkout -b feature-ui   # Make a new branch and switch to it at the same time
+```
+
+**Example:** Imagine your project is a website. You want to add a login form without breaking the main website. You create a `feature-login` branch and work there. The `main` branch remains safe while you test your changes.
+
+## Combining Changes: Merge or Rebase
+
+When your work is ready, you can bring your branch changes into another branch.
+
+```bash
+git merge feature-login  # Combine changes from 'feature-login' into your current branch
+git rebase main          # Reapply your branch changes on top of 'main'
+```
+
+**Example:** You’ve finished the login form in `feature-login`. Merging it into `main` makes it live for the whole project. Rebasing is useful if you want a cleaner history without extra merge commits.
+
 ---
 
 - [Home](./../../README.md)
