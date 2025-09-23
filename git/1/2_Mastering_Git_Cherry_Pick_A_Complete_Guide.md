@@ -28,6 +28,29 @@ Imagine you have two branches: `main` and `feature-login`. You fixed a small bug
 
     The typo fix is now applied on `main` without merging the entire `feature-login` branch.
 
+2. Picking Multiple Commits
+    You can also pick a range of commits:
+    ```bash
+    git cherry-pick <start-commit>^..<end-commit>
+    ```
+
+    **Example:** On `feature-ui` branch, you created three commits: add header (`a1b2c3d`), add footer (`b2c3d4e`), and add contact page (`d4e5f6g`). To move all three to main:
+    ```bash
+    git checkout main
+    git cherry-pick a1b2c3d^..d4e5f6g
+    ```
+
+## Visualizing Cherry-Pick
+
+Here’s a simple diagram to understand cherry-pick:
+
+```
+Feature Branch:      main branch:  
+      A---B---C          X---Y---Z
+           \
+            D
+```
+
 ---
 
 - [Home](./../../README.md)
