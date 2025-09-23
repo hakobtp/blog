@@ -11,6 +11,15 @@ Imagine you have two branches: `main` and `feature-login`. You fixed a small bug
 - Other commits in the source branch remain separate.
 - Useful for bug fixes, hotfixes, or sharing a specific feature.
 
+## Basic Cherry-Pick
+
+1. Picking a Single Commit
+    To apply one commit to your current branch:
+    
+    ```bash
+    git cherry-pick <commit-hash>
+    ```
+
 ---
 
 - [Home](./../../README.md)
