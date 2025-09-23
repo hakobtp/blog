@@ -72,6 +72,32 @@ Another way is to use the value only if it exists;
     - `void ifPresent(Consumer<? super T> action)` If the value exists, run the action with it. If not, do nothing.
     - `void ifPresentOrElse(Consumer<? super T> action, Runnable emptyAction)` If the value exists, run the action. If it’s empty, run the emptyAction instead.
 
+## Working with Optional in a Pipeline
+
+So far, we looked at ways to get a value out of an `Optional`.
+Another good strategy is to keep the `Optional` and transform it step by step.
+
+- `map` → Changes the value inside the `Optional`. If the `Optional` is empty, it stays empty.
+    ```java
+    Optional<Path> transformed = optionalString.map(Path::of);
+    // If optionalString is empty → transformed is also empty
+    ```
+
+- `filter` → Keeps the value only if it matches a condition. Otherwise, the result is empty.
+    ```java
+    Optional<Path> transformed = optionalString
+        .filter(s -> s.endsWith(".txt"))  // only keep .txt files
+        .map(Path::of);
+
+    ```
+
+- `or` → If the `Optional` has no value, use another `Optional` instead. The alternative is created only when needed.
+    ```java
+    Optional<String> result = optionalString.or(() ->
+        alternatives.stream().findFirst()
+    );
+    ```
+
 ---
 
 - [Home](./../../../README.md)
