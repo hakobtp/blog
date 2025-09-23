@@ -63,6 +63,8 @@ Feature Branch:      main branch:
             D
 ```
 
+Notice that only `D` is copied.
+
 ---
 
 - [Home](./../../README.md)
