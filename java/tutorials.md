@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<!-- HASELEM 1.7. The Optional Type -->
+<!-- HASELEM 1.8. Collecting Results -->
 
 <!-- strtemi mech grem partitioningBy -->
 --- 
