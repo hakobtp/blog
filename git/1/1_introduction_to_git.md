@@ -25,9 +25,9 @@ To track a project with Git, you need to initialize a repository.
 
 2. Create a Git repository:
 
-```bash
-git init
-```
+    ```bash
+    git init
+    ```
 
 Git will now keep track of changes in your folder.
 
