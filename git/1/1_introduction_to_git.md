@@ -6,6 +6,12 @@ Git is a tool that helps you track changes in your projects and work together wi
 
 Before using Git, you should tell it your name and email. These details will appear in your commits:
 
+```bash
+git config --global user.name "Alice Johnson"
+git config --global user.email "alice.johnson@example.com"
+git config --list
+```
+
 ---
 
 - [Home](./../../README.md)
