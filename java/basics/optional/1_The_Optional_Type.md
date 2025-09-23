@@ -64,7 +64,14 @@ Another way is to use the value only if it exists;
     );
     ```
     This way, you don’t need to check for null yourself.
-    
+
+
+---
+
+- `java.util.Optional` 
+    - `void ifPresent(Consumer<? super T> action)` If the value exists, run the action with it. If not, do nothing.
+    - `void ifPresentOrElse(Consumer<? super T> action, Runnable emptyAction)` If the value exists, run the action. If it’s empty, run the emptyAction instead.
+
 ---
 
 - [Home](./../../../README.md)
