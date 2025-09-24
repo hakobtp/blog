@@ -272,7 +272,7 @@ instanceTwo hashCode=109647522
 
 So it destroys the singleton pattern. To overcome this scenario, all we need to do is provide the implementation of `readResolve()` method.
 
-```JAVA
+```java
 protected Object readResolve() {
     return getInstance();
 }
