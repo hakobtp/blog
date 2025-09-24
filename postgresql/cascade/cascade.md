@@ -1,4 +1,4 @@
-# Understanding CASCADE in PostgreSQL
+# Understanding CASCADE in PostgresSQL
 
 ```info
 Author      Ter-Petrosyan Hakob
