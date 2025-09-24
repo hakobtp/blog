@@ -110,6 +110,176 @@ public class ScoreBoard {
 
 **Problem:** This version is not safe in multi-threaded programs. Two threads could create two objects at the same time.
 
+## Thread-Safe Singleton
+
+To fix the multi-thread problem, we can make the method synchronized.
+
+```java
+public class ThreadSafeScoreBoard {
+
+    private static ThreadSafeScoreBoard instance;
+
+    private ThreadSafeScoreBoard() {}
+
+    public static synchronized ThreadSafeScoreBoard getInstance() {
+        if (instance == null) {
+            instance = new ThreadSafeScoreBoard();
+        }
+        return instance;
+    }
+}
+```
+
+This works, but it is slower because synchronization adds overhead.
+A common solution is double-checked locking:
+
+```java
+public static ThreadSafeScoreBoard getInstance() {
+    if (instance == null) {
+        synchronized (ThreadSafeScoreBoard.class) {
+            if (instance == null) {
+                instance = new ThreadSafeScoreBoard();
+            }
+        }
+    }
+    return instance;
+}
+```
+
+This way, we only lock once, when the object is first created.
+
+
+## Bill Pugh Singleton
+
+A very clean method uses a static inner helper class.
+
+```java
+public class ConfigManager {
+
+    private ConfigManager() {}
+
+    private static class Holder {
+        private static final ConfigManager INSTANCE = new ConfigManager();
+    }
+
+    public static ConfigManager getInstance() {
+        return Holder.INSTANCE;
+    }
+}
+```
+
+- The helper class is loaded only when needed.
+- This is fast, simple, and doesn’t need synchronization.
+- This is the most popular singleton approach in modern Java.
+
+## Using Reflection to destroy Singleton Pattern
+
+Reflection can be used to destroy all the previous singleton implementation approaches. Here is an example class:
+
+```java
+public class ReflectionSingletonTest {
+
+    public static void main(String[] args) {
+        EagerInitializedSingleton instanceOne = EagerInitializedSingleton.getInstance();
+        EagerInitializedSingleton instanceTwo = null;
+        try {
+            Constructor[] constructors = EagerInitializedSingleton.class.getDeclaredConstructors();
+            for (Constructor constructor : constructors) {
+                // This code will destroy the singleton pattern
+                constructor.setAccessible(true);
+                instanceTwo = (EagerInitializedSingleton) constructor.newInstance();
+                break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(instanceOne.hashCode());
+        System.out.println(instanceTwo.hashCode());
+    }
+
+}
+```
+
+When you run the preceding test class, you will notice that hashCode of both instances is not the same which destroys the singleton pattern. Reflection is very powerful and used in a lot of frameworks like Spring and Hibernate.
+
+
+## Enum Singleton
+
+To overcome this situation with Reflection, Joshua Bloch suggests the use of enum to implement the singleton design pattern as Java ensures that any enum value is instantiated only once in a Java program. Since Java Enum values are globally accessible, so is the singleton. The drawback is that the enum type is somewhat inflexible (for example, it does not allow lazy initialization).
+
+```java
+public enum EnumSingleton {
+
+    INSTANCE;
+
+    public static void doSomething() {
+        // do something
+    }
+}
+```
+
+## Serialization and Singleton
+
+Sometimes in distributed systems, we need to implement Serializable interface in the singleton class so that we can store its state in the file system and retrieve it at a later point in time. Here is a small singleton class that implements Serializable interface also:
+
+```java
+public class SerializedSingleton implements Serializable {
+
+    private static final long serialVersionUID = -7604766932017737115L;
+
+    private SerializedSingleton(){}
+
+    private static class SingletonHelper {
+        private static final SerializedSingleton instance = new SerializedSingleton();
+    }
+
+    public static SerializedSingleton getInstance() {
+        return SingletonHelper.instance;
+    }
+
+}
+```
+
+The problem with serialized singleton class is that whenever we deserialize it, it will create a new instance of the class. Here is an example:
+
+```java
+public class SingletonSerializedTest {
+
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+        SerializedSingleton instanceOne = SerializedSingleton.getInstance();
+        ObjectOutput out = new ObjectOutputStream(new FileOutputStream("filename.ser"));
+        out.writeObject(instanceOne);
+        out.close();
+
+        // deserialize from file to object
+        ObjectInput in = new ObjectInputStream(new FileInputStream("filename.ser"));
+        SerializedSingleton instanceTwo = (SerializedSingleton) in.readObject();
+        in.close();
+
+        System.out.println("instanceOne hashCode="+instanceOne.hashCode());
+        System.out.println("instanceTwo hashCode="+instanceTwo.hashCode());
+    }
+}
+```
+
+That code produces this output:
+
+```
+Output
+instanceOne hashCode=2011117821
+instanceTwo hashCode=109647522
+```
+
+So it destroys the singleton pattern. To overcome this scenario, all we need to do is provide the implementation of `readResolve()` method.
+
+```JAVA
+protected Object readResolve() {
+    return getInstance();
+}
+```
+
+After this, you will notice that hashCode of both instances is the same in the test program.
+
 ---
 
 -  [Home](./../../README.md)
