@@ -1,4 +1,4 @@
-# Understanding ACID in PostgreSQL
+# Understanding ACID in PostgresSQL
 
 ```info
 Author      Ter-Petrosyan Hakob
