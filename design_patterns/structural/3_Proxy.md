@@ -155,7 +155,5 @@ Cons:
 
 ---
 
-## Explore More
-
 - [Home](./../../README.md)
 - [Design Patterns](./../tutorials.md)

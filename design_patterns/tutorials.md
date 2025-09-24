@@ -9,6 +9,8 @@
 
 ### Creational Patterns
 
+[Singleton](./creational/0_Singleton.md)\
+
 ---
 
 [Home](./../README.md)
