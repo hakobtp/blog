@@ -2,7 +2,7 @@
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">Basics</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
-      <li><a href="./basics/optional//1_The_Optional_Type.html">The Optional Type</a></li>
+      <li><a href="./basics/optional/1_The_Optional_Type.html">The Optional Type</a></li>
     </ul>   
     <h3 style="margin:0;">OOP</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
