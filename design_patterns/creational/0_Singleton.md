@@ -23,6 +23,67 @@ The Singleton Pattern follows a few rules:
 
 Think of a singleton as a city’s power station: the city only needs one, and everyone connects to it.
 
+## How to Create a Singleton in Java
+
+Every singleton has three basic parts:
+1. A private constructor – stops other classes from creating new objects.
+2. A private static variable – stores the single object.
+3. A public static method – gives access to the object.
+Different approaches exist, but they all share these three rules.
+
+
+## Eager Initialization
+
+With eager initialization, the object is created when the class is loaded.
+This is simple, but it can waste resources if the object is never used.
+
+
+Example: a singleton that manages a printer queue.
+
+```java
+public class PrinterManager {
+
+    private static final PrinterManager instance = new PrinterManager();
+
+    private PrinterManager() {}
+
+    public static PrinterManager getInstance() {
+        return instance;
+    }
+}
+```
+
+This works if the object is light and always useful.
+But if the object is heavy (like a database connection), it’s better to wait until it’s really needed.
+
+## Static Block Initialization
+
+Static block initialization is almost the same as eager initialization.
+The difference is that we can add exception handling when creating the object.
+
+```java
+public class SafePrinterManager {
+
+    private static SafePrinterManager instance;
+
+    private SafePrinterManager() {}
+
+    static {
+        try {
+            instance = new SafePrinterManager();
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating singleton");
+        }
+    }
+
+    public static SafePrinterManager getInstance() {
+        return instance;
+    }
+}
+```
+
+Still, the object is created before use, which is not always ideal.
+
 ---
 
 -  [Home](./../../README.md)
