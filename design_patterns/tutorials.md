@@ -9,7 +9,7 @@
 
 ### Creational Patterns
 
-[Singleton](./creational/0_Singleton.md)\
+- [Singleton](./creational/0_Singleton.md)
 
 ---
 
