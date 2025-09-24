@@ -84,6 +84,32 @@ public class SafePrinterManager {
 
 Still, the object is created before use, which is not always ideal.
 
+## Lazy Initialization
+
+Lazy initialization means: create the object only when someone asks for it.
+This saves memory and resources.
+
+
+**Example:** a singleton that represents a game scoreboard.
+
+```java
+public class ScoreBoard {
+
+    private static ScoreBoard instance;
+
+    private ScoreBoard() {}
+
+    public static ScoreBoard getInstance() {
+        if (instance == null) {
+            instance = new ScoreBoard();
+        }
+        return instance;
+    }
+}
+```
+
+**Problem:** This version is not safe in multi-threaded programs. Two threads could create two objects at the same time.
+
 ---
 
 -  [Home](./../../README.md)
