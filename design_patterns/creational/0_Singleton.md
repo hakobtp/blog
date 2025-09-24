@@ -280,6 +280,23 @@ protected Object readResolve() {
 
 After this, you will notice that hashCode of both instances is the same in the test program.
 
+## Advantages of the Singleton Pattern
+
+- **Only one object exists:** You can be sure that only one instance of the class is ever created. For example, the whole program can share the same log manager.
+- **Easy global access:** Other parts of the program can get the same instance from a single, well-known place. It’s like having one customer service number that everyone dials.
+- **Lazy loading possible:** The object can be created only when it is first needed, which saves memory and resources. For example, a database connector is opened only when someone runs a query.
+
+## Disadvantages of the Singleton Pattern
+
+- **Breaks the Single Responsibility Principle:** The class is responsible for both creating itself and controlling its only instance. This mixes two jobs into one.
+- **Can hide weak design:** Sometimes developers use a singleton instead of designing proper relationships between classes. This makes parts of the program know too 
+    much about each other. For example, if every class calls the same GlobalSettings object, they may become tightly connected.
+- **Issues in multithreaded programs:** If not written carefully, two or more threads could create separate objects at the same time. This breaks the singleton rule.
+- **Hard to test**
+    - In unit tests, we often want to replace real objects with mock objects. Since the singleton has a private constructor and static methods, it’s 
+        difficult to replace or extend. This makes automated testing more complex.
+    - use dependency injection or avoid singleton if testability is very important.
+
 ---
 
 -  [Home](./../../README.md)
