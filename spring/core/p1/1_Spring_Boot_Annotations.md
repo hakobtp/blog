@@ -21,6 +21,20 @@
 |`@Inject`|Java standard alternative to `@Autowired`|Field|
 |`@Resource`|Inject bean by name|Field|
 
+
+### Web (MVC)
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@RequestMapping`|Map HTTP request to methods|Class/method|
+|`@GetMapping`, `@PostMapping`, etc.|Shorthand for request methods|Method|
+|`@`|||
+|`@`|||
+|`@`|||
+|`@`|||
+|`@`|||
+|`@`|||
+
 ---
 
 - [Home](./../../../README.md)
