@@ -3,4 +3,4 @@
 ---
 
 - [Home](./../../README.md) 
-- [Spring tutorial list](./../tutorials.md) 
+- [Spring Tutorials](./../tutorials.md) 

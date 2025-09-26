@@ -1,4 +1,5 @@
-[Spring Data JPA](./data-jpa/tutorials.md)
+- [Core](./core/core.md)
+- [Spring Data JPA](./data-jpa/tutorials.md)
 
 ---
 
