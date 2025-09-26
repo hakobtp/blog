@@ -13,6 +13,13 @@
 
 ### Dependency Injection
 
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@Autowired`|Auto-inject dependencies by type|Field, setter, constructor|
+|`@Qualifier`|Specify which bean to inject if multiple|Field, param|
+|`@Primary`|Mark default bean when multiple types exist|Bean class or method|
+|`@Inject`|Java standard alternative to `@Autowired`|Field|
+|`@Resource`|Inject bean by name|Field|
 
 ---
 
