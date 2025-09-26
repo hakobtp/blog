@@ -1,6 +1,19 @@
 # Spring Boot Annotations
 
-sdsdsd
+### Core 
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@SpringBootApplication`|Bootstrap the app with default config, auto-config, component scan|Main class|
+||||
+||||
+||||
+
+
+
+### Dependency Injection
+
+
 ---
 
 - [Home](./../../../README.md)
