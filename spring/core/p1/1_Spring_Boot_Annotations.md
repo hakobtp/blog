@@ -101,19 +101,31 @@
 
 |Annotation|Use Case|Used On|
 |:-------|:-------|:-------|
-|`@`|||
+|`@EnableWebSecurity`|Enable Spring Security|Config class|
+|`@PreAuthorize`|Pre-check access with SpEL|Method|
+|`@PostAuthorize`|Post-check access with SpEL|Method|
+|`@Secured`|Role-based access (basic)|Method|
+|`@WithMockUser`|Simulate user in test|Test method|
 
 ### Testing
 
 |Annotation|Use Case|Used On|
 |:-------|:-------|:-------|
-|`@`|||
+|`@SpringBootTest`|Load full Spring context for intergration testing|Test class|
+|`@WebMvcTest`|Test only web layer (controllers)|Test class|
+|`@DataJpaTest`|Test only JPA repositories|Test class|
+|`@MockBean`|Inject a mock into Spring context|Test field|
+|`@TestConfiguration`|Custom config for test only|Inner class|
 
 ### Misc
 
 |Annotation|Use Case|Used On|
 |:-------|:-------|:-------|
-|`@`|||
+|`@Profile`|Load bean only for specific profile (dev, prod)|Bean|
+|`@Scope`|Define bean lifecycle (singleton, prototye)|Bean|
+|`@Import`|Import other config classes|Config class|
+|`@EnableConfigurtionProperties`|Enable `@ConfigurationProperties` class|Config class|
+|`@ConfigurationProperties`|Map grouped properties to a POJO|Class|
 
 ---
 
