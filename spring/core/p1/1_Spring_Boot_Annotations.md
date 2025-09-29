@@ -38,12 +38,12 @@
 |:-------|:-------|:-------|
 |`@RequestMapping`|Map HTTP request to methods|Class/method|
 |`@GetMapping`, `@PostMapping`, etc.|Shorthand for request methods|Method|
-|`@`|||
-|`@`|||
-|`@`|||
-|`@`|||
-|`@`|||
-|`@`|||
+|`@PathVariable`|Bind URI template variable|Method param|
+|`@RequestParam`|Bind query param/form field|Method param|
+|`@RequestBody`|Bind HTTP request body (JSON) to object|Method param|
+|`@ResponseBody`|Return JSON/XML response body|Method|
+|`@ModelAttribute`|Bind form data to model|Method param|
+|`@CrossOrigin`|Allow CORS for APIs|Class or method|
 
 ---
 
