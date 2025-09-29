@@ -45,6 +45,15 @@
 |`@ModelAttribute`|Bind form data to model|Method param|
 |`@CrossOrigin`|Allow CORS for APIs|Class or method|
 
+### Validation
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@Valid`|Trigger validation on DTOs|Method param|
+|`@Validated`|Enable validation for method-level constraints|Class, method|
+|`@NotNull`, `@Size`, etc.|Validate fields (JSR-303)|DTO field|
+
+
 ---
 
 - [Home](./../../../README.md)
