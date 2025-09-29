@@ -22,6 +22,16 @@
 |`@Resource`|Inject bean by name|Field|
 
 
+### Stereotype
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@Component`|General-purpose Spring-managed bean|Class|
+|`@Service`|Business logic layer bean|Class|
+|`@Repository`|DAO class with exception translation|Class or interface|
+|`@Controller`|MVC controller returning views|Class|
+|`@RestController`|REST controller returning JSON/XML|Class|
+
 ### Web (MVC)
 
 |Annotation|Use Case|Used On|
