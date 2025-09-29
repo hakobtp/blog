@@ -66,6 +66,55 @@
 |`@Transactional`|Define transactional boundaries|Method/class|
 |`@Modifying`, `@Query`|Custom JPA queries or updates|Repository mehtod|
 
+### Scheduling
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@EnableScheduling`|Enable `@Scheduled` task support|Config class|
+|`@Scheduled`|Run mehtod on cron/fixed time|Method|
+
+
+## Async
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@EnableAsync`|Enable `@Async` processing|Config class|
+|`@Async`|Run mehtod in a separate thread|Method|
+
+### Cashing
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@EnableCaching`|Enable caching system-wide|Config class|
+|`@Cacheable`|Cache result of method|Method|
+|`@CachePut`|Update cache with method result|Method|
+|`@CacheEvict`|Remove cache entry|Method|
+
+### Conditional 
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@ConditionalOnProperty`|Load bean based on property valeu|Bean mehtod/class|
+|`@ConditionalOnClass`|Load bean if class is on classpath|Bean method/class|
+
+### Security
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@`|||
+
+### Testing
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@`|||
+
+### Misc
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@`|||
+
 ---
 
 - [Home](./../../../README.md)
