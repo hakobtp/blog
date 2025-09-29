@@ -54,6 +54,18 @@
 |`@NotNull`, `@Size`, etc.|Validate fields (JSR-303)|DTO field|
 
 
+### JPA
+
+|Annotation|Use Case|Used On|
+|:-------|:-------|:-------|
+|`@Entity`|Mark model class as DB entity|Model class|
+|`@Table`, `@Column`|Customize DB table/column mappings|Class/field|
+|`@Id`, `@GeneratedValue`|Primary key and auto Id generation|Field|
+|`@Repository`|Mark DAO for exception handling|Interface/class|
+|`@EnableJpaRepositories`|Enable repo scanning|Config class|
+|`@Transactional`|Define transactional boundaries|Method/class|
+|`@Modifying`, `@Query`|Custom JPA queries or updates|Repository mehtod|
+
 ---
 
 - [Home](./../../../README.md)
