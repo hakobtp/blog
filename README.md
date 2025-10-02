@@ -41,6 +41,7 @@ $$ -->
   <ul style="display:inline-block; vertical-align:top;">
     <li><a href="/devops/tutorials.html">DevOps</a></li>  
     <li><a href="/leetcode/tutorials.html">LeetCode</a></li>  
+    <li><a href="/maven/tutorials.html">Maven</a></li>  
   </ul>
 </div>
 
