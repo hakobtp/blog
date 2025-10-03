@@ -56,7 +56,7 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
 2. Avoid Open Session in View<br>
     The `Open Session in View` pattern keeps the session open until the web layer renders data. This allows lazy loading in the view. Sounds good? Not really:
     - Each query in the view creates a new database transaction, adding unnecessary load.
-    - It can cause inconsistent results, because the service layer may have already committed a transaction with different data.
+    - It can cause inconsistent results, because the service layer may have already committed a transaction with different data.<br>
     In Spring Boot, Open Session in View is enabled by default. You can disable it:
     ```        
     spring.jpa.open-in-view=false
