@@ -52,6 +52,15 @@ In a microservices architecture, each business area can have its own service. Fo
 
 Each service contains a small slice of the three traditional layers: UI, backend logic, and storage. The main focus is business functionality, not the type of technology. This makes the system easier to maintain and the teams easier to align with business goals.
 
+### End-to-End Ownership
+
+Even if a microservice does not provide the UI directly, the team responsible for that service should own the corresponding user-facing functionality. This approach is called a stream-aligned team, meaning the team can:
+
+- Deliver value to users quickly
+- Work independently without waiting for other teams
+- Handle the full lifecycle of a feature
+
+For SoundWave, the Customer Profile Team is stream-aligned: they can add favorite genres or other profile features without touching other teams’ code.
 
 ---
 
