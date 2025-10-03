@@ -63,6 +63,13 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
     ```        
     spring.jpa.open-in-view=false
     ```        
+
+3. Don’t Enable `hibernate.enable_lazy_load_no_trans`
+    Setting `hibernate.enable_lazy_load_no_trans=true` might seem like a quick fix. It allows Hibernate to open a temporary session automatically. But it:
+    - Uses more database connections
+    - Increases transaction load
+    - Can make your application slower under heavy use
+    
 ---
 
 - [Home](./../../README.md)
