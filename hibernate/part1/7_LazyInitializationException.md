@@ -69,6 +69,44 @@ select b.id, b.title from Book b where b.library_id = 1;
 
 If the session is closed, Hibernate cannot fetch the books, so the exception occurs.
 
+
+## Solution 1: Use DTOs (Data Transfer Objects)
+
+We can create a LibraryDTO that fetches data in a single query.
+
+```java
+public class LibraryDTO {
+    private String name;
+    private List<String> bookTitles;
+
+    public LibraryDTO(String name, List<String> bookTitles) {
+        this.name = name;
+        this.bookTitles = bookTitles;
+    }
+}
+```
+
+Repository query:
+
+```java
+@Query("SELECT new com.example.LibraryDTO(l.name, b.title) " +
+       "FROM Library l JOIN l.books b WHERE l.id = :id")
+LibraryDTO findLibraryWithBooks(@Param("id") Long id);
+
+```
+
+SQL generated:
+
+```sql
+select l.name, b.title
+from Library l
+join Book b on l.id = b.library_id
+where l.id = 1;
+```
+
+- **Pros:** No exception, works outside session.
+- **Cons:** Extra DTO class, mapping work.
+
 ---
 
 - [Home](./../../README.md)
