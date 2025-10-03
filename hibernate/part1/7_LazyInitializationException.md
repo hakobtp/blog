@@ -13,10 +13,61 @@ org.hibernate.LazyInitializationException: could not initialize proxy - no Sessi
 
 At first, it can look confusing or scary. But the reason is simple: you are trying to access lazy-loaded data after Hibernate has closed the session.
 
-<p align="center"> <img src="./assets/img8.png" alt="img8" width="300"/> </p>
+<p align="center"> <img src="./assets/img8.png" alt="img8" width="400"/> </p>
 
 In this post, we’ll explore what this exception means, why it happens, and how to solve it with practical examples from different kinds of applications.
 
+## Lazy Loading Example: Library System
+
+Imagine we have a Library with Books. Each library can have many books. We want to load libraries lazily — only fetching books when we need them.
+
+```java
+@Entity
+public class Library {
+    @Id
+    private Long id;
+
+    private String name;
+
+    @OneToMany(mappedBy = "library", fetch = FetchType.LAZY)
+    private List<Book> books;
+}
+
+@Entity
+public class Book {
+    @Id
+    private Long id;
+
+    private String title;
+
+    @ManyToOne
+    private Library library;
+}
+```
+
+Here, books are lazy-loaded. Hibernate will not fetch them immediately when we load a library.
+
+The Problem
+
+```java
+Library library = libraryRepository.findById(1L).get();
+System.out.println("Library name: " + library.getName());
+System.out.println("Books: " + library.getBooks().size());
+```
+
+If the session closes after `findById`, calling `getBooks()` will throw:
+
+```yaml
+LazyInitializationException: could not initialize proxy - no Session
+```
+
+Why? Hibernate only runs this query when the lazy collection is accessed:
+
+```sql
+select b.id, b.title from Book b where b.library_id = 1;
+```
+
+If the session is closed, Hibernate cannot fetch the books, so the exception occurs.
 
 ---
 
