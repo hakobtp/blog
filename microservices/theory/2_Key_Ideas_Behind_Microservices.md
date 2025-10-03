@@ -30,6 +30,14 @@ This idea is similar to encapsulation in object-oriented programming, where a cl
 
 For example, in a fitness tracking app, a "workout" service might store user exercise data, while a "goals" service tracks daily goals. The "goals" service should ask the "workout" service for data rather than directly accessing its database.
 
+## How Big Should a Microservice Be?
+
+Many beginners ask about the size of microservices. The word “micro” can be misleading. A microservice is not defined by lines of code—it’s about being small enough to understand and manage easily.
+
+A practical way to think about size: a service should be as big as you and your team can comfortably understand. For a small team, a microservice might cover just one feature, like user registration. For a large experienced team, it could cover a bigger area, like all user-related features.
+
+The most important thing is not the lines of code, but keeping interfaces small and simple. The smaller the interface between services, the easier it is to change one service without breaking others.
+
 ---
 
 - [Home](./../../README.md)
