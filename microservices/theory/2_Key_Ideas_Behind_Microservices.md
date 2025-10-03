@@ -12,6 +12,16 @@ To make microservices independently deployable, they must be loosely connected. 
 
 For example, imagine you have an online bookstore. One microservice manages books, another manages orders, and a third manages users. If the book service wants to show how many books are available, it should ask the order service for current orders instead of reading the order database directly. This keeps each service independent and easier to update.
 
+## Designing Around Business Domains
+
+Microservices are most effective when they are designed around real-world business domains, not just technical layers. This idea comes from domain-driven design, which helps organize software to match how the business works.
+
+For instance, in a food delivery app, one microservice could handle restaurants, another could handle delivery drivers, and another could manage orders. Each service represents a slice of real-world functionality.
+
+This approach makes it easier to add new features without touching multiple services. Changing one service is faster and less risky than coordinating updates across several services.
+
+Contrast this with older layered architectures, like a typical three-tier system (UI, application logic, database). A simple UI change may require updating multiple layers—making even small updates complicated. By focusing on business functionality instead of technical layers, microservices let you implement changes more efficiently.
+
 ---
 
 - [Home](./../../README.md)
