@@ -25,7 +25,21 @@ A `LazyInitializationException` happens when Hibernate tries to load related dat
 
 For example:
 
-```
+```java
+EntityManager em = emf.createEntityManager();
+em.getTransaction().begin();
+
+TypedQuery<Writer> query = em.createQuery("SELECT w FROM Writer w", Writer.class);
+List<Writer> writers = query.getResultList();
+
+em.getTransaction().commit();
+em.close();
+
+for (Writer w : writers) {
+    List<Article> articles = w.getArticles();
+    System.out.println("Trying to count articles...");
+    articles.size(); // This will throw LazyInitializationException
+}
 ```
 
 
