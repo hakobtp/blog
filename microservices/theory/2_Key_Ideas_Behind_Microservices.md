@@ -1,5 +1,10 @@
 # Key Ideas Behind Microservices
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+---
+
 When learning about microservices, there are some important ideas to understand. These ideas are often overlooked, but they are essential to know if you want microservices to work well in your projects.
 
 ## Independent Deployability

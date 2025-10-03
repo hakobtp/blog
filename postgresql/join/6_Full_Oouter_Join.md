@@ -10,8 +10,31 @@ In `SQL`, **FULL OUTER JOIN** is the combination of what we would have if we put
 
 > A **FULL OUTER JOIN** returns all rows from both tables, matching rows where possible and filling **NULL** where there’s no match.
 
+We will create a safe demo table of goods to illustrate unmatched rows:
+
+```sql
+-- Demo table to allow "orphan goods"
+CREATE TABLE goods_demo (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    category_id INTEGER,
+    price NUMERIC(8,2) NOT NULL
+);
+
+INSERT INTO goods_demo (name, category_id, price) VALUES
+('Smartphone', 1, 699.00),
+('Gaming Laptop', 3, 1200.00),
+('Business Laptop', 3, 800.00),
+('Desktop PC', 2, 600.00),
+('Refrigerator', 5, 500.00),
+('Blender', 5, 80.00),
+('Microwave', 5, 150.00),
+('Mystery Item', 999, 10.00); -- category_id does not exist
+```
+
  If we wanted to have the left and right joins between the `goods` and `categories` tables, 
  we’d have to use the `full outer join` and write the following:
+
 
  ```sql
 
@@ -21,7 +44,7 @@ In `SQL`, **FULL OUTER JOIN** is the combination of what we would have if we put
     g.id        AS good_id,
     g.name      AS good_name
 FROM categories AS c
-FULL OUTER JOIN goods AS g ON g.category_id = c.id;
+FULL OUTER JOIN goods_demo AS g ON g.category_id = c.id;
 
 
  category_id | category_name | good_id |    good_name    
@@ -33,6 +56,7 @@ FULL OUTER JOIN goods AS g ON g.category_id = c.id;
            5 | Kitchen       |       5 | Refrigerator
            5 | Kitchen       |       6 | Blender
            5 | Kitchen       |       7 | Microwave
+        <null|<null>         |       8 |Mystery Item
            4 | Home          |  <null> | <null>
 (8 rows)
 
