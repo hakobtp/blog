@@ -594,8 +594,5 @@ private static void demonstrateRetryWithCheckedException() {
 
 ---
 
-
-## 📌 Explore More
-
-- 🏠 [Home](./../../README.md)
-- 🧩 [Microservices](./../tutorials.md)
+- [Home](./../../README.md)
+-  [Microservices](./../tutorials.md)

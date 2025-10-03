@@ -2,14 +2,13 @@
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">Theory</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
-      <li><a href="./basics/optional/1_The_Optional_Type.html">The Optional Type</a></li>
+      <li><a href="./theory/1_Understanding_Microservices.html">Understanding Microservices</a></li>
     </ul>   
   </div>
 
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">Design Patterns</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
-      <li><a href="./concurrency/1_virtual_thread.html">Virtual Threads</a></li>
     </ul>
   </div>
 
@@ -20,8 +19,6 @@
     </ul>
   </div>
 </div>
-
-
 
 
 <!-- 
