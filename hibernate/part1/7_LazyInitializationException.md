@@ -72,6 +72,38 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
     - Increases transaction load
     - Can make your application slower under heavy use
 
+
+## How to Fix LazyInitializationException
+
+The safest way is to fetch all needed associations before closing the session. There are several approaches:
+
+### LEFT JOIN FETCH
+
+You can tell Hibernate to fetch related data with your main query using `LEFT JOIN FETCH`.
+
+Example:
+
+```java
+EntityManager em = emf.createEntityManager();
+em.getTransaction().begin();
+
+TypedQuery<Writer> query = em.createQuery("SELECT w FROM Writer w LEFT JOIN FETCH w.articles", Writer.class);
+List<Writer> writers = query.getResultList();
+
+em.getTransaction().commit();
+em.close();
+
+for (Writer w : writers) {
+    System.out.println(w.getName() + " wrote articles: " +
+        w.getArticles().stream()
+         .map(a -> a.getTitle())
+         .collect(Collectors.joining(", "))
+    );
+}
+```
+
+Here, `LEFT JOIN FETCH` ensures Hibernate loads articles together with writers in one query, avoiding `LazyInitializationException`.
+
 ---
 
 - [Home](./../../README.md)
