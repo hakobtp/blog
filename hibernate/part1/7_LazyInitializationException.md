@@ -42,6 +42,15 @@ for (Writer w : writers) {
 }
 ```
 
+Here, `Writer` has a lazy-loaded association with `Article`. After we close the session, Hibernate cannot fetch the articles, so it throws an exception.
+
+## What NOT to Do to Fix LazyInitializationException
+
+1. Don’t Use FetchType.EAGER Everywhere
+    Some developers suggest changing the lazy association to `EAGER`. This tells Hibernate to always load the related data immediately. It seems to solve the problem, but:
+    - It can slow down your app because Hibernate fetches data you may not need.
+    - It may trigger the `n+1` select problem, which happens when Hibernate runs one query for the main entity and then one query for each related entity.
+    **Better:** Keep FetchType.LAZY and fetch associations only when needed.
 
 ---
 
