@@ -68,3 +68,4 @@ By understanding these core ideas, you can start designing microservices that ar
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Understanding Microservices](./1_Understanding_Microservices.md)
+- [Aligning Architecture and Team Organization](./3_Aligning_Architecture_and_Team_Organization.md)
