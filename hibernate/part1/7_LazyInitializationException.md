@@ -50,8 +50,10 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
     Some developers suggest changing the lazy association to `EAGER`. This tells Hibernate to always load the related data immediately. It seems to solve the problem, but:
     - It can slow down your app because Hibernate fetches data you may not need.
     - It may trigger the `n+1` select problem, which happens when Hibernate runs one query for the main entity and then one query for each related entity.
-    
+
     **Better:** Keep FetchType.LAZY and fetch associations only when needed.
+
+</br>
 
 2. Avoid Open Session in View
     The `Open Session in View` pattern keeps the session open until the web layer renders data. This allows lazy loading in the view. Sounds good? Not really:
