@@ -131,3 +131,4 @@ create table podcast_episodes
 - [Home](./../../README.md)
 - [Hibernate Tutorials](./../tutorials.md)
 - [Primary Key](./5_Primary_Key.md)
+- [LazyInitializationException](./7_LazyInitializationException.md)

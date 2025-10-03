@@ -4,6 +4,7 @@
 - [Secondary Table](./part1/4_SecondaryTable.md)
 - [Primary Key](./part1/5_Primary_Key.md)
 - [Map and Collection of Basic Types](./part1/6_Map_and_Collection_of_Basic_Types.md)
+- [LazyInitializationException](./part1/7_LazyInitializationException.md)
 
 
 ---
