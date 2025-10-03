@@ -22,6 +22,14 @@ This approach makes it easier to add new features without touching multiple serv
 
 Contrast this with older layered architectures, like a typical three-tier system (UI, application logic, database). A simple UI change may require updating multiple layers—making even small updates complicated. By focusing on business functionality instead of technical layers, microservices let you implement changes more efficiently.
 
+## Managing Data and State
+
+Microservices should own their own data instead of sharing databases. Each service decides what information it shares and what it keeps private. This makes services easier to update independently.
+
+This idea is similar to encapsulation in object-oriented programming, where a class hides its internal details from other parts of the program. By hiding internal data, services reduce the chance of causing problems in other parts of the system.
+
+For example, in a fitness tracking app, a "workout" service might store user exercise data, while a "goals" service tracks daily goals. The "goals" service should ask the "workout" service for data rather than directly accessing its database.
+
 ---
 
 - [Home](./../../README.md)
