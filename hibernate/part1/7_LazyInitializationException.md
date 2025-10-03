@@ -53,8 +53,6 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
 
     **Better:** Keep FetchType.LAZY and fetch associations only when needed.
 
-<br>
-
 2. Avoid Open Session in View<br>
     The `Open Session in View` pattern keeps the session open until the web layer renders data. This allows lazy loading in the view. Sounds good? Not really:
     - Each query in the view creates a new database transaction, adding unnecessary load.
@@ -63,8 +61,6 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
     ```        
     spring.jpa.open-in-view=false
     ```        
-
-<br>
 
 3. Don’t Enable `hibernate.enable_lazy_load_no_trans`<br>
     Setting `hibernate.enable_lazy_load_no_trans=true` might seem like a quick fix. It allows Hibernate to open a temporary session automatically. But it:
