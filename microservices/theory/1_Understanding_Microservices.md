@@ -9,6 +9,10 @@ However, microservices also come with challenges. Because they are distributed s
 The way microservices are designed has evolved thanks to the experiences of developers worldwide and new technologies that make communication and deployment easier.
 
 
+<p align="center">
+    <img src="./assets/img1.png" alt="img1" width="400"/>
+</p>
+
 ---
 
 - [Home](./../../README.md)
