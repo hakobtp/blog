@@ -56,7 +56,7 @@ FULL OUTER JOIN goods_demo AS g ON g.category_id = c.id;
            5 | Kitchen       |       5 | Refrigerator
            5 | Kitchen       |       6 | Blender
            5 | Kitchen       |       7 | Microwave
-        <null|<null>         |       8 |Mystery Item
+        <null|<null>         |       8 | Mystery Item
            4 | Home          |  <null> | <null>
 (8 rows)
 
