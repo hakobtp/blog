@@ -76,4 +76,5 @@ Microservices provide flexibility, scalability, and autonomy for development tea
 ---
 
 - [Home](./../../README.md)
--  [Microservices](./../tutorials.md)
+- [Microservices](./../tutorials.md)
+- [Key Ideas Behind Microservices](./2_Key_Ideas_Behind_Microservices.md)

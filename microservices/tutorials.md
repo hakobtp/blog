@@ -3,6 +3,7 @@
     <h3 style="margin:0;">Theory</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
       <li><a href="./theory/1_Understanding_Microservices.html">Understanding Microservices</a></li>
+      <li><a href="./theory/2_Key_Ideas_Behind_Microservices.html">Key Ideas Behind Microservices</a></li>
     </ul>   
   </div>
 
