@@ -46,7 +46,7 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
 
 ## What NOT to Do to Fix LazyInitializationException
 
-1. Don’t Use `FetchType.EAGER` Everywhere
+1. Don’t Use `FetchType.EAGER` Everywhere </br>
     Some developers suggest changing the lazy association to `EAGER`. This tells Hibernate to always load the related data immediately. It seems to solve the problem, but:
     - It can slow down your app because Hibernate fetches data you may not need.
     - It may trigger the `n+1` select problem, which happens when Hibernate runs one query for the main entity and then one query for each related entity.
@@ -55,7 +55,7 @@ Here, `Writer` has a lazy-loaded association with `Article`. After we close the 
 
 </br>
 
-2. Avoid Open Session in View
+2. Avoid Open Session in View</br>
     The `Open Session in View` pattern keeps the session open until the web layer renders data. This allows lazy loading in the view. Sounds good? Not really:
     - Each query in the view creates a new database transaction, adding unnecessary load.
     - It can cause inconsistent results, because the service layer may have already committed a transaction with different data.
