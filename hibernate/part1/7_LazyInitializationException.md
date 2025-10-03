@@ -5,46 +5,18 @@ Author      Ter-Petrosyan Hakob
 ```
 ---
 
-Every Java developer who works with Spring Boot and Hibernate eventually meets a frustrating error: the LazyInitializationException. It often appears like this:
+If you work with Spring Boot and Hibernate, you may have seen this error:
 
-```
+```yaml
 org.hibernate.LazyInitializationException: could not initialize proxy - no Session
 ```
 
-At first, it looks scary. But behind it lies a simple truth: you are trying to access lazily loaded data when Hibernate’s session is closed.
+At first, it can look confusing or scary. But the reason is simple: you are trying to access lazy-loaded data after Hibernate has closed the session.
 
-<p align="center">
-    <img src="./assets/img8.png" alt="img8" width="300"/>
-</p>
+<p align="center"> <img src="./assets/img8.png" alt="img8" width="300"/> </p>
 
-In this post, we’ll developer building multiple real-world apps struggles with this exception, explores solutions, and learns best practices. 
+In this post, we’ll explore what this exception means, why it happens, and how to solve it with practical examples from different kinds of applications.
 
-simple hotel booking application
-
-```java
-@Entity
-public class Hotel {
-    @Id
-    private Long id;
-
-    private String name;
-
-    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY)
-    private List<Room> rooms;
-}
-
-@Entity
-public class Room {
-    @Id
-    private Long id;
-
-    private String number;
-
-    @ManyToOne
-    private Hotel hotel;
-}
-
-```
 
 ---
 
