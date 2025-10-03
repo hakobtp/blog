@@ -44,6 +44,13 @@ With this setup, adding a favorite genre is much simpler. Only the Customer Prof
 
 ## How Microservices Help
 
+In a microservices architecture, each business area can have its own service. For example:
+
+- A Customer Service handles user profiles, including favorite genres.
+- A Catalog Service provides the list of music genres available.
+- A Recommendation Service could use the favorite genre to suggest new albums.
+
+Each service contains a small slice of the three traditional layers: UI, backend logic, and storage. The main focus is business functionality, not the type of technology. This makes the system easier to maintain and the teams easier to align with business goals.
 
 
 ---
