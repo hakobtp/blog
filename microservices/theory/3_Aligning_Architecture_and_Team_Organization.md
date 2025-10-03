@@ -30,6 +30,22 @@ This idea reflects a famous principle called Conway’s Law:
 
 In other words, if your teams are separated by skill, your system will likely have separate layers.
 
+### Changing the Game: Business-Focused Teams
+
+Modern software development wants faster changes and smaller delays between idea and delivery. To achieve this, teams are now often cross-functional: each team has multiple skills and owns an entire part of the system.
+
+Instead of splitting work by technology, we split work by business functionality. For SoundWave, that could mean a Customer Profile Team. This team would own everything needed to manage user profiles, including:
+
+- The UI that lets users edit their profile
+- The backend logic for storing profile changes
+- The database or data layer that stores user information
+
+With this setup, adding a favorite genre is much simpler. Only the Customer Profile Team is involved, and changes are localized.
+
+## How Microservices Help
+
+
+
 ---
 
 - [Home](./../../README.md)
