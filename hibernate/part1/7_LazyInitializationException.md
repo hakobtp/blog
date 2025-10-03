@@ -142,7 +142,7 @@ List<Writer> writers = query.getResultList();
 The query generated is almost identical to `LEFT JOIN FETCH` or `@NamedEntityGraph`.
 
 
-#### Using @EntityGraph in Spring Boot
+### Using @EntityGraph in Spring Boot
 
 If you are using Spring Boot with Spring Data JPA, you don’t always need to manually create an EntityGraph with EntityManager. Spring Data JPA supports @EntityGraph annotations on repository methods, which makes fetching lazy associations much easier.
 
