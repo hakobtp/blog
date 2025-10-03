@@ -141,6 +141,45 @@ List<Writer> writers = query.getResultList();
 
 The query generated is almost identical to `LEFT JOIN FETCH` or `@NamedEntityGraph`.
 
+
+#### Using @EntityGraph in Spring Boot
+
+If you are using Spring Boot with Spring Data JPA, you don’t always need to manually create an EntityGraph with EntityManager. Spring Data JPA supports @EntityGraph annotations on repository methods, which makes fetching lazy associations much easier.
+
+```java
+public interface WriterRepository extends JpaRepository<Writer, Long> {
+
+    @EntityGraph(attributePaths = {"articles"})
+    @Query("SELECT w FROM Writer w")
+    List<Writer> findAllWithArticles();
+}
+```
+
+- `@EntityGraph(attributePaths = {"articles"})` tells Spring Data JPA to fetch the articles list together with each Writer.
+- This avoids `LazyInitializationException`, because the articles association is loaded while the session is still active.
+- It’s a clean and safe way to initialize associations without manually using `EntityManager` and `setHint()`.
+
+Usage in a service layer:
+
+```java
+@Autowired
+private WriterRepository writerRepository;
+
+public void printWriters() {
+    List<Writer> writers = writerRepository.findAllWithArticles();
+    writers.forEach(w -> {
+        System.out.println(w.getName() + " wrote: " +
+            w.getArticles().stream()
+             .map(Article::getTitle)
+             .collect(Collectors.joining(", "))
+        );
+    });
+}
+```
+
+Use `@EntityGraph` for read-only queries or whenever you know which associations should always be fetched. 
+For dynamic cases, you can still use `EntityManager + setHint()`.
+
 ###  Using DTO Projections
 
 DTOs (Data Transfer Objects) are better for read-only operations. You can select only the fields you need, which improves performance.
