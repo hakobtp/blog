@@ -100,6 +100,75 @@ for (Writer w : writers) {
 
 Here, `LEFT JOIN FETCH` ensures Hibernate loads articles together with writers in one query, avoiding `LazyInitializationException`.
 
+### Using @NamedEntityGraph
+
+A `NamedEntityGraph` lets you define which associations Hibernate should fetch independently of the query. This can be reused across different queries.
+
+Example:
+
+```java
+@NamedEntityGraph(
+    name = "graph.writerArticles",
+    attributeNodes = @NamedAttributeNode("articles")
+)
+@Entity
+public class Writer { ... }
+```
+
+Then, use it in a query:
+
+```java
+EntityGraph<?> graph = em.createEntityGraph("graph.writerArticles");
+TypedQuery<Writer> query = em.createQuery("SELECT w FROM Writer w", Writer.class)
+                             .setHint("javax.persistence.fetchgraph", graph);
+List<Writer> writers = query.getResultList();
+```
+
+Hibernate fetches the articles just like with `LEFT JOIN FETCH`.
+
+### Using the EntityGraph API
+
+You can also define an `EntityGraph` dynamically in Java without annotations. This is useful when you want to decide which associations to fetch at runtime.
+
+```java
+EntityGraph<Writer> graph = em.createEntityGraph(Writer.class);
+graph.addAttributeNodes("articles");
+
+TypedQuery<Writer> query = em.createQuery("SELECT w FROM Writer w", Writer.class)
+                             .setHint("javax.persistence.fetchgraph", graph);
+List<Writer> writers = query.getResultList();
+```
+
+The query generated is almost identical to `LEFT JOIN FETCH` or `@NamedEntityGraph`.
+
+###  Using DTO Projections
+
+DTOs (Data Transfer Objects) are better for read-only operations. You can select only the fields you need, which improves performance.
+
+Example:
+
+```java
+TypedQuery<WriterDto> query = em.createQuery(
+    "SELECT new com.example.WriterDto(w.name, a.title) FROM Writer w JOIN w.articles a", WriterDto.class);
+List<WriterDto> results = query.getResultList();
+
+for (WriterDto dto : results) {
+    System.out.println(dto.getName() + " wrote " + dto.getArticleTitle());
+}
+```
+
+
+Hibernate only fetches the columns you need, which is faster and avoids lazy-loading problems.
+
+## Conclusion
+
+LazyInitializationException is very common in Hibernate, but most quick fixes are harmful. To solve it safely:
+
+1. Fetch associations in the service layer using `LEFT JOIN FETCH` or an `EntityGraph`.
+2. Use DTO projections for read-only queries.
+
+Both approaches ensure that all data is loaded while the session is active, keeping your application fast, reliable, and consistent.
+
 ---
 
 - [Home](./../../README.md)
