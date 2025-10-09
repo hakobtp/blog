@@ -64,6 +64,63 @@ $$
 (6−3)−2 \not= 6−(3−2)
 $$
 
+## Using an Identity Value
+
+Many operations have an identity value, which is a starting point that doesn’t change the result.
+
+- For addition, the identity is `0`
+- For multiplication, the identity is `1`
+- For string concatenation, the identity is `""` (empty string)
+
+Using an identity lets you avoid dealing with `Optional`:
+
+```java
+List<Integer> numbers = List.of(2, 5, 7);
+int sum = numbers.stream().reduce(0, (a, b) -> a + b);
+// Computes 0 + 2 + 5 + 7 = 14
+```
+
+If the list is empty, the identity (`0`) is returned.
+
+## Reducing Different Types
+
+Sometimes, the elements in the stream are different from the result type. For example, suppose we want the total length of words:
+
+```java
+List<String> words = List.of("apple", "banana", "kiwi");
+int totalLength = words.stream()
+.reduce(0, 
+    (sum, word) -> sum + word.length(), 
+    (sum1, sum2) -> sum1 + sum2
+);
+```
+
+Here:
+- The first function adds the length of each word to the running total
+- The second function combines results if the stream is parallelized
+
+## When reduce Might Not Be Enough
+
+Sometimes you want to collect results into complex objects, like a set or a map. `reduce` is not ideal for this because it allows only one identity value, and objects like sets are not thread-safe in parallel streams.
+
+In these cases, use collect:
+
+```java
+BitSet bits = numbers.stream().collect(
+    BitSet::new,        // creates a new BitSet
+    BitSet::set,        // adds an element
+    BitSet::or          // combines two BitSets
+);
+```
+
+--- 
+
+- `java.util.Stream`
+    - `Optional<T> reduce(BinaryOperator<T> accumulator)`
+    - `T reduce(T identity, BinaryOperator<T> accumulator)`
+    - `<U> U reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner)` Adds up all elements in the stream using the accumulator function. If identity is given, it is the first value. If combiner is given, it can join results from different parts of the stream
+    - `<R> R collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner)` Puts all elements into a result of type R. For each part of the stream, supplier gives a starting result, accumulator adds elements to it, and combiner joins two results together.
+
 ---
 
 - [Home](./../../README.md)
