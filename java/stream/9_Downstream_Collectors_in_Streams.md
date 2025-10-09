@@ -81,61 +81,154 @@ Map<String, Optional<City>> largestCityByCountry = Stream.of(
 .collect(groupingBy(City::getCountry, maxBy(Comparator.comparing(City::getPopulation))));
 ```
 
-Transforming Collected Results
+## Transforming Collected Results
 
-The collectingAndThen() collector allows a final step after collecting:
+The `collectingAndThen()` collector allows a final step after collecting:
 
-Map<Character, Integer> uniqueFirstLetters = Stream.of("apple", "apricot", "banana")
-    .collect(groupingBy(s -> s.charAt(0),
-           collectingAndThen(toSet(), Set::size)));
-
+```java
+Map<Character, Integer> uniqueFirstLetters = Stream
+    .of("apple", "apricot", "banana")
+    .collect(groupingBy(s -> s.charAt(0), collectingAndThen(toSet(), Set::size)));
+```
 
 This first groups by the first letter, then counts how many unique words start with each letter.
 
-Mapping Values
+## Mapping Values
 
-The mapping() collector applies a function to each element before collecting:
+The `mapping()` collector applies a function to each element before collecting:
 
-Map<Character, Set<Integer>> wordLengthsByFirstLetter = Stream.of("apple", "apricot", "banana")
-    .collect(groupingBy(s -> s.charAt(0),
-           mapping(String::length, toSet())));
-
+```java
+Map<Character, Set<Integer>> wordLengthsByFirstLetter = Stream
+    .of("apple", "apricot", "banana")
+    .collect(groupingBy(s -> s.charAt(0), mapping(String::length, toSet())));
+```
 
 Here, words are grouped by first letter, and inside each group, we collect their lengths.
 
-Filtering Elements
+## Filtering Elements
 
-You can also filter items inside groups using filtering():
+You can also filter items inside groups using `filtering()`:
 
+```java
 Map<String, Set<City>> largeCitiesByCountry = Stream.of(
     new City("Paris", "FR", 2200000),
     new City("Lyon", "FR", 500000),
-    new City("Marseille", "FR", 860000)
-)
-.collect(groupingBy(City::getCountry,
-           filtering(c -> c.getPopulation() > 1000000, toSet())));
-
+    new City("Marseille", "FR", 860000))
+.collect(groupingBy(City::getCountry, filtering(c -> c.getPopulation() > 1000000, toSet())));
+```
 
 Only cities with populations over 1 million are included.
 
-Teeing Collector for Multiple Results
+## Teeing Collector for Multiple Results
 
-Sometimes you need two results at once. The teeing() collector helps:
+Sometimes you need two results at once. The `teeing()` collector helps:
 
+```java
 record Pair<S, T>(S first, T second) {}
 
 Pair<List<String>, Double> result = Stream.of(
     new City("Paris", "FR", 2200000),
-    new City("Lyon", "FR", 500000)
-)
+    new City("Lyon", "FR", 500000))
 .collect(teeing(
     mapping(City::getName, toList()),
-    averagingDouble(City::getPopulation),
+    averagingDouble(City::getPopulation), 
     (names, avg) -> new Pair<>(names, avg)
 ));
-
+```
 
 Here, we get a list of city names and the average population together.
+
+
+## Key Advice
+
+- Use downstream collectors mainly with `groupingBy` or `partitioningBy`.
+- For simpler tasks, `map()`, `reduce()`, `count()`, `max()`, or `min()` are often enough.
+- Combining collectors is powerful but can make code complex, so use them wisely.
+
+
+## Full Example
+
+```java
+package collecting;
+
+import static java.util.stream.Collectors.*;
+
+import java.util.*;
+import java.util.stream.*;
+
+/**
+ * Example of using downstream collectors in Java Streams.
+ * Shows grouping, mapping, counting, averaging, and more.
+ */
+public class DownstreamCollectorsExample {
+
+    // A simple City class with name, country, and population
+    public record City(String name, String country, int population) {}
+
+    public static void main(String[] args) {
+
+        // Example cities
+        List<City> cities = List.of(
+            new City("Paris", "FR", 2200000),
+            new City("Lyon", "FR", 500000),
+            new City("Marseille", "FR", 860000),
+            new City("Berlin", "DE", 3600000),
+            new City("Munich", "DE", 1500000),
+            new City("Hamburg", "DE", 1800000)
+        );
+
+        // 1. Group cities by country and collect names into a set
+        Map<String, Set<String>> cityNamesByCountry = cities.stream()
+            .collect(groupingBy(City::country,
+                    mapping(City::name, toSet())));
+        System.out.println("City names by country: " + cityNamesByCountry);
+
+        // 2. Count how many cities are in each country
+        Map<String, Long> cityCountsByCountry = cities.stream()
+            .collect(groupingBy(City::country, counting()));
+        System.out.println("Number of cities by country: " + cityCountsByCountry);
+
+        // 3. Compute average population per country
+        Map<String, Double> averagePopulationByCountry = cities.stream()
+            .collect(groupingBy(City::country, averagingInt(City::population)));
+        System.out.println("Average population by country: " + averagePopulationByCountry);
+
+        // 4. Find the largest city in each country
+        Map<String, Optional<City>> largestCityByCountry = cities.stream()
+            .collect(groupingBy(City::country,
+                    maxBy(Comparator.comparing(City::population))));
+        System.out.println("Largest city by country: " + largestCityByCountry);
+
+        // 5. Filter only large cities (>1 million) and group by country
+        Map<String, Set<City>> largeCitiesByCountry = cities.stream()
+            .collect(groupingBy(City::country,
+                    filtering(c -> c.population() > 1000000, toSet())));
+        System.out.println("Large cities by country: " + largeCitiesByCountry);
+
+        // 6. Using teeing to collect both city names and average population
+        record Pair<S, T>(S first, T second) {}
+
+        Pair<List<String>, Double> countrySummary = cities.stream()
+            .filter(c -> c.country.equals("DE"))
+            .collect(teeing(
+                mapping(City::name, toList()),            // Collect names
+                averagingDouble(City::population),        // Compute average population
+                (names, avg) -> new Pair<>(names, avg)    // Combine results
+            ));
+        System.out.println("Germany city summary: " + countrySummary);
+
+        // 7. Nested grouping: group cities by country, then by population category
+        Map<String, Map<String, List<City>>> citiesByCountryAndSize = cities.stream()
+            .collect(groupingBy(City::country,
+                    groupingBy(c -> c.population > 1000000 ? "Large" : "Small")));
+        System.out.println("Cities grouped by country and size: " + citiesByCountryAndSize);
+    }
+}
+````
+
+
+
+
 ---
 
 - [Home](./../../README.md)
