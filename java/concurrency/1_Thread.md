@@ -94,6 +94,12 @@ When this program runs, you will see messages from both trucks interleaved, show
 >
 > In our truck example, each thread uses `Math.random()` to create random delays. When many threads run at the same time, 
 > calling `Math.random()` a lot can be slightly slow, because it uses a shared random number generator internally.
+>
+> For small programs, this is not a problem. But in high-performance or multithreaded programs, a better approach is to use 
+> `ThreadLocalRandom`, which gives each thread its own random generator. This avoids threads competing with each other and makes your program faster.
+
+
+
 
 ---
 
