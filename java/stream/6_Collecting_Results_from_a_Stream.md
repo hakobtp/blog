@@ -122,7 +122,7 @@ int count = stats.getCount();
   - `<A> A[] toArray(IntFunction<A[]> generator)` Returns an array of a specific type. You must pass the constructor reference, such as `String[]::new`.
         Both `toArray()` methods are terminal operations.
   - `<R,A> R collect(Collector<? super T,A,R> collector)` Collects the elements of the stream into a result using a `Collector`.
-        The `Collectors` class provides many ready-made collectors, for example `Collectors.toList()`, `Collectors.toSet()`, or `Collectors.joining()`.
+        
 
 ---
 
