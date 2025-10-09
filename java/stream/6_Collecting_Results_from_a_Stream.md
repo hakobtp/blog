@@ -1,5 +1,11 @@
 # Collecting Results from a Stream
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
 When you finish working with a Java Stream, you often want to see or save the results.
 There are several ways to do this, depending on what you want to get — a printed list, an array, or a collection.
 

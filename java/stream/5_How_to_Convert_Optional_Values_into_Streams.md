@@ -1,5 +1,11 @@
 ## How to Convert Optional Values into Streams
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
 In Java, an `Optional<T>` can either contain a value or be empty. Sometimes, we want to turn an `Optional` into a `Stream` so we can work with it more easily. The `stream()` method does exactly that: it creates a stream with one element if the `Optional` has a value, or no elements if it is empty.
 
 But why would we want to do this? Let’s see a practical example.

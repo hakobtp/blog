@@ -1,5 +1,11 @@
 # Creating Streams
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
 Streams in Java let you work with data in a flexible way. Instead of writing loops again and again, you can describe what you want to do with the data, and the stream takes care of the rest.
 
 If you already have a collection (like a `List` or `Set`), you can turn it into a stream easily:

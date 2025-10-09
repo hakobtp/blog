@@ -1,5 +1,11 @@
 # filter, map, and flatMap
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
 Streams let you transform data easily. Transformation means creating a new stream whose elements are based on another stream.
 
 ## filter — Keep only what you want

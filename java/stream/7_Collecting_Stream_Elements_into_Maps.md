@@ -1,3 +1,15 @@
+## Collecting Stream Elements into Maps
+
+```info
+Author      Ter-Petrosyan Hakob
+```
+
+---
+
+When you work with Java Streams, you often want to turn a stream of objects into a map — a structure that lets you find values by a key.
+The `Collectors.toMap()` method is a powerful way to do this.
+
+---------------------------------------------------------------------------
 Collecting into Maps
 Suppose you have a Stream<Person> and want to collect the elements into a map so that later you can look up people by their ID. Call Collectors.toMap with two functions that produce the map's keys and values. For example,
 
