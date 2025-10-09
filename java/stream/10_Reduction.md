@@ -49,7 +49,7 @@ The result would be `"Java is fun"`.
 If you want to use reduce with parallel streams, the operation must be associative. This means it doesn’t matter how the numbers are grouped:
 
 $$
-(x \mathop{\mathrm{op}} y) \mathrm{op}z = x \mathop{\mathrm{op}} (y \mathrm{op}z)
+(x \mathop{\mathrm{op}} y) \mathop{\mathrm{op}} z = x \mathop{\mathrm{op}} (y \mathop{\mathrm{op}}z)
 $$
 
 
