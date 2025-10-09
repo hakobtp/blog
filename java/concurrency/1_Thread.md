@@ -53,6 +53,40 @@ Here is how you can run a task in a separate thread:
     t.start();
     ```    
 
+## Simultaneous Package Delivery
+
+Imagine a small delivery company with four trucks. Each truck delivers packages to different customers. Instead of sending one truck at a time, the company can send multiple trucks at the same time using threads.
+
+```java
+Runnable truck1 = () -> {
+    try {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Truck 1 delivers package " + (i+1));
+            Thread.sleep((int)(500 * Math.random())); // random delay
+        }
+    } catch (InterruptedException e) {
+        System.out.println("Truck 1 stopped");
+    }
+};
+
+Runnable truck2 = () -> {
+    try {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Truck 2 delivers package " + (i+1));
+            Thread.sleep((int)(500 * Math.random()));
+        }
+    } catch (InterruptedException e) {
+        System.out.println("Truck 2 stopped");
+    }
+};
+
+new Thread(truck1).start();
+new Thread(truck2).start();
+```
+
+When this program runs, you will see messages from both trucks interleaved, showing that they are delivering packages concurrently.
+
+> **Important:** Do not call the run method directly. This will execute the task in the current thread only. Use `start()` to create a new thread.
 
 ---
 
