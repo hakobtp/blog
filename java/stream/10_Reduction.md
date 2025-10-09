@@ -52,7 +52,17 @@ $$
 (x \mathop{\mathrm{op}} y) \mathop{\mathrm{op}} z = x \mathop{\mathrm{op}} (y \mathop{\mathrm{op}}z)
 $$
 
+For example, addition is associative:
 
+$$
+(2+3)+4=2+(3+4)
+$$
+
+But subtraction is not associative:
+
+$$
+(6−3)−2 \not= 6−(3−2)
+$$
 
 ---
 
