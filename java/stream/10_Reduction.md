@@ -115,11 +115,32 @@ BitSet bits = numbers.stream().collect(
 
 --- 
 
-- `java.util.Stream`
-    - `Optional<T> reduce(BinaryOperator<T> accumulator)`
-    - `T reduce(T identity, BinaryOperator<T> accumulator)`
-    - `<U> U reduce(U identity, BiFunction<U,? super T,U> accumulator, BinaryOperator<U> combiner)` Adds up all elements in the stream using the accumulator function. If identity is given, it is the first value. If combiner is given, it can join results from different parts of the stream
-    - `<R> R collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner)` Puts all elements into a result of type R. For each part of the stream, supplier gives a starting result, accumulator adds elements to it, and combiner joins two results together.
+**java.util.Stream**
+
+```java
+
+ //Adds up all elements in the stream using the accumulator function. If identity is given, 
+ //it is the first value. If combiner is given, it can join results from different parts of the stream
+
+Optional<T> reduce(BinaryOperator<T> accumulator)
+
+T reduce(
+    T identity, 
+    BinaryOperator<T> accumulator)
+
+<U> U reduce(
+    U identity, 
+    BiFunction<U,? super T,U> accumulator, 
+    BinaryOperator<U> combiner)
+
+ // Puts all elements into a result of type R. For each part of the stream, supplier gives a starting result, 
+ // accumulator adds elements to it, and combiner joins two results together.
+<R> R collect(
+    Supplier<R> supplier, 
+    BiConsumer<R,? super T> accumulator, 
+    BiConsumer<R,R> combiner)    
+
+```
 
 ---
 
