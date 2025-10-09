@@ -116,12 +116,13 @@ int count = stats.getCount();
 ---
 
 - `java.util.stream.Stream` 
-  - `List<T> toList()` yields a list of the elements in this stream.
-  - `void forEach(Consumer<? super T> action)` invokes action on each element of the stream.
-  - `Object[] toArray()`
-  - `<A> A[] toArray(IntFunction<A[]> generator)`
-        - yield an array of objects, or of type A when passed a constructor reference A[]::new. These are terminal operations.
-  - `<R,A> R collect(Collector<? super T,A,R> collector)` collects the elements in this stream, using the given collector. The Collectors class has factory methods for many collectors.
+  - `List<T> toList()` Returns a list that contains all the elements from the stream.
+  - `void forEach(Consumer<? super T> action)` Runs the given action (for example, `System.out::println`) on every element in the stream..
+  - `Object[] toArray()` Returns an array with all stream elements. The array type is `Object[]`.
+  - `<A> A[] toArray(IntFunction<A[]> generator)` Returns an array of a specific type. You must pass the constructor reference, such as `String[]::new`.
+        Both `toArray()` methods are terminal operations.
+  - `<R,A> R collect(Collector<? super T,A,R> collector)` Collects the elements of the stream into a result using a `Collector`.
+        The `Collectors` class provides many ready-made collectors, for example `Collectors.toList()`, `Collectors.toSet()`, or `Collectors.joining()`.
 
 ---
 
