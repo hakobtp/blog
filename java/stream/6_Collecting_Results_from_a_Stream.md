@@ -142,6 +142,25 @@ int count = stats.getCount();
 
 ---
 
+**Summarizing Numbers:**
+
+- `static <T> Collector<T, ?, IntSummaryStatistics> summarizingInt(ToIntFunction<? super T> mapper)`
+- `static <T> Collector<T, ?, LongSummaryStatistics> summarizingLong(ToLongFunction<? super T> mapper)`
+- `static <T> Collector<T, ?, DoubleSummaryStatistics> summarizingDouble(ToDoubleFunction<? super T> mapper)`
+
+These methods return collectors that produce a summary statistics object — for integers, longs, or doubles.
+This object contains values such as `count`, `sum`, `average`, `max`, and `min`.
+
+**Common Methods:**
+
+- `long getCount()` — returns how many elements were summarized.
+- `(int|long|double) getSum()` — returns the total sum.
+- `double getAverage()` — returns the average value, or 0 if there are no elements.
+- `(int|long|double) getMax()` — returns the largest element, or the smallest possible value if the stream was empty.
+- `(int|long|double) getMin()` — returns the smallest element, or the largest possible value if the stream was empty.
+
+---
+
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [How to Convert Optional Values into Streams](./5_How_to_Convert_Optional_Values_into_Streams.md)
