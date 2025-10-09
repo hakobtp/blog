@@ -106,3 +106,25 @@ double averageLength = stats.getAverage();
 int longestWord = stats.getMax();
 int count = stats.getCount();
 ```
+
+---
+
+- `java.util.stream.BaseStream` 
+  - `Iterator<T> iterator()` Returns an iterator that lets you go through each element of the stream one by one.
+        This is a terminal operation, meaning that once you use it, the stream is finished.
+
+---
+
+- `java.util.stream.Stream` 
+  - `List<T> toList()` yields a list of the elements in this stream.
+  - `void forEach(Consumer<? super T> action)` invokes action on each element of the stream.
+  - `Object[] toArray()`
+  - `<A> A[] toArray(IntFunction<A[]> generator)`
+        - yield an array of objects, or of type A when passed a constructor reference A[]::new. These are terminal operations.
+  - `<R,A> R collect(Collector<? super T,A,R> collector)` collects the elements in this stream, using the given collector. The Collectors class has factory methods for many collectors.
+
+---
+
+- [Home](./../../README.md)
+- [Java Tutorials](./../tutorials.md)
+- [How to Convert Optional Values into Streams](./5_How_to_Convert_Optional_Values_into_Streams.md)

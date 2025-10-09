@@ -103,3 +103,4 @@ This approach is very helpful when processing lists of IDs, products, users, or 
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Transform, Combine, and Reduce Data](./4_Transform_Combine_and_Reduce_Data.md)
+- [Collecting Results from a Stream](./6_Collecting_Results_from_a_Stream.md)
