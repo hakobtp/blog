@@ -28,6 +28,7 @@
        <li><a href="./stream/6_Collecting_Results_from_a_Stream.html">Collecting Results from a Stream</a></li>
        <li><a href="./stream/7_Collecting_Stream_Elements_into_Maps.html">Collecting Stream Elements into Maps</a></li>
        <li><a href="./stream/8_Grouping_and_Partitioning.html">Grouping and Partitioning</a></li>
+       <li><a href="./stream/9_Downstream_Collectors_in_Streams.html">Downstream Collectors in Streams</a></li>
     </ul>
   </div>
 </div>

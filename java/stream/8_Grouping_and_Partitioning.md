@@ -83,21 +83,7 @@ This approach makes your code cleaner and easier to read than manually building 
 
 ---
 
-**java.util.stream.Collectors**
-
-```java
-static <T,K> Collector<T,?,Map<K,List<T>>> groupingBy(Function<? super T,? extends K> classifier)
-
-static <T,K> Collector<T,?,ConcurrentMap<K,List<T>>> groupingByConcurrent(Function<? super T,? extends K> classifier)
-
-yield a collector that produces a map or concurrent map whose keys are the results of applying classifier to all collected elements, and whose values are lists of elements with the same key.
-
-static <T> Collector<T,?,Map<Boolean,List<T>>> partitioningBy(Predicate<? super T> predicate)
-
-yields a collector that produces a map whose keys are true/false, and whose values are lists of the elements that fulfill/do not fulfill the predicate.
-```
----
-
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Collecting Stream Elements into Maps](./7_Collecting_Stream_Elements_into_Maps.md)
+- [Downstream Collectors in Streams](9_Downstream_Collectors_in_Streams.md)
