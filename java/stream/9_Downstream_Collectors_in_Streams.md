@@ -281,3 +281,4 @@ static <T,A,R> Collector<T,?,R> filtering(
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Grouping and Partitioning](./8_Grouping_and_Partitioning.md)
+- [Reduction](./10_Reduction.md)
