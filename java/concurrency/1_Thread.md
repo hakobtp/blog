@@ -97,8 +97,10 @@ When this program runs, you will see messages from both trucks interleaved, show
 >
 > For small programs, this is not a problem. But in high-performance or multithreaded programs, a better approach is to use 
 > `ThreadLocalRandom`, which gives each thread its own random generator. This avoids threads competing with each other and makes your program faster.
-
-
+>
+> `int delay = ThreadLocalRandom.current().nextInt(100, 501); // random delay 100–500ms`
+>
+> This method is fast, safe, and recommended for multithreaded Java programs.
 
 
 ---
