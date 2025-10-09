@@ -134,6 +134,11 @@ int count = stats.getCount();
         - These methods return collectors that gather stream elements into a list or a set.
   - `static <T, C extends Collection<T>> Collector<T, ?, C> toCollection(Supplier<C> collectionFactory)` This method lets you decide what kind of collection to use.
         You can pass a constructor reference, such as `TreeSet::new` or `LinkedList::new`.
+  - `static Collector<CharSequence, ?, String> joining()`
+  - `static Collector<CharSequence, ?, String> joining(CharSequence delimiter)`
+  - `static Collector<CharSequence, ?, String> joining(CharSequence delimiter, CharSequence prefix, CharSequence suffix)`
+    - These methods create collectors that join strings together. The delimiter is placed between elements, while `prefix` and `suffix` are 
+    added before and after the entire result. If they are not specified, they are empty.
 
 ---
 
