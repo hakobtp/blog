@@ -226,8 +226,55 @@ public class DownstreamCollectorsExample {
 }
 ````
 
+---
+
+**java.util.stream.Collectors**
+
+```java
+
+//Creates a map. Keys are the result of classifier on elements. Values are collected by downstream for elements with the same key.
+static <T,K,A,D> Collector<T,?,Map<K,D>> groupingBy(
+    Function<? super T,? extends K> classifier, 
+    Collector<? super T,A,D> downstream)
 
 
+//Counts how many elements there are.
+static <T> Collector<T,?,Long> counting() 
+
+
+//Computes the sum of the results of applying mapper to elements.
+static <T> Collector<T,?,Integer> summingInt(ToIntFunction<? super T> mapper)
+static <T> Collector<T,?,Long> summingLong(ToLongFunction<? super T> mapper)
+static <T> Collector<T,?,Double> summingDouble(ToDoubleFunction<? super T> mapper)
+
+
+//Finds the maximum or minimum element using the given comparator.
+static <T> Collector<T,?,Optional<T>> maxBy(Comparator<? super T> comparator)
+static <T> Collector<T,?,Optional<T>> minBy(Comparator<? super T> comparator)
+
+
+//First collects elements using downstream, then applies finisher to the result.
+static <T,A,R,RR> Collector<T,A,RR> collectingAndThen(
+    Collector<T,A,R> downstream, 
+    Function<R,RR> finisher)
+
+//Applies mapper to each element, then collects results with downstream.
+static <T,U,A,R> Collector<T,?,R> mapping(
+    Function<? super T,? extends U> mapper, 
+    Collector<? super U,A,R> downstream)
+
+
+//Applies mapper to each element (which gives a stream), then collects all resulting elements with downstream.
+static <T,U,A,R> Collector<T,?,R> flatMapping(
+    Function<? super T,? extends Stream<? extends U>> mapper, 
+    Collector<? super U,A,R> downstream)
+
+
+//Passes only elements that match predicate to downstream.
+static <T,A,R> Collector<T,?,R> filtering(
+    Predicate<? super T> predicate, 
+    Collector<? super T,A,R> downstream)
+```
 
 ---
 
