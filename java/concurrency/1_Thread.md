@@ -102,6 +102,46 @@ When this program runs, you will see messages from both trucks interleaved, show
 >
 > This method is fast, safe, and recommended for multithreaded Java programs.
 
+## Creating a Thread by Subclassing
+
+Another way to create a thread is by subclassing the Thread class:
+
+```java
+class DeliveryTruck extends Thread {
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(getName() + " delivers package " + (i+1));
+        }
+    }
+}
+
+DeliveryTruck t1 = new DeliveryTruck();
+t1.start();
+```
+
+However, this approach is less flexible, because it mixes the task with the thread mechanism. Using `Runnable` is recommended.
+
+## Key Points
+
+- Threads allow multiple tasks in a single program to run concurrently.
+- Threads share memory, unlike separate processes.
+- Always use `Thread.start()` to run a thread.
+- You can use `Runnable` for better flexibility, or subclass `Thread` (less recommended).
+- Generating random numbers in many threads can be slightly inefficient, but it is usually fine for small programs.
+
+---
+
+- `java.lang.Thread`
+    - `Thread(Runnable target)` Creates a new thread. When the thread runs, it will execute the `run()` method of the given `Runnable` object.
+    - `void start()` Starts the thread. The thread will begin running the `run()` method, and the program continues immediately without waiting. The new thread runs at the same time as other threads.
+    - `void run()` Executes the code in the `run()` method of the associated `Runnable`. You usually do not call this directly; use `start()` instead.
+    - `static void sleep(long millis)`  Pauses the current thread for the given number of milliseconds.
+    - `static void sleep(Duration duration)` Pauses the current thread for the time given by a `Duration` object.
+
+---
+
+- `java.lang.Runnable` 
+    - `void run()` You must override this method to write the instructions for the task you want the thread to perform.
 
 ---
 
