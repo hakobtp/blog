@@ -30,11 +30,11 @@
        <li><a href="./stream/8_Grouping_and_Partitioning.html">Grouping and Partitioning</a></li>
        <li><a href="./stream/9_Downstream_Collectors_in_Streams.html">Downstream Collectors in Streams</a></li>
        <li><a href="./stream/10_Reduction.html">Reduction</a></li>
+<!--1.13. Primitive Type Streams -->
     </ul>
   </div>
 </div>
 
-<!-- HASELEM 1.10. Grouping and Partitioning -->
 
 --- 
 
