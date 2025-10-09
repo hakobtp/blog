@@ -122,7 +122,17 @@ int count = stats.getCount();
   - `<A> A[] toArray(IntFunction<A[]> generator)` Returns an array of a specific type. You must pass the constructor reference, such as `String[]::new`.
         Both `toArray()` methods are terminal operations.
   - `<R,A> R collect(Collector<? super T,A,R> collector)` Collects the elements of the stream into a result using a `Collector`.
-        
+
+---        
+
+- `java.util.stream.Collectors` The Collectors class in Java provides many useful factory methods for collecting stream elements 
+        into different forms such as lists, sets, strings, or summary statistics.
+  - `static <T> Collector<T, ?, List<T>> toList()`
+  - `static <T> Collector<T, ?, List<T>> toUnmodifiableList()`
+  - `static <T> Collector<T, ?, Set<T>> toSet()`
+  - `static <T> Collector<T, ?, Set<T>> toUnmodifiableSet()`
+        - These methods return collectors that gather stream elements into a list or a set.
+
 
 ---
 
