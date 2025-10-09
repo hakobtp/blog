@@ -170,3 +170,4 @@ This object contains values such as `count`, `sum`, `average`, `max`, and `min`.
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [How to Convert Optional Values into Streams](./5_How_to_Convert_Optional_Values_into_Streams.md)
+- [Collecting Stream Elements into Maps](./7_Collecting_Stream_Elements_into_Maps.md)
