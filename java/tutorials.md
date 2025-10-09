@@ -26,6 +26,8 @@
        <li><a href="./stream/4_Transform_Combine_and_Reduce_Data.html">Transform, Combine, and Reduce Data</a></li>
        <li><a href="./stream/5_How_to_Convert_Optional_Values_into_Streams.html">How to Convert Optional Values into Streams</a></li>
        <li><a href="./stream/6_Collecting_Results_from_a_Stream.html">Collecting Results from a Stream</a></li>
+       <li><a href="./stream/7_Collecting_Stream_Elements_into_Maps.html">Collecting Stream Elements into Maps</a></li>
+       
     </ul>
   </div>
 </div>
