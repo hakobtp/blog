@@ -131,7 +131,7 @@ int count = stats.getCount();
   - `static <T> Collector<T, ?, List<T>> toUnmodifiableList()`
   - `static <T> Collector<T, ?, Set<T>> toSet()`
   - `static <T> Collector<T, ?, Set<T>> toUnmodifiableSet()`
-        - These methods return collectors that gather stream elements into a list or a set.
+   - These methods return collectors that gather stream elements into a list or a set.
   - `static <T, C extends Collection<T>> Collector<T, ?, C> toCollection(Supplier<C> collectionFactory)` This method lets you decide what kind of collection to use.
         You can pass a constructor reference, such as `TreeSet::new` or `LinkedList::new`.
   - `static Collector<CharSequence, ?, String> joining()`
