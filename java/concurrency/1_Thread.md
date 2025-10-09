@@ -86,7 +86,14 @@ new Thread(truck2).start();
 
 When this program runs, you will see messages from both trucks interleaved, showing that they are delivering packages concurrently.
 
-> **Important:** Do not call the run method directly. This will execute the task in the current thread only. Use `start()` to create a new thread.
+> **Important:** 
+>
+> Do not call the run method directly. This will execute the task in the current thread only. Use `start()` to create a new thread.
+
+> **Performance Note:**
+>
+> In our truck example, each thread uses `Math.random()` to create random delays. When many threads run at the same time, 
+> calling `Math.random()` a lot can be slightly slow, because it uses a shared random number generator internally.
 
 ---
 
