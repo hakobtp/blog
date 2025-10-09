@@ -159,3 +159,4 @@ static <T,K,U,M extends ConcurrentMap<K,U>> Collector<T,?,M> toConcurrentMap(
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Collecting Results from a Stream](./6_Collecting_Results_from_a_Stream.md)
+- [Grouping and Partitioning](./8_Grouping_and_Partitioning.md)
