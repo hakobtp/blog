@@ -15,3 +15,4 @@ In Java, a normal thread usually runs on a platform thread. A platform thread is
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Thread States](./2_Thread_States.md)
+- [Virtual Thread Part 2](./4_Virtual_Thread_Part2.md)

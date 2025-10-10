@@ -16,7 +16,7 @@
       <li><a href="./concurrency/1_Thread.html">Thread</a></li>
       <li><a href="./concurrency/2_Thread_States.html">Thread States</a></li>
       <li><a href="./concurrency/3_Virtual_Thread_Part1.html">Virtual Thread Part 1</a></li>
-      <li><a href="./concurrency/100_virtual_thread.html">Virtual Threads</a></li>
+      <li><a href="./concurrency/4_Virtual_Thread_Part2.html">Virtual Thread Part 2</a></li>
     </ul>
   </div>
 
