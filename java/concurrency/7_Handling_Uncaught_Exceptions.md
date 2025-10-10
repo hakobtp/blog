@@ -199,6 +199,54 @@ Reason: Oops! Thread 3 failed.
 
 ---
 
+- `java.lang.Thread.UncaughtExceptionHandler`
+    - `void uncaughtException(Thread t, Throwable e)` Called when a thread ends because of an exception that is not caught.  
+      This method can be used to log a custom report or handle the exception in a special wa
+
+---
+
+- `java.lang.ThreadGroup` 
+    - `void uncaughtException(Thread t, Throwable e)` Called when a thread in this group ends because of an exception that is not caught.  
+      If this group has a parent, the parent’s method is called.  
+      If there is no parent but the Thread class has a default handler, that handler is called.  
+      Otherwise, the exception’s stack trace is printed to the standard error stream.
+
+
+```java
+public class ThreadGroupExample {
+
+    public static void main(String[] args) {
+        // Create a thread group
+        ThreadGroup group = new ThreadGroup("MyGroup");
+
+        // Create a thread in the group
+        Thread t1 = new Thread(group, () -> {
+            System.out.println("Thread 1 is running");
+            throw new RuntimeException("Oops!"); // This will cause an uncaught exception
+        });
+
+        // Create another thread in the same group
+        Thread t2 = new Thread(group, () -> {
+            System.out.println("Thread 2 is running");
+        });
+
+        // Override uncaughtException for this thread group
+        group.setUncaughtExceptionHandler((thread, exception) -> {
+            System.out.println("Exception in thread " + thread.getName() + ": " + exception.getMessage());
+        });
+
+        // Start threads
+        t1.start();
+        t2.start();
+    }
+}
+```
+
+1. We create a `ThreadGroup` called "MyGroup".
+2. Two threads are created in that group. The first thread throws an uncaught exception.
+3. The `uncaughtException` handler in the thread group catches the exception and prints a custom message.
+4. If we did not have the handler, the exception would go to the default handler or print a stack trace.
+
 ## Summary
 - Threads can die unexpectedly because of unchecked exceptions.
 - Uncaught exception handlers let you control what happens when a thread fails.
