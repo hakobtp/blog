@@ -51,32 +51,6 @@ If a thread does not have a custom handler, Java follows these rules in order:
 
 The stack trace is the familiar error message you often see when a program crashes.
 
-```
-Thread throws an unchecked exception
-               │
-               ▼
-Does the thread have a custom handler?
-       ┌─────────────┴─────────────┐
-       │                           │
-      Yes                          No
-       │                           │
-       ▼                           ▼
-Custom handler runs          Does thread group have a parent?
-                               ┌───────────┴───────────┐
-                               │                       │
-                              Yes                      No
-                               │                       │
-                               ▼                       ▼
-                  Parent group's handler runs   Is there a default handler?
-                                                      ┌───────┴───────┐
-                                                      │               │
-                                                     Yes              No
-                                                      │               │
-                                                      ▼               ▼
-                                        Default handler runs    Print stack trace
-
-```
-
 ## Thread Groups and Exceptions
 
 Technically, each thread belongs to a thread group, which can define the uncaught exception behavior. A thread group is like a small collection of threads managed together. By default, all threads you create belong to the main group, but you can create new groups if you want.
@@ -119,6 +93,107 @@ This way, even though the thread crashes, we can see what happened and take acti
 
 > **Takeaway:** Uncaught exception handlers let you control how threads fail. Without them, Java prints 
 > a stack trace, which may be useful but not always enough. For production programs, logging or reporting uncaught exceptions is highly recommended.
+
+
+## Flow of an Uncaught Exception
+
+Here’s a simple diagram showing what happens when a thread throws an exception:
+
+```
+Thread throws an unchecked exception
+               │
+               ▼
+Does the thread have a custom handler?
+       ┌─────────────┴─────────────┐
+       │                           │
+      Yes                          No
+       │                           │
+       ▼                           ▼
+Custom handler runs          Does thread group have a parent?
+                               ┌───────────┴───────────┐
+                               │                       │
+                              Yes                      No
+                               │                       │
+                               ▼                       ▼
+                  Parent group's handler runs   Is there a default handler?
+                                                      ┌───────┴───────┐
+                                                      │               │
+                                                     Yes              No
+                                                      │               │
+                                                      ▼               ▼
+                                        Default handler runs    Print stack trace
+
+```
+
+## Multiple Threads with Handlers
+
+This example shows how different threads can have different handlers:
+
+```java
+class MyHandler implements Thread.UncaughtExceptionHandler {
+    private String name;
+
+    public MyHandler(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        System.out.println("Handler " + name + " caught exception in " + t.getName());
+        System.out.println("Reason: " + e.getMessage());
+    }
+}
+
+public class MultiThreadExample {
+    public static void main(String[] args) {
+
+        // Default handler for all threads
+        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+            System.out.println("Default handler: " + t.getName() + " crashed!");
+            System.out.println("Error: " + e.getMessage());
+        });
+
+        // Thread with a custom handler
+        Thread thread1 = new Thread(() -> {
+            throw new RuntimeException("Oops! Thread 1 failed.");
+        });
+        thread1.setUncaughtExceptionHandler(new MyHandler("CustomHandler1"));
+
+        // Thread without a custom handler (uses default)
+        Thread thread2 = new Thread(() -> {
+            throw new RuntimeException("Oops! Thread 2 failed.");
+        });
+
+        // Another thread with its own custom handler
+        Thread thread3 = new Thread(() -> {
+            throw new RuntimeException("Oops! Thread 3 failed.");
+        });
+        thread3.setUncaughtExceptionHandler(new MyHandler("CustomHandler3"));
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+```
+
+Example Output:
+
+```java
+Handler CustomHandler1 caught exception in Thread-0
+Reason: Oops! Thread 1 failed.
+Default handler: Thread-1 crashed!
+Error: Oops! Thread 2 failed.
+Handler CustomHandler3 caught exception in Thread-2
+Reason: Oops! Thread 3 failed.
+```
+
+## Summary
+- Threads can die unexpectedly because of unchecked exceptions.
+- Uncaught exception handlers let you control what happens when a thread fails.
+- Each thread can have its own handler, or you can use a global default handler.
+- Modern programs usually avoid thread groups and rely on executors and logging.
+- Using handlers properly ensures your program can report errors and recover gracefully, even when threads crash.
 
 ---
 
