@@ -131,6 +131,45 @@ There are two correct ways to handle it:
     ```
     This way, the caller can check if the thread was interrupted.
 
+
+## New Example: Downloading Files
+
+Imagine a thread downloading multiple files. You want it to stop if the user cancels the operation:
+
+```java
+Runnable downloadTask = () -> {
+    try {
+        for (int i = 0; i < files.size(); i++) {
+            if (Thread.currentThread().isInterrupted()) {
+                System.out.println("Download cancelled.");
+                break;
+            }
+            downloadFile(files.get(i));
+            Thread.sleep(200); // simulate network delay
+        }
+    } catch (InterruptedException e) {
+        System.out.println("Download interrupted.");
+    } finally {
+        closeConnections();
+    }
+};
+```
+
+Here, the thread can either check the flag or rely on `InterruptedException` during sleep. This ensures safe and predictable termination.
+
+<p align="center">
+    <img src="./assets/img3.png" alt="img3" width="400"/>
+</p>
+
+--- 
+
+- `java.lang.Thread` 
+    - `void interrupt()` Sends a request to stop a thread. The thread's interrupted status becomes `true`. 
+        If the thread is waiting or blocked, it throws an `InterruptedException`.
+    - `static boolean interrupted()` Checks if the current thread (the one running this code) has been interrupted. This is a static method. It also resets the interrupted status of the current thread to `false`.
+    - `boolean isInterrupted()` Checks if a thread has been interrupted. Unlike the static `interrupted()` method, it does not change the thread's interrupted status.
+    - `static Thread currentThread()` Returns the Thread object for the thread that is running now.
+
 ---
 
 - [Home](./../../README.md)
