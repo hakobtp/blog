@@ -226,6 +226,120 @@ for (@NonNull String name : names) {
 This is particularly useful for static analysis tools such as the Checker Framework or SpotBugs, 
 which use annotations like `@NonNull` or `@Nullable` to verify code correctness.
 
+## Annotating Type Uses
+
+Annotations can also describe how a type is used, not just where it is declared.
+These are called type-use annotations.
+
+**Example 1:** Annotating a parameter type
+
+```java
+public User getUser(@NotNull String userId)
+```
+
+This tells the tool that `userId` should never be `null`.
+A static analyzer can check your code to make sure you don’t accidentally pass a `null` value.
+
+**Example 2:** Inside generic types
+
+If you have a list of strings, and you want to say all strings inside it must be non-null, write:
+
+```java
+List<@NotNull String> names;
+```
+
+**Example 3:** In arrays
+
+You can use type-use annotations at different levels of arrays:
+
+```java
+@NotNull String[][] words;     // none of the elements are null
+String @NotNull [][] words;    // the array itself is not null
+String[] @NotNull [] words;    // each sub-array is not null
+```
+
+Now the annotation applies to the type argument inside the list.
+
+**Example 4:** Other places you can annotate
+
+You can use type-use annotations in many locations:
+
+- With generic types: `Comparator.<@NotNull String>reverseOrder()`
+- With superclasses: `class Alert extends @Localized Message`
+- With constructor calls: `new @Localized String("Hello")`
+- With nested types: `Map.@Localized Entry`
+- With casts and instanceof:
+    - `(@Localized String) text`
+    - `if (text instanceof @Localized String)`
+- With exceptions: `void read() throws @Localized IOException`
+- With wildcards: `List<? extends @Localized Message>`
+- With method references: `@Localized Message::getText`
+
+You cannot annotate some positions, such as:
+
+```java
+@NonNull String.class      // Not allowed
+import java.lang.@NonNull String; // Not allowed
+```
+
+## Where to Put Annotations with Modifiers
+
+You can put annotations before or after modifiers like `private` or `static`.
+
+It’s common (but not required) to write:
+
+- Declaration annotations (like `@Id`) → before modifiers
+- Type-use annotations (like `@NotNull`) → after modifiers
+
+```java
+@Id private String userId;         // Annotates the variable
+private @NotNull String username;  // Annotates the type
+```
+
+If an annotation can apply to both a variable and a type use, and you use it in a variable declaration, then it applies to both at the same time.
+
+
+## Making the Receiver Explicit
+
+Every instance method has a hidden variable called `this`.
+Usually, you don’t see it, but you can actually make it explicit if you need to annotate it.
+
+```java
+public class Point {
+   public boolean equals(@NotNull Point this, @Nullable Object other) {
+      ...
+   }
+}
+```
+
+Here, `this` refers to the current object.
+The annotation `@NotNull` tells tools that the current object (`this`) should not be `null`.
+You can only do this for methods, not constructors, because the object does not fully exist until the constructor finishes.
+
+
+### Receiver Parameters in Inner Classes
+
+Inner classes automatically have a reference to their outer class.
+You can also make that parameter explicit if you want to annotate it:
+
+```java
+class Sequence {
+   private int from;
+   private int to;
+
+   class Iterator {
+      private int current;
+
+      public Iterator(@NotNull Sequence Sequence.this) {
+         this.current = Sequence.this.from;
+      }
+   }
+}
+```
+
+Here, the receiver parameter `Sequence.this` represents the outer class object.
+You can add annotations to it, just like with normal parameters.
+
 ---
 
 - [Home](./../../README.md)
