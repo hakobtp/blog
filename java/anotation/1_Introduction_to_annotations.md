@@ -106,6 +106,60 @@ There are some important rules to remember:
 5. **The special element name `value`.** <br>
     If an annotation has only one element named `value`, you can omit the name:    
 
+## Working with Multiple and Repeated Annotations
+
+You can use more than one annotation on the same item in Java.
+
+```java
+@Test
+@Tag("slow")
+void testFileUpload() { }
+```
+
+Here, both `@Test` and `@Tag("slow")` are attached to the same method.
+
+If an annotation type is declared repeatable, you can use it more than once:
+
+```java
+@Tag("network")
+@Tag("important")
+void testFileUpload() { }
+```
+
+Both `@Tag` annotations will be stored and processed together by the framework that supports them.
+
+## Annotating Different Parts of Your Code
+
+So far, we’ve only seen annotations on methods, but you can also add them to many other parts of your program.
+
+You can place annotations on:
+
+- **Classes and Interfaces**
+- **Methods and constructors**
+- **Fields and record components**
+- **Local variables** (including those inside `for` loops or `try-with-resources`)
+- **Parameters** (method parameters or `catch` blocks)
+- **Type parameters** (for generic types)
+- **Packages and modules**
+
+Here are a few examples:
+
+```java
+@Entity
+public class User { }
+
+@SuppressWarnings("unchecked")
+List<User> users = new ArrayList<>();
+
+public User findUser(@Param("id") String userId) { ... }
+
+public record Rectangle(
+   @PrintAsJson Point topLeft,
+   int width,
+   int height
+) { }
+```
+
 ---
 
 - [Home](./../../README.md)
