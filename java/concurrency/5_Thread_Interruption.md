@@ -175,3 +175,4 @@ Here, the thread can either check the flag or rely on `InterruptedException` dur
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Virtual Thread Part 2](./4_Virtual_Thread_Part2.md)
+- [Daemon Threads and Thread Names and IDs](./6_Daemon_Threads_and_Thread_Names_and_IDs.md)

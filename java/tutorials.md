@@ -18,6 +18,7 @@
       <li><a href="./concurrency/3_Virtual_Thread_Part1.html">Virtual Thread Part 1</a></li>
       <li><a href="./concurrency/4_Virtual_Thread_Part2.html">Virtual Thread Part 2</a></li>
       <li><a href="./concurrency/5_Thread_Interruption.html">Thread Interruption</a></li>
+      <li><a href="./concurrency/6_Daemon_Threads_and_Thread_Names_and_IDs.html">Daemon Threads and Thread Names and IDs</a></li>
     </ul>
   </div>
 
