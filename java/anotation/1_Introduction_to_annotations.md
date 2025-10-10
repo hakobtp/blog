@@ -89,7 +89,22 @@ There are some important rules to remember:
 1. **All values must be known at compile time**. <br>
     You cannot use variables or runtime results in annotation values.
 2. You cannot use `null`. <br>
-    If you need an “empty” value, use an empty string ("") or empty array ({}) instead.    
+    If you need an “empty” value, use an empty string (`""`) or empty array (`{}`) instead.    
+3. Arrays with one element can drop the braces.
+    ```java
+    @IssueReport(reporters = "Lena")   // same as {"Lena"}
+    ```
+4. Default values are allowed.<br>
+    If an annotation defines a default value for an element, you can skip that element when writing it.
+    For example, imagine the `@RepeatTest` annotation has a default `stopOnFail = false`.
+    Then both of these are equal:     
+   
+    ```java
+    @RepeatTest(times = 5)
+    @RepeatTest(times = 5, stopOnFail = false)
+    ```
+5. The special element name `value`. <br>
+    If an annotation has only one element named `value`, you can omit the name:    
 
 ---
 
