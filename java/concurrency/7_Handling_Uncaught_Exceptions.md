@@ -188,13 +188,6 @@ Handler CustomHandler3 caught exception in Thread-2
 Reason: Oops! Thread 3 failed.
 ```
 
-## Summary
-- Threads can die unexpectedly because of unchecked exceptions.
-- Uncaught exception handlers let you control what happens when a thread fails.
-- Each thread can have its own handler, or you can use a global default handler.
-- Modern programs usually avoid thread groups and rely on executors and logging.
-- Using handlers properly ensures your program can report errors and recover gracefully, even when threads crash.
-
 ---
 
 - `java.lang.Thread`
@@ -205,6 +198,13 @@ Reason: Oops! Thread 3 failed.
       If no handler is set, the thread group will handle the exception.
 
 ---
+
+## Summary
+- Threads can die unexpectedly because of unchecked exceptions.
+- Uncaught exception handlers let you control what happens when a thread fails.
+- Each thread can have its own handler, or you can use a global default handler.
+- Modern programs usually avoid thread groups and rely on executors and logging.
+- Using handlers properly ensures your program can report errors and recover gracefully, even when threads crash.
 
 
 ---
