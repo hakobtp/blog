@@ -10,7 +10,7 @@
     </ul>
     <h3 style="margin:0;">Annotations</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
-      <li><a href="./records/./anotation/1_Introduction_to_annotations.html">Introduction to Annotations</a></li>
+      <li><a href="./anotation/1_Introduction_to_annotations.html">Introduction to Annotations</a></li>
     </ul>
   </div>
 
