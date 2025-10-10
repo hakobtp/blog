@@ -197,6 +197,14 @@ Reason: Oops! Thread 3 failed.
 
 ---
 
+- `java.lang.Thread`
+    - `static void setDefaultUncaughtExceptionHandler(Thread.UncaughtExceptionHandler handler)`  Sets the default handler for exceptions that are not caught in any thread.
+    - `static Thread.UncaughtExceptionHandler getDefaultUncaughtExceptionHandler()` Returns the default handler for exceptions that are not caught in any thread.
+    - `void setUncaughtExceptionHandler(Thread.UncaughtExceptionHandler handler)` Sets the handler for exceptions that are not caught in this thread.
+    - `Thread.UncaughtExceptionHandler getUncaughtExceptionHandler()` Returns the handler for exceptions that are not caught in this thread.  
+      If no handler is set, the thread group will handle the exception.
+
+---
 
 
 ---
