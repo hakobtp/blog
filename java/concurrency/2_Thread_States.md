@@ -140,7 +140,7 @@ A thread stops running (is terminated) for two reasons:
     - `void join()` Waits for the specified thread to terminate. If the thread has already finished, it returns immediately.
     - `void join(long millis)` Waits at most the specified number of milliseconds for the thread to terminate.
     - `void join(long millis, int nanos)` Waits at most the specified number of milliseconds plus nanoseconds for the thread to terminate.
-    - `void join(Duration duration)` Waits up to the specified duration for the thread to terminate. (Added in Java 19)
+    - `void join(Duration duration)` Waits up to the specified duration for the thread to terminate. Returns true if the thread terminated during that time, otherwise false. (Added in Java 19)
     - `Thread.State getState()` Returns the current state of the thread: `NEW`, `RUNNABLE`, `BLOCKED`, `WAITING`, `TIMED_WAITING`, or `TERMINATED`.
     - `void stop()`  Deprecated for removal and, as of Java 21, throw an `UnsupportedOperationException` if called.
     - `void suspend()` Deprecated for removal and, as of Java 21, throw an `UnsupportedOperationException` if called.
