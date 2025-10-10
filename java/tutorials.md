@@ -17,6 +17,7 @@
       <li><a href="./concurrency/2_Thread_States.html">Thread States</a></li>
       <li><a href="./concurrency/3_Virtual_Thread_Part1.html">Virtual Thread Part 1</a></li>
       <li><a href="./concurrency/4_Virtual_Thread_Part2.html">Virtual Thread Part 2</a></li>
+      <li><a href="./concurrency/5_Thread_Interruption.html">Thread Interruption</a></li>
     </ul>
   </div>
 

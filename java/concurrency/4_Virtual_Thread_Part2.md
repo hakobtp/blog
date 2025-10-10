@@ -292,3 +292,4 @@ Virtual threads are lightweight threads managed by the JVM that allow you to cre
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Virtual Thread Part 1](./3_Virtual_Thread_Part1.md)
+- [Thread Interruption](./5_Thread_Interruption.md)
