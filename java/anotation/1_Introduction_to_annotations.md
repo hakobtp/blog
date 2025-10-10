@@ -160,6 +160,72 @@ public record Rectangle(
 ) { }
 ```
 
+### Annotating Type Parameters
+
+You can even annotate a type parameter in a generic class or method:
+
+```java
+public class Cache<@NotNull V> { ... }
+```
+
+This means that the generic type `V` should never be `null`.
+
+### Annotating Packages
+
+To annotate an entire `package`, you create a special file called `package-info.java`.
+That file contains only the `package` statement and the annotations before it.
+
+```java
+/**
+ * Package-level documentation
+ */
+@Version("1.2.0")
+package com.example.myapp;
+import com.example.annotations.Version;
+```
+
+Notice that the import statement comes after the `package` declaration.
+Annotations placed on local variables or packages are not stored in the compiled class file, so they can only be used by source-level tools, not at runtime.
+
+### Annotating for loop
+
+Starting with Java 8, the language allows annotations on local variables, including those declared inside a for loop
+
+This means you can write code like this:
+
+```java
+for (@MyAnnotation int i = 0; i < 5; i++) {
+    System.out.println(i);
+}
+```
+
+Here, `@MyAnnotation` is applied directly to the loop variable `i`.
+This works because `i` is a local variable declaration, and Java 8 expanded the annotation system to support such cases.
+
+> To make this possible, your annotation type must target `ElementType.LOCAL_VARIABLE` or `ElementType.TYPE_USE`.
+
+You can only annotate the variable declaration inside the loop — not the loop’s control expressions.
+
+In other words, these are not allowed:
+
+```java
+for (int i = 0; @MyAnnotation i < 5; i++) // Invalid
+for (int i = 0; i < 5; @MyAnnotation i++) // Invalid
+```
+
+Annotations apply only to **declarations**, not to **statements** or **expressions**.
+
+You can also annotate variables in enhanced for loops (the ones used with collections or arrays):
+
+```java
+for (@NonNull String name : names) {
+    System.out.println(name);
+}
+```
+
+This is particularly useful for static analysis tools such as the Checker Framework or SpotBugs, 
+which use annotations like `@NonNull` or `@Nullable` to verify code correctness.
+
 ---
 
 - [Home](./../../README.md)
