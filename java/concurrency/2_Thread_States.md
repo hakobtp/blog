@@ -151,3 +151,4 @@ A thread stops running (is terminated) for two reasons:
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Thread](./1_Thread.md)
+- [Virtual Thread Part 1](./3_Virtual_Thread_Part1.md)
