@@ -106,6 +106,29 @@ Think of it like saying, “I’m ready to wait; maybe someone else can go first
     - Implementing advanced thread tools (like classes in `java.util.concurrent.locks`).
 - **Note:** Most applications do not need to call `yield()`. It is mostly for special cases or experimental purposes.
 
+## Blocked and Waiting
+
+When a thread is blocked or waiting, it becomes inactive for a short time. It doesn’t run any 
+code and uses very few resources. The thread scheduler decides when to make it active again. 
+The exact process depends on why the thread became inactive.
+
+- When a thread tries to get an intrinsic object lock (not a Lock from the `java.util.concurrent library`) that 
+    another thread is already holding, it becomes blocked. The thread becomes unblocked when the other threads release the lock, 
+    and the thread scheduler lets this thread take it.
+- When the thread waits for another thread to notify the scheduler of a condition, it enters the waiting state. 
+    This happens by calling the `Object.wait` or `Thread.join` methods, or by waiting for a `Lock` or `Condition` in the `java.util.concurrent` library.    
+- Several methods have a timeout parameter. Calling them causes the thread to enter the timed waiting state. This state persists 
+    either until the timeout expires or the appropriate notification has been received. Methods with timeout include `Thread.sleep` 
+    and the timed versions of `Object.wait`, `Thread.join`, `Lock.tryLock`, and `Condition.await`.
+
+In practice, the difference between the blocked and waiting states is not usually significant. We will often say that a thread is blocked when it is in the blocked, waiting, or timed waiting state. When a thread is blocked or waiting (or, of course, when it terminates), another thread will be scheduled to run.
+
+When a thread is reactivated (for example, because its timeout has expired or it has succeeded in acquiring a lock), it becomes runnable and is eligible for being scheduled.
+
+<p align="center">
+    <img src="./assets/img2.png" alt="img2" width="400"/>
+</p>
+
 ---
 
 - [Home](./../../README.md)
