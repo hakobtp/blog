@@ -129,6 +129,23 @@ When a thread is reactivated (for example, because its timeout has expired or it
     <img src="./assets/img2.png" alt="img2" width="400"/>
 </p>
 
+## Terminated Threads
+
+A thread stops running (is terminated) for two reasons:
+
+1. It finishes normally when the `run` method ends.
+2. It stops suddenly when an uncaught exception ends the run method.
+
+- **java.lang.Thread**
+    - `void join()` Waits for the specified thread to terminate. If the thread has already finished, it returns immediately.
+    - `void join(long millis)` Waits at most the specified number of milliseconds for the thread to terminate.
+    - `void join(long millis, int nanos)` Waits at most the specified number of milliseconds plus nanoseconds for the thread to terminate.
+    - `void join(Duration duration)` Waits up to the specified duration for the thread to terminate. (Added in Java 19)
+    - `Thread.State getState()` Returns the current state of the thread: `NEW`, `RUNNABLE`, `BLOCKED`, `WAITING`, `TIMED_WAITING`, or `TERMINATED`.
+    - `void stop()`  Deprecated for removal and, as of Java 21, throw an `UnsupportedOperationException` if called.
+    - `void suspend()` Deprecated for removal and, as of Java 21, throw an `UnsupportedOperationException` if called.
+    - `void resume()`  Deprecated for removal and, as of Java 21, throw an `UnsupportedOperationException` if called.
+   
 ---
 
 - [Home](./../../README.md)
