@@ -20,6 +20,7 @@
       <li><a href="./concurrency/5_Thread_Interruption.html">Thread Interruption</a></li>
       <li><a href="./concurrency/6_Daemon_Threads_and_Thread_Names_and_IDs.html">Daemon Threads and Thread Names and IDs</a></li>
       <li><a href="./concurrency/7_Handling_Uncaught_Exceptions.html">Handling Uncaught Exceptions</a></li>
+      <!-- HASELEM 10.3.6. Thread Priorities -->
     </ul>
   </div>
 
