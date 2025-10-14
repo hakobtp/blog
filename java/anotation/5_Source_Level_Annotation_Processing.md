@@ -27,6 +27,33 @@ If a processor creates new source files, the compiler will process those new fil
 
 > **Important rule:** Annotation processors cannot modify existing files — they can only create new ones.
 
+## A Custom Processor
+
+An annotation processor is a Java class that implements the `Processor` interface, usually by extending the `AbstractProcessor` class.
+You must tell the compiler which annotations your processor supports.
+
+For example:
+```java
+@SupportedAnnotationTypes("annotations.AutoLog")
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
+public class AutoLogProcessor extends AbstractProcessor {
+    public boolean process(Set<? extends TypeElement> annotations, 
+                           RoundEnvironment roundEnv) {
+        // Processor logic goes here
+        return true;
+    }
+}
+```
+
+This processor looks for the annotation `@AutoLog`.
+You could also use wildcards like `"com.example.*"` (to include all annotations in a package) or `"*"` (to include all annotations everywhere).
+
+The `process` method runs once per round of compilation.
+
+It receives:
+- A set of all found annotations, and
+- A `RoundEnvironment` object that provides information about the elements (classes, methods, etc.) found in that round.
+
 ---
 
 - [Home](./../../README.md)
