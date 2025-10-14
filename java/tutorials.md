@@ -48,7 +48,7 @@
     </ul>
     <h3 style="margin:0;">Advanced Topics</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
-      <li><a href="./advanced_topicsj/1_Serialization_and_Customization_Methods.html">Serialization and Customization Methods</a></li>
+      <li><a href="./advanced_topics/1_Serialization_and_Customization_Methods.html">Serialization and Customization Methods</a></li>
     </ul>
   </div>
 </div>
