@@ -348,6 +348,75 @@ dependencies {
 }
 ```
 
+## What Annotation Processors Can't Do (And How Lombok Cheats)
+
+Remember the golden rule: processors can't change existing code.
+
+This means you can't use a standard annotation processor to add a method to an existing class. 
+Our `@GenerateBuilder` annotation couldn't add a `builder()` method directly inside the `GameCharacter` class. 
+It had to create a separate `GameCharacterBuilder.java` file.
+
+So how does Project Lombok work?
+
+You’ve probably seen Lombok's `@Getter`, `@Setter`, and `@Builder` annotations, which magically add methods to your classes without creating new files.
+
+Lombok "cheats." It doesn't use the standard, public annotation processing APIs. Instead, it hooks directly into the compiler's internal machinery to modify the 
+`Abstract Syntax Tree (AST)`—the tree-like structure that represents your code—during compilation.
+
+- **Standard Processors:** Add new branches to the forest (new files).
+- **Lombok:** Changes the trees in the forest directly (modifies existing classes).
+
+This approach is powerful but is not part of the standard Java specification. It can sometimes be brittle and break with new versions of the Java compiler.
+
+
+During the compilation process, the Java compiler first parses your `.jav`a source code into an in-memory tree-like structure called an `Abstract Syntax Tree (AST)`. Think of the `AST` as a detailed blueprint of your code, representing every class, method, variable, and statement.
+
+Instead of generating new files, Lombok hooks directly into the compiler's internal APIs to modify this AST in memory.
+
+Here's the step-by-step process for an annotation like `@Getter`:
+
+1. **Parsing:** The compiler reads your `Person.java` file and builds an `AST` for the `Person` class.
+2. `Lombok's Turn`: The Lombok annotation processor is triggered. It finds the `AST` node for the `name` field, which is marked with `@Getter`.
+3. **AST Modification:** Lombok then directly adds a new set of nodes to the `Person` class's `AST` that represent the `getName()` method. 
+    It calculates the method name, return type, and body, and injects them right into the existing blueprint.
+4. **Compilation Continues:** The compiler then proceeds to the next stage (code generation), using the modified AST. It sees the `getName()` 
+    method as if you had written it yourself and generates the corresponding bytecode for it.
+
+The key takeaway is that your original `.java` file on the disk is never touched. The "magic" happens entirely in the compiler's 
+memory before the final `.class` file is written.    
+
+That's an excellent question, and it gets to the heart of what makes Lombok so special and controversial.
+
+You're right, the golden rule for standard annotation processors is that they cannot modify existing source files. Lombok gets around this by not being a "standard" processor. It uses a clever, non-standard technique.
+
+Here’s how it works:
+
+It Modifies the Code In-Memory
+During the compilation process, the Java compiler first parses your .java source code into an in-memory tree-like structure called an Abstract Syntax Tree (AST). Think of the AST as a detailed blueprint of your code, representing every class, method, variable, and statement.
+
+Instead of generating new files, Lombok hooks directly into the compiler's internal APIs to modify this AST in memory.
+
+Here's the step-by-step process for an annotation like @Getter:
+
+Parsing: The compiler reads your Person.java file and builds an AST for the Person class.
+
+Lombok's Turn: The Lombok annotation processor is triggered. It finds the AST node for the name field, which is marked with @Getter.
+
+AST Modification: Lombok then directly adds a new set of nodes to the Person class's AST that represent the getName() method. It calculates the method name, return type, and body, and injects them right into the existing blueprint.
+
+Compilation Continues: The compiler then proceeds to the next stage (code generation), using the modified AST. It sees the getName() method as if you had written it yourself and generates the corresponding bytecode for it.
+
+The key takeaway is that your original .java file on the disk is never touched. The "magic" happens entirely in the compiler's memory before the final .class file is written.
+
+The Forest Analogy
+
+- **Standard Annotation Processors:** Can plant new trees in the forest (generate new files). They cannot change the existing trees.
+- **Lombok:** Walks up to an existing tree and grafts new branches onto it (modifies the AST of an existing class).
+
+This approach is extremely powerful but relies on internal, undocumented compiler APIs, which is why Lombok can sometimes have compatibility issues with new Java versions or other tools that also manipulate the compilation process.
+
+## Summary
+
 ---
 
 - [Home](./../../README.md)
