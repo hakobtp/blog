@@ -156,6 +156,63 @@ private void readObjectNoData() throws ObjectStreamException {
 
 You can use it to set default values or handle missing information safely.
 
+#### writeReplace()
+
+This method gives you a chance to replace the object being serialized with another one.
+
+```java
+@Serial
+private Object writeReplace() throws ObjectStreamException {
+    return new AccountProxy(username); // replace with a simpler object
+}
+```
+
+This is often used when you don’t want to expose sensitive or complex objects during serialization.
+The returned object (like `AccountProxy`) is the one that gets serialized instead.
+
+#### readResolve()
+
+This method runs after deserialization.
+It allows you to replace the newly created object with another one — useful for singletons or caching.
+
+```java
+class Config implements Serializable {
+    private static final Config INSTANCE = new Config();
+
+    private Config() {}
+
+    public static Config getInstance() {
+        return INSTANCE;
+    }
+
+    @Serial
+    private Object readResolve() throws ObjectStreamException {
+        return INSTANCE; // always return the same singleton
+    }
+}
+```
+
+Without `readResolve()`, deserialization would create a new object, breaking the singleton pattern.
+
+#### Summary of Special Methods
+
+| Method                                | Called When                    | Purpose                       |
+| ------------------------------------- | ------------------------------ | ----------------------------- |
+| `writeObject(ObjectOutputStream out)` | During serialization           | Custom write logic            |
+| `readObject(ObjectInputStream in)`    | During deserialization         | Custom read logic             |
+| `readObjectNoData()`                  | When no serialized data exists | Set default values            |
+| `writeReplace()`                      | Before serialization           | Replace object before writing |
+| `readResolve()`                       | After deserialization          | Replace object after reading  |
+
+
+## Best Practices
+
+- Always define a `serialVersionUID` in every serializable class.
+- Use @`Serial` for all serialization methods and fields — it improves readability and compiler checks.
+- Avoid serializing sensitive data directly (encrypt or mark it transient).
+- Prefer JSON or other formats for modern systems — built-in serialization is mostly for internal use.
+
+
 ---
 
 - [Home](./../../README.md)
