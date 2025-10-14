@@ -134,14 +134,12 @@ public class GenerateBuilderProcessor extends AbstractProcessor {
 }
 ```
 
-- `@SupportedAnnotationTypes:` 
+- `@SupportedAnnotationTypes`**:** 
     - You can specify the full path to an annotation, 
     - use a wildcard like `"com.example.*"`, 
     - or even `"*"` to inspect all annotations (though this is less efficient).
-
-@SupportedSourceVersion: This ensures your processor doesn't fail on newer Java syntax.
-
-process(): This is the main method where all your logic goes. It runs during each compilation round.
+- `@SupportedSourceVersion`**:** This ensures your processor doesn't fail on newer Java syntax.
+- `process()`**:** This is the main method where all your logic goes. It runs during each compilation round.
 
 ---
 
