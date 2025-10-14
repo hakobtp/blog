@@ -22,6 +22,11 @@ You can run them like this:
 javac -processor ProcessorClassName1,ProcessorClassName2 MySourceFile.java
 ```
 
+Each processor checks for specific annotations and acts only on the ones it cares about.
+If a processor creates new source files, the compiler will process those new files as well. This continues until there are no more files to generate.
+
+> **Important rule:** Annotation processors cannot modify existing files — they can only create new ones.
+
 ---
 
 - [Home](./../../README.md)
