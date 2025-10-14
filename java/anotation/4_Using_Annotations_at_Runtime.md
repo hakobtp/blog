@@ -172,6 +172,15 @@ Box[[5,10],width=20,height=30]
 Annotations are powerful tools for simplifying repetitive tasks and adding metadata to your code. They work best when combined with reflection for runtime processing.
 
 
+--- 
+
+- `java.lang.reflect.AnnotatedElement`
+    - `boolean isAnnotationPresent(Class<? extends Annotation> annotationType)` returns `true` if this element has an annotation of the specified type.
+    - `<T extends Annotation> T getAnnotation(Class<T> annotationType)` returns the annotation of the given type, or `null` if this element does not have it.
+    - `<T extends Annotation> T[] getAnnotationsByType(Class<T> annotationType)`returns all annotations of a repeatable type. If there are none, it returns an empty array (length 0).
+    - `Annotation[] getAnnotations() returns` all annotations that exist on this element, including inherited ones. If there are none, it returns an empty array.    
+    - `Annotation[] getDeclaredAnnotations()` returns all annotations that exist on this element, including inherited ones. If there are none, it returns an empty array.
+
 ---
 
 - [Home](./../../README.md)
