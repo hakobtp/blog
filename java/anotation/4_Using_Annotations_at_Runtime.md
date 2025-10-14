@@ -116,8 +116,7 @@ public class ToStringUtil {
             if (ts != null) {
                 if (first) {
                     first = false;
-                }
-                else {
+                } else {
                     sb.append(",");
                 }
                 f.setAccessible(true);
