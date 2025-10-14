@@ -117,6 +117,20 @@ When you see this annotation, it usually means a tool created the code, not a hu
 For example, frameworks like Lombok or MapStruct often mark generated methods or classes with it.
 This helps other tools know not to modify or analyze that code
 
+### Meta-Annotations
+
+Meta-annotations are special because they describe how other annotations work.
+Here are the most important ones:
+
+| Meta-Annotation | Used On          | What It Does                                                                      |
+| --------------- | ---------------- | --------------------------------------------------------------------------------- |
+| `@Target`       | Annotation types | Defines **where** the annotation can be used (e.g., on methods, classes, fields). |
+| `@Retention`    | Annotation types | Defines **how long** the annotation is kept (in source, class, or runtime).       |
+| `@Documented`   | Annotation types | Makes sure the annotation appears in the generated documentation.                 |
+| `@Inherited`    | Annotation types | Lets subclasses automatically **inherit** an annotation from their superclass.    |
+| `@Repeatable`   | Annotation types | Allows an annotation to be used **more than once** on the same element.           |
+
+
 ---
 
 - [Home](./../../README.md)
