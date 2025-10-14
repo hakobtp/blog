@@ -74,6 +74,31 @@ public class GenerateBuilderProcessor extends AbstractProcessor {
 - `@SupportedSourceVersion`**:** This ensures your processor doesn't fail on newer Java syntax.
 - `process()`**:** This is the main method where all your logic goes. It runs during each compilation round.
 
+
+## Source Code vs. Runtime: The Language Model API
+
+When a processor analyzes your code, the code hasn't been compiled into bytecode yet. This means we cannot use reflection. 
+Reflection works on loaded classes in the JVM (at runtime), but we are working with raw source code (at compile-time).
+
+So, how do we analyze the code? We use the Language Model API.
+
+Here’s a simple analogy
+- Reflection is like inspecting a fully built car in a showroom. You can see its final parts and features.
+- The Language Model API is like looking at the car's original blueprints. You see the design, the components, and how everything is supposed to connect before it's built.
+
+The compiler represents your source code as a tree of `Element` objects. The most common ones are:
+
+- `TypeElement`**:** Represents a class or interface (like `Class` in reflection).
+- `ExecutableElement`**:** Represents a method or constructor (like `Method` or `Constructor` in reflection).
+- `VariableElement`: Represents a field, parameter, or local variable (like `Field` in reflection).
+
+You can use the `RoundEnvironment` object inside your process method to find all elements annotated with your target annotation:
+
+```java
+// Inside the process() method
+Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(GenerateBuilder.class);
+```
+
 ---
 
 - [Home](./../../README.md)
