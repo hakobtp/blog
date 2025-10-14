@@ -1,5 +1,4 @@
 <div>
-
   <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">Basics</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
@@ -33,7 +32,7 @@
     </ul>
   </div>
 
-  <!-- <div style="display:inline-block; vertical-align:top;">
+  <div style="display:inline-block; vertical-align:top;">
     <h3 style="margin:0;">Stream</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./stream/1_Introduction_to_stream.html">Introduction to Stream</a></li>
@@ -52,7 +51,7 @@
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./advanced_topicsj/1_Serialization_and_Customization_Methods.html">Serialization and Customization Methods</a></li>
     </ul> -->
-  </div> -->
+  </div>
 </div>
 
 --- 
