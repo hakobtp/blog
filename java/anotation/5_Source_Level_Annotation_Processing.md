@@ -36,6 +36,36 @@ Here’s the process:
 3. **Process:** The processor analyzes the annotated code (e.g., a class or method) and generates new source files.
 4. **Loop:** If new source files were created, the compiler runs another "round" of compilation to process those new files. This continues until no new files are generated.
 
+> **NOTE:** Annotation processors can only generate new files. They can never, ever modify existing source code
+
+## Building Your First Annotation Processor
+
+An annotation processor is just a Java class. It needs to implement the Processor interface, but we usually make our lives easier by extending the AbstractProcessor class.
+
+To make it work, you must tell the compiler two things:
+
+1. Which annotations should this processor handle?
+2. Which Java version is it compatible with?
+
+Here’s the basic structure:
+
+```java
+// Tell the compiler this processor handles our @GenerateBuilder annotation
+@SupportedAnnotationTypes("com.example.annotations.GenerateBuilder") 
+
+// Tell the compiler this processor works with Java 21+ features
+@SupportedSourceVersion(SourceVersion.RELEASE_21) 
+
+public class GenerateBuilderProcessor extends AbstractProcessor {
+
+    @Override
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        // All the magic happens here!
+        // Return 'true' to signal that you've handled the annotations.
+        return true; 
+    }
+}```
+
 ---
 
 - [Home](./../../README.md)
