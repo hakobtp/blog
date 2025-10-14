@@ -126,15 +126,22 @@ Here’s the basic structure:
 public class GenerateBuilderProcessor extends AbstractProcessor {
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, 
-                           RoundEnvironment roundEnv) {
+    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         // All the magic happens here!
-        
         // Return 'true' to signal that you've handled the annotations.
         return true; 
     }
 }
 ```
+
+- `@SupportedAnnotationTypes:` 
+    - You can specify the full path to an annotation, 
+    - use a wildcard like `"com.example.*"`, 
+    - or even `"*"` to inspect all annotations (though this is less efficient).
+
+@SupportedSourceVersion: This ensures your processor doesn't fail on newer Java syntax.
+
+process(): This is the main method where all your logic goes. It runs during each compilation round.
 
 ---
 
