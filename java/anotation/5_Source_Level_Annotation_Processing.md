@@ -93,6 +93,55 @@ to get a specific annotation or all repeated ones.
 
 ## Using Annotations to Generate Source Code
 
+Let’s try a practical example.
+
+Suppose we want to automatically create `toString()` methods for certain classes.
+Because annotation processors can’t edit existing files, we’ll generate a new helper class instead.
+
+We define our annotation: 
+```java
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.SOURCE)
+public @interface AutoString {
+    boolean includeName() default true;
+}
+```
+
+Then, use it in your code:
+
+```java
+@AutoString
+public class Book {
+    private String title;
+    private String author;
+
+    @AutoString(includeName = false)
+    public String getTitle() { return title; }
+
+    @AutoString
+    public String getAuthor() { return author; }
+}
+```
+
+The processor will generate a new class, for example `AutoStrings.java`, containing methods like this:
+
+```java
+public class AutoStrings {
+    public static String toString(Book obj) {
+        var sb = new StringBuilder();
+        sb.append("Book[");
+        sb.append("title=").append(obj.getTitle()).append(", ");
+        sb.append("author=").append(obj.getAuthor());
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public static String toString(Object obj) {
+        return java.util.Objects.toString(obj);
+    }
+}
+```
+
 ---
 
 - [Home](./../../README.md)
