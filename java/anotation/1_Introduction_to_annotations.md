@@ -344,3 +344,4 @@ You can add annotations to it, just like with normal parameters.
 
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
+- [Declaring an Annotation](./2_Declaring_an_Annotation.md)
