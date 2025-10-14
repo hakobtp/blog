@@ -29,7 +29,7 @@ Let’s look at the most important ones that every Java developer should know.
 | `@FunctionalInterface` | Interfaces                         | Tells that this interface is functional (it has exactly one abstract method). |
 | `@Generated`           | All declarations                   | Shows that a piece of code was created by a tool or generator.                |
 
---- 
+#### @Override
 
 When you write a method that overrides another one from a superclass, it’s a good idea to use `@Override`.
 
@@ -49,7 +49,7 @@ class Dog extends Animal {
 If you accidentally misspell the method name or use the wrong parameters, the compiler will warn you.
 That’s why this annotation prevents subtle bugs.
 
----
+#### @Deprecated
 
 Use this annotation when a method or class should no longer be used — maybe because a newer version exists.
 
@@ -63,7 +63,7 @@ void oldMethod() {
 When other developers call it, the compiler shows a warning message.
 You can also give more details using JavaDoc’s `@deprecated` tag.
 
----
+#### @SuppressWarning
 
 Sometimes the compiler shows warnings that you already know about and can safely ignore.
 You can use this annotation to hide them.
@@ -75,7 +75,7 @@ List rawList = new ArrayList();
 
 However, this should be used carefully — suppressing warnings might hide real problems in your code.
 
----
+#### @SafeVarargs
 
 This annotation tells the compiler that it’s safe to use a varargs parameter (an argument list with `...`).
 It prevents warnings about “heap pollution” — a problem that can happen when mixing generics and varargs.
@@ -91,7 +91,7 @@ static <T> void printAll(T... items) {
 
 You can use it only on `final` or `static` methods, and on `constructors`.
 
----
+#### @FunctionalInterface
 
 This one marks an interface as a functional interface, which means it must have only one abstract method.
 Functional interfaces are used with lambda expressions.
@@ -111,9 +111,9 @@ Calculator add = (x, y) -> x + y;
 System.out.println(add.compute(3, 4)); // 7
 ```
 
----
+#### @Generated
 
-`@Generated`: When you see this annotation, it usually means a tool created the code, not a human.
+When you see this annotation, it usually means a tool created the code, not a human.
 For example, frameworks like Lombok or MapStruct often mark generated methods or classes with it.
 This helps other tools know not to modify or analyze that code
 
