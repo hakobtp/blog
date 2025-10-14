@@ -213,7 +213,160 @@ Without `readResolve()`, deserialization would create a new object, breaking the
 - Prefer JSON or other formats for modern systems — built-in serialization is mostly for internal use.
 
 
+## Serialization (Writing the Object)
+
+```java
+ ┌─────────────────────────────┐
+ │  ObjectOutputStream out     │
+ └──────────────┬──────────────┘
+                │
+                ▼
+     ┌───────────────────────────┐
+     │  Object is being written  │
+     └──────────────┬────────────┘
+                    │
+                    ▼
+       Does the class implement Serializable?
+                    │
+          ┌─────────┴──────────┐
+          │                    │
+         YES                  NO
+          │                    │
+          ▼                    ▼
+  ┌────────────────┐     Throw NotSerializableException
+  │  Check for     │
+  │  writeReplace()│
+  └──────┬─────────┘
+         │
+         ▼
+If present → Replace object with returned one
+         │
+         ▼
+ ┌─────────────────────────────┐
+ │ Call writeObject(out) if it │
+ │ exists, else default write  │
+ └──────────────┬──────────────┘
+                │
+                ▼
+ Writes bytes to stream → file/network
+                │
+                ▼
+        Serialization done
+```
+
+## Deserialization (Reading the Object)
+
+ ┌─────────────────────────────┐
+ │  ObjectInputStream in       │
+ └──────────────┬──────────────┘
+                │
+                ▼
+   Read class metadata (name, UID, etc.)
+                │
+                ▼
+ Match with loaded class version
+                │
+       ┌────────┴────────┐
+       │                 │
+    Match            Mismatch 
+       │                 │
+       ▼                 ▼
+  Continue          InvalidClassException
+       │
+       ▼
+Check for readObject() method
+       │
+       ▼
+ ┌─────────────────────────────┐
+ │ Call readObject(in) if it   │
+ │ exists, else default read   │
+ └──────────────┬──────────────┘
+                │
+                ▼
+If no data for this class → call readObjectNoData()
+                │
+                ▼
+Call readResolve() if defined → replace object
+                │
+                ▼
+       Deserialization done 
+
 ---
+
+## Example of Full Flow with Custom Methods
+
+Here’s how everything fits together in a single example:
+
+```java
+import java.io.*;
+
+class Account implements Serializable {
+    String username;
+    transient String password;
+
+    Account(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    // Step 1: Replace object before writing
+    @Serial
+    private Object writeReplace() throws ObjectStreamException {
+        System.out.println("writeReplace() called");
+        return this;
+    }
+
+    // Step 2: Customize writing
+    @Serial
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        System.out.println("writeObject() called");
+        out.defaultWriteObject();
+        out.writeObject(encrypt(password));
+    }
+
+    // Step 3: Customize reading
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        System.out.println("readObject() called");
+        in.defaultReadObject();
+        password = decrypt((String) in.readObject());
+    }
+
+    // Step 4: Replace object after reading
+    @Serial
+    private Object readResolve() throws ObjectStreamException {
+        System.out.println("readResolve() called");
+        return this;
+    }
+
+    // Step 5: Handle case when no data
+    @Serial
+    private void readObjectNoData() throws ObjectStreamException {
+        System.out.println("readObjectNoData() called");
+    }
+
+    private String encrypt(String s) { return new StringBuilder(s).reverse().toString(); }
+    private String decrypt(String s) { return new StringBuilder(s).reverse().toString(); }
+}
+```
+
+Output flow (simplified):
+
+```
+writeReplace() called
+writeObject() called
+readObject() called
+readResolve() called
+```
+
+Summary Diagram (Simplified)
+```
+Serialization:
+writeReplace() → writeObject() → (data written)
+
+Deserialization:
+(read data) → readObject() / readObjectNoData() → readResolve()
+```
 
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
