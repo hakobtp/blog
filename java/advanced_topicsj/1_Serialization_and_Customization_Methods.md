@@ -215,7 +215,7 @@ Without `readResolve()`, deserialization would create a new object, breaking the
 
 ## Serialization (Writing the Object)
 
-```java
+```
  ┌─────────────────────────────┐
  │  ObjectOutputStream out     │
  └──────────────┬──────────────┘
@@ -257,7 +257,6 @@ If present → Replace object with returned one
 ## Deserialization (Reading the Object)
 
 ```
-
  ┌─────────────────────────────┐
  │  ObjectInputStream in       │
  └──────────────┬──────────────┘
