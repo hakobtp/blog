@@ -417,6 +417,15 @@ This approach is extremely powerful but relies on internal, undocumented compile
 
 ## Summary
 
+Annotation processing is a key feature for modern Java development, powering many popular libraries for dependency injection (Dagger, Hilt), object mapping (MapStruct), and more.
+
+Let's recap the key ideas:
+- **Automate Your Work**: Processors let you write code that generates other code, saving you from repetitive tasks.
+- **Compile-Time, Not Runtime:** Everything happens during compilation, so there is no performance penalty when your program runs.
+- **The Golden Rule:** They can only create new files; they can never modify existing ones.
+- **Language Model API:** You use this API (with `TypeElement`, `ExecutableElement`, etc.) to analyze source code before it's compiled.
+- **Build Tool Integration:** Real-world projects use Maven or Gradle to manage and run annotation processors automatically.
+
 ---
 
 - [Home](./../../README.md)
