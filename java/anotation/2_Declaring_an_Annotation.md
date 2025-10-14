@@ -164,18 +164,6 @@ Hash code: -740212903
 To string: @com.htp.CustomAnnotation(author="Hakob", version=1)
 ```
 
-
----
-
-| Word                | Meaning                                                                            |
-| ------------------- | ---------------------------------------------------------------------------------- |
-| **annotation**      | A marker in code that gives extra information to the compiler or tools.            |
-| **meta-annotation** | An annotation that describes how another annotation works.                         |
-| **reflection**      | A Java feature that lets a program examine or change its own structure at runtime. |
-| **default value**   | The value used when none is provided by the programmer.                            |
-| **interface**       | A type in Java that defines method signatures but no implementations.              |
-
-
 ## Summary
 
 - Annotations in Java are defined using the `@interface` keyword.
@@ -189,3 +177,4 @@ To string: @com.htp.CustomAnnotation(author="Hakob", version=1)
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Introduction to Annotations](./1_Introduction_to_annotations.md)
+- [Annotations in the Java API](./3_Annotations_in_the_Java_API.md)

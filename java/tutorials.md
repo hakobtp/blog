@@ -12,6 +12,7 @@
     <ul style="margin:0; padding-left:0; list-style:none;">
       <li><a href="./anotation/1_Introduction_to_annotations.html">Introduction to Annotations</a></li>
       <li><a href="./anotation/2_Declaring_an_Annotation.html">Declaring an Annotation</a></li>
+      <li><a href="./anotation/3_Annotations_in_the_Java_API.html">Annotations in the Java API</a></li>
     </ul>
   </div>
 
