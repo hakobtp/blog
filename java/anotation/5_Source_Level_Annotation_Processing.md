@@ -27,7 +27,7 @@ If a processor creates new source files, the compiler will process those new fil
 
 > **Important rule:** Annotation processors cannot modify existing files — they can only create new ones.
 
-## A Custom Processor
+### A Custom Processor
 
 An annotation processor is a Java class that implements the `Processor` interface, usually by extending the `AbstractProcessor` class.
 You must tell the compiler which annotations your processor supports.
@@ -53,6 +53,45 @@ The `process` method runs once per round of compilation.
 It receives:
 - A set of all found annotations, and
 - A `RoundEnvironment` object that provides information about the elements (classes, methods, etc.) found in that round.
+
+### The Language Model API
+
+When analyzing annotations in source code, you use the Language Model API, not reflection.
+
+Difference from Reflection:
+
+- The reflection API shows how classes and methods look inside the Java Virtual Machine after compilation.
+- The language model API shows how they look in source code, following Java’s language rules.
+
+The compiler represents your program as a tree made of elements such as:
+
+- `TypeElement` → classes and interfaces
+- `VariableElement` → fields and variables
+- `ExecutableElement` → methods and constructors
+
+These elements are similar to `Class`, `Field`, and `Method` objects from reflection, but they work before the code is turned into bytecode.
+
+You can use methods like:
+
+```java
+Set<? extends Element> getElementsAnnotatedWith(Class<? extends Annotation> a)
+Set<? extends Element> getElementsAnnotatedWithAny(Set<Class<? extends Annotation>> annotations)
+```
+
+to find all elements that have certain annotations.
+The second method is useful when one element has multiple annotations of the same type (called repeated annotations).
+
+You can also call:
+```java
+A getAnnotation(Class<A> annotationType)
+A[] getAnnotationsByType(Class<A> annotationType)
+```
+to get a specific annotation or all repeated ones.
+
+- If you need a class’s fields or methods, call `getEnclosedElements()` on its `TypeElement`.
+- To get names, use `getSimpleName()` or `getQualifiedName()` — they return a `Name` object that you can convert to a string.
+
+## Using Annotations to Generate Source Code
 
 ---
 
