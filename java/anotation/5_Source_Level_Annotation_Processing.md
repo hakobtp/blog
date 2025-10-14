@@ -27,6 +27,15 @@ Get ready to make the compiler your personal assistant.
 Annotation processing is a special feature built directly into the Java compiler (`javac`). Think of 
 the compiler as a factory assembly line. As your source code (`.java` files) moves down the line, the compiler can call special tools called annotation processors.
 
+These processors are like little robots on the assembly line. They scan your code for specific annotations they've been trained to find.
+
+Here’s the process:
+
+1. **Scan:** The compiler starts compiling your code and finds annotations like `@MyCustomAnnotation`.
+2. **Activate:** It activates any registered processors that handle those annotations.
+3. **Process:** The processor analyzes the annotated code (e.g., a class or method) and generates new source files.
+4. **Loop:** If new source files were created, the compiler runs another "round" of compilation to process those new files. This continues until no new files are generated.
+
 ---
 
 - [Home](./../../README.md)
