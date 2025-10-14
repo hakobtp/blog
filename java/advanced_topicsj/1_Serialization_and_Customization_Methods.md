@@ -256,6 +256,8 @@ If present → Replace object with returned one
 
 ## Deserialization (Reading the Object)
 
+```
+
  ┌─────────────────────────────┐
  │  ObjectInputStream in       │
  └──────────────┬──────────────┘
@@ -290,8 +292,7 @@ Call readResolve() if defined → replace object
                 │
                 ▼
        Deserialization done 
-
----
+```
 
 ## Example of Full Flow with Custom Methods
 
