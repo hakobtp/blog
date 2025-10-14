@@ -122,6 +122,69 @@ public @interface GenerateBuilder {
 }
 ```
 
+### Use the Annotation
+
+Now, let's annotate a simple data class. This is the class we write manually.
+
+```java
+package com.example.app;
+
+import com.example.annotations.GenerateBuilder;
+
+@GenerateBuilder
+public class GameCharacter {
+    private String name;
+    private String characterClass;
+    private int level;
+    private int healthPoints;
+    
+    // We need a private constructor for the builder to use
+    private GameCharacter() {}
+
+    // Getters
+    public String getName() { return name; }
+    public String getCharacterClass() { return characterClass; }
+    public int getLevel() { return level; }
+    public int getHealthPoints() { return healthPoints; }
+
+    @Override
+    public String toString() {
+        return characterClass + " " + name + " (Lvl " + level + ", HP: " + healthPoints + ")";
+    }
+}
+```
+
+### The Generated Code (Our Goal)
+
+Our processor should automatically generate a new file, `GameCharacterBuilder.java`, that looks like this
+
+```java
+// THIS FILE IS GENERATED! DO NOT EDIT.
+package com.example.app;
+
+public class GameCharacterBuilder {
+    private String name;
+    private String characterClass;
+    private int level;
+    private int healthPoints;
+
+    public GameCharacterBuilder withName(String name) {
+        this.name = name;
+        return this;
+    }
+    
+    // ... other "with" methods for characterClass, level, etc. ...
+
+    public GameCharacter build() {
+        GameCharacter obj = new GameCharacter();
+        // Here we would need reflection or setters to set private fields.
+        // For simplicity, let's assume the processor would generate setters 
+        // in the original class if it could, or use a public constructor.
+        // A better approach would be generating a constructor that takes a builder.
+        return obj; 
+    }
+}
+```
 
 ---
 
