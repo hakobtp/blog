@@ -97,6 +97,32 @@ You can use the `RoundEnvironment` object inside your process method to find all
 Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(GenerateBuilder.class);
 ```
 
+## Practical Example: Generating a Fluent Builder
+
+Let's create a real-world example. Manually writing a Builder pattern for a class is tedious. We can automate it!
+
+**Our goal**: Annotate a simple class and have the processor generate a complete Builder class for it.
+
+### Define the Annotation
+
+First, we need an annotation. Its only job is to mark the classes we want to process.
+`@Retention(RetentionPolicy.SOURCE)` is crucial—it tells the compiler to discard the annotation after compilation because it's no longer needed.
+
+```java
+package com.example.annotations;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.TYPE) // This annotation can only be used on classes
+@Retention(RetentionPolicy.SOURCE) // Available only during compilation
+public @interface GenerateBuilder {
+}
+```
+
+
 ---
 
 - [Home](./../../README.md)
