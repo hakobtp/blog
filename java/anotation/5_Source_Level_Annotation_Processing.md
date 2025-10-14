@@ -52,10 +52,8 @@ Here’s the basic structure:
 ```java
 // Tell the compiler this processor handles our @GenerateBuilder annotation
 @SupportedAnnotationTypes("com.example.annotations.GenerateBuilder") 
-
 // Tell the compiler this processor works with Java 21+ features
 @SupportedSourceVersion(SourceVersion.RELEASE_21) 
-
 public class GenerateBuilderProcessor extends AbstractProcessor {
 
     @Override
