@@ -142,6 +142,46 @@ public class AutoStrings {
 }
 ```
 
+Now, instead of writing `toString()` manually in each class, you can simply call:
+
+```java
+System.out.println(AutoStrings.toString(myBook));
+```
+
+Here’s a simplified version of how the processor might work:
+
+```java
+public boolean process(Set<? extends TypeElement> annotations,
+                       RoundEnvironment roundEnv) {
+    if (annotations.isEmpty()) return true;
+
+    try {
+        JavaFileObject file = processingEnv.getFiler()
+            .createSourceFile("annotations.AutoStrings");
+        try (var out = new PrintWriter(file.openWriter())) {
+            out.println("package annotations;");
+            out.println("public class AutoStrings {");
+
+            for (Element e : roundEnv.getElementsAnnotatedWith(AutoString.class)) {
+                if (e instanceof TypeElement type) {
+                    writeToStringMethod(out, type);
+                }
+            }
+
+            out.println("    public static String toString(Object obj) {");
+            out.println("        return java.util.Objects.toString(obj);");
+            out.println("    }");
+            out.println("}");
+        }
+    } catch (IOException e) {
+        processingEnv.getMessager()
+            .printMessage(Diagnostic.Kind.ERROR, e.getMessage());
+    }
+
+    return true;
+}
+```
+
 ---
 
 - [Home](./../../README.md)
