@@ -65,6 +65,60 @@ You can also give more details using JavaDoc’s `@deprecated` tag.
 
 ---
 
+Sometimes the compiler shows warnings that you already know about and can safely ignore.
+You can use this annotation to hide them.
+
+```java
+@SuppressWarnings("unchecked")
+List rawList = new ArrayList();
+```
+
+However, this should be used carefully — suppressing warnings might hide real problems in your code.
+
+---
+
+This annotation tells the compiler that it’s safe to use a varargs parameter (an argument list with `...`).
+It prevents warnings about “heap pollution” — a problem that can happen when mixing generics and varargs.
+
+```java
+@SafeVarargs
+static <T> void printAll(T... items) {
+    for (T item : items) {
+        System.out.println(item);
+    }
+}
+```
+
+You can use it only on `final` or `static` methods, and on `constructors`.
+
+---
+
+This one marks an interface as a functional interface, which means it must have only one abstract method.
+Functional interfaces are used with lambda expressions.
+
+```java
+@FunctionalInterface
+interface Calculator {
+    int compute(int a, int b);
+}
+```
+
+If you add a second abstract method, the compiler will report an error.
+
+Example of use:
+```java
+Calculator add = (x, y) -> x + y;
+System.out.println(add.compute(3, 4)); // 7
+```
+
+---
+
+`@Generated`: When you see this annotation, it usually means a tool created the code, not a human.
+For example, frameworks like Lombok or MapStruct often mark generated methods or classes with it.
+This helps other tools know not to modify or analyze that code
+
+---
+
 - [Home](./../../README.md)
 - [Java Tutorials](./../tutorials.md)
 - [Declaring an Annotation](./2_Declaring_an_Annotation.md)
