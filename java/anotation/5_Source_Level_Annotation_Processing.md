@@ -289,6 +289,65 @@ public class GenerateBuilderProcessor extends AbstractProcessor {
 }
 ```
 
+### How to Use Your Processor in a Real Project
+
+Running `javac` from the command line is rare today. Modern projects use build tools like `Maven` or `Gradle`. Here’s how to configure them to use your annotation processor.
+
+#### For Maven (pom.xml)
+
+You need to list the processor as a dependency and configure the `maven-compiler-plugin`.
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>my-app</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.example</groupId>
+        <artifactId>my-processor</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>com.example</groupId>
+                        <artifactId>my-processor</artifactId>
+                        <version>1.0.0</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+#### For Gradle (build.gradle.kts or build.gradle)
+
+Gradle makes this even easier with its `annotationProcessor` configuration.
+
+```kotlin
+// For build.gradle.kts (Kotlin DSL)
+dependencies {
+    // Add your processor to the annotationProcessor classpath
+    annotationProcessor("com.example:my-processor:1.0.0")
+
+    // Your application depends on the annotation definitions
+    implementation("com.example:my-annotations:1.0.0")
+}
+```
+
 ---
 
 - [Home](./../../README.md)
