@@ -23,6 +23,7 @@ Let’s look at the most important ones that every Java developer should know.
 | Annotation             | Used On                            | What It Does                                                                  |
 | ---------------------- | ---------------------------------- | ----------------------------------------------------------------------------- |
 | `@Override`            | Methods                            | Makes sure a method really overrides one from the superclass.                 |
+| `@Serial`              | Methods and fields                  | Confirms that a method or field is used for Java serialization.              |
 | `@Deprecated`          | All declarations                   | Marks something as old or unsafe to use.                                      |
 | `@SuppressWarnings`    | All declarations (except packages) | Hides specific compiler warnings.                                             |
 | `@SafeVarargs`         | Methods and constructors           | Confirms that using varargs (variable arguments) is safe.                     |
@@ -48,6 +49,32 @@ class Dog extends Animal {
 
 If you accidentally misspell the method name or use the wrong parameters, the compiler will warn you.
 That’s why this annotation prevents subtle bugs.
+
+#### @Serial
+
+`@Serial` is an annotation introduced in Java 14 to make serialization-related methods clearer and safer.
+It helps the compiler confirm that special methods in a class are really meant for Java object serialization.
+
+Serialization means turning an object into a stream of bytes so it can be saved to a file or sent over a network.
+
+Before Java 14, developers relied only on method names like `writeObject`, `readObject`, or `readResolve` to tell the JVM that these were special serialization methods.
+But the compiler couldn’t verify that you typed the method name or signature correctly — a tiny mistake meant the method would be ignored. `@Serial` fixes that problem by giving the compiler a clear sign.
+
+```java
+@Serial
+private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject();
+}
+```
+
+If you now accidentally use the wrong method name, like `writeObjct`,
+the compiler will show an error — it knows `@Serial` must go only on valid serialization methods.
+
+
+
+- `@Serial` applies to:
+    - **Methods** — like `writeObject`, `readObject`, `readObjectNoData`, `writeReplace`, `readResolve`.
+    - `Fields` — like `serialVersionUID`, which gives a class version number for serialization.
 
 #### @Deprecated
 
