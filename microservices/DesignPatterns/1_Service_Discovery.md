@@ -28,6 +28,11 @@ With service discovery:
     <img src="./assets/img1.png" alt="img1" width="300"/>
 </p>
 
+- Each service registers with the Service Discovery.
+- The client app doesn’t need to know IPs. It just asks for UserService, ExerciseService or CourseService.
+- Requests are load-balanced among multiple instances.
+- If an instance fails, it is automatically ignored.
+
 ---
 
 - [Home](./../../README.md)
