@@ -6,11 +6,12 @@
       <li><a href="./theory/2_Key_Ideas_Behind_Microservices.html">Key Ideas Behind Microservices</a></li>
       <li><a href="./theory/3_Aligning_Architecture_and_Team_Organization.html">Aligning Architecture and Team Organization</a></li>
       <li><a href="./theory/4_The_Monolith.html">The Monolith</a></li>
-      <li><a href="./theory/5_Why_Microservices_Are_Useful">Why Microservices Are Useful</a></li>
+      <li><a href="./theory/5_Why_Microservices_Are_Useful.html">Why Microservices Are Useful</a></li>
       <!-- Haselem Microservice Pain Points 52-->
     </ul>   
     <h3 style="margin:0;">Design Patterns</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
+      <li><a href="./DesignPatterns/1_Service_Discovery">Service Discovery</a></li>
     </ul>
   </div>
 
@@ -50,3 +51,66 @@
 ---
 
 [Home](./../README.md)
+
+
+<!-- @startuml
+!define RECTANGLE class
+
+skinparam rectangle {
+  BackgroundColor #DDEEFF
+  BorderColor #3333AA
+}
+
+title Learning Platform Microservices (Async + Sync)
+
+RECTANGLE "User Service" as User {
+  - Manage profiles
+  - Track progress
+}
+
+RECTANGLE "Course Service" as Course {
+  - Store courses & lessons
+  - Provide content APIs
+}
+
+RECTANGLE "Exercise Service" as Exercise {
+  - Serve exercises
+  - Validate answers
+}
+
+RECTANGLE "Scoring Service" as Scoring {
+  - Calculate points
+  - Manage leaderboard
+}
+
+RECTANGLE "Recommendation Service" as Recommendation {
+  - Suggest next lessons
+  - Analyze user performance
+}
+
+RECTANGLE "Notification Service" as Notification {
+  - Send email/push notifications
+}
+
+RECTANGLE "Subscription Service" as Subscription {
+  - Manage payments & plans
+}
+
+'-----------------------------
+' Synchronous API calls (solid arrows)
+'-----------------------------
+User --> Course : Request courses
+User --> Exercise : Request exercises
+Subscription --> Exercise : Check access
+Subscription --> Course : Check access
+
+'-----------------------------
+' Asynchronous events (dashed arrows)
+'-----------------------------
+User ..> Recommendation : UserProgressUpdated [Kafka Topic]
+Exercise ..> Scoring : AnswerSubmitted [Kafka Topic]
+Scoring ..> Notification : ScoreUpdate [Kafka Topic]
+Recommendation ..> Notification : RecommendationReady [Kafka Topic]
+Course ..> Recommendation : CourseCreated [Kafka Topic]
+
+@enduml -->
