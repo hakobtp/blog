@@ -33,6 +33,26 @@ With service discovery:
 - Requests are load-balanced among multiple instances.
 - If an instance fails, it is automatically ignored.
 
+## Implementation Approaches
+
+There are two main strategies:
+
+1. Client-Side Routing
+    - The client itself queries the service discovery service to find the right instance.
+    - The client decides which instance to call.
+    - **Example:** A web app calls the ExerciseService. The client asks the service registry: “Which IP is available?” and sends the request there.
+2. Server-Side Routing
+    - The service discovery infrastructure includes a reverse proxy.
+    - Clients always send requests to the proxy, which forwards them to the correct instance.
+    - **Example:** A mobile app requests NotificationService. The proxy automatically picks a healthy instance and routes the request.
+
+## Key Points to Remember
+
+- Service discovery solves the dynamic IP problem in microservices.
+- It enables scaling: multiple instances can run, and clients are routed to them automatically.
+- You can implement it with client-side or server-side routing, depending on your architecture.
+- Popular tools include Netflix Eureka, Consul, and Kubernetes services.   
+
 ---
 
 - [Home](./../../README.md)
