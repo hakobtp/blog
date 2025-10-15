@@ -39,6 +39,26 @@ For example, imagine a video streaming platform. If only the video recommendatio
 
 Using cloud services like AWS, we can scale services on demand, which saves money and improves performance.
 
+## Easier Updates and Deployments
+
+Deploying changes in a monolithic system can be slow and risky. A small change requires redeploying the whole system, which can lead to mistakes and delays.
+
+With microservices, each service can be deployed separately. If something goes wrong, it only affects that service, making it easier to roll back and fix problems. This helps teams deliver new features faster.
+
+## Teams and System Organization
+
+Large teams working on large codebases can be slow and inefficient. Microservices allow small teams to own individual services. This improves productivity and aligns architecture with the organization.
+
+As teams change, ownership of services can shift, keeping the system flexible and well-organized.
+
+## Reusing Services in Many Ways
+
+Microservices make it easier to reuse functionality across different platforms. Services can be combined in new ways for websites, mobile apps, tablets, or wearable devices.
+
+For example, a fitness app could reuse a step-tracking service for both mobile and smartwatch apps. Microservices open up the system so new applications can be built faster without redesigning the entire system.
+
+With a monolithic application, such flexibility is harder to achieve because the system has fewer “seams” where external apps can connect.
+
 ---
 
 - [Home](./../../README.md)
