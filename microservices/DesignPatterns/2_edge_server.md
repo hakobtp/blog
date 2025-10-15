@@ -35,13 +35,6 @@ Essentially, the Edge Server behaves like a reverse proxy with security features
 - **Load balancing:** Forward requests to healthy instances automatically.
 - **Centralized security:** No need to configure security for each microservice individually; the Edge Server handles it.
 
-flowchart LR
-    CustomerApp["Customer App"] --> EdgeServer["Edge Server"]
-    EdgeServer --> CatalogService["Catalog Service"]
-    EdgeServer --> OrderService["Order Service"]
-    InventoryService["Inventory Service"] --- OrderService
-    RecommendationService["Recommendation Service"] --- CatalogService
-
 
 <p align="center">
     <img src="./assets/img2.png" alt="img2" width="500"/>
@@ -94,13 +87,10 @@ Although they are related, an Edge Server and an API Gateway are not exactly the
 
 Here’s a diagram showing how they can work together:
 
-flowchart LR
-    CustomerApp["Customer App"] --> EdgeServer["Edge Server"]
-    EdgeServer --> APIGateway["API Gateway"]
-    APIGateway --> CatalogService["Catalog Service"]
-    APIGateway --> OrderService["Order Service"]
-    InventoryService["Inventory Service"] --- OrderService
-    RecommendationService["Recommendation Service"] --- CatalogService
+<p align="center">
+    <img src="./assets/img3.png" alt="img3" width="500"/>
+</p>
+
 
 **Explanation:**
 
