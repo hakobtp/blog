@@ -1,5 +1,10 @@
 # The Rise of Microservices
 
+```info
+Author      Ter-Petrosyan Hakob
+```
+---
+
 Large companies, especially those running massive online services, were looking for better ways to handle growth and reliability. 
 Thankfully, many early adopters of microservices began sharing their experiences and lessons learned.
 
@@ -25,3 +30,45 @@ Kubernetes, created by Google and released in 2015, quickly became the standard.
 ## What Exactly Is a Microservice?
 
 A microservice architecture breaks a large application into a set of smaller, independent services. This design has two main benefits:
+
+- **Faster development and deployment** – each service can be updated or released separately.
+- **Easier scaling** – you can adjust only the parts of the system that need more resources.
+
+A microservice is an independent software unit that can be updated, replaced, or scaled without affecting others.
+To achieve this autonomy, each microservice must follow some basic principles:
+
+- **No shared data:** Microservices should not access the same database tables. Each one manages its own data.
+- **Clear communication:** They communicate through well-defined APIs or messages, often asynchronously. APIs must be stable, documented, and versioned carefully.
+- **Separate runtime:** Each microservice runs as its own process, often inside a Docker container.
+- **Stateless design:** Requests should not depend on any saved session data. This allows any instance of the service to handle any request.
+
+These features make it possible to deploy each microservice on different servers rather than running everything on one big machine.
+When demand increases, you can simply add more instances of a single service instead of scaling the whole system. Cloud platforms can even scale services automatically, which is hard to do with a traditional monolithic app.
+
+## How Small Should a Microservice Be?
+
+There’s no strict rule, but here are two simple guidelines:
+
+- A microservice should be small enough for one developer to fully understand.
+- But it should also be large enough to perform a clear business function efficiently, without creating too many communication delays or data inconsistencies.
+
+For example, in an online bookstore:
+
+- One microservice might handle user accounts.
+- Another one could manage book inventory.
+- A third could process orders and payments.
+
+Each service focuses on one main responsibility and communicates with others through APIs or messages.
+
+
+## Wrapping Up: Why Microservices Matter
+
+In short, microservice architecture is a way of designing software by dividing a big system into smaller, independent parts.
+The goal is to make development faster, deployment easier, and scaling smoother.
+
+By following these principles, teams can build systems that are more flexible, reliable, and ready to grow.
+
+---
+
+- [Home](./../../README.md)
+- [Microservices](./../tutorials.md)
