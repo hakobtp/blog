@@ -29,6 +29,14 @@ The same application talks to a single database and shows pages to web or mobile
     <img src="./assets/img3.png" alt="img3" width="300"/>
 </p>
 
+This setup is what most developers think of when they hear “monolith.”
+However, in real life, many systems are more complex.
+A company might have several large applications that are connected tightly — for instance, a sales system and a shipping system that depend on each other.
+
+A `single-process` monolith can still make a lot of sense, especially for small or medium-sized organizations.
+It is easier to develop, deploy, and test.
+As the company grows, this monolith can also grow — but that can create new challenges, which leads us to the next variation: the modular monolith.
+
 ---
 
 - [Home](./../../README.md)
