@@ -88,7 +88,7 @@ Although they are related, an Edge Server and an API Gateway are not exactly the
 Here’s a diagram showing how they can work together:
 
 <p align="center">
-    <img src="./assets/img3.png" alt="img3" width="500"/>
+    <img src="./assets/img3.png" alt="img3" width="600"/>
 </p>
 
 
