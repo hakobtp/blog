@@ -37,6 +37,27 @@ A `single-process` monolith can still make a lot of sense, especially for small 
 It is easier to develop, deploy, and test.
 As the company grows, this monolith can also grow — but that can create new challenges, which leads us to the next variation: the modular monolith.
 
+## The Modular Monolith
+
+A modular monolith is still one single application, but it is organized into separate modules inside the same process.
+Each module focuses on a different area of the system, such as user management, orders, billing, products, and shipping.
+Teams can work on different modules separately, but when it’s time to deploy, all modules are still packaged and deployed together.
+
+<p align="center">
+    <img src="./assets/img4.png" alt="img4" width="300"/>
+</p>
+
+This idea of dividing a system into smaller parts is not new.
+It goes back to structured programming, when programmers learned that splitting code into smaller, focused modules makes it easier to understand and maintain.
+Even today, many organizations don’t use this idea properly — they have big, tangled codebases instead of cleanly separated modules.
+
+For many companies, a modular monolith is an excellent middle ground.
+If the module boundaries are clear, teams can work in parallel and develop features faster.
+At the same time, deployment and monitoring remain much simpler than in a microservices system.
+
+For example, a large online learning platform could have modules for courses, students, and payments.
+Each team focuses on one area, but everything still runs together as one application.
+
 ---
 
 - [Home](./../../README.md)
