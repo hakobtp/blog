@@ -6,6 +6,7 @@
       <li><a href="./theory/2_Key_Ideas_Behind_Microservices.html">Key Ideas Behind Microservices</a></li>
       <li><a href="./theory/3_Aligning_Architecture_and_Team_Organization.html">Aligning Architecture and Team Organization</a></li>
       <li><a href="./theory/4_The_Monolith.html">The Monolith</a></li>
+      <li><a href="./theory/5_Why_Microservices_Are_Useful">Why Microservices Are Useful</a></li>
       <!-- Haselem The Monolith EJ 40 -->
     </ul>   
   </div>
