@@ -67,3 +67,4 @@ For SoundWave, the Customer Profile Team is stream-aligned: they can add favorit
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Key Ideas Behind Microservices](./2_Key_Ideas_Behind_Microservices.md)
+- [The Monolith](./4_The_Monolith.md)
