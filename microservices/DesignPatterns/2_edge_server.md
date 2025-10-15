@@ -35,6 +35,14 @@ Essentially, the Edge Server behaves like a reverse proxy with security features
 - **Load balancing:** Forward requests to healthy instances automatically.
 - **Centralized security:** No need to configure security for each microservice individually; the Edge Server handles it.
 
+flowchart LR
+    CustomerApp["Customer App"] --> EdgeServer["Edge Server"]
+    EdgeServer --> CatalogService["Catalog Service"]
+    EdgeServer --> OrderService["Order Service"]
+    InventoryService["Inventory Service"] --- OrderService
+    RecommendationService["Recommendation Service"] --- CatalogService
+
+
 <p align="center">
     <img src="./assets/img2.png" alt="img2" width="500"/>
 </p>
@@ -51,6 +59,61 @@ Explanation of the diagram:
 - The Edge Server acts as a security and traffic gateway.
 - It simplifies security, routing, and load balancing for your microservices.
 - By using an Edge Server, you protect internal microservices and control access centrally.
+
+## Edge Server vs API Gateway
+
+Although they are related, an Edge Server and an API Gateway are not exactly the same. Here’s the difference
+
+1) API Gateway
+    - **Definition:** A server that sits in front of microservices and routes client API requests to the right service.
+    - **Main responsibilities:**
+        - Request routing
+        - Request aggregation (combine responses from multiple services)
+        - Protocol translation (HTTP ↔ gRPC)
+        - Authentication and authorization
+    - **Example:** A mobile app calls `/getBookDetails`. The API Gateway forwards this request to Catalog Service and might also call Recommendation Service to combine results.
+2. Edge Server
+    - **Definition:** A server at the edge of the network, physically close to end-users.
+    - **Main responsibilities:**
+        - Reduce latency and improve speed
+        - Cache frequently accessed content
+        - Run computations near the user (edge computing)
+        - Protect backend services from malicious traffic
+    - **Example:** Netflix serves a popular show from an edge server near your city, instead of fetching it from the U.S. every time.
+
+**Key Differences:**
+
+| Feature                  | API Gateway                     | Edge Server                             |
+| ------------------------ | ------------------------------- | --------------------------------------- |
+| **Main goal**            | Route API calls, security       | Reduce latency, caching, edge computing |
+| **Location**             | Close to microservices          | Close to end-users                      |
+| **Handles**              | API requests, auth, aggregation | Content caching, local computation      |
+| **Use in microservices** | Required in many architectures  | Optional for performance & bandwidth    |
+| **Example**              | Kong, AWS API Gateway           | Cloudflare, Akamai Edge Servers         |
+
+
+Here’s a diagram showing how they can work together:
+
+flowchart LR
+    CustomerApp["Customer App"] --> EdgeServer["Edge Server"]
+    EdgeServer --> APIGateway["API Gateway"]
+    APIGateway --> CatalogService["Catalog Service"]
+    APIGateway --> OrderService["Order Service"]
+    InventoryService["Inventory Service"] --- OrderService
+    RecommendationService["Recommendation Service"] --- CatalogService
+
+**Explanation:**
+
+- `Customer App` → sends requests to the `Edge Server` (closest server to the user).
+- `Edge Server` → forwards requests to `API Gateway`, which handles routing, aggregation, and auth.
+- `API Gateway` → routes requests to public microservices like `Catalog` and `Order`.
+- Internal services → `Inventory` and `Recommendation` communicate internally, hidden from the client.
+
+**Summary:**
+
+- An API Gateway focuses on routing and security within your microservices system.
+- An Edge Server focuses on performance, caching, and reducing latency for end-users.
+- They can work together: the edge server brings content closer to the user, and the API gateway handles logic, routing, and security.
 
 ---
 
