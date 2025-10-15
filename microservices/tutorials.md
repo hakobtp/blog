@@ -9,9 +9,6 @@
       <li><a href="./theory/5_Why_Microservices_Are_Useful">Why Microservices Are Useful</a></li>
       <!-- Haselem Microservice Pain Points 52-->
     </ul>   
-  </div>
-
-  <div style="display:inline-block; vertical-align:top; margin-right:2em;">
     <h3 style="margin:0;">Design Patterns</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
     </ul>
@@ -21,6 +18,9 @@
     <h3 style="margin:0;">Resilience4j</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./Resilience4j/Retry_with_Resilience4j.html">Retry</a></li>
+    </ul>
+    <h3 style="margin:0;">Microservices with Spring Boot</h3>
+    <ul style="margin:0; padding-left:0px; list-style:none;">
     </ul>
   </div>
 </div>
