@@ -11,7 +11,8 @@
     </ul>   
     <h3 style="margin:0;">Design Patterns</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
-      <li><a href="./DesignPatterns/1_Service_Discovery">Service Discovery</a></li>
+      <li><a href="./DesignPatterns/1_Service_Discovery.html">Service Discovery</a></li>
+      <li><a href="./DesignPatterns/2_edge_server.html">Edge server</a></li>
     </ul>
   </div>
 

@@ -57,3 +57,4 @@ There are two main strategies:
 
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
+- [Edge server](./2_edge_server.md)
