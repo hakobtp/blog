@@ -25,7 +25,7 @@ With service discovery:
 - Unhealthy instances are detected and excluded from requests.
 
 <p align="center">
-    <img src="./assets/img1.png" alt="img1" width="300"/>
+    <img src="./assets/img1.png" alt="img1" width="400"/>
 </p>
 
 - Each service registers with the Service Discovery.
