@@ -67,3 +67,4 @@ With these rules, the central log manager can show all logs for one request, eve
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Central configuration](./5_Centralized_Log_Analysis.md)
+- [Distributed Tracing](./6_Distributed_Tracing.md)
