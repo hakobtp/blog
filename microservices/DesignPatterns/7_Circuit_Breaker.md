@@ -73,7 +73,7 @@ This ensures the system recovers safely without exposing users to failing servic
 Here’s a diagram showing a system with multiple services and circuit breaker states (closed, open, half-open):
 
 <p align="center">
-    <img src="./assets/img8.png" alt="img8" width="500"/>
+    <img src="./assets/img8.png" alt="img8" width="600"/>
 </p>
 
 
