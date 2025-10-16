@@ -15,7 +15,7 @@
       <li><a href="./DesignPatterns/2_edge_server.html">Edge server</a></li>
       <li><a href="./DesignPatterns/3_Reactive_Microservices.html">Reactive Microservices</a></li>
       <li><a href="./DesignPatterns/4_Central_configuration.html">Central configuration</a></li>
-      <li><a href="./DesignPatterns/4_Central_configuration.html">Centralized Log Analysis</a></li>
+      <li><a href="./DesignPatterns/5_Centralized_Log_Analysis.html">Centralized Log Analysis</a></li>
     </ul>
   </div>
 
