@@ -26,7 +26,7 @@
     <h3 style="margin:0;">Microservices with Spring Boot</h3>
     <ul style="margin:0; padding-left:0px; list-style:none;">
     <li><a href="./MicroservicesWithSpringBoot/1_The_Rise_of_Microservices">The Rise of Microservices</a></li>
-    <!-- HASELEM Reactive microservices EJ 47 grem Design Patterns mech -->
+    <!-- HASELEM Centralized log analysis EJ 49 grem Design Patterns mech -->
     </ul>
   </div>
 </div>
