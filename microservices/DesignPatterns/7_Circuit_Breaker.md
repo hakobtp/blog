@@ -127,6 +127,13 @@ The circuit breaker pattern is essential for building resilient microservice sys
 
 Using circuit breakers, your system can survive temporary failures while continuing to serve users reliably.
 
+| **State**     | **What Happens**                                                              | **Purpose**                                                                  | **Example**                                                                                                                                           |
+| ------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Closed**    | The circuit breaker **allows all requests** to go through normally.           | Everything is working fine, so the system functions normally.                | Payment Service is healthy → Order Service sends requests as usual.                                                                                   |
+| **Open**      | The circuit breaker **blocks all requests** to the failing service.           | Prevents failures from spreading and stops the system from being overloaded. | Payment Service fails → Order Service immediately returns “Payment service unavailable” without waiting.                                              |
+| **Half-Open** | The circuit breaker **allows a small number of test requests** to go through. | Checks if the service has recovered before closing the circuit.              | After a few seconds, Order Service sends one request to Payment Service. If it succeeds, normal traffic resumes; if it fails, the breaker stays open. |
+
+
 ---
 
 - [Home](./../../README.md)
