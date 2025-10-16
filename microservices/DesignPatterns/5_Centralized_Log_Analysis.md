@@ -29,6 +29,39 @@ Here is a simple diagram showing how services connect and where logs are stored:
     <img src="./assets/img5.png" alt="img5" width="600"/>
 </p>
 
+## The Solution
+
+The solution is to add a central log manager. This component collects all logs in one place and helps you analyze them. A good log manager can:
+- Detect new microservices and collect logs automatically
+- Store logs in a structured and searchable format in a central database
+- Provide tools or APIs to search and study logs
+
+For example, if a payment service fails, the central log manager can quickly show all error messages from this service, making it easier to find the problem.
+
+<p align="center">
+    <img src="./assets/img6.png" alt="img6" width="600"/>
+</p>
+
+
+## Solution Requirements
+
+To make centralized logging work well, some rules are needed:
+
+1. **Stream logs to standard output:** Each microservice should send logs to stdout instead of writing them to separate files. 
+    This makes it easier for the log manager to find logs.
+2. **Use correlation IDs:** Tag logs with a unique ID for each request. This helps track one user request across many services.
+3. **Use a common log format:** All log messages should follow the same format. This makes it possible to store them in a database and search easily.
+
+For example, a canonical log format could include:
+
+- Timestamp (when the event happened)
+- Service name (which microservice wrote the log)
+- Severity (info, warning, error)
+- Correlation ID (to track requests)
+- Message (what happened)
+
+With these rules, the central log manager can show all logs for one request, even if it touched multiple services.
+
 ---
 
 - [Home](./../../README.md)
