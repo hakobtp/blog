@@ -17,6 +17,7 @@
       <li><a href="./DesignPatterns/4_Central_configuration.html">Central configuration</a></li>
       <li><a href="./DesignPatterns/5_Centralized_Log_Analysis.html">Centralized Log Analysis</a></li>
       <li><a href="./DesignPatterns/6_Distributed_Tracing.html">Distributed Tracing</a></li>
+      <li><a href="./DesignPatterns/7_Circuit_Breaker.html">Circuit Breaker</a></li>
     </ul>
   </div>
 

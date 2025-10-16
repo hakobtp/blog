@@ -50,3 +50,4 @@ To implement distributed tracing effectively, we need to:
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Centralized Log Analysis](./5_Centralized_Log_Analysis.md)
+- [Circuit Breaker](./7_Circuit_Breaker.md)
