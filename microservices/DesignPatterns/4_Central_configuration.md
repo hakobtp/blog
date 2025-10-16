@@ -40,3 +40,4 @@ For example, the notification service might need different email server settings
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Reactive Microservices](./3_Reactive_Microservices.md)
+- [Centralized Log Analysis](./5_Centralized_Log_Analysis.md)
