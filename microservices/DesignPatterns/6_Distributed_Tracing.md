@@ -33,7 +33,7 @@ This way, we can:
 - If the payment took too long, timestamps in the logs will show which microservice caused the delay.
 
 <p align="center">
-    <img src="./assets/img7.png" alt="img7" width="600"/>
+    <img src="./assets/img7.png" alt="img7" width="400"/>
 </p>
 
 ## Solution Requirements

@@ -26,7 +26,7 @@ Each service writes logs on its own server. Finding a problem would be like sear
 Here is a simple diagram showing how services connect and where logs are stored:
 
 <p align="center">
-    <img src="./assets/img5.png" alt="img5" width="500"/>
+    <img src="./assets/img5.png" alt="img5" width="600"/>
 </p>
 
 ## The Solution
