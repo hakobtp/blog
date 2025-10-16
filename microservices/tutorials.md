@@ -13,6 +13,7 @@
     <ul style="margin:0; padding-left:0px; list-style:none;">
       <li><a href="./DesignPatterns/1_Service_Discovery.html">Service Discovery</a></li>
       <li><a href="./DesignPatterns/2_edge_server.html">Edge server</a></li>
+      <li><a href="./DesignPatterns/3_Reactive_Microservices.html">Reactive Microservices</a></li>
     </ul>
   </div>
 
