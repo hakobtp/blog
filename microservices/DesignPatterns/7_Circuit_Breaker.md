@@ -72,29 +72,10 @@ This ensures the system recovers safely without exposing users to failing servic
 
 Here’s a diagram showing a system with multiple services and circuit breaker states (closed, open, half-open):
 
-```
-flowchart LR
-    A[User Request: Place Order] --> B[Order Service]
-    B --> C[Payment Service]
-    B --> D[Inventory Service]
+<p align="center">
+    <img src="./assets/img8.png" alt="img8" width="500"/>
+</p>
 
-    %% Circuit breakers
-    C --> E[Circuit Breaker]
-    D --> F[Circuit Breaker]
-
-    %% Payment service circuit breaker states
-    E -->|Open: fail fast| G[Fallback Response or Error]
-    E -->|Half-Open: test one request| J[Payment Service Test]
-    J -->|Success| K[Close Circuit: normal traffic]
-    J -->|Fail| E[Stay Open]
-
-    F -->|Closed: normal traffic| H[Inventory Response]
-
-    %% Responses to user
-    G --> I[Order Service Returns Response to User]
-    H --> I
-    K --> I
-```
 
 **Diagram Explanation:**
 
