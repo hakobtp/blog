@@ -1,4 +1,4 @@
-# HTTP request methods
+# HTTP request methods and Status Codes
 
 This blog post describes the most commonly used HTTP methods and their purposes when interacting with RESTful APIs.
 
@@ -27,43 +27,24 @@ This blog post describes the most commonly used HTTP methods and their purposes 
 Used to check metadata such as content type or length.
 **Use case:** Check what a GET request would return before actually fetching the data.
 
-OPTIONS /api/v1/customers
-
-Description:
-Returns the supported HTTP methods and operations for a specific resource.
+**OPTIONS** `/api/v1/customers`
+- **Description:** Returns the supported HTTP methods and operations for a specific resource.
 Commonly used in CORS preflight requests.
+- **Use case:** Determine which methods (GET, POST, PUT, etc.) are allowed.
 
-Example:
-
-OPTIONS /api/v1/customers
-
-
-Use case: Determine which methods (GET, POST, PUT, etc.) are allowed.
-
-TRACE /api/v1/customers
-
-Description:
-Performs a message loop-back test for diagnostic purposes.
+**TRACE** `/api/v1/customers`
+- **Description:** Performs a message loop-back test for diagnostic purposes.
 It echoes the received request, helping developers see any modifications made by intermediate servers.
+- **Use case:** Debug HTTP request routing.
 
-Example:
+**CONNECT** `/api/v1/customers`
+- **Description:** Used to establish a network tunnel, typically for SSL (HTTPS) connections through an HTTP proxy.
+- **Use case:** Create a secure connection between the client and the server.
 
-TRACE /api/v1/customers
+## HTTP Status Codes
 
-
-Use case: Debug HTTP request routing.
-
-CONNECT /api/v1/customers
-
-Description:
-Used to establish a network tunnel, typically for SSL (HTTPS) connections through an HTTP proxy.
-
-Example:
-
-CONNECT /api.v1/customers
-
-
-Use case: Create a secure connection between the client and the server.
+HTTP status codes indicate whether a specific HTTP request has been successfully completed.
+They are grouped into five categories, each representing a different type of response.
 
 ---
 
