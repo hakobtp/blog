@@ -18,6 +18,7 @@
       <li><a href="./DesignPatterns/5_Centralized_Log_Analysis.html">Centralized Log Analysis</a></li>
       <li><a href="./DesignPatterns/6_Distributed_Tracing.html">Distributed Tracing</a></li>
       <li><a href="./DesignPatterns/7_Circuit_Breaker.html">Circuit Breaker</a></li>
+      <li><a href="./DesignPatterns/8_Outbox.html">Outbox</a></li>
     </ul>
   </div>
 

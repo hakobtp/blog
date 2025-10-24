@@ -120,3 +120,4 @@ Using circuit breakers, your system can survive temporary failures while continu
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Distributed Tracing](./6_Distributed_Tracing.md)
+- [Outbox](./8_Outbox.md)
