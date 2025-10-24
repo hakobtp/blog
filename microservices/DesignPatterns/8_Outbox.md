@@ -27,6 +27,15 @@ Here’s a high-level view of how an order request flows through a microservices
     <img src="./assets/img9.png" alt="img9" width="600"/>
 </p>
 
+Flow explained:
+
+**Client**: Initiates a request to place an order.
+**Order Service Database:** Stores the order and writes an event into the outbox table in a single transaction.
+**Transaction Commits:** Ensures both order data and outbox message are safely persisted.
+**Outbox Relay / CDC Process**: Continuously reads new events from the outbox table and publishes them to Kafka.
+**Message Broker:** Distributes events to all interested services.
+**Inventory, Billing, Notification Services:** Consume the events and process them independently.
+**Outbox Event Marked DONE:** After successful publishing and processing, the event status is updated to prevent duplicates.
 
 ---
 
