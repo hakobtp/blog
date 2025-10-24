@@ -64,3 +64,4 @@ Remember: in distributed systems, dual writes are dangerous. Always use transact
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Circuit Breaker](./7_Circuit_Breaker.md)
+- [Building the Outbox Pattern in Spring Boot](./9_Building_the_Outbox_Pattern_in_Spring_Boot.md)
