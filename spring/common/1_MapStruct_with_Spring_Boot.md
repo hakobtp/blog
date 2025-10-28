@@ -259,6 +259,51 @@ public interface UserMapper {
 
 This keeps existing values untouched if the incoming DTO has `null` properties.
 
+## Using @Named and Qualified Mappings
+
+Sometimes, MapStruct has more than one possible method to perform a conversion.
+In such cases, you can tell MapStruct exactly which method to use with the `@Named` annotation.
+
+Let’s imagine you are building an e-commerce system.
+You want to convert a numeric `category ID` into a `CategoryDto`, using an enum or a lookup.
+
+```java
+@Named("categoryIdToCategoryDto")
+default CategoryDto categoryIdToCategoryDto(Long categoryId) {
+    return CategoryDto.fromEnum(CategoryEnum.getById(categoryId));
+}
+```
+
+This method converts a `Long` (the category ID) into a CategoryDto.
+By marking it with` @Named("categoryIdToCategoryDto")`, you can reuse it in other mappers that need this specific conversion.
+
+Now, let’s see how we can use this method inside another mapper.
+
+```java
+@Mapper(
+    componentModel = "spring",
+    uses = {CategoryMapper.class, PriceMapper.class}
+)
+public interface ProductMapper {
+
+    @Mapping(source = "id", target = "productId")
+    @Mapping(source = "name", target = "productName")
+    @Mapping(source = "categoryId", target = "category", qualifiedByName = "categoryIdToCategoryDto")
+    @Mapping(source = "priceInCents", target = "price", qualifiedByName = "centsToPriceDto")
+    ProductResponseDto toResponseDto(Product product);
+}
+```
+
+Explanation
+
+- `uses = {...}` — tells MapStruct that this mapper can use methods from the listed mappers (`CategoryMapper`, `PriceMapper`, etc.).
+- `qualifiedByName` — connects a target field to a specific helper method marked with `@Named`.
+
+This approach makes your mappings more explicit and easier to control, especially when you have several possible converters for the same types.
+
+Use `@Named + qualifiedByName` when you want precise control over which helper method MapStruct uses for a particular field.
+
+
 ## Understanding the uses Property
 
 When building applications, it’s common to have objects that contain other complex objects.
@@ -517,50 +562,6 @@ public interface CategoryMapper {
 }
 
 ```
-
-## Using @Named and Qualified Mappings
-
-Sometimes, MapStruct has more than one possible method to perform a conversion.
-In such cases, you can tell MapStruct exactly which method to use with the `@Named` annotation.
-
-Let’s imagine you are building an e-commerce system.
-You want to convert a numeric `category ID` into a `CategoryDto`, using an enum or a lookup.
-
-```java
-@Named("categoryIdToCategoryDto")
-default CategoryDto categoryIdToCategoryDto(Long categoryId) {
-    return CategoryDto.fromEnum(CategoryEnum.getById(categoryId));
-}
-```
-
-This method converts a `Long` (the category ID) into a CategoryDto.
-By marking it with` @Named("categoryIdToCategoryDto")`, you can reuse it in other mappers that need this specific conversion.
-
-Now, let’s see how we can use this method inside another mapper.
-
-```java
-@Mapper(
-    componentModel = "spring",
-    uses = {CategoryMapper.class, PriceMapper.class}
-)
-public interface ProductMapper {
-
-    @Mapping(source = "id", target = "productId")
-    @Mapping(source = "name", target = "productName")
-    @Mapping(source = "categoryId", target = "category", qualifiedByName = "categoryIdToCategoryDto")
-    @Mapping(source = "priceInCents", target = "price", qualifiedByName = "centsToPriceDto")
-    ProductResponseDto toResponseDto(Product product);
-}
-```
-
-Explanation
-
-- `uses = {...}` — tells MapStruct that this mapper can use methods from the listed mappers (`CategoryMapper`, `PriceMapper`, etc.).
-- `qualifiedByName` — connects a target field to a specific helper method marked with `@Named`.
-
-This approach makes your mappings more explicit and easier to control, especially when you have several possible converters for the same types.
-
-Use `@Named + qualifiedByName` when you want precise control over which helper method MapStruct uses for a particular field.
 
 ## Using Abstract Classes with Spring Beans
 
