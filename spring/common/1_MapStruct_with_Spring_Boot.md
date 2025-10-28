@@ -458,7 +458,7 @@ public class Product {
 }
 ```
 
-And two DTOs:
+**And two DTOs:**
 
 ```java
 public class CategoryDto {
@@ -474,7 +474,7 @@ public class ProductDto {
 }
 ```
 
-Create a ProductMapper
+**Create a ProductMapper:**
 
 ```java
 @Mapper(componentModel = "spring", uses = {CategoryMapper.class})
@@ -489,7 +489,7 @@ public interface ProductMapper {
 ```
 Here, the `ProductMapper` `uses` the `CategoryMapper` to convert the category field.
 
-Create a CategoryMapper
+**Create a CategoryMapper**
 
 Now, the tricky part — Category also references Product.
 If we mapped both sides directly, we would get infinite recursion (because CategoryDto contains ProductDto, which again contains CategoryDto, and so on).
