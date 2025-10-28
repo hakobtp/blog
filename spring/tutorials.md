@@ -3,4 +3,8 @@
 
 ---
 
+- [MapStruct with Spring Boot](./common/1_MapStruct_with_Spring_Boot.md)
+
+---
+
 [Home](./../README.md)

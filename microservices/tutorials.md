@@ -19,10 +19,6 @@
       <li><a href="./DesignPatterns/6_Distributed_Tracing.html">Distributed Tracing</a></li>
       <li><a href="./DesignPatterns/7_Circuit_Breaker.html">Circuit Breaker</a></li>
       <li><a href="./DesignPatterns/8_Outbox.html">Outbox</a>
-        <ul style="margin:0; padding-left:0px; list-style:none;">
-          <li><a href="./DesignPatterns/9_Building_the_Outbox_Pattern_in_Spring_Boot.html">Building the Outbox Pattern in Spring Boot</a></li>
-          <li><a href="./DesignPatterns/">Outbox Pattern with Spring Boot and Debezium</a></li>
-        </ul>
       </li>
     </ul>
   </div>
