@@ -374,8 +374,8 @@ public interface ProductMapper {
 
 Explanation
 
-`uses = {...}` — tells MapStruct which other mappers this mapper can use.
-`qualifiedByName` — specifies exactly which `@Named` method from those mappers should be used.
+- `uses = {...}` — tells MapStruct which other mappers this mapper can use.
+- `qualifiedByName` — specifies exactly which `@Named` method from those mappers should be used.
 
 This design keeps the code modular and easy to maintain.
 Each helper mapper does one thing, and the main mapper just combines them.
