@@ -442,6 +442,82 @@ public interface ProductMapper {
 MapStruct will automatically inject and call the child mapper (`CategoryMapper`) when mapping the relationship field.
 This keeps your mappers clean, modular, and consistent, especially in larger projects with many entity relationships.
 
+**Example:** Bidirectional Relationship
+
+```java
+public class Category {
+    private Long id;
+    private String name;
+    private List<Product> products; // One-to-Many
+}
+
+public class Product {
+    private Long id;
+    private String name;
+    private Category category; // Many-to-One
+}
+```
+
+And two DTOs:
+
+```java
+public class CategoryDto {
+    private Long id;
+    private String name;
+    private List<ProductDto> products;
+}
+
+public class ProductDto {
+    private Long id;
+    private String name;
+    private CategoryDto category;
+}
+```
+
+Create a ProductMapper
+
+```java
+@Mapper(componentModel = "spring", uses = {CategoryMapper.class})
+public interface ProductMapper {
+
+    @Mapping(source = "category", target = "category")
+    ProductDto toDto(Product product);
+
+    @Mapping(source = "category", target = "category")
+    Product toEntity(ProductDto productDto);
+}
+```
+Here, the `ProductMapper` `uses` the `CategoryMapper` to convert the category field.
+
+Create a CategoryMapper
+
+Now, the tricky part — Category also references Product.
+If we mapped both sides directly, we would get infinite recursion (because CategoryDto contains ProductDto, which again contains CategoryDto, and so on).
+
+To solve this, we can ignore one direction of the mapping
+
+```java
+@Mapper(componentModel = "spring", uses = {ProductMapper.class})
+public interface CategoryMapper {
+
+    @Mapping(target = "products", qualifiedByName = "mapProductsWithoutCategory")
+    CategoryDto toDto(Category category);
+
+    @Mapping(target = "products", ignore = true)
+    Category toEntity(CategoryDto categoryDto);
+
+    // Custom method to map products without back-reference to category
+    @Named("mapProductsWithoutCategory")
+    default List<ProductDto> mapProductsWithoutCategory(List<Product> products) {
+        if (products == null) return null;
+        return products.stream()
+                .map(p -> new ProductDto(p.getId(), p.getName(), null)) // Avoid recursion
+                .toList();
+    }
+}
+
+```
+
 ## Using @Named and Qualified Mappings
 
 Sometimes, MapStruct has more than one possible method to perform a conversion.
