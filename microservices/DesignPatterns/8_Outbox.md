@@ -59,12 +59,7 @@ For a simple order service, this pattern guarantees that Inventory, Billing, and
 
 Remember: in distributed systems, dual writes are dangerous. Always use transactional approaches like the outbox pattern to keep your microservices in sync.
 
- ## Building the Outbox Pattern in Spring Boot
-
-
-```xml
-
-```
+The source code for this article is available [over on GitHub](https://github.com/hakobtp/spring-boot-outbox-design-pattern){:target="_blank" rel="noopener"}.
 
 ---
 
