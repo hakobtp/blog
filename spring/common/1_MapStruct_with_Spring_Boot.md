@@ -121,5 +121,68 @@ You don’t need extra helper methods or null checks.
 
 This is great for complex domain models — your code stays clean and easy to read.
 
+## Integration with Spring Boot
+
+MapStruct integrates perfectly with Spring.
+You can make your mappers Spring beans by setting `componentModel = "spring"`.
+
+Maven Configuration Example
+
+Here’s how your Maven `pom.xml` might look:
+
+```xml
+...
+
+<properties>
+    <java.version>17</java.version>
+    <org.mapstruct.version>1.6.3</org.mapstruct.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+</properties>
+
+...
+
+<dependencies>
+    ... 
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <optional>true</optional>
+    </dependency>
+    <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                    </path>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-mapstruct-binding</artifactId>
+                        <version>${lombok-mapstruct-binding.version}</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+```
+
 - [Home](./../../README.md)
 - [Spring Tutorials](./../tutorials.md)
