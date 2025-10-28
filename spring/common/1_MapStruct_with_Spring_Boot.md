@@ -63,7 +63,63 @@ public class UserMapperImpl implements UserMapper {
 
 You get the same performance as manual mapping — but with none of the repetitive work.
 
+## Custom Field Mapping
 
+Sometimes the field names in your Entity and DTO don’t match.
+MapStruct lets you fix this easily using the `@Mapping` annotation.
+
+```java
+@Mappings({
+    @Mapping(source = "emailAddress", target = "email"),
+    @Mapping(source = "birthDate", target = "dateOfBirth")
+})
+UserDto toDto(User user);
+```
+
+Here:
+
+- `source` is the field name in your entity
+- `target` is the field name in your DTO
+
+This is much cleaner than doing it manually.
+It’s also type-safe, so if one of the fields changes, the compiler will warn you.
+
+## Bidirectional Mapping
+
+You often need to map objects both ways — from Entity to DTO and back again.
+MapStruct can do this with almost no extra code.
+
+```java
+@Mapper
+public interface OrderMapper {
+    @Mapping(source = "customer.name", target = "customerName")
+    OrderDto toDto(Order order);
+
+    @InheritInverseConfiguration
+    Order toEntity(OrderDto dto);
+}
+```
+
+The `@InheritInverseConfiguration` annotation tells MapStruct to reuse the same rules in reverse.
+One mapper, both directions, zero duplication.
+
+## Nested Mapping
+
+MapStruct can also map nested objects — even several layers deep.
+
+```java
+@Mapper
+public interface OrderMapper {
+    @Mapping(source = "customer.address.city", target = "customerCity")
+    @Mapping(source = "customer.address.zipCode", target = "postalCode")
+    OrderDto toDto(Order order);
+}
+```
+
+It automatically follows the nested path (like `customer.address.city`) and safely copies only what you need.
+You don’t need extra helper methods or null checks.
+
+This is great for complex domain models — your code stays clean and easy to read.
 
 - [Home](./../../README.md)
 - [Spring Tutorials](./../tutorials.md)
