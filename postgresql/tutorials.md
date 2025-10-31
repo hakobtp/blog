@@ -1,5 +1,6 @@
 
 - [CASCADE](./cascade/cascade.md)
+- [Understanding Locks](./lock/1_Understanding_Locks.md)
 
 ### Join
 

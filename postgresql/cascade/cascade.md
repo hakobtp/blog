@@ -134,7 +134,5 @@ By thoughtfully applying these principles, you can leverage **CASCADE** to simpl
 
 ---
 
-## Explore More
-
 - [Home](./../../README.md)
 - [PostgreSql Tutorials](./../tutorials.md)
