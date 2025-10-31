@@ -112,9 +112,52 @@ ALTER TABLE RENAME
 REFRESH MATERIALIZED VIEW
 ```
 
-If you run `VACUUM FULL users;`, no other session can read or write to the users table until the operation finishes.
+**Example: ACCESS EXCLUSIVE Lock in Action**
+
+Suppose we have a table called `users`. Now, let’s see what happens when we acquire an `ACCESS EXCLUSIVE` lock.
 
 This lock is often used when PostgreSQL needs to rebuild or reorganize the physical data on disk, which must be done in isolation.
+
+Start a session and run `VACUUM FULL`
+```sql
+-- Session 1:
+-- This will acquire an ACCESS EXCLUSIVE lock on the users table
+VACUUM FULL users;
+```
+
+At this moment:
+
+- PostgreSQL locks the users table in `ACCESS EXCLUSIVE` mode.
+- No other session can read or write to users until `VACUUM FULL` finishes.
+
+```sql
+-- Session 2:
+SELECT * FROM users;
+```
+
+What happens:
+- This query blocks (waits) because the table is locked with `ACCESS EXCLUSIVE`.
+- PostgreSQL won’t let you read until the lock is released.
+
+Try to insert into the table in another session
+
+```sql
+-- Session 2:
+INSERT INTO users(name, email) VALUES ('Alice', 'alice@example.com');
+```
+
+What happens:
+- This query also blocks.
+- No writes, no structure changes, no `SELECT`s are allowed until `Session 1` finishes `VACUUM FULL`.
+
+Once the `VACUUM FULL` in `Session 1` completes:
+
+- The lock is released.
+- All blocked queries in `Session 2` will continue and execute normally.
+
+
+**Key takeaway:** `ACCESS EXCLUSIVE` locks are extremely strong. They are needed for operations that rebuild or change the table’s structure, 
+like `VACUUM FULL`, `DROP TABLE`, `ALTER TABLE`, or `CLUSTER`.
 
 ---
 
