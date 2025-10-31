@@ -85,6 +85,37 @@ WHERE NOT blocked_locks.granted;
 
 Using this, you can quickly identify the queries causing blocks and take action, such as terminating a long-running session or optimizing a transaction to avoid conflicts.
 
+
+## 1. ACCESS EXCLUSIVE — The Strongest Lock
+
+This is the most restrictive lock in PostgreSQL. When a transaction holds an `ACCESS EXCLUSIVE` lock, nobody else can even read from the table. 
+It blocks all other table lock types.
+
+When this lock is active:
+
+- You cannot `SELECT`, `INSERT`, `UPDATE`, or `DELETE`.
+- You cannot change the table structure.
+- Even maintenance commands like `VACUUM` or `ANALYZE` must wait.
+
+Typical commands that acquire this lock include:
+
+```sql
+DROP TABLE
+TRUNCATE
+VACUUM FULL
+REINDEX
+CLUSTER
+ALTER TABLE ADD COLUMN
+ALTER TABLE DROP COLUMN
+ALTER TABLE SET DATA TYPE
+ALTER TABLE RENAME
+REFRESH MATERIALIZED VIEW
+```
+
+If you run `VACUUM FULL users;`, no other session can read or write to the users table until the operation finishes.
+
+This lock is often used when PostgreSQL needs to rebuild or reorganize the physical data on disk, which must be done in isolation.
+
 ---
 
 - [Home](./../../README.md)
