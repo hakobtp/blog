@@ -368,6 +368,91 @@ ALTER TABLE orders ADD COLUMN status TEXT;
 
 > `ROW EXCLUSIVE` is for normal write operations. It lets multiple writers work at the same time, but big table changes must wait.
 
+## SHARE ROW EXCLUSIVE: Block Writers, Allow Readers
+
+`SHARE ROW EXCLUSIVE` locks stop data changes but still allow reading, including `SELECT FOR` queries.
+
+Commands that take this lock
+
+```sql
+CREATE TRIGGER
+ALTER TABLE ADD FOREIGN KEY
+ALTER TABLE ENABLE TRIGGER
+ALTER TABLE DISABLE TRIGGER
+```
+
+How it works
+- Other sessions can read the table while this lock is active.
+- Data changes (`INSERT`, `UPDATE`, `DELETE`) are blocked.
+- Only one session can hold this lock at a time — if another session tries the same operation, it must wait.
+
+This lock is useful when you want to make structural changes that don’t stop users from reading, but you cannot allow other writers at the same time.
+
+## SHARE: For Creating Indexes
+
+`SHARE` locks stop data changes but allow multiple sessions to hold the same lock at the same time.
+
+Commands that take this lock
+```sql
+CREATE INDEX
+```
+
+How it works
+- While building an index, PostgreSQL reads all table rows, so data changes (`INSERT`, `UPDATE`, `DELETE`) are blocked.
+- Several `CREATE INDEX` commands can run at the same time on the same table, as long as they don’t try to change data.
+
+> If you want to build an index without blocking writes, use:
+
+```sql
+CREATE INDEX CONCURRENTLY;
+```
+
+This lets users `read` and `write` while the index is being created.
+
+## SHARE UPDATE EXCLUSIVE: For Maintenance Tasks
+
+`SHARE UPDATE EXCLUSIVE` locks allow normal reading and writing but stop structural changes and some maintenance operations.
+
+Commands that take this lock
+
+```sql
+VACUUM
+CREATE INDEX CONCURRENTLY
+ANALYZE
+COMMENT ON
+REINDEX CONCURRENTLY
+ALTER TABLE VALIDATE CONSTRAINT
+ALTER TABLE DETACH PARTITION
+```
+
+How it works
+
+- Other sessions can **read** and **write** data normally.
+- Structural changes (like `ALTER TABLE`) or some maintenance operations are blocked.
+- This lock is often used by background tasks, like `VACUUM`, to clean up old rows without stopping normal activity.
+
+ It is useful for maintenance operations that must run safely while users continue to read and write data.
+ 
+## Table Lock Matrix (Simplified)
+
+Here’s an easier way to think about lock conflicts:
+
+| Lock Type              | Blocks Reads | Blocks Writes | Blocks Schema Changes |
+| ---------------------- | ------------ | ------------- | --------------------- |
+| ACCESS SHARE           | ❌            | ❌             | ❌                     |
+| ROW SHARE              | ❌            | ❌             | ✅                     |
+| ROW EXCLUSIVE          | ❌            | ✅             | ✅                     |
+| SHARE                  | ❌            | ✅             | ✅                     |
+| SHARE ROW EXCLUSIVE    | ❌            | ✅             | ✅                     |
+| SHARE UPDATE EXCLUSIVE | ❌            | ✅             | ✅                     |
+| EXCLUSIVE              | ❌            | ✅             | ✅                     |
+| ACCESS EXCLUSIVE       | ✅            | ✅             | ✅                     |
+
+
+In short:
+- The further down the list, the stronger the lock.
+- Stronger locks block more operations.
+
 ---
 
 - [Home](./../../README.md)
