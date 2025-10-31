@@ -299,6 +299,37 @@ Once `REFRESH MATERIALIZED VIEW CONCURRENTLY` finishes:
 - Useful for refreshing materialized views without stopping readers.
 - Balances data consistency with concurrent access.
 
+## 4. ROW SHARE — For SELECT ... FOR Commands
+
+`ROW SHARE` locks are used when a query reads rows but may change them later.
+
+Commands that take this lock
+
+```sql
+SELECT ... FOR UPDATE
+SELECT ... FOR SHARE
+SELECT ... FOR KEY SHARE
+SELECT ... FOR NO KEY UPDATE
+```
+
+How it works
+
+- This lock conflicts only with `ACCESS EXCLUSIVE` and `EXCLUSIVE` locks.
+- You can still read the table normally.
+- You cannot make changes to the table structure (like `ALTER TABLE` or `DROP TABLE`) while the lock is active.
+
+Suppose your app runs:
+
+```sql
+SELECT * FROM orders WHERE id = 10 FOR UPDATE;
+```
+
+- PostgreSQL locks that specific row.
+- It also takes a table-level `ROW SHARE` lock.
+- Other users cannot change that row until your transaction finishes.
+
+> This is useful when you want to read a row and then safely update it, without blocking other readers.
+
 ---
 
 - [Home](./../../README.md)
