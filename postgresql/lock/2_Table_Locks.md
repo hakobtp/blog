@@ -89,6 +89,55 @@ Once `VACUUM FULL` completes, all blocked queries continue.
 
 **Key takeaway:** Use `ACCESS EXCLUSIVE` for operations that require complete isolation, such as restructuring or rebuilding a table.
 
+## ACCESS SHARE — The Lightest Lock
+
+`ACCESS SHARE` is acquired by read-only commands, like `SELECT` or `COPY TO`. It rarely blocks other sessions.
+
+```sql
+SELECT * FROM users;
+COPY users TO '/path/to/file.csv' WITH (FORMAT csv, HEADER);
+```
+
+**Behavior:**
+- Conflicts only with `ACCESS EXCLUSIVE` operations.
+- Multiple readers can access the table simultaneously.
+- Writers (`INSERT`, `UPDATE`, `DELETE`) are generally allowed alongside readers.
+
+**Example:**
+```sql
+-- Session 1
+SELECT * FROM users;
+
+-- Session 2
+SELECT * FROM users;  -- Executes immediately
+
+-- Session 3
+INSERT INTO users(name, email) VALUES ('Charlie', 'charlie@example.com');  -- Allowed
+
+-- Session 4
+VACUUM FULL users;  -- Waits until readers finish
+```
+
+
+## Table Lock Matrix (Simplified)
+
+| Lock Type              | Blocks Reads | Blocks Writes | Blocks Schema Changes |
+| ---------------------- | ------------ | ------------- | --------------------- |
+| ACCESS SHARE           | ❌            | ❌             | ❌                     |
+| ROW SHARE              | ❌            | ❌             | ✅                     |
+| ROW EXCLUSIVE          | ❌            | ✅             | ✅                     |
+| SHARE                  | ❌            | ✅             | ✅                     |
+| SHARE ROW EXCLUSIVE    | ❌            | ✅             | ✅                     |
+| SHARE UPDATE EXCLUSIVE | ❌            | ✅             | ✅                     |
+| EXCLUSIVE              | ❌            | ✅             | ✅                     |
+| ACCESS EXCLUSIVE       | ✅            | ✅             | ✅                     |
+
+Stronger locks block more operations. The further down the list, the more restrictive the lock.
+
+## Conclusion
+
+PostgreSQL’s locking system ensures data consistency while allowing high concurrency. Understanding which locks your queries acquire helps you write safer, faster, and more predictable SQL. By knowing when and how locks block operations, you can avoid unnecessary conflicts and optimize performance.
+
 ---
 
 - [Home](./../../README.md)
