@@ -44,6 +44,13 @@ At first, this can look confusing. Let’s explain each part:
     when you read a table with `SELECT`. It usually does not block other queries, except very exclusive operations like `DROP TABLE` or `ALTER TABLE`.
 - **granted (true):** This means the lock is currently held, not just requested.
 
+This output is completely normal. When you run a `SELECT` on `pg_locks`, PostgreSQL automatically acquires an `AccessShareLock` on the table.
+- This type of lock is harmless.
+- It does not block other queries, except those requiring exclusive access, such as `DROP TABLE` or `ALTER TABLE`.
+- Essentially, `pg_locks` is showing the lock that your own query implicitly holds on the system catalog.
+
+
+
 ---
 
 - [Home](./../../README.md)
