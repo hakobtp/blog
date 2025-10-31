@@ -26,9 +26,11 @@ That sounds logical but isn’t true in PostgreSQL. In reality, PostgreSQL has e
 When working with PostgreSQL, you might occasionally check the locks held on your database tables using the `pg_locks` system view. For example, consider the following query:
 
 ```sql
+
 SELECT pid, relation::regclass, mode, granted
 FROM pg_locks
 WHERE relation IS NOT NULL;
+
 ```
 
 Running this query could return a result like this:
