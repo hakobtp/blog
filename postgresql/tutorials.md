@@ -5,6 +5,7 @@
 
 - [Understanding Locks: A Simple Introduction](./lock/1_Understanding_Locks_A_Simple_Introduction.md)
 - [Table Locks](./lock/2_Table_Locks.md)
+- [Row Locks](./lock/3_Row_Locks.md)
 
 ### Join
 

@@ -228,6 +228,35 @@ ALTER TABLE DETACH PARTITION
 
 Stronger locks block more operations. The further down the list, the more restrictive the lock.
 
+## Using LOCK TABLE
+
+PostgreSQL allows you to explicitly lock a table in your session:
+
+```sql
+-- Lock the table in ACCESS EXCLUSIVE mode
+LOCK TABLE users IN ACCESS EXCLUSIVE MODE;
+```
+
+- You can replace `ACCESS EXCLUSIVE` with any of the other lock modes, like `ACCESS SHARE`, `ROW EXCLUSIVE`, etc.
+- While your session holds the lock:
+    - Other conflicting operations will wait until you release the lock (usually when the transaction ends).
+    - You control when to acquire and release it.
+
+**Example:**    
+
+```sql
+BEGIN;
+
+-- Explicitly lock the table
+LOCK TABLE orders IN EXCLUSIVE MODE;
+
+-- Do some operations
+UPDATE orders SET total = total + 10 WHERE id = 1;
+
+-- Unlock happens at COMMIT
+COMMIT;
+```
+
 ## Conclusion
 
 PostgreSQL’s locking system ensures data consistency while allowing high concurrency. Understanding which locks your queries acquire helps you write safer, faster, and more predictable SQL. By knowing when and how locks block operations, you can avoid unnecessary conflicts and optimize performance.
@@ -237,3 +266,4 @@ PostgreSQL’s locking system ensures data consistency while allowing high concu
 - [Home](./../../README.md)
 - [PostgreSql Tutorials](./../tutorials.md)
 - [Understanding Locks: A Simple Introduction](./1_Understanding_Locks_A_Simple_Introduction.md)
+- [Row Locks](./3_Row_Locks.md)
