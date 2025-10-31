@@ -294,6 +294,8 @@ because `FOR KEY SHARE` blocks deletes and key changes.
 | FOR UPDATE        | ✅             | ❌ (by others)    | ❌             |
 
 
+---
+
 | Lock Type           | Strength     | Description                                                                      |
 | ------------------- | ------------ | -------------------------------------------------------------------------------- |
 | `FOR UPDATE`        | Strongest    | Locks the entire row — no other lock can be taken.                               |
