@@ -226,6 +226,79 @@ Result:
 - Conflicts occur only with `ACCESS EXCLUSIVE` operations like `VACUUM FULL`, `DROP TABLE`, or `ALTER TABLE`.
 - Ideal for reporting, analytics, and dashboards that do not modify data.
 
+
+## 3. EXCLUSIVE — Reading Allowed, Writing Blocked
+
+The EXCLUSIVE lock is similar to ACCESS EXCLUSIVE but more relaxed. It allows other sessions to read the table but blocks modifications.
+
+Only one major command uses this lock:
+
+REFRESH MATERIALIZED VIEW CONCURRENTLY
+
+This design lets PostgreSQL update a materialized view while other users can still query it — a balance between consistency and concurrency.
+
+
+The `EXCLUSIVE` lock is a little weaker than `ACCESS EXCLUSIVE`. It stops changes to the table but other sessions can still read the data. 
+This lock is useful when you want to update a table safely without stopping users from reading it.
+
+Only a few commands use this lock. The most common one is:
+
+```sql
+REFRESH MATERIALIZED VIEW CONCURRENTLY;
+```
+
+This command updates a materialized view while letting other sessions read it at the same time.
+
+How it works
+
+- Other sessions can read the table (`SELECT` works).
+- Other sessions cannot write to the table (`INSERT`, `UPDATE`, `DELETE` are blocked).
+- Only one session can hold an `EXCLUSIVE` lock at a time.
+
+> **Why it exists:** This lock allows updates while letting users read data. It keeps a good balance between consistency and concurrency.
+
+**Example: EXCLUSIVE Lock in Action**
+
+Suppose we have a materialized view called `user_stats`.
+
+```sql
+-- Session 1
+REFRESH MATERIALIZED VIEW CONCURRENTLY user_stats;
+```
+
+At this moment:
+
+PostgreSQL locks the view in `EXCLUSIVE` mode.
+Other users can still read from the view without waiting.
+
+```sql
+-- Session 2
+SELECT * FROM user_stats;
+```
+
+Result:
+- The query runs immediately.
+- Reading is not blocked.
+
+```sql
+-- Session 3
+INSERT INTO user_stats(user_id, login_count) VALUES (1, 10);
+```
+
+Result:
+
+- This query waits until Session 1 finishes.
+- Writing is blocked while the lock is active.
+
+Once `REFRESH MATERIALIZED VIEW CONCURRENTLY` finishes:
+- The `EXCLUSIVE` lock is released.
+- All blocked writes can now continue.
+
+**Key Takeaways:**
+- `EXCLUSIVE` locks allow reading but block writing.
+- Useful for refreshing materialized views without stopping readers.
+- Balances data consistency with concurrent access.
+
 ---
 
 - [Home](./../../README.md)
