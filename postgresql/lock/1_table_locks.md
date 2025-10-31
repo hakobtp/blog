@@ -86,7 +86,7 @@ WHERE NOT blocked_locks.granted;
 Using this, you can quickly identify the queries causing blocks and take action, such as terminating a long-running session or optimizing a transaction to avoid conflicts.
 
 
-## 1. ACCESS EXCLUSIVE — The Strongest Lock
+## ACCESS EXCLUSIVE: The Strongest Lock
 
 This is the most restrictive lock in PostgreSQL. When a transaction holds an `ACCESS EXCLUSIVE` lock, nobody else can even read from the table. 
 It blocks all other table lock types.
@@ -161,7 +161,7 @@ Once the `VACUUM FULL` in `Session 1` completes:
     operations that rebuild or change the table’s structure,  like `VACUUM FULL`, `DROP TABLE`, `ALTER TABLE`, or `CLUSTER`.
 
 
-## 2. ACCESS SHARE — The Lightest Lock
+## ACCESS SHARE: The Lightest Lock
 
 The `ACCESS SHARE` lock is the lightest and safest lock in PostgreSQL. It is acquired by commands that **only read data** and **do not modify the table**.
 
@@ -227,7 +227,7 @@ Result:
 - Ideal for reporting, analytics, and dashboards that do not modify data.
 
 
-## 3. EXCLUSIVE — Reading Allowed, Writing Blocked
+## EXCLUSIVE : Reading Allowed, Writing Blocked
 
 The EXCLUSIVE lock is similar to ACCESS EXCLUSIVE but more relaxed. It allows other sessions to read the table but blocks modifications.
 
@@ -299,7 +299,7 @@ Once `REFRESH MATERIALIZED VIEW CONCURRENTLY` finishes:
 - Useful for refreshing materialized views without stopping readers.
 - Balances data consistency with concurrent access.
 
-## 4. ROW SHARE — For SELECT ... FOR Commands
+## ROW SHARE: For SELECT ... FOR Commands
 
 `ROW SHARE` locks are used when a query reads rows but may change them later.
 
