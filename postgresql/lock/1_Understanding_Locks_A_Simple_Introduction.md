@@ -16,6 +16,10 @@ Here’s an overview:
 - **Advisory Locks** – Application-controlled locks, independent of MVCC.
 - **Other Internal Locks** – Used internally for specific system operations (e.g., sequences, caches).
 
+<p align="center">
+    <img src="./assets/img7.png" alt="img7" width="400"/>
+</p>
+
 ## Row-level Locks
 
 Row-level locks are applied automatically during operations such as `SELECT … FOR UPDATE`, `UPDATE`, and `DELETE`. 
