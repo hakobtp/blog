@@ -265,5 +265,5 @@ PostgreSQL’s locking system ensures data consistency while allowing high concu
 
 - [Home](./../../README.md)
 - [PostgreSql Tutorials](./../tutorials.md)
-- [Understanding Locks: A Simple Introduction](./1_Understanding_Locks_A_Simple_Introduction.md)
+- [Understanding Locks](./1_Understanding_Locks_A_Simple_Introduction.md)
 - [Row Locks](./3_Row_Locks.md)
