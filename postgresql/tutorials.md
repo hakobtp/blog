@@ -3,7 +3,7 @@
 
 ### Understanding Locks
 
-- [Table Locks](./lock/1_table_locks.md)
+- [Understanding Locks: A Simple Introduction](./lock/1_Understanding_Locks_A_Simple_Introduction.md)
 
 ### Join
 
