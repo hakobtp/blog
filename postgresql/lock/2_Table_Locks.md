@@ -118,6 +118,100 @@ INSERT INTO users(name, email) VALUES ('Charlie', 'charlie@example.com');  -- Al
 VACUUM FULL users;  -- Waits until readers finish
 ```
 
+## EXCLUSIVE — Reading Allowed, Writing Blocked
+
+`EXCLUSIVE` locks block modifications but allow reads. For example:
+
+```sql
+REFRESH MATERIALIZED VIEW CONCURRENTLY user_stats;
+```
+
+Reads are allowed.
+- Writes are blocked until the lock is released.
+- Only one session can hold an `EXCLUSIVE` lock at a time.
+
+**Use case:** Updating a materialized view while letting users continue reading it.
+
+## ROW SHARE — For SELECT ... FOR Commands
+
+`ROW SHARE` is used for queries that read rows but may update them later:
+
+```sql
+SELECT ... FOR UPDATE;
+SELECT ... FOR SHARE;
+SELECT ... FOR KEY SHARE;
+SELECT ... FOR NO KEY UPDATE;
+```
+
+- Conflicts only with `ACCESS EXCLUSIVE` and `EXCLUSIVE` locks.
+- Reads can continue normally.
+- Table structure changes are blocked until the lock is released.
+
+## ROW EXCLUSIVE — For DML Operations
+
+`ROW EXCLUSIVE` is acquired by commands that modify rows:
+
+```sql
+INSERT
+UPDATE
+DELETE
+MERGE
+COPY FROM
+```
+
+- Multiple sessions can hold this lock simultaneously.
+- Stronger locks (`ACCESS EXCLUSIVE`) must wait until these finish.
+
+**Example:**
+
+```sql
+-- Session 1
+INSERT INTO orders(user_id, total) VALUES (1, 100);
+
+-- Session 2
+ALTER TABLE orders ADD COLUMN status TEXT;  -- Waits for Session 1
+
+```
+
+## SHARE ROW EXCLUSIVE — Block Writers, Allow Readers
+
+Used for structural changes while allowing reads:
+
+```sql
+CREATE TRIGGER
+ALTER TABLE ADD FOREIGN KEY
+ALTER TABLE ENABLE/DISABLE TRIGGER
+```
+
+- Blocks other writers.
+- Readers can continue accessing the table.
+
+## SHARE — For Creating Indexes
+
+`SHARE` locks prevent writes but allow multiple sessions to hold the lock simultaneously:
+
+```sql
+CREATE INDEX
+```
+
+
+**Tip:** Use `CREATE INDEX CONCURRENTLY` to allow reads and writes during index creation.
+
+## SHARE UPDATE EXCLUSIVE — For Maintenance Tasks
+
+Used for maintenance commands:
+```sql
+VACUUM
+CREATE INDEX CONCURRENTLY
+ANALYZE
+COMMENT ON
+REINDEX CONCURRENTLY
+ALTER TABLE VALIDATE CONSTRAINT
+ALTER TABLE DETACH PARTITION
+```
+
+- Reading and writing continues normally.
+- Structural changes or some maintenance operations are blocked.
 
 ## Table Lock Matrix (Simplified)
 
