@@ -156,8 +156,9 @@ Once the `VACUUM FULL` in `Session 1` completes:
 - All blocked queries in `Session 2` will continue and execute normally.
 
 
-**Key takeaway:** `ACCESS EXCLUSIVE` locks are extremely strong. They are needed for operations that rebuild or change the table’s structure, 
-like `VACUUM FULL`, `DROP TABLE`, `ALTER TABLE`, or `CLUSTER`.
+**Key takeaway:** 
+- `ACCESS EXCLUSIVE` locks are extremely strong. They are needed for 
+    operations that rebuild or change the table’s structure,  like `VACUUM FULL`, `DROP TABLE`, `ALTER TABLE`, or `CLUSTER`.
 
 
 ## 2. ACCESS SHARE — The Lightest Lock
@@ -180,6 +181,50 @@ How it behaves
 - Otherwise, normal reads and writes can run simultaneously without blocking.
 
 > **Example:** You can run hundreds of `SELECT` queries on a table at the same time — they all share the table peacefully.
+
+**Example: ACCESS SHARE Lock in Action**
+
+```sql
+-- Session 1
+SELECT * FROM users;
+```
+
+- Table is locked in `ACCESS SHARE` mode.
+- This does not block other readers or normal writes.
+
+```sql
+-- Session 2
+SELECT * FROM users;
+```
+
+Result:
+- Query executes immediately.
+- Multiple reads happen concurrently.
+- This demonstrates why `ACCESS SHARE` is called the lightest lock.
+
+```sql
+-- Session 3
+INSERT INTO users(name, email) VALUES ('Charlie', 'charlie@example.com');
+```
+
+Result:
+- `INSERT` executes immediately.
+- `ACCESS SHARE` does not block writes. Normal DML operations (`INSERT`/`UPDATE`/`DELETE`) are allowed alongside readers.
+
+```sql
+-- Session 4
+VACUUM FULL users;
+```
+
+Result:
+- `VACUUM FULL` waits until all `ACCESS SHARE` locks are released.
+- `SELECT` queries in Sessions 1 and 2 block the `ACCESS EXCLUSIVE` operation until they finish.
+
+- **Key Takeaways:**
+- `ACCESS SHARE` is used for reading only (`SELECT`, `COPY TO`).
+- Multiple readers can coexist without blocking each other.
+- Conflicts occur only with `ACCESS EXCLUSIVE` operations like `VACUUM FULL`, `DROP TABLE`, or `ALTER TABLE`.
+- Ideal for reporting, analytics, and dashboards that do not modify data.
 
 ---
 
