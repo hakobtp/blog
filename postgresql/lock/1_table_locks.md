@@ -330,6 +330,44 @@ SELECT * FROM orders WHERE id = 10 FOR UPDATE;
 
 > This is useful when you want to read a row and then safely update it, without blocking other readers.
 
+
+## ROW EXCLUSIVE: For DML Operations
+
+`ROW EXCLUSIVE` locks are used for **data-changing commands** — the ones that **modify rows**.
+
+Commands that take this lock
+```sql
+INSERT
+UPDATE
+DELETE
+MERGE
+COPY FROM
+```
+
+> Even if your `UPDATE` changes zero rows, PostgreSQL still takes the lock.
+
+How it works
+- Multiple transactions can hold this lock at the same time.
+- Stronger locks, like `ACCESS EXCLUSIVE` (used by `ALTER TABLE` or `VACUUM FULL`), must wait until all `ROW EXCLUSIVE` locks are finished.
+
+Suppose a long-running transaction is inserting data:
+
+```sql
+-- Session 1
+INSERT INTO orders(user_id, total) VALUES (1, 100);
+```
+
+If another session tries to run:
+
+```sql
+ALTER TABLE orders ADD COLUMN status TEXT;
+```
+
+- This query waits until the `INSERT` finishes.
+- That’s because `ALTER TABLE` requires a stronger lock than `ROW EXCLUSIVE`.
+
+> `ROW EXCLUSIVE` is for normal write operations. It lets multiple writers work at the same time, but big table changes must wait.
+
 ---
 
 - [Home](./../../README.md)
