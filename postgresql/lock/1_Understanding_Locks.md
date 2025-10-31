@@ -23,7 +23,26 @@ If you asked me a few years ago what a table lock was, I might have said: “It�
 
 That sounds logical but isn’t true in PostgreSQL. In reality, PostgreSQL has eight table lock types, and a transaction can hold more than one lock on the same table. Some locks allow other operations to continue; others block everything.
 
-You can check table locks by running:
+When working with PostgreSQL, you might occasionally check the locks held on your database tables using the `pg_locks` system view. For example, consider the following query:
+
+```sql
+SELECT pid, relation::regclass, mode, granted
+FROM pg_locks
+WHERE relation IS NOT NULL;
+```
+
+Running this query could return a result like this:
+
+```bash
+24088 | pg_locks | AccessShareLock | true
+```
+At first, this can look confusing. Let’s explain each part:
+
+**pid (24088):** This is the process ID of the session holding the lock. Here, backend `24088` has a lock on the `pg_locks` table.
+- **relation::regclass (pg_locks):** This shows which table is locked. In this case, it is the `pg_locks` table itself.
+- **mode (AccessShareLock):** PostgreSQL has many types of locks. `AccessShareLock` is the least restrictive. It happens automatically 
+    when you read a table with `SELECT`. It usually does not block other queries, except very exclusive operations like `DROP TABLE` or `ALTER TABLE`.
+- **granted (true):** This means the lock is currently held, not just requested.
 
 ---
 
