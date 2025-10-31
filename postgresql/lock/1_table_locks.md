@@ -1,4 +1,4 @@
-# Understanding Locks
+# Table Locks
 
 When I first started learning about databases, I believed there were only two kinds of locks: **shared** and **exclusive**.
 
