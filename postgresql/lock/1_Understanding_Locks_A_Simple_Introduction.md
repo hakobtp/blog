@@ -1,4 +1,4 @@
-# Understanding Locks: A Simple Introduction
+# Understanding Locks
 
 When I first started learning about databases, I thought there were only two types of locks: `shared` and `exclusive`.
 
