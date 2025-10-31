@@ -53,7 +53,41 @@ WHERE NOT blocked_locks.granted;
 
 This query shows which sessions are blocked and which are blocking, helping you troubleshoot lock contention.
 
+## ACCESS EXCLUSIVE — The Strongest Lock
 
+`ACCESS EXCLUSIVE` is the most restrictive lock. When a session holds it, **no one else can read or write the table**, and almost all commands are blocked.
+
+Commands that acquire this lock include:
+
+```sql
+DROP TABLE
+TRUNCATE
+VACUUM FULL
+REINDEX
+CLUSTER
+ALTER TABLE ...
+REFRESH MATERIALIZED VIEW
+```
+
+**Example:**
+
+```sql
+-- Session 1
+VACUUM FULL users;  -- Acquires ACCESS EXCLUSIVE lock
+```
+
+While this runs:
+
+```sql
+-- Session 2
+SELECT * FROM users;  -- Blocks until Session 1 finishes
+
+INSERT INTO users(name, email) VALUES ('Alice', 'alice@example.com');  -- Also blocked
+```
+
+Once `VACUUM FULL` completes, all blocked queries continue.
+
+**Key takeaway:** Use `ACCESS EXCLUSIVE` for operations that require complete isolation, such as restructuring or rebuilding a table.
 
 ---
 
