@@ -159,6 +159,28 @@ Once the `VACUUM FULL` in `Session 1` completes:
 **Key takeaway:** `ACCESS EXCLUSIVE` locks are extremely strong. They are needed for operations that rebuild or change the table’s structure, 
 like `VACUUM FULL`, `DROP TABLE`, `ALTER TABLE`, or `CLUSTER`.
 
+
+## 2. ACCESS SHARE — The Lightest Lock
+
+The `ACCESS SHARE` lock is the lightest and safest lock in PostgreSQL. It is acquired by commands that **only read data** and **do not modify the table**.
+
+Commands that take this lock
+
+```sql
+SELECT * FROM users;
+COPY users TO '/path/to/file.csv' WITH (FORMAT csv, HEADER);
+```
+
+> **Note:** `COPY TO` is a standalone command, not part of `SELECT`. It exports table data to a file and acquires an `ACCESS SHARE` lock.
+
+How it behaves
+
+- **ACCESS SHARE** only conflicts with **ACCESS EXCLUSIVE**.
+- If a `VACUUM FULL`, `DROP TABLE`, or `ALTER TABLE` is running, your `SELECT` or `COPY TO` will wait.
+- Otherwise, normal reads and writes can run simultaneously without blocking.
+
+> **Example:** You can run hundreds of `SELECT` queries on a table at the same time — they all share the table peacefully.
+
 ---
 
 - [Home](./../../README.md)
