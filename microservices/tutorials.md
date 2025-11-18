@@ -41,7 +41,7 @@
       <li><a href="./MicroservicesWithSpringBoot/5_Creating_the_API_Library.html">Creating the API Library</a></li>
       <li><a href="./MicroservicesWithSpringBoot/6_Creating_the_Util_Library.html">Creating the Util Library</a></li>
       <li><a href="./MicroservicesWithSpringBoot/7_Implementing_the_Course_API.html">Implementing the Course API</a></li>
-      <!-- Adding a composite microservice ej 94 GREM 8_ file mech-->
+      <li><a href="./MicroservicesWithSpringBoot/8_Building_the_Composite_Service.html">Building the Composite Service</a></li>
     </ul>
   </div>
 

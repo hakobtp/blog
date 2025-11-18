@@ -169,3 +169,4 @@ The source code for this article is available [over on GitHub](https://github.co
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Creating the Util Library](./6_Creating_the_Util_Library.md)
+- [Building the Composite Service](./8_Building_the_Composite_Service.md)
