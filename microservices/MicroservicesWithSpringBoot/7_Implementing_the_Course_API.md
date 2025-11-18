@@ -162,7 +162,7 @@ jar {
 This ensures Gradle only builds the single executable JAR we actually use.
 
 
-The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/implementing_the_course_api){:target="_blank" rel="noopener"}.
+The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/api_implementation){:target="_blank" rel="noopener"}.
 
 ---
 
