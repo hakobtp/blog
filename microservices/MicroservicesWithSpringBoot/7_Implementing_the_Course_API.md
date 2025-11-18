@@ -123,7 +123,7 @@ java -jar course-service/build/libs/*.jar &
 Once the service is running, test it using curl:
 
 ```bash
-curl -X GET "http://localhost:8082/api/v1/courses/3334"
+curl -X GET "http://localhost:8082/api/v1/courses/2"
 ```
 
 ```json
