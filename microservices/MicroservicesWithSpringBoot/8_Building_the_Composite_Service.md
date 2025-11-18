@@ -63,8 +63,8 @@ The Java interface class `CourseCompositeService` uses the same design pattern a
 ```java
 public interface CourseCompositeService {
 
-    @GetMapping("/{courseId}")
-    CourseAggregate getCourse(@PathVariable Long courseId);
+    @GetMapping("/{courseId}")
+    CourseAggregate getCourse(@PathVariable Long courseId);
 }
 ```
 
@@ -72,12 +72,12 @@ The model class `CourseAggregate` is a bit more complex than the core data model
 
 ```java
 public record CourseAggregate(
-        Long courseId,
-        String title,
-        String description,
-        CourseDifficultyLevel difficultyLevel,
-        ServiceAddresses serviceAddresses,
-        List<ChapterSummary> chapters
+        Long courseId,
+        String title,
+        String description,
+        CourseDifficultyLevel difficultyLevel,
+        ServiceAddresses serviceAddresses,
+        List<ChapterSummary> chapters
 ) {
 }
 ```
