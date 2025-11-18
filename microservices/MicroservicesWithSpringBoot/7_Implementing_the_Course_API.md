@@ -37,11 +37,12 @@ Now we can implement the actual API logic. Create a class named `CourseServiceIm
 
 ```java
 
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/courses")
 public class CourseServiceImpl implements CourseService {
+
 
     private final ServiceUtil serviceUtil;
     private final ConcurrentHashMap<Long, Course> courses = new ConcurrentHashMap<>();
@@ -65,8 +66,9 @@ public class CourseServiceImpl implements CourseService {
         log.info("Initialized {} courses in the in-memory map.", courses.size());
     }
 
+
     @Override
-    public ResponseEntity<Course> getCourseById(Long courseId) {
+    public Course getCourseById(Long courseId) {
         if (courseId == null || courseId < 1) {
             log.error("Invalid courseId received: {}", courseId);
             throw new InvalidRequestException("Invalid courseId (must be > 0): " + courseId);
@@ -79,68 +81,7 @@ public class CourseServiceImpl implements CourseService {
         }
 
         log.debug("Found course with ID {}: {}", courseId, course.title());
-        return ResponseEntity.ok(course);
-    }
-
-    @Override
-    public ResponseEntity<List<Course>> getAllCourses() {
-        log.debug("Retrieving all courses. Total: {}", courses.size());
-        List<Course> allCourses = new ArrayList<>(courses.values());
-        return ResponseEntity.ok(allCourses);
-    }
-
-    @Override
-    public ResponseEntity<Course> createCourse(Course course) {
-        if (course == null || course.title() == null || course.title().isEmpty()) {
-            throw new InvalidRequestException("Course data is invalid or missing title.");
-        }
-
-        Long newId = courses.size() + 1L;
-        var serviceAddress = serviceUtil.getServiceAddress();
-        Course newCourse = new Course(newId, course.title(),
-                course.description(), serviceAddress, course.difficultyLevel());
-        courses.put(newId, newCourse);
-
-        log.info("Created new course with ID {}: {}", newId, newCourse.title());
-
-        return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
-    }
-
-    @Override
-    public ResponseEntity<Course> updateCourse(Long courseId, Course course) {
-        if (courseId == null || courseId < 1) {
-            throw new InvalidRequestException("Invalid courseId for update: " + courseId);
-        }
-        if (!courses.containsKey(courseId)) {
-            log.warn("Attempted to update non-existent course ID: {}", courseId);
-            throw new NotFoundException("Course not found for ID: " + courseId);
-        }
-
-        Course updatedCourse = new Course(courseId,
-                course.title(),
-                course.description(),
-                serviceUtil.getServiceAddress(),
-                course.difficultyLevel());
-        courses.put(courseId, updatedCourse);
-
-        log.info("Updated course with ID {}: {}", courseId, updatedCourse.title());
-
-        return ResponseEntity.ok(updatedCourse);
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteCourse(Long courseId) {
-        if (courseId == null || courseId < 1) {
-            throw new InvalidRequestException("Invalid courseId for delete: " + courseId);
-        }
-        Course removedCourse = courses.remove(courseId);
-
-        if (removedCourse == null) {
-            log.warn("Attempted to delete non-existent course ID: {}", courseId);
-        } else {
-            log.info("Deleted course with ID {}: {}", courseId, removedCourse.title());
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return course;
     }
 }
 ```
