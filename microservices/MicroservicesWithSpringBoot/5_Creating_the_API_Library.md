@@ -105,44 +105,10 @@ public record Chapter(
 ### ChapterService Interface
 
 ```java
-
-@RequestMapping("/api/v1/chapters")
 public interface ChapterService {
 
-    /**
-     * Get a chapter by its ID
-     * Example: GET /api/v1/chapters/{chapterId}
-     */
-    @GetMapping("/{chapterId}")
-    ResponseEntity<Chapter> getChapterById(@PathVariable Long chapterId);
-
-    /**
-     * Get all chapters for a specific course
-     * Example: GET /api/v1/chapters/course/{courseId}
-     */
-    @GetMapping("/course/{courseId}")
-    ResponseEntity<List<Chapter>> getChaptersByCourseId(@PathVariable Long courseId);
-
-    /**
-     * Create a new chapter
-     * Example: POST /api/v1/chapters
-     */
-    @PostMapping
-    ResponseEntity<Chapter> createChapter(@RequestBody Chapter chapter);
-
-    /**
-     * Update an existing chapter
-     * Example: PUT /api/v1/chapters/{chapterId}
-     */
-    @PutMapping("/{chapterId}")
-    ResponseEntity<Chapter> updateChapter(@PathVariable Long chapterId, @RequestBody Chapter chapter);
-
-    /**
-     * Delete a chapter by its ID
-     * Example: DELETE /api/v1/chapters/{chapterId}
-     */
-    @DeleteMapping("/{chapterId}")
-    ResponseEntity<Void> deleteChapter(@PathVariable Long chapterId);
+    @GetMapping
+    List<Chapter> getChaptersByCourseId(@RequestParam(value = "courseId") Long courseId);
 }
 ```
 
@@ -170,44 +136,10 @@ public record Course(
 ### CourseService Interface
 
 ```java
-
-@RequestMapping("/api/v1/courses")
 public interface CourseService {
 
-    /**
-     * Get a course by its ID
-     * Example: GET /api/v1/courses/{courseId}
-     */
     @GetMapping("/{courseId}")
-    ResponseEntity<Course> getCourseById(@PathVariable Long courseId);
-
-    /**
-     * Get all courses
-     * Example: GET /api/v1/courses
-     */
-    @GetMapping
-    ResponseEntity<List<Course>> getAllCourses();
-
-    /**
-     * Create a new course
-     * Example: POST /api/v1/courses
-     */
-    @PostMapping
-    ResponseEntity<Course> createCourse(@RequestBody Course course);
-
-    /**
-     * Update an existing course
-     * Example: PUT /api/v1/courses/{courseId}
-     */
-    @PutMapping("/{courseId}")
-    ResponseEntity<Course> updateCourse(@PathVariable Long courseId, @RequestBody Course course);
-
-    /**
-     * Delete a course by its ID
-     * Example: DELETE /api/v1/courses/{courseId}
-     */
-    @DeleteMapping("/{courseId}")
-    ResponseEntity<Void> deleteCourse(@PathVariable Long courseId);
+    Course getCourseById(@PathVariable Long courseId);
 }
 ```
 
@@ -237,44 +169,10 @@ public record Quiz(
 ### CourseService Interface
 
 ```java
-
-@RequestMapping("/api/v1/quizzes")
 public interface QuizService {
 
-    /**
-     * Get a quiz by its ID
-     * Example: GET /api/v1/quizzes/{quizId}
-     */
-    @GetMapping("/{quizId}")
-    ResponseEntity<Quiz> getQuizById(@PathVariable Long quizId);
-
-    /**
-     * Get all quizzes for a specific course
-     * Example: GET /api/v1/quizzes/course/{courseId}
-     */
-    @GetMapping("/course/{chapterId}")
-    ResponseEntity<List<Quiz>> getQuizzesByChapterId(@PathVariable Long chapterId);
-
-    /**
-     * Create a new quiz
-     * Example: POST /api/v1/quizzes
-     */
-    @PostMapping
-    ResponseEntity<Quiz> createQuiz(@RequestBody Quiz quiz);
-
-    /**
-     * Update an existing quiz
-     * Example: PUT /api/v1/quizzes/{quizId}
-     */
-    @PutMapping("/{quizId}")
-    ResponseEntity<Quiz> updateQuiz(@PathVariable Long quizId, @RequestBody Quiz quiz);
-
-    /**
-     * Delete a quiz by its ID
-     * Example: DELETE /api/v1/quizzes/{quizId}
-     */
-    @DeleteMapping("/{quizId}")
-    ResponseEntity<Void> deleteQuiz(@PathVariable Long quizId);
+    @GetMapping
+    List<Quiz> getQuizzesByChapterId(@RequestParam(value = "chapterId") Long chapterId);
 }
 ```
 

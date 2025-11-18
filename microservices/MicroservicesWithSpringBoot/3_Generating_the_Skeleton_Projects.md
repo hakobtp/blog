@@ -136,6 +136,8 @@ First, we need a settings file to tell Gradle which projects belong to the build
 in the root folder (`microservices-with-spring-boot`) and add the following:
 
 ```groovy
+rootProject.name = 'microservices-with-spring-boot'
+
 include ':microservices:chapter-service'
 include ':microservices:course-service'
 include ':microservices:course-composite-service'

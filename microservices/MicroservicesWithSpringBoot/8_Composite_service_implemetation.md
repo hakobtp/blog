@@ -18,11 +18,16 @@ In this section, we will take a look at the classes that describe the API of the
 microservices-with-spring-boot/api
 |__/src/main/java/com/htp/microservices/api/composite
    |__course
-      |--CourseAggregate
+      |-summaries
+      |--|-ChapterSummary
+      |--|-QuizSummary
+      |-CourseAggregate
+      |-ServiceAddresses
+
       |--CourseCompositeService
       |--ChapterSummary
       |--QuizSummary
-      |--ServiceAddresses            
+          
 ```
 
 ```java
