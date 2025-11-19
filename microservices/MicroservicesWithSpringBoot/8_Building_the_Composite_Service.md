@@ -232,6 +232,210 @@ Here are some important points about how the methods are implemented:
     - To solve this, we use the Spring helper class, `ParameterizedTypeReference`. This class is designed to keep the type information (like `List<Chapter>`) at runtime.        
     - Because we need this helper, we must use the more detailed `exchange()` method instead of the simpler `getForObject()` method on `RestTemplate`.
 
+## Composite API Implementation
+
+The final step in building our composite microservice is implementing the API layer, represented by the class `CourseCompositeServiceImpl`.
+Before looking at that class, we need a few helper components that prepare and transform data for the composite response. These utilities keep the main service clean and maintainable.
+
+### ServiceAddressResolverUtil
+
+This utility class extracts service-address information from the responses of individual microservices.
+Because service addresses may be `null` or missing, this helper ensures that every extraction is safe and returns a valid string.
+
+```java
+public interface ServiceAddressResolverUtil {
+
+    static String resolveCourseAddress(Course course) {
+        if (course == null) {
+            return "";
+        }
+        var address = course.serviceAddress();
+        return address != null ? address : "";
+    }
+
+    static String resolveChapterAddress(List<Chapter> chapters) {
+        if (CollectionUtils.isEmpty(chapters)) {
+            return "";
+        }
+        return chapters.stream()
+                .map(Chapter::serviceAddress)
+                .filter(StringUtils::hasLength)
+                .findAny()
+                .orElse("");
+    }
+
+    static String resolveQuizAddress(List<Quiz> quizzes) {
+        if (CollectionUtils.isEmpty(quizzes)) {
+            return "";
+        }
+        return quizzes.stream()
+                .map(Quiz::serviceAddress)
+                .filter(StringUtils::hasLength)
+                .findAny()
+                .orElse("");
+    }
+}
+```
+
+### CourseMapper
+
+**Purpose:** Converts a `Course` and related service-address information into a `CourseAggregate`.
+This mapper keeps the composite service from being overloaded with transformation logic.
+
+```java
+@Component
+public class CourseMapper {
+
+    public CourseAggregate toCourseAggregate(
+            Course course,
+            ServiceAddresses serviceAddresses,
+            List<ChapterSummary> chapters
+    ) {
+        return new CourseAggregate(
+                course.courseId(),
+                course.title(),
+                course.description(),
+                course.difficultyLevel(),
+                serviceAddresses,
+                chapters
+        );
+    }
+}
+```
+
+### QuizMapper
+
+**Purpose:** Transforms a list of `Quiz` entities into simplified `QuizSummary` DTOs.
+It helps the composite service return only the necessary quiz information instead of full domain objects.
+
+```java
+@Component
+public class QuizMapper {
+
+    public List<QuizSummary> toQuizSummaries(List<Quiz> quizzes) {
+        return quizzes.stream()
+                .map(this::toQuizSummary)
+                .toList();
+    }
+
+    public QuizSummary toQuizSummary(Quiz quiz) {
+        return new QuizSummary(
+                quiz.quizId(),
+                quiz.question(),
+                quiz.correctAnswer(),
+                quiz.answerOptions());
+    }
+
+}
+```
+
+### ChapterMapper
+
+**Purpose:** Builds a list of `ChapterSummary` objects by combining chapter data with the quizzes that belong to each chapter.
+It delegates quiz transformation to `QuizMapper` to keep responsibility separated.
+
+```java
+@Component
+@RequiredArgsConstructor
+public class ChapterMapper {
+
+    private final QuizMapper quizMapper;
+
+    public List<ChapterSummary> toChapterSummaries(
+            List<Chapter> chapters,
+            Map<Long, List<Quiz>> quizMap
+    ) {
+        return chapters.stream()
+                .map(ch -> new ChapterSummary(
+                        ch.chapterId(),
+                        ch.title(),
+                        ch.content(),
+                        quizMapper.toQuizSummaries(quizMap.getOrDefault(ch.chapterId(), List.of()))
+                )).toList();
+    }
+}
+```
+
+### ServiceAddressesMapper
+
+**Purpose:** Combines all resolved service addresses—course, chapters, quizzes—and the composite service’s own address into a single `ServiceAddresses` object.
+This allows clients to trace where each piece of data originated.
+
+```java
+@Component
+@RequiredArgsConstructor
+public class ServiceAddressesMapper {
+
+    private final ServiceUtil serviceUtil;
+
+    public ServiceAddresses toAddresses(Course course, List<Chapter> chapters, List<Quiz> quizzes) {
+        var courseAddress = ServiceAddressResolverUtil.resolveCourseAddress(course);
+        var chapterAddress = ServiceAddressResolverUtil.resolveChapterAddress(chapters);
+        var quizAddress = ServiceAddressResolverUtil.resolveQuizAddress(quizzes);
+
+        return new ServiceAddresses(
+                courseAddress,
+                chapterAddress,
+                quizAddress,
+                serviceUtil.getServiceAddress()
+        );
+    }
+}
+```
+
+### CourseCompositeServiceImpl
+
+With all helper classes prepared, we can now implement the main composite API.
+This class orchestrates calls to the `course`, `chapter`, and `quiz` microservices, then aggregates the results into a single response.
+
+```java
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/course-composite")
+public class CourseCompositeServiceImpl implements CourseCompositeService {
+
+    private final CourseMapper courseMapper;
+    private final ChapterMapper chapterMapper;
+    private final ServiceAddressesMapper serviceAddressesMapper;
+    private final CourseCompositeIntegrationService integrationService;
+
+    @Override
+    public CourseAggregate getCourse(Long courseId) {
+
+        log.info("Fetching composite course structure for courseId={}", courseId);
+
+        var course = integrationService.getCourseById(courseId);
+        if (course == null) {
+            log.warn("Course not found: {}", courseId);
+            throw new NotFoundException("Course not found with id: " + courseId);
+        }
+
+        var chapters = integrationService.getChaptersByCourseId(course.courseId());
+        log.debug("Fetched {} chapters for course {}", chapters.size(), courseId);
+
+
+        Map<Long, List<Quiz>> quizMap = chapters.stream()
+                .collect(Collectors.toMap(
+                        Chapter::chapterId,
+                        chapter -> {
+                            var chapterId = chapter.chapterId();
+                            var quizzes = integrationService.getQuizzesByChapterId(chapterId);
+                            log.debug("Found {} quizzes for chapter {}", quizzes.size(), chapterId);
+                            return quizzes;
+                        }
+                ));
+
+        var allQuizzes = quizMap.values().stream().flatMap(List::stream).toList();
+
+
+        var addresses = serviceAddressesMapper.toAddresses(course, chapters, allQuizzes);
+        var chapterSummaries = chapterMapper.toChapterSummaries(chapters, quizMap);
+        return courseMapper.toCourseAggregate(course, addresses, chapterSummaries);
+    }
+}
+```
+
 ---
 
 - [Home](./../../README.md)
