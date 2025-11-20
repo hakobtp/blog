@@ -435,6 +435,8 @@ public class CourseCompositeServiceImpl implements CourseCompositeService {
 }
 ```
 
+The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/building_the_composite_service){:target="_blank" rel="noopener"}.
+
 ---
 
 - [Home](./../../README.md)
