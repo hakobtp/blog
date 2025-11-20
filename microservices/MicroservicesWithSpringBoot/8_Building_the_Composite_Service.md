@@ -194,7 +194,6 @@ configuration values from our property file. Here is how this is done
 @RequiredArgsConstructor
 public class CourseCompositeIntegrationService implements CourseService, ChapterService, QuizService {
 
-    private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate;
     private final MicroservicesConfig microservicesConfig;
 

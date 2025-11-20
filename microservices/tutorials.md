@@ -42,6 +42,7 @@
       <li><a href="./MicroservicesWithSpringBoot/6_Creating_the_Util_Library.html">Creating the Util Library</a></li>
       <li><a href="./MicroservicesWithSpringBoot/7_Implementing_the_Course_API.html">Implementing the Course API</a></li>
       <li><a href="./MicroservicesWithSpringBoot/8_Building_the_Composite_Service.html">Building the Composite Service</a></li>
+      <!-- HASELEM 101 Adding error handling GREM 8-I MECH-->
     </ul>
   </div>
 
