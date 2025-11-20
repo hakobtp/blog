@@ -106,15 +106,6 @@ This service handles:
 
 Finally, we use the new error handler inside the `CourseCompositeIntegrationService`.
 
-```java
-```
-
-Here’s what’s happening:
-
-- **For course details** → client errors are translated into structured domain exceptions
-- **For lists (chapters/quizzes)** → errors degrade gracefully by returning empty lists
-- **Unexpected errors** are logged for debugging
-- The composite layer remains clean and stable
 
 ```java
 package com.htp.microservices.core.course_composite.services;
@@ -166,6 +157,15 @@ public class CourseCompositeIntegrationService implements CourseService, Chapter
     }
 }
 ```
+
+Here’s what’s happening:
+
+- **For course details** → client errors are translated into structured domain exceptions
+- **For lists (chapters/quizzes)** → errors degrade gracefully by returning empty lists
+- **Unexpected errors** are logged for debugging
+- The composite layer remains clean and stable
+
+The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/composite_client_error_handler){:target="_blank" rel="noopener"}.
 
 ---
 
