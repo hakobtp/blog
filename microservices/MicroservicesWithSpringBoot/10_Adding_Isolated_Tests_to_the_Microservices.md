@@ -143,6 +143,22 @@ How the Mock Works
 By using mocks and `WebTestClient`, we can safely test microservice APIs without connecting to real databases or external services. 
 This approach makes tests faster and more reliable.
 
+
+> **NOTE:**
+>
+> Gradle runs your tests automatically every time you build the project.
+> ```bash
+>  ./gradlew build
+> ```
+>
+> If you only want to run the tests—without doing the full build—you can use the following command:
+> ```bash
+>  ./gradlew test
+> ```
+>
+> This is useful when you are developing and want quick feedback. Running only the tests is usually faster than building the whole project.
+
+
 The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/adding_isolated_tests_to_the_microservices){:target="_blank" rel="noopener"}.
 
 ---
