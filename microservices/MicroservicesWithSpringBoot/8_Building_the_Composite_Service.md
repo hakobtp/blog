@@ -198,17 +198,17 @@ public class CourseCompositeIntegrationService implements CourseService, Chapter
     private final MicroservicesConfig microservicesConfig;
 
     @Override
+    public Course getCourseById(Long courseId) {
+        var url = microservicesConfig.getCourseServiceUrl() + "/" + courseId;
+        return restTemplate.getForObject(url, Course.class);
+    }
+
+    @Override
     public List<Chapter> getChaptersByCourseId(Long courseId) {
         var url = microservicesConfig.getChapterServiceUrl() + "?courseId=" + courseId;
         return restTemplate.exchange(url, GET, null,
                 new ParameterizedTypeReference<List<Chapter>>() {
                 }).getBody();
-    }
-
-    @Override
-    public Course getCourseById(Long courseId) {
-        var url = microservicesConfig.getCourseServiceUrl() + "/" + courseId;
-        return restTemplate.getForObject(url, Course.class);
     }
 
     @Override
