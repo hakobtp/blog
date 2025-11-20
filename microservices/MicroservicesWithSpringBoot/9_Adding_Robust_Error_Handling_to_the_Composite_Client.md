@@ -172,3 +172,4 @@ The source code for this article is available [over on GitHub](https://github.co
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Building the Composite Service](./8_Building_the_Composite_Service.md)
+- [Adding Isolated Tests to the Microservices](./10_Adding_Isolated_Tests_to_the_Microservices.md)

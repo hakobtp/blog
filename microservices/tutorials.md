@@ -43,6 +43,8 @@
       <li><a href="./MicroservicesWithSpringBoot/7_Implementing_the_Course_API.html">Implementing the Course API</a></li>
       <li><a href="./MicroservicesWithSpringBoot/8_Building_the_Composite_Service.html">Building the Composite Service</a></li>
       <li><a href="./MicroservicesWithSpringBoot/9_Adding_Robust_Error_Handling_to_the_Composite_Client.html">Adding Robust Error Handling to the Composite Client</a></li>
+      <li><a href="./MicroservicesWithSpringBoot/10_Adding_Isolated_Tests_to_the_Microservices.html">Adding Isolated Tests to the Microservices</a></li>
+    <!-- Adding automated microservice tests in isolation EJ 106-->
     </ul>
   </div>
 
