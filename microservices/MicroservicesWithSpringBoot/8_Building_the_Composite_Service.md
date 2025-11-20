@@ -441,4 +441,5 @@ The source code for this article is available [over on GitHub](https://github.co
 
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
-- [Implementing the Course API](./7_Implementing_the_Course_API.md)    
+- [Implementing the Course API](./7_Implementing_the_Course_API.md) 
+- [Adding Robust Error Handling to the Composite Client](./9_Adding_Robust_Error_Handling_to_the_Composite_Client.md)
