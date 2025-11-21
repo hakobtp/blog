@@ -153,6 +153,6 @@ Git cherry-pick is a powerful tool that helps you move specific changes between 
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Introduction to Git](./1_introduction_to_git.md)
 - [Git Merge vs. Git Rebase](./3_Git_Merge_vs_Git_Rebase.md)

@@ -50,5 +50,5 @@ Your feature code is back, and you can continue right where you left off.
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Automating your workflow with Git Hooks](./5_Automating_Your_Workflow_with_Git_Hooks.md)

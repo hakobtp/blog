@@ -219,6 +219,6 @@ two different things, leading to massive confusion and "spaghetti" problems.
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Mastering Git Cherry-Pick: A Complete Guide](./2_Mastering_Git_Cherry_Pick_A_Complete_Guide.md)
 - [Git Tags: Bookmarking Your Project's History](./4_Git_Tags_Bookmarking_Your_Projects_History.md)

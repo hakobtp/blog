@@ -293,5 +293,5 @@ This sends your branch to the remote repository so your team can see and work wi
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Mastering Git Cherry-Pick: A Complete Guide](./2_Mastering_Git_Cherry_Pick_A_Complete_Guide.md)

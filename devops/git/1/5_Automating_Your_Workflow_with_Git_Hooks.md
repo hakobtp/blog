@@ -118,6 +118,6 @@ Think of hooks as a smart assistant that reminds you to double-check your work (
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Git Tags: Bookmarking Your Project's History](./4_Git_Tags_Bookmarking_Your_Projects_History.md)
 - [Git Stash: Your "Temporary Shelf" for Code](./6_Git_Stash_Your_Temporary_Shelf_for_Code.md)

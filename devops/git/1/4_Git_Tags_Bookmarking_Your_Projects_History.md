@@ -236,6 +236,6 @@ But when publishing an official, public release, signing it (`-s`) is the profes
 ---
 
 - [Home](./../../README.md)
-- [Git Tutorials](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [Git Merge vs. Git Rebase](./3_Git_Merge_vs_Git_Rebase.md)
 - [Automating your workflow with Git Hooks](./5_Automating_Your_Workflow_with_Git_Hooks.md)
