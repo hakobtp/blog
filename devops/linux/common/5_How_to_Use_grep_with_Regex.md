@@ -229,5 +229,5 @@ grep -E ',92$' data.csv
 ---
 
 - [HOME](./../../../README.md)
-- [Linux](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [How to Use grep in Linux: A Practical Guide](./4_How_to_Use_grep_in_Linux_A_Practical_Guide.md)

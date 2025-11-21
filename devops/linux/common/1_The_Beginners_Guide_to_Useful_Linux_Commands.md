@@ -29,5 +29,5 @@ few simple commands, you can move around your system, create files, and manage f
 ---
 
 - [HOME](./../../../README.md)
-- [Linux](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [File Permissions and Ownership](./2_File_Permissions_and_Ownership.md)

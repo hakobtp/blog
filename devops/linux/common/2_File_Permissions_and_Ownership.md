@@ -151,6 +151,6 @@ By learning how to view, change, and manage permissions, you can keep your files
 ---
 
 - [HOME](./../../../README.md)
-- [Linux](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [The Beginner’s Guide to Useful Linux Commands](./1_The_Beginners_Guide_to_Useful_Linux_Commands.md)
 - [System Info and Processes](./3_System_Info_and_Processes.md)

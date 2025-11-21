@@ -213,6 +213,6 @@ On many systems: `-R` follows symlinks, `-r` usually doesn’t. Check man grep f
 ---
 
 - [HOME](./../../../README.md)
-- [Linux](./../tutorials.md)
+- [DevOps](./../../tutorials.md)
 - [System Info and Processes](./3_System_Info_and_Processes.md)
 - [How to Use grep with Regex](./5_How_to_Use_grep_with_Regex.md)
