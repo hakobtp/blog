@@ -93,7 +93,7 @@ COPY --from=builder extracted/spring-boot-loader/ ./
 COPY --from=builder extracted/snapshot-dependencies/ ./
 COPY --from=builder extracted/application/ ./
 EXPOSE 8080
-ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
+ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
 ```
 
 Here’s how it works:
@@ -109,6 +109,141 @@ Here’s how it works:
   - Starts the microservice using `JarLauncher`.
 
 Using multi-stage builds, we keep the final image small while handling all packaging steps.
+
+## Building a Docker Image
+
+Before we can run our microservice in Docker, we need to build the deployment artifact—the fat JAR file—for `course-service`
+
+```bash
+pwd
+/microservices-with-spring-boot
+
+./gradlew :microservices:course-service:build
+
+ls -l microservices/course-service/build/libs/
+-rw-r--r-- 1 htp 1049089 26907426 Nov 26 16:02 course-service-1.0.0-SNAPSHOT.jar
+
+```
+Here:
+
+- `./gradlew :microservices:course-service:build` builds the fat JAR.
+- `ls -l` shows that the JAR file is created in `build/libs/`.
+
+Next, we create a Docker image and give it the name `course-service`:
+
+```bash
+cd microservices/course-service/
+
+ls
+Dockerfile  build/  build.gradle  settings.gradle  src/
+
+docker build -t course-service .
+```
+
+- Docker uses the `Dockerfile` in the current directory.
+- `-t course-service` gives the image a name.
+- The image is stored locally in Docker.
+
+To check the image exists:
+```bash
+docker images | grep course-service
+
+course-service   latest   89df1ba914e4   57 seconds ago   434MB
+```
+
+We can now start the microservice:
+
+```bash
+docker run --rm -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" course-service
+```
+
+Here’s what this command does:
+
+- `docker run` – starts the container and shows log output in the Terminal. The Terminal will be locked while the container runs.
+- `--rm` – automatically removes the container when we stop it with `Ctrl + C`.
+- `-p8080:8080` – maps port `8080` in the container to port `8080` on the host. This makes it 
+    possible to access the microservice from outside the container. For example, on macOS with Docker Desktop, 
+    it will also forward the port to `localhost`. Only one container can use a host port at a time.
+- `-e "SPRING_PROFILES_ACTIVE=docker"` – sets an environment variable to tell Spring Boot which profile to use. Here, we use the docker profile.    
+- `course-service` – the name of the Docker image we built.
+
+We can now access the microservice from another Terminal:
+
+```bash
+curl localhost:8080/api/v1/courses/1
+```
+
+Expected output
+
+```json
+{
+  "courseId": 1,
+  "title": "Introduction to Spring Boot",
+  "description": "Learn the basics of Spring Boot 3.",
+  "serviceAddress": "******:8080",
+  "difficultyLevel": "MEDIUM"
+}
+```
+
+To see all running containers:
+
+```bash
+docker ps
+CONTAINER ID   IMAGE            COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+bdd38c424630   course-service   "java org.springfram…"   6 minutes ago   Up 6 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   elated_sutherland
+```
+
+
+- `CONTAINER ID` is the unique identifier of the container. This helps to know which container responded to a request.
+- `PORTS` shows the mapping between the container and host ports.
+
+To stop the container, press `Ctrl + C` in the Terminal.
+
+## Detached Mode
+
+So far, when we start a Docker container using docker run, the Terminal is locked because the container is running in the foreground. 
+This can be inconvenient if we want to keep using the Terminal for other commands.
+
+Docker allows us to run containers in detached mode, meaning the container runs in the background, and the Terminal stays free.
+
+To start a container detached, use the `-d` option. You can also give it a name with `--name` (optional, but helpful):
+
+```bash
+docker run -d -p8080:8080 -e "SPRING_PROFILES_ACTIVE=docker" --name CS course-service
+```
+
+Use docker ps to see all running containers:
+
+```bash
+docker ps
+
+CONTAINER ID   IMAGE            COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+9117f2b93d05   course-service   "java org.springfram…"   49 seconds ago   Up 49 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   CS
+```
+
+Even in detached mode, you can still see the container logs with:
+
+```bash
+docker logs CS -f
+```
+
+- `-f` – follows the logs in real-time. The command keeps running, showing new log messages as they appear.
+- `--tail 0` – shows only new log messages, skipping old ones.
+- `--since 5m` – shows only log messages from the last five minutes.
+
+Try running a request to your microservice while viewing logs:
+
+```bash
+curl localhost:8080/api/v1/courses/1
+```
+
+When you’re done, stop and remove the container:
+
+```bash
+docker rm -f CS
+```
+
+- `-f` – forces Docker to stop the container if it’s running and then remove it.
 
 ---
 
