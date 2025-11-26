@@ -148,3 +148,4 @@ This knowledge is essential when building JVM-based microservices, because resou
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Adding Isolated Tests to the Microservices](./10_Adding_Isolated_Tests_to_the_Microservices.md)
+- [Using Docker with Microservices](./12_Using_Docker_with_Microservices.md)
