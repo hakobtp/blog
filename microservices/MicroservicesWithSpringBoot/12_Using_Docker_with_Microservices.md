@@ -245,7 +245,7 @@ docker rm -f CS
 
 - `-f` – forces Docker to stop the container if it’s running and then remove it.
 
-The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/using_docker_with_microservice){:target="_blank" rel="noopener"}.
+The source code for this article is available [over on GitHub](https://github.com/hakobtp/microservices-with-spring-boot/tree/using_docker_with_microservices){:target="_blank" rel="noopener"}.
 
 ---
 
