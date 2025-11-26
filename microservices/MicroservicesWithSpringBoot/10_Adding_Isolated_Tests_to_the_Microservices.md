@@ -166,3 +166,4 @@ The source code for this article is available [over on GitHub](https://github.co
 - [Home](./../../README.md)
 - [Microservices](./../tutorials.md)
 - [Adding Robust Error Handling to the Composite Client](./9_Adding_Robust_Error_Handling_to_the_Composite_Client.md)
+- [Creating a Docker Image](./11_Creating_a_Docker_Image.md)

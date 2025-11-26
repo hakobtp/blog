@@ -24,4 +24,12 @@
 
 ---
 
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em;">
+  <div>
+    <h3 style="margin:0;">Kubernetes</h3>
+    <!-- haseleme EJ 68  -->
+  <div>  
+</div>
+---
+
 [Home](./../README.md)
