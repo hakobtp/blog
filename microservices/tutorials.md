@@ -44,7 +44,7 @@
       <li><a href="./MicroservicesWithSpringBoot/8_Building_the_Composite_Service.html">Building the Composite Service</a></li>
       <li><a href="./MicroservicesWithSpringBoot/9_Adding_Robust_Error_Handling_to_the_Composite_Client.html">Adding Robust Error Handling to the Composite Client</a></li>
       <li><a href="./MicroservicesWithSpringBoot/10_Adding_Isolated_Tests_to_the_Microservices.html">Adding Isolated Tests to the Microservices</a></li>
-      <li><a href="./MicroservicesWithSpringBoot/11_Creating_a_Docker_Image.html">Creating a Docker Image</a></li>
+      <li><a href="./MicroservicesWithSpringBoot/11_Understanding_Java_Resource_Limits_in_Docker.html">Understanding Java Resource Limits in Docker</a></li>
     
     </ul>
   </div>

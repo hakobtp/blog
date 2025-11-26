@@ -1,4 +1,4 @@
-# Creating a Docker Image
+# Understanding Java Resource Limits in Docker
 
 Before we create a Docker image, it’s important to understand how Java behaves when it runs inside a container. 
 In this section, we will see how to limit `CPU` cores and `memory` for a Java process. This helps us create predictable and efficient applications.
