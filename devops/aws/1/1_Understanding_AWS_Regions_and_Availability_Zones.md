@@ -73,6 +73,13 @@ store cached copies of your static content—such as images, videos, or
 web pages—so users can download them from the location closest to them. This reduces latency and improves loading speed.
 
 
+Summary
+
+- Each Region contains several Availability Zones (usually 3; minimum 3, maximum 6).
+- Each Availability Zone (AZ) consists of one or more separate data centers with redundant power, networking, and connectivity.
+- AZs are isolated from each other so that a disaster in one AZ does not affect the others.
+- AZs are connected by high-bandwidth, ultra-low-latency networking.
+
 ---
 
 - [HOME](./../../../README.md)
