@@ -56,7 +56,7 @@ The command we typed has several parts:
 ```bash
 docker          container       run          alpine       echo "Hello World"
  |                 |             |             |                 |
-Docker CLI        context       action        image          command inside container
+Docker CLI       context       action        image        command inside container
 ```
 
 ---
