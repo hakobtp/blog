@@ -115,3 +115,4 @@ This setup lets you experiment with different images and commands easily, and is
 - [HOME](./../../../README.md)
 - [DevOps](./../../tutorials.md)
 - [Container architecture](./1_Container_architecture.md)
+- [Managing Containers](./3_Managing_Containers.md)
