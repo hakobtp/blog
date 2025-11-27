@@ -92,6 +92,22 @@ Now, let’s go ahead and create a user. On the Users page, click the “**Creat
     <img src="./assets/img4.png" alt="img4"/>
 </p>
 
+
+After entering the username, click Next. Now we need to add permissions to the user. You can add 
+permissions directly to the user, or You can use a group to give permissions.
+
+Let’s create a group:
+
+- The group name will be `admin`.
+- The policy for this group will be `AdministratorAccess`.
+
+Click the **Create group** button
+
+<p align="center">
+    <img src="./assets/img5.png" alt="img5"/>
+</p>
+
+
 ---
 
 - [HOME](./../../../README.md)
