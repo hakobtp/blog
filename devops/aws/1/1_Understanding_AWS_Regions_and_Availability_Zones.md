@@ -35,6 +35,10 @@ for users who are mainly in the United States.
 Not all AWS services are available in every Region. Before selecting a Region, check whether the services you need exist there. 
 AWS provides a public list that shows service availability across Regions.
 
+If you want to see which services are available in each Region, you can check the official AWS page:
+[Regional Services List](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services){:target="_blank" rel="noopener"}.
+
+
 ### Pricing Differences
 
 AWS prices are not the same in every Region. Storage or compute services may be cheaper in one Region than in another. 
@@ -61,25 +65,14 @@ but they are connected with fast, low-latency fiber links. Using multiple AZs he
 > This means that “`us-east-1a`” in one account may not be the same physical location as “`us-east-1a`” in another account. 
 > If you need to coordinate resources across accounts, you must use the internal AZ ID, which is the true identifier of the physical zone
 
+## AWS Points of Presence (Edge Locations)
+
+Besides Regions and AZs, AWS also has over 400 Points of Presence (PoPs), also called edge locations. 
+These are used by services like Amazon CloudFront, a Content Delivery Network (CDN). Edge locations 
+store cached copies of your static content—such as images, videos, or 
+web pages—so users can download them from the location closest to them. This reduces latency and improves loading speed.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-[here](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services){:target="_blank" rel="noopener"}.
 ---
 
 - [HOME](./../../../README.md)
