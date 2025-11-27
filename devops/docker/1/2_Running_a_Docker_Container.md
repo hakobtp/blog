@@ -59,6 +59,12 @@ docker          container       run          alpine       echo "Hello World"
 Docker CLI       context       action        image        command inside container
 ```
 
+1. **docker** – the Docker program we are using.
+2. **container** – tells Docker we want to work with containers.
+3. **run** – the action we want: start a new container.
+4. **alpine** – the container image we want to use.
+5. **echo "Hello World"** – the command that runs inside the container.
+
 ---
 
 - [HOME](./../../../README.md)
