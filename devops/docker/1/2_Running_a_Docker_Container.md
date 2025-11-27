@@ -53,7 +53,7 @@ This is because Docker now uses the image stored locally, so no download is need
 
 The command we typed has several parts:
 
-```bash
+```text
 docker          container       run          alpine       echo "Hello World"
  |                 |             |             |                 |
 Docker CLI       context       action        image        command inside container
