@@ -34,6 +34,7 @@
     <h3 style="margin:0;">AWS</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
       <li><a href="./aws/1/1_Understanding_AWS_Regions_and_Availability_Zones.html">Understanding AWS Regions and Availability Zones</a></li> 
+       <li><a href="./aws/1/2_IAM_Users_&_Groups.html">IAM: Users & Groups</a></li> 
     </ul>
   </div>
 </div>
