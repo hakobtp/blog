@@ -54,6 +54,11 @@ Example from the Sydney Region (**ap-southeast-2**):
 - `ap-southeast-2B`
 - `ap-southeast-2C`
 
+<p align="center">
+    <img src="./assets/img1.svg" alt="img1" width="400"/>
+</p>
+
+
 An AZ is made of one or more data centers with their own power supply, networking, cooling, and buildings. 
 AZs are placed far enough apart (sometimes up to 100 km) to avoid a single disaster affecting all of them, 
 but they are connected with fast, low-latency fiber links. Using multiple AZs helps applications stay online even if one AZ has a problem.
