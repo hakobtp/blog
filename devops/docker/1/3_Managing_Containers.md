@@ -58,6 +58,55 @@ You can always check the help for the `ls` command:
 docker container ls -h
 ```
 
+## Stopping and Starting Containers
+
+To run a container in the background (detached mode):
+
+```bash
+docker container run -d --name trivia fundamentalsofdocker/trivia:ed2
+```
+
+To stop it:
+
+```bash
+docker container stop trivia  # or use the container ID
+```
+
+Stopping may take a few seconds. Here’s why:
+
+- Docker sends a `SIGTERM` signal to the main process inside the container.
+- If the process doesn’t stop, Docker waits 10 seconds and sends `SIGKILL`, which forcefully stops it.
+
+Stopped containers still occupy space. To remove them:
+
+```bash
+docker container rm <container ID>
+docker container rm <container name>
+```
+
+If a container is still running and you want to remove it, add the force parameter:
+
+```bash
+docker container rm -f <container name or ID>
+```
+
+This ensures the container is removed no matter its state.
+
+
+You can find the container ID for more advanced commands:
+
+```bash
+export CONTAINER_ID=$(docker container ls -a | grep trivia | awk '{print $1}')
+```
+
+For example:
+```bash
+docker container stop $CONTAINER_ID
+docker container rm $CONTAINER_ID
+```
+
+This stops and removes the container without typing the long ID manually.
+
 ---
 
 - [HOME](./../../../README.md)
