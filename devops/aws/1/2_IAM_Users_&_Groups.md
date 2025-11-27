@@ -174,6 +174,9 @@ The user received this permission through the `admin` group.
     <img src="./assets/img13.png" alt="img13"/>
 </p>
 
+This means that `HakobAdmin` inherited all the permissions of the group.
+This is why we put users in groups—it makes permission management simpler.
+
 ---
 
 - [HOME](./../../../README.md)
