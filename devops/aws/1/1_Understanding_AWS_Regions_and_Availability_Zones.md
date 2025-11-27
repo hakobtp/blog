@@ -19,18 +19,18 @@ Most AWS services work inside a single Region. If you use the same service in an
 
 When you deploy an application, you must choose which Region to use. There is no single “best” Region. The right choice depends on several factors.
 
-### Compliance and Legal Requirements
+**Compliance and Legal Requirements**
 
 Some countries have laws that control where data must stay. This is called data residency. 
 For example, data created in France may need to remain in France, so you should deploy your application in the French Region (`eu-west-3`).
 
-### Latency and User Location
+**Latency and User Location**
 
 Latency is the time it takes for data to travel between your users and your application. To give users a fast experience, 
 deploy your application close to the majority of them. For example, hosting an application in Australia will feel slow 
 for users who are mainly in the United States.
 
-### Service Availability
+**Service Availability**
 
 Not all AWS services are available in every Region. Before selecting a Region, check whether the services you need exist there. 
 AWS provides a public list that shows service availability across Regions.
@@ -38,8 +38,7 @@ AWS provides a public list that shows service availability across Regions.
 If you want to see which services are available in each Region, you can check the official AWS page:
 [Regional Services List](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services){:target="_blank" rel="noopener"}.
 
-
-### Pricing Differences
+**Pricing Differences**
 
 AWS prices are not the same in every Region. Storage or compute services may be cheaper in one Region than in another. 
 These differences can affect your final decision.
@@ -73,7 +72,7 @@ store cached copies of your static content—such as images, videos, or
 web pages—so users can download them from the location closest to them. This reduces latency and improves loading speed.
 
 
-Summary
+## Summary
 
 - Each Region contains several Availability Zones (usually 3; minimum 3, maximum 6).
 - Each Availability Zone (AZ) consists of one or more separate data centers with redundant power, networking, and connectivity.
