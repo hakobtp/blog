@@ -19,12 +19,12 @@ This is important for security, performance, and costs.
 If you're launching a new application, you must decide which region to use.
 There is no single “best” region—your choice depends on several factors.
 
-1. **Compliance and Legal Requirements**
+1. **Compliance and Legal Requirements** </br>
     Some countries have laws about where data must be stored.
     For example, data produced in France may need to stay inside France.
     In this case, you should deploy your application in the French region (**eu-west-3**).
 
-2. **Latency and User Location**
+2. **Latency and User Location** </br>
     Latency means the time it takes for data to travel between your users and your application.
     To reduce latency, you should deploy your app close to your main users.
 
