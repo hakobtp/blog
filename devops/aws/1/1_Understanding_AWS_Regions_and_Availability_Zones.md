@@ -26,9 +26,12 @@ There is no single “best” region—your choice depends on several factors.
 
 2. **Latency and User Location** </br>
     Latency means the time it takes for data to travel between your users and your application.
-    To reduce latency, you should deploy your app close to your main users.
-
-    **Example:** If most of your users are in the United States, deploying the app in an Australian region will make it slow for them.
+    To reduce latency, you should deploy your app close to your main users. For example, if most of your 
+    users are in the United States, deploying the app in an Australian region will make it slow for them.
+    
+3. **Service Availability** </br>
+    Not every AWS service exists in every region. Before choosing a region, check whether the service you need 
+    is available there. For example, some machine-learning or analytics services may exist only in a few regions.
 
 ---
 
