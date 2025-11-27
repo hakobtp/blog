@@ -147,6 +147,26 @@ After creating the user, you can:
 - Download a CSV file with the user’s credentials.
 - The user can now log in using their username and password.
 
+Let’s go back to the user list and check everything. Here we can see user list.
+
+<p align="center">
+    <img src="./assets/img10.png" alt="img10"/>
+</p>
+
+On the left side, if we click `User groups`, we can see the group called admins.
+The admins group has one user in it, named `HakobAdmin`.
+
+<p align="center">
+    <img src="./assets/img11.png" alt="img11"/>
+</p>
+
+If we look at the `permissions` of the admins group, we can see that the AdministratorAccess policy is attached to it.
+
+<p align="center">
+    <img src="./assets/img12.png" alt="img12"/>
+</p>
+
+
 ---
 
 - [HOME](./../../../README.md)
