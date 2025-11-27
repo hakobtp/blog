@@ -113,6 +113,10 @@ Click the **Create group** button
 
 Click **Create user group**. Now that the group is ready, we can add the user to the admin group.
 
+<p align="center">
+    <img src="./assets/img7.png" alt="img7"/>
+</p>
+
 ---
 
 - [HOME](./../../../README.md)
