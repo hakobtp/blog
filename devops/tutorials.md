@@ -26,15 +26,30 @@
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em;">
   <div>
-    <h3 style="margin:0;">Kubernetes</h3>
+    <h3 style="margin:0;">Terraform</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
-     <!-- haseleme EJ 68  -->
     </ul>
   </div>
   <div>
     <h3 style="margin:0;">AWS</h3>
     <ul style="margin:0; padding-left:0; list-style:none;">
       <li><a href="./aws/1/1_Understanding_AWS_Regions_and_Availability_Zones.html">Understanding AWS Regions and Availability Zones</a></li> 
+    </ul>
+  </div>
+</div>
+
+---
+
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em;">
+  <div>
+    <h3 style="margin:0;">Docker</h3>
+    <ul style="margin:0; padding-left:0; list-style:none;">
+    </ul>
+  </div>
+  <div>
+    <h3 style="margin:0;">Kubernetes</h3>
+    <ul style="margin:0; padding-left:0; list-style:none;">
+       <!-- haseleme EJ 68  -->
     </ul>
   </div>
 </div>
