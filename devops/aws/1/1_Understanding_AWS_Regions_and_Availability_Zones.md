@@ -55,7 +55,7 @@ Example from the Sydney Region (**ap-southeast-2**):
 - `ap-southeast-2C`
 
 <p align="center">
-    <img src="./assets/img1.svg" alt="img1" width="400"/>
+    <img src="./assets/img1.svg" alt="img1" width="600"/>
 </p>
 
 
