@@ -77,6 +77,11 @@ Important note:
 - This shows that IAM is a global service, not tied to any specific region.
 - Users you create in IAM are available everywhere. Some other AWS services you’ll see in this course are region-specific.
 
+Why do we create users?
+
+- Right now, we are using the root user. You can see your `account ID` at the top.
+- We create IAM users so that people or applications can have their own accounts instead of using the root account.
+
 ---
 
 - [HOME](./../../../README.md)
