@@ -79,8 +79,16 @@ Important note:
 
 Why do we create users?
 
-- Right now, we are using the root user. You can see your `account ID` at the top.
-- We create IAM users so that people or applications can have their own accounts instead of using the root account.
+- Right now, you are using the root account, which shows your account ID.
+    - Only the AWS account itself has an account ID.
+    - IAM users do not get a new account ID. They belong to the same AWS account.
+    - Each IAM user has a username and credentials (like a password or access keys) but shares the account ID with the root account.
+- Using the root account for daily work is not safe and not best practice.
+- Instead, we create IAM users, such as admin users, so that we can use the account more safely.
+
+
+Now, let’s go ahead and create a user.
+
 
 ---
 
