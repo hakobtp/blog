@@ -68,7 +68,7 @@ Let’s practice creating users in AWS using the IAM service.
 3. On the left side, click Users. This is where we can create new IAM users.
 
 <p align="center">
-    <img src="./assets/img3.png" alt="img3" width="500"/>
+    <img src="./assets/img3.png" alt="img3"/>
 </p>
 
 Important note:
