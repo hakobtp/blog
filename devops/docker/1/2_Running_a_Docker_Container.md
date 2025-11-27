@@ -65,6 +65,27 @@ Docker CLI       context       action        image        command inside contain
 4. **alpine** – the container image we want to use.
 5. **echo "Hello World"** – the command that runs inside the container.
 
+Let's use a different image, like ubuntu, and run a small task:
+
+```bash
+docker container run ubuntu uname -a
+```
+
+Output might look like this:
+
+```text
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+Digest: sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
+Status: Downloaded newer image for ubuntu:latest
+Linux 19b1c02e6d4e 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+Here:
+
+- **ubuntu** is the image.
+- **uname -a** runs a command inside the container that shows system information.
+
 ---
 
 - [HOME](./../../../README.md)
