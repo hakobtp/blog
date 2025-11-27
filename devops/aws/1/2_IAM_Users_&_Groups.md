@@ -160,12 +160,19 @@ The admins group has one user in it, named `HakobAdmin`.
     <img src="./assets/img11.png" alt="img11"/>
 </p>
 
-If we look at the `permissions` of the admins group, we can see that the AdministratorAccess policy is attached to it.
+If we look at the `permissions` of the admins group, we can see that the `AdministratorAccess` policy is attached to it.
 
 <p align="center">
     <img src="./assets/img12.png" alt="img12"/>
 </p>
 
+If we open the user `HakobAdmin`, we can also see the `AdministratorAccess` policy.
+However, this permission was not added directly to the user.
+The user received this permission through the `admin` group.
+
+<p align="center">
+    <img src="./assets/img13.png" alt="img13"/>
+</p>
 
 ---
 
