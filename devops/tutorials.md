@@ -41,20 +41,6 @@
 
 ---
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em;">
-  <div>
-    <h3 style="margin:0;">Docker</h3>
-    <ul style="margin:0; padding-left:0; list-style:none;">
-      <li><a href="./docker/1/1_Container_architecture.html">Container architecture</a></li> 
-    </ul>
-  </div>
-  <div>
-    <h3 style="margin:0;">Kubernetes</h3>
-    <ul style="margin:0; padding-left:0; list-style:none;">
-       <!-- haseleme EJ 68  -->
-    </ul>
-  </div>
-</div>
 
 
 ---
