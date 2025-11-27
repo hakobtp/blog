@@ -177,6 +177,23 @@ The user received this permission through the `admin` group.
 This means that `HakobAdmin` inherited all the permissions of the group.
 This is why we put users in groups—it makes permission management simpler.
 
+Now let’s go back to the IAM Dashboard because we want to sign in with our new user, `HakobAdmin`. 
+First, we can look at our AWS account information. The account has an account ID and a sign-in URL. 
+We can also customize the sign-in URL by creating an account alias.
+
+<p align="center">
+    <img src="./assets/img14.png" alt="img14"/>
+</p>
+
+You can `Edit` or `Create` alias. 
+
+<p align="center">
+    <img src="./assets/img15.png" alt="img15"/>
+</p>
+
+
+Now you can use https://htp1.signin.aws.amazon.com/console to log in.
+
 ---
 
 - [HOME](./../../../README.md)
