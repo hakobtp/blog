@@ -107,6 +107,10 @@ Click the **Create group** button
     <img src="./assets/img5.png" alt="img5"/>
 </p>
 
+<p align="center">
+    <img src="./assets/img6.png" alt="img6"/>
+</p>
+
 
 ---
 
