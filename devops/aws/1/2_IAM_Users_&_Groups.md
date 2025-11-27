@@ -67,6 +67,16 @@ Let’s practice creating users in AWS using the IAM service.
 2. On the IAM Dashboard, you may see some security recommendations. We don’t need to worry about them for now.
 3. On the left side, click Users. This is where we can create new IAM users.
 
+<p align="center">
+    <img src="./assets/img3.png" alt="img3" width="500"/>
+</p>
+
+Important note:
+
+- In the top right corner, click Global. You will see that the region selection is not active.
+- This shows that IAM is a global service, not tied to any specific region.
+- Users you create in IAM are available everywhere. Some other AWS services you’ll see in this course are region-specific.
+
 ---
 
 - [HOME](./../../../README.md)
