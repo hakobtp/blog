@@ -111,6 +111,7 @@ Click the **Create group** button
     <img src="./assets/img6.png" alt="img6"/>
 </p>
 
+Click **Create user group**. Now that the group is ready, we can add the user to the admin group.
 
 ---
 
