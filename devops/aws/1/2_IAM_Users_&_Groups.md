@@ -86,9 +86,11 @@ Why do we create users?
 - Using the root account for daily work is not safe and not best practice.
 - Instead, we create IAM users, such as admin users, so that we can use the account more safely.
 
+Now, let’s go ahead and create a user. On the Users page, click the “**Create user**” button.
 
-Now, let’s go ahead and create a user.
-
+<p align="center">
+    <img src="./assets/img4.png" alt="img4"/>
+</p>
 
 ---
 
