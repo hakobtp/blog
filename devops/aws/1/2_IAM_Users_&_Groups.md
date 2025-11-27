@@ -51,7 +51,13 @@ So, **IAM** stands for Identity and Access Management. It is a global service be
 - `"Version": "2012-10-17"` **-** This is the policy language version. It tells AWS which version of JSON rules we are using.
 - `"Statement"` **-** This is a list of rules. Each rule says what actions are allowed or denied.
 - `"Effect": "Allow"` **-** This means the rule allows the action. It could also be `"Deny"` to block something.
+- `"Action"` **-** This is what the user can do.
+    - `"ec2:Describe*"` **-**  Can see EC2 information (all `“Describe”` actions).
+    - `"elasticloadbalancing:Describe*"` **-** Can see load balancer information.
+    - CloudWatch actions **-** Can list metrics, get statistics, and describe resources.
+- `"Resource": "*"` **-** This means the rule applies to all resources.
 
+**In short:** This policy gives read-only access to EC2, Load Balancer, and CloudWatch services.
 
 ---
 
