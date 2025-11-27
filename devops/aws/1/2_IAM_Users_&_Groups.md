@@ -135,6 +135,18 @@ Here you can check everything before creating the user:
     <img src="./assets/img8.png" alt="img8"/>
 </p>
 
+Click **Create user**. Now the user is created successfully.
+
+<p align="center">
+    <img src="./assets/img9.png" alt="img9"/>
+</p>
+
+After creating the user, you can:
+
+- Email the sign-in instructions to the user, or
+- Download a CSV file with the user’s credentials.
+- The user can now log in using their username and password.
+
 ---
 
 - [HOME](./../../../README.md)
