@@ -48,7 +48,9 @@ So, **IAM** stands for Identity and Access Management. It is a global service be
 }
 ```
 
-- `"Version": "2012-10-17"` **:** This is the policy language version. It tells AWS which version of JSON rules we are using.
+- `"Version": "2012-10-17"` **-** This is the policy language version. It tells AWS which version of JSON rules we are using.
+- `"Statement"` **-** This is a list of rules. Each rule says what actions are allowed or denied.
+- `"Effect": "Allow"` **-** This means the rule allows the action. It could also be `"Deny"` to block something.
 
 
 ---
