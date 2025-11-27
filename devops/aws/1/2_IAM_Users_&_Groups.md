@@ -59,6 +59,14 @@ So, **IAM** stands for Identity and Access Management. It is a global service be
 
 **In short:** This policy gives read-only access to EC2, Load Balancer, and CloudWatch services.
 
+## Create Users in AWS
+
+Let’s practice creating users in AWS using the IAM service.
+
+1. In the AWS search bar, type IAM and open the IAM console.
+2. On the IAM Dashboard, you may see some security recommendations. We don’t need to worry about them for now.
+3. On the left side, click Users. This is where we can create new IAM users.
+
 ---
 
 - [HOME](./../../../README.md)
