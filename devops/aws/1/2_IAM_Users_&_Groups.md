@@ -117,6 +117,24 @@ Click **Create user group**. Now that the group is ready, we can add the user to
     <img src="./assets/img7.png" alt="img7"/>
 </p>
 
+Click **Next** to go to the Review page.
+
+Here you can check everything before creating the user:
+
+- Username
+- Permissions (from the group)
+- Tags
+    - Tags are optional but very useful in AWS.
+    - They are like labels or metadata for your resources.
+    - For example, you could add a tag:
+        - Key: Department
+        - Value: Engineering
+    - Tags help you organize and manage resources.    
+
+<p align="center">
+    <img src="./assets/img8.png" alt="img8"/>
+</p>
+
 ---
 
 - [HOME](./../../../README.md)
