@@ -19,19 +19,20 @@ This is important for security, performance, and costs.
 If you're launching a new application, you must decide which region to use.
 There is no single “best” region—your choice depends on several factors.
 
-1. **Compliance and Legal Requirements** </br>
-    Some countries have laws about where data must be stored.
-    For example, data produced in France may need to stay inside France.
+- **Compliance and Legal Requirements:** Some countries have laws about where data must be stored.
+    For example, data produced in France may need to stay inside France. 
     In this case, you should deploy your application in the French region (**eu-west-3**).
 
-2. **Latency and User Location** </br>
-    Latency means the time it takes for data to travel between your users and your application.
+- **Latency and User Location:** Latency means the time it takes for data to travel between your users and your application.
     To reduce latency, you should deploy your app close to your main users. For example, if most of your 
     users are in the United States, deploying the app in an Australian region will make it slow for them.
-    
-3. **Service Availability** </br>
-    Not every AWS service exists in every region. Before choosing a region, check whether the service you need 
+
+- **Service Availability:** Not every AWS service exists in every region. Before choosing a region, check whether the service you need 
     is available there. For example, some machine-learning or analytics services may exist only in a few regions.
+
+- **Pricing Differences:** AWS prices vary between regions.
+    For instance, compute or storage costs may be cheaper in one region but more expensive in another.
+    This can influence your final decision.
 
 ---
 
