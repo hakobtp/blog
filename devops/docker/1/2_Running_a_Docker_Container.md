@@ -49,7 +49,15 @@ Hello World
 
 This is because Docker now uses the image stored locally, so no download is needed.
 
+## Understanding the Command
 
+The command we typed has several parts:
+
+```bash
+docker          container       run          alpine       echo "Hello World"
+ |                 |             |             |                 |
+Docker CLI        context       action        image          command inside container
+```
 
 ---
 
