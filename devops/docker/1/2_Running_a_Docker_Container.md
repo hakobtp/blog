@@ -86,6 +86,30 @@ Here:
 - **ubuntu** is the image.
 - **uname -a** runs a command inside the container that shows system information.
 
+Key Points About Images and Tags
+
+- Each container image has a version, called a tag.
+- If you don’t specify a tag, Docker uses latest by default.
+- The first time you use an image, Docker downloads it. Later runs are faster because the image is stored locally.
+
+Sometimes you want a container to run without showing output in the terminal. Use:
+
+```bash
+docker container run -d --name my_ubuntu ubuntu sleep 60
+```
+
+- `-d`: run in the background (detached mode).
+- `--name`: give the container a specific name (`my_ubuntu`).
+
+Check the container status:
+
+```bash
+docker container ls -l   # shows last container status
+docker rm -f my_ubuntu   # stops and removes the container
+```
+
+This setup lets you experiment with different images and commands easily, and is the basis for learning Docker containers.
+
 ---
 
 - [HOME](./../../../README.md)
