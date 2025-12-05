@@ -40,6 +40,91 @@ A shortened example looks like this:
 ]
 ```
 
+This output contains many useful sections. For example, you can find:
+
+- The container’s unique ID
+- The time and date when the container was created
+- The image that was used to start the container
+
+Some parts of the output, such as `Mounts` and `NetworkSettings`, may not make sense yet.
+We will cover these topics later. For now, think of this whole document as the metadata of the container.
+
+You will use the inspect command often when you need detailed information.
+
+
+Sometimes we only need one small part of the JSON. Instead of reading the whole document, we can filter it. 
+One way is to install `jq`, a tool that helps you work with JSON on the command line:
+
+```bash
+sudo apt install -y jq
+```
+
+Then we can filter only the container’s state:
+
+```bash
+docker container inspect -f "{{json .State}}" trivia_app | jq .
+```
+
+This shows only the `.State` section in a clean and readable format.
+
+## Exec into a running container
+
+We may sometimes want to run a command inside a container that is already running.
+This is useful for debugging or checking what is happening inside the container.
+
+We only need the container name or ID, and then we choose the command we want to run.
+
+For example, here we open a shell inside a running container:
+
+```bash
+docker container exec -i -t trivia /bin/sh
+```
+
+- `-i` means interactive mode
+- `-t` gives us a terminal interface
+
+After running the command, you’ll see a new prompt, for example:
+
+```bash
+/app #
+```
+
+This means you are now inside the container. You can run commands such as:
+
+```bash
+/app # ps
+```
+
+This shows all running processes inside the container.
+
+To leave the shell, press `Ctrl + D`.
+
+You can also run a command without entering interactive mode:
+
+```bash
+docker container exec trivia ps
+```
+
+Or run a command with environment variables:
+
+```bash
+docker container exec -it \
+  -e USER_MESSAGE="Hello from inside!" \
+  trivia /bin/sh
+
+```
+
+Inside the container:
+
+```bash
+/app # echo $USER_MESSAGE
+Hello from inside!
+```
+
+## Attaching to a running container
+
+The attach command connects your terminal to a container’s standard input and output.
+This allows you to watch the container’s live logs or interact with its main process.
 
 ---
 
