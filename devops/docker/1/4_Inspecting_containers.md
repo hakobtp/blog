@@ -126,6 +126,44 @@ Hello from inside!
 The attach command connects your terminal to a container’s standard input and output.
 This allows you to watch the container’s live logs or interact with its main process.
 
+```bash
+docker container attach trivia
+```
+
+You will now see whatever the container prints to the console—for example, log messages that appear every few seconds.
+
+To detach without stopping the container:
+- Press `Ctrl + P`, then `Ctrl + Q`
+
+To detach and stop the container:
+
+- Press `Ctrl + C`
+
+### Example with Nginx
+
+Let’s start a separate Nginx container:
+
+```bash
+docker run -d --name webdemo -p 8080:80 nginx:alpine
+
+```
+
+Attach your terminal to it:
+
+```bash
+docker container attach webdemo
+```
+
+You will not see anything at first.
+Now open another terminal and send a few requests:
+
+```bash
+for i in {1..10}; do curl -4 localhost:8080; done
+
+```
+
+In the attached terminal, you will now see Nginx logs showing each incoming request.
+
 ---
 
 - [HOME](./../../../README.md)
