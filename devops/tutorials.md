@@ -49,6 +49,7 @@
       <li><a href="./docker/1/2_Running_a_Docker_Container.html">Running a Docker Container</a></li> 
       <li><a href="./docker/1/3_Managing_Containers.html">Managing Containers</a></li> 
       <li><a href="./docker/1/4_Inspecting_containers.html">Inspecting containers</a></li> 
+      <li><a href="./docker/1/5_Retrieving_logs_from_a_container.html">Retrieving logs from a container</a></li> 
     </ul>
   </div>
   <div>

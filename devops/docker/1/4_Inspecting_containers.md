@@ -169,3 +169,4 @@ In the attached terminal, you will now see Nginx logs showing each incoming requ
 - [HOME](./../../../README.md)
 - [DevOps](./../../tutorials.md)
 - [Managing Containers](./3_Managing_Containers.md)
+- [Retrieving logs from a container](./5_Retrieving_logs_from_a_container.md)
