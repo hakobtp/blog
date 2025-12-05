@@ -1,7 +1,6 @@
 # Retrieving logs from a container
 
 
-
 ---
 
 - [HOME](./../../../README.md)
