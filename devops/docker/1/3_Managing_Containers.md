@@ -112,3 +112,4 @@ This stops and removes the container without typing the long ID manually.
 - [HOME](./../../../README.md)
 - [DevOps](./../../tutorials.md)
 - [Running a Docker Container](./2_Running_a_Docker_Container.md)
+- [Inspecting containers](./4_Inspecting_containers.md)
