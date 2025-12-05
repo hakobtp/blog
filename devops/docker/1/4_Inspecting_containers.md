@@ -1,13 +1,16 @@
 # Inspecting containers
 
-Containers are runtime instances of an image and have a lot of associated data that characterizes their behavior. 
-To get more information about a specific container, we can use the inspect command. As usual, we have to provide either the container ID or name to identify the container of which we want to obtain the data. So, let's inspect our sample container:
+A container is a running instance of an image. Every container has its own data, settings, and state.
+To see this information, we can use the inspect command. We only need to give Docker the name or the ID of the container we want to check.
+
+For example:
 
 ```bash
 docker container inspect trivia
 ```
 
-The response is a big JSON object full of details. It looks similar to this:
+The command returns a large JSON document with many details about the container.
+A shortened example looks like this:
 
 ```json
 [
@@ -36,6 +39,7 @@ The response is a big JSON object full of details. It looks similar to this:
     }
 ]
 ```
+
 
 ---
 
