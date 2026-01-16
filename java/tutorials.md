@@ -51,7 +51,7 @@
         <!-- 10.4.2. Executor Services -->
     </ul>
   </div>
-  <div>
+  <!-- <div>
     <h3>Annotations</h3>
     <ul style="list-style: none; padding: 0;">
      <li><a href="./anotation/1_Introduction_to_annotations.html">Introduction to Annotations</a></li>
@@ -60,7 +60,7 @@
       <li><a href="./anotation/4_Using_Annotations_at_Runtime.html">Using Annotations at Runtime</a></li>
       <li><a href="./anotation/5_Source_Level_Annotation_Processing.html">Source-Level Annotation Processing</a></li>
     </ul>
-  </div>
+  </div> -->
 </div>
 
 ---
